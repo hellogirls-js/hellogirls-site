@@ -1,3 +1,18 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "prettier", "prettier-standard"],
+  "plugins": ["unused-imports", "prettier"],
+  "rules": {
+    "prettier/prettier": ["warn"],
+    "import/order": [
+      "warn",
+      {
+        "newlines-between": "always"
+      }
+    ],
+    "import/first": [
+      "warn"
+    ],
+    "unused-imports/no-unused-imports": "warn",
+      "react/jsx-key": "warn"
+  }
 }

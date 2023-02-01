@@ -1,0 +1,15 @@
+@use "../../styles/vars.module.scss";
+
+.dark {
+  background-color: vars.$dark-bg;
+  color: vars.$dark-text;
+}
+
+.light {
+  background-color: vars.$light-bg;
+  color: vars.$light-text;
+}
+
+#main-layout {
+  transition: background-color 0.3s;
+}

@@ -1,0 +1,26 @@
+@use "../../styles/vars.module.scss";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  width: 100%;
+  max-width: 100%;
+  font-family: vars.$body-font;
+
+  a:link {
+    text-decoration: none;
+  }
+}
+
+.dark {
+  background-color: vars.$dark-bg;
+  color: vars.$light-bg;
+}
+
+.light {
+  background-color: vars.$light-bg;
+  color: vars.$dark-bg;
+}

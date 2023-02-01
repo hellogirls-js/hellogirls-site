@@ -1,0 +1,23 @@
+.main {
+  min-height: 100vh;
+  width: 88vw;
+  margin: auto;
+  margin-top: 5vh;
+
+  h2 {
+    font-size: 24pt;
+    padding-left: 2vw;
+  }
+}
+
+.profile {
+  display: flex;
+  margin: auto;
+  width: 90%;
+
+  .info {
+    flex: 0 0 40%;
+  }
+}
+
+

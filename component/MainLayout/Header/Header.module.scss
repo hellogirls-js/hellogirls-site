@@ -1,0 +1,52 @@
+@use "../../../styles/vars.module.scss";
+
+.dark {
+
+  .headerText {
+
+    .headerLink {
+      --ti-cursor-color: vars.$dark-text;
+      color: vars.$dark-text;
+    }
+
+  }
+  
+
+}
+
+.light {
+
+  
+
+  .headerText {
+    background: vars.$light-heading-bg;
+    border: 1px solid #d3cfeb;
+
+    .headerLink {
+      --ti-cursor-color: vars.$light-text;
+      color: vars.$light-text;
+    }
+
+  }
+}
+
+.header {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .headerText {
+    width: 60%;
+    margin: 0;
+    margin-left: 6vw;
+    text-align: left;
+    padding: 2vh 8vw 2vh 0.5vw;
+    font-family: vars.$header-font;
+    font-size: 30pt;
+    border-radius: 5px;
+  }
+  
+}
+

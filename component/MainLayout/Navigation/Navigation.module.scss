@@ -1,0 +1,97 @@
+@use "../../../styles/vars.module.scss";
+
+.light {
+  --button-border: #b5aef0;
+  --button-color: #7c73ce;
+  --button-hover: #e5e3fa;
+  --button-open: #a8b346;
+
+  --menu-link-bg: #e9eebd;
+  --menu-link: #7c73ce;
+
+  .button {
+    background: #fff;
+    color: var(--button-color);
+    border: 2px solid var(--button-border);
+    box-shadow: 1px 1px 3px vars.$light-shadow;
+
+    svg {
+      transition: fill 0.3s;
+    }
+  }
+
+  .button:hover {
+    background: var(--button-hover);
+  }
+
+  .openButton {
+    color: var(--button-open);
+
+    svg {
+      fill: var(--button-open);
+    }
+  }
+
+  .menu {
+    background: #fff;
+    box-shadow: 1px 1px 2px vars.$light-shadow;
+
+    a:link, a:visited {
+      color: var(--menu-link);
+    }
+
+    a:hover {
+      background-color: var(--menu-link-bg);
+    }
+  }
+}
+
+.nav {
+  position: fixed;
+  bottom: 6%;
+  left: 6%;
+
+  .button {
+    height: 40px;
+    width: 40px;
+    padding: 10px 10px;
+    border-radius: 50%;
+    transition: background 0.3s;
+  }
+
+  .button:hover {
+    cursor: pointer;
+  }
+
+  .menu {
+    position: fixed;
+    bottom: 15%;
+    width: 220px;
+    padding: 2vh 0vw;
+    border-radius: 5px;
+    border: 1px solid var(--button-border);
+    transition: opacity 0.3s;
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    a:link, a:visited {
+      display: block;
+      padding: 1vh 2vw;
+    }
+  }
+
+  .closed {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .open {
+    visibility: visible;
+    opacity: 1;
+  }
+
+}
+
