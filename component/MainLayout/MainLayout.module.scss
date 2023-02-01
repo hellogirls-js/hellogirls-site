@@ -3,13 +3,42 @@
 .dark {
   background-color: vars.$dark-bg;
   color: vars.$dark-text;
+
+  a:link, a:visited {
+    color: vars.$dark-link;
+  }
+
+  strong {
+    color: vars.$dark-bold-text;
+  }
+
 }
 
 .light {
-  background-color: vars.$light-bg;
+  background: linear-gradient(vars.$light-bg, vars.$light-bg-grad);
   color: vars.$light-text;
+
+  a:link, a:visited {
+    color: vars.$light-link;
+  }
+
+  strong {
+    color: vars.$light-bold-text;
+  }
+
+  h2 {
+    color: vars.$light-heading-2;
+  }
+
 }
 
-#main-layout {
-  transition: background-color 0.3s;
+.main {
+  min-height: 100vh;
+
+  .component {
+    width: 85vw;
+    min-height: 100vh;
+    margin: auto;
+    margin-top: 7vh;
+  }
 }

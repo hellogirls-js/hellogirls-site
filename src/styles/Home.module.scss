@@ -5,14 +5,6 @@
   --icon-border: #8e86d4;
   --icon-color: #aeb474;
 
-  a:link, a:visited {
-    color: vars.$light-link;
-  }
-
-  strong {
-    color: vars.$light-bold-text;
-  }
-
   .profile {
     
     .profileElement {
@@ -41,66 +33,69 @@
 
 // }
 
-.main {
-  width: 85vw;
-  min-height: 100vh;
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.profile {
+  display: flex;
   margin: auto;
-  margin-top: 7vh;
+  width: 90%;
 
-  h2 {
-    font-size: 24pt;
-    padding-left: 2vw;
-    margin: 4vh 0vw;
+  @media screen and (max-width: 810px) {
+    flex-flow: column;
+    width: 100%;
   }
 
-  .hidden {
-    visibility: hidden;
-    opacity: 0;
+  @media screen and (min-width: 810px) {
+    flex-flow: row;
   }
 
-  .visible {
-    visibility: visible;
-    opacity: 1;
-  }
+  .info {
 
-  .profile {
-    display: flex;
-    margin: auto;
-    width: 90%;
-
-    .info {
+    @media screen and (min-width: 810px) {
       flex: 0 0 25%;
+    }
 
-      .profileElement {
+    .profileElement {
+
+      @media screen and (min-width: 810px) {
         width: 80%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        margin-bottom: 2vh;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 2vh;
+      padding: 5px;
+      border-radius: 10px;
+
+      .profileIcon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
         padding: 5px;
-        border-radius: 10px;
+      }
 
-        .profileIcon {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          margin-right: 10px;
-          padding: 5px;
-        }
-
-        .profileContent {
-          font-size: 15pt;
-        }
+      .profileContent {
+        font-size: 15pt;
       }
     }
-    
-    .summary {
-      font-size: 14pt;
-      padding: 2px 15px 5px 15px;
-      border-radius: 10px;
-      margin-bottom: 2vh;
-      line-height: 1.5;
-    }
+  }
+  
+  .summary {
+    font-size: 14pt;
+    padding: 2px 15px 5px 15px;
+    border-radius: 10px;
+    margin-bottom: 2vh;
+    line-height: 1.5;
   }
 }
 

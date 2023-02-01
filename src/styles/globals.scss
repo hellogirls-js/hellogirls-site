@@ -1,8 +1,19 @@
 @use "../../styles/vars.module.scss";
 
-body {
+html, body {
   margin: 0;
   padding: 0;
+  min-height: 100vh;
+
+  #__next {
+    min-height: 100vh;
+  }
+
+  h2 {
+    font-size: 24pt;
+    margin: 4vh 0vw;
+    font-family: vars.$header-font;
+  }
 }
 
 :root {
@@ -17,10 +28,10 @@ body {
 
 .dark {
   background-color: vars.$dark-bg;
-  color: vars.$light-bg;
+  color: vars.$dark-text;
 }
 
 .light {
-  background-color: vars.$light-bg;
-  color: vars.$dark-bg;
+  background: linear-gradient(vars.$light-bg, vars.$light-bg-grad);
+  color: vars.$light-text;
 }

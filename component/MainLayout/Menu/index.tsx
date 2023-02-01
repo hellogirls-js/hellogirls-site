@@ -1,15 +1,28 @@
-import { IconBrandGithub, IconBrandTwitter, IconMoonStars, IconSunFilled } from "@tabler/icons-react";
-import { DarkModeContext } from "context/DarkModeContext";
+import {
+  IconBrandGithub,
+  IconBrandTwitter,
+  IconMessageCircle,
+  IconMoonStars,
+  IconSunFilled,
+} from "@tabler/icons-react";
 import { useContext } from "react";
-import styles from "./Menu.module.scss";
 import Link from "next/link";
+
+import styles from "./Menu.module.scss";
+
+import { DarkModeContext } from "context/DarkModeContext";
 
 export default function Menu() {
   const { colorTheme, toggleColorTheme } = useContext(DarkModeContext);
 
   const ICON_SIZE = 24;
-  const buttonIcon = colorTheme === "dark" ? <IconMoonStars size={ICON_SIZE} /> : <IconSunFilled size={ICON_SIZE} />;
-  
+  const buttonIcon =
+    colorTheme === "dark" ? (
+      <IconMoonStars size={ICON_SIZE} />
+    ) : (
+      <IconSunFilled size={ICON_SIZE} />
+    );
+
   return (
     <div className={`${styles.menu} ${styles[colorTheme]}`}>
       <div className={styles.socials}>
@@ -19,10 +32,19 @@ export default function Menu() {
         <Link href="https://twitter.com/HELLOGlRLS">
           <IconBrandTwitter size={ICON_SIZE} />
         </Link>
+        <Link href="https://retrospring.net/@hellogirls">
+          <IconMessageCircle size={ICON_SIZE} />
+        </Link>
       </div>
-      <button id="theme-toggle" className={styles.toggleButton} onClick={() => { toggleColorTheme() }}>
+      <button
+        id="theme-toggle"
+        className={styles.toggleButton}
+        onClick={() => {
+          toggleColorTheme();
+        }}
+      >
         {buttonIcon} <span id={styles.buttonText}>{colorTheme} mode</span>
       </button>
     </div>
-  )
+  );
 }

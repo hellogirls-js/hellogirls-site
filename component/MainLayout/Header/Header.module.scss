@@ -16,8 +16,6 @@
 
 .light {
 
-  
-
   .headerText {
     background: vars.$light-heading-bg;
     border: 1px solid #d3cfeb;
@@ -33,12 +31,14 @@
 .header {
   width: 85vw;
   margin: auto;
+  margin-top: 3vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   .headerText {
     width: 100%;
+    overflow-wrap: break-word;
     margin: 0;
     margin: 0 auto;
     text-align: left;
@@ -46,6 +46,11 @@
     font-family: vars.$header-font;
     font-size: 30pt;
     border-radius: 5px;
+
+    @media screen and (max-width: 768px) {
+      max-width: 100%;
+      font-size: 14pt;
+    }
   }
   
 }
