@@ -2,16 +2,32 @@
 
 .light {
 
+  background-color: vars.$light-bg;
+
   button {
     color: vars.$dark-bg;
+  }
+
+  .socials {
+    a:link, a:visited {
+      color: vars.$light-subtext;
+    }
   }
 
 }
 
 .dark {
 
+  background-color: vars.$dark-bg;
+
   button {
     color: vars.$light-bg;
+  }
+
+  .socials {
+    a:link, a:visited {
+      color: vars.$dark-text;
+    }
   }
 
 }
@@ -23,6 +39,16 @@
   align-items: center;
   justify-content: flex-end;
   padding: 5px 15px;
+
+  .socials {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 1vw;
+
+    a {
+      margin-right: 0.5vw;
+    }
+  }
 
   .toggleButton {
     display: flex;

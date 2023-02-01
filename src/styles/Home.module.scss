@@ -1,23 +1,109 @@
+@use "../../styles/vars.module.scss";
+
+.light {
+
+  --icon-border: #8e86d4;
+  --icon-color: #aeb474;
+
+  a:link, a:visited {
+    color: vars.$light-link;
+  }
+
+  strong {
+    color: vars.$light-bold-text;
+  }
+
+  .profile {
+    
+    .profileElement {
+      background: #fff;
+      box-shadow: 2px 2px 3px vars.$light-shadow;
+
+      .profileIcon {
+        color: var(--icon-color);
+      }
+
+      .profileTitle {
+        color: vars.$light-subtext;
+      }
+    }
+
+  }
+
+  .summary {
+    background: #fff;
+    box-shadow: 2px 2px 3px vars.$light-shadow;
+  }
+
+}
+
+// .dark {
+
+// }
+
 .main {
+  width: 85vw;
   min-height: 100vh;
-  width: 88vw;
   margin: auto;
-  margin-top: 5vh;
+  margin-top: 7vh;
 
   h2 {
     font-size: 24pt;
     padding-left: 2vw;
+    margin: 4vh 0vw;
+  }
+
+  .hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .profile {
+    display: flex;
+    margin: auto;
+    width: 90%;
+
+    .info {
+      flex: 0 0 25%;
+
+      .profileElement {
+        width: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 2vh;
+        padding: 5px;
+        border-radius: 10px;
+
+        .profileIcon {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-right: 10px;
+          padding: 5px;
+        }
+
+        .profileContent {
+          font-size: 15pt;
+        }
+      }
+    }
+    
+    .summary {
+      font-size: 14pt;
+      padding: 2px 15px 5px 15px;
+      border-radius: 10px;
+      margin-bottom: 2vh;
+      line-height: 1.5;
+    }
   }
 }
 
-.profile {
-  display: flex;
-  margin: auto;
-  width: 90%;
 
-  .info {
-    flex: 0 0 40%;
-  }
-}
 
 

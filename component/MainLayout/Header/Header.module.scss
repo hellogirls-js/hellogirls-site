@@ -31,16 +31,16 @@
 }
 
 .header {
-  width: 100%;
+  width: 85vw;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   .headerText {
-    width: 60%;
+    width: 100%;
     margin: 0;
-    margin-left: 6vw;
+    margin: 0 auto;
     text-align: left;
     padding: 2vh 8vw 2vh 0.5vw;
     font-family: vars.$header-font;

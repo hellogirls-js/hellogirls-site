@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./Navigation.module.scss";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { DarkModeContext } from "context/DarkModeContext";
-import { IconFolders, IconHeart, IconPhotoHeart } from "@tabler/icons-react";
+import { IconFolders, IconHeart, IconPhotoHeart, IconUsers } from "@tabler/icons-react";
 import Tooltip from "component/utility/Tooltip";
 
 function NavigationButton({ isOpen, onClick }: { isOpen: boolean; onClick: Dispatch<SetStateAction<boolean>> }) {
@@ -26,6 +26,11 @@ function NavigationMenu({ isOpen }: { isOpen: boolean }) {
         <li>
           <Link href="/gallery">
             <IconPhotoHeart size={16} /> art gallery
+          </Link>
+        </li>
+        <li>
+          <Link href="/ocs">
+            <IconUsers size={16} /> oc profiles
           </Link>
         </li>
       </ul>
