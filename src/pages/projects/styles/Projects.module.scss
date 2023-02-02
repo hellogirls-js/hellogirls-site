@@ -1,0 +1,52 @@
+@use "../../../../styles/vars.module.scss";
+
+.projects {
+  .projectsGrid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 25% 25% 25% 25%;
+
+    .project {
+      padding: 20px;
+      border-radius: 10px;
+
+      .projectUrl {
+        margin: 4% 0% 2% 0%;
+
+        a:link {
+          font-weight: bold;
+          padding: 3px;
+          border-radius: 5px;
+        }
+      }
+
+      .projectDesc {
+        line-height: 1.5;
+      }
+    }
+  }
+}
+
+.light {
+  --link-bg: #a0ac39;
+
+  .projectsGrid {
+
+    .project {
+      background: #fff;
+      box-shadow: 2px 2px 3px vars.$light-shadow;
+
+      .projectUrl {
+
+        a:link, a:visited {
+          background: var(--link-bg);
+          color: #fff;
+        }
+      }
+
+      .projectDesc {
+        color: vars.$light-subtext;
+      }
+    }
+  }
+}

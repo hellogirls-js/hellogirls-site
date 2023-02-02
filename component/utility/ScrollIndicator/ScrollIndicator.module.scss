@@ -5,19 +5,20 @@
 
   .bar {
     height: 100%;
-    width: 0%;
+    transform-origin: 0%;
     border-radius: 12px;
   }
 }
 
 .light {
   --bar-color: #bfc96b;
+  --bar-bg: #e1dff1;
     width: 70%;
     height: 60%;
     margin: auto;
 
   .indicator {
-    background: #fff;
+    background: var(--bar-bg);
 
     .bar {
       background: var(--bar-color);

@@ -112,12 +112,12 @@
 
 .technologies {
   margin-top: 8%;
-  margin-bottom: 3%;
-  padding-bottom: 3%;
+  margin-bottom: 15%;
 
   .tech {
     width: 90%;
     margin: auto;
+    margin-top: 3%;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
@@ -138,8 +138,12 @@
       border-style: solid;
     }
 
+    .techIcon:hover {
+      cursor: pointer;
+    }
+
     .techName {
-      margin: 1vh 0vw;
+      margin: 3vh 0vw 1vh 0vw;
       text-align: center;
       font-weight: 600;
     }

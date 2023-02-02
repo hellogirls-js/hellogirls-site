@@ -6,6 +6,7 @@ import {
   IconSignature,
   IconZodiacAries,
 } from "component/utility/AnimatedIcons";
+import Strong from "component/utility/Strong";
 
 export default function Profile({ styles }: { styles: any }) {
   const ICON_SIZE = 40;
@@ -36,42 +37,31 @@ export default function Profile({ styles }: { styles: any }) {
     custom: number;
   }) {
     const draw = {
-      hidden: {
-        pathLength: 0,
-        opacity: 0,
-      },
-      visible: (i: number) => {
-        const delay = 1 + i * 0.5;
-        return {
+      motion: {
+        pathLength: [0, 1],
+        opacity: [0, 1],
+        transition: {
+          pathLength: {
+            delay: 0.05,
+            type: "spring",
+            duration: 1.5,
+            bounce: 0,
+          },
+          opacity: {
+            delay: 0.05,
+            duration: 0.01,
+          },
+        },
+        still: {
           pathLength: 1,
           opacity: 1,
-          transition: {
-            pathLength: {
-              delay,
-              type: "spring",
-              duration: 1.5,
-              bounce: 0,
-            },
-            opacity: {
-              delay,
-              duration: 0.01,
-            },
-          },
-        };
-      },
-      still: {
-        pathLength: 1,
-        opacity: 1,
+        },
       },
     };
 
     const controls = useAnimation();
     function handleMouseEnterControls() {
-      controls.start("hidden");
-    }
-
-    function handleMouseOverControls() {
-      controls.start("visible");
+      controls.start("motion");
     }
 
     function handleMouseLeaveControls() {
@@ -80,17 +70,14 @@ export default function Profile({ styles }: { styles: any }) {
 
     return (
       <motion.div
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.1 }}
         className={styles.profileElement}
         onMouseEnter={handleMouseEnterControls}
         onMouseLeave={handleMouseLeaveControls}
-        onMouseOver={handleMouseOverControls}
         variants={{
-          hiddenItem: (custom) => {
-            return {
-              opacity: 0,
-              y: 100,
-            };
+          hiddenItem: {
+            opacity: 0,
+            y: 100,
           },
           visibleItem: {
             opacity: 1,
@@ -131,7 +118,7 @@ export default function Profile({ styles }: { styles: any }) {
             return {
               opacity: 1,
               x: 0,
-              transition: { delay: custom * 1.2, duration: 0.8 },
+              transition: { delay: custom * 1.4, duration: 0.8 },
             };
           },
         }}
@@ -175,16 +162,16 @@ export default function Profile({ styles }: { styles: any }) {
           animate="visible"
         >
           <p>
-            hi! my name is <strong>son</strong>. i&apos;m a black web developer
+            hi! my name is <Strong>son</Strong>. i&apos;m a black web developer
             and part time artist. my passion for coding reignited, and i created
             this website to store my coding projects! you might see me dabbling
             in data projects, among other things.
           </p>
           <p>
             some of the media i&apos;m currently interested in includes{" "}
-            <strong>pokemon</strong>, <strong>ensemble stars</strong>, and
+            <Strong>pokemon</Strong>, <Strong>ensemble stars</Strong>, and
             animal crossing! i also have a random, yet strong, passion for{" "}
-            <strong>public transit and walkable cities</strong> and you might
+            <Strong>public transit and walkable cities</Strong> and you might
             catch me rambling about that once in a while.
           </p>
           <p>
@@ -195,17 +182,17 @@ export default function Profile({ styles }: { styles: any }) {
             my age, i try to not follow back people under the age of 18 or with
             no age listed. i talk a lot about whatever interests me at the
             moment, which currently happens to be{" "}
-            <strong>ensemble stars</strong>.
+            <Strong>ensemble stars</Strong>.
           </p>
           <p>
             despite my strong interest in ensemble stars, i spend too much time
             drawing and coding to actually read any stories! i try to avoid
             making any generalizations about certain characters because of this.
             the characters i have the most knowledge of are{" "}
-            <strong>niki</strong> and his fellow unitmates!
+            <Strong>niki</Strong> and his fellow unitmates!
           </p>
           <p>
-            i also have a very cute cat named <strong>moo moo</strong>! i love
+            i also have a very cute cat named <Strong>moo moo</Strong>! i love
             her dearly and will talk about her sometimes.
           </p>
         </motion.div>

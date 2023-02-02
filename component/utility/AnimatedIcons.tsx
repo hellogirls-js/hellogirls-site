@@ -15,7 +15,7 @@ export function IconSignature(props: any) {
       strokeLinejoin="round"
       initial="still"
       variants={props.variants}
-      animate={props.controls}
+      animate={props.animate}
       custom={props.custom}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -42,7 +42,7 @@ export function IconZodiacAries(props: any) {
       strokeLinejoin="round"
       initial="still"
       variants={props.variants}
-      animate={props.controls}
+      animate={props.animate}
       custom={props.custom}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -74,7 +74,7 @@ export function IconCircleCheck(props: any) {
       strokeLinejoin="round"
       initial="still"
       variants={props.variants}
-      animate={props.controls}
+      animate={props.animate}
       custom={props.custom}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
