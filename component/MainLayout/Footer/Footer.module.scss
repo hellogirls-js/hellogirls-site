@@ -1,0 +1,10 @@
+@use "../../../styles/vars.module.scss";
+
+.footer {
+  font-size: 10pt;
+  padding: 2vh 5vw;
+}
+
+.light {
+    background-color: vars.$light-heading-bg;
+}

@@ -1,9 +1,9 @@
 @use "../../styles/vars.module.scss";
 
 .light {
-
-  --icon-border: #8e86d4;
+  --icon-border: #cec9fa;
   --icon-color: #aeb474;
+  font-size: 14pt;
 
   .profile {
     
@@ -20,18 +20,31 @@
       }
     }
 
+    .summary {
+      background: #fff;
+      box-shadow: 2px 2px 3px vars.$light-shadow;
+    }
   }
 
-  .summary {
-    background: #fff;
-    box-shadow: 2px 2px 3px vars.$light-shadow;
+  .technologies {
+    .tech {
+      .techItem {
+        background: #fff;
+        box-shadow: 2px 2px 3px vars.$light-shadow;
+
+        .techIcon {
+          color: var(--icon-color);
+          border-color: var(--icon-border);
+        }
+      }
+    }
   }
 
 }
 
-// .dark {
-
-// }
+.dark {
+  font-size: 14pt;
+}
 
 .hidden {
   visibility: hidden;
@@ -90,11 +103,53 @@
   }
   
   .summary {
-    font-size: 14pt;
     padding: 2px 15px 5px 15px;
     border-radius: 10px;
     margin-bottom: 2vh;
     line-height: 1.5;
+  }
+}
+
+.technologies {
+  margin-top: 8%;
+  margin-bottom: 3%;
+  padding-bottom: 3%;
+
+  .tech {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+
+    .techItem {
+      flex-basis: 18%;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .techIcon {
+      width: 60px;
+      height: 60px;
+      margin: auto;
+      padding: 7px;
+      border-radius: 50%;
+      border-width: 3px;
+      border-style: solid;
+    }
+
+    .techName {
+      margin: 1vh 0vw;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .techDescription {
+      font-size: 12pt;
+      color: vars.$light-subtext;
+      line-height: 1.5;
+      padding: 10px;
+    }
   }
 }
 

@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>welcome-!</title>
+        <title>{pageProps.title} ♡ hellogirls.info</title>
         <meta name="description" content="son @HELLOGlRLS's personal website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={favicon.src} />

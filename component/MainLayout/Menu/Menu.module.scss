@@ -34,37 +34,43 @@
 
 .menu {
   position: sticky;
+  z-index: 3;
   top: 0;
+  width: 100%;
+  height: 24px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 5px 15px;
+  justify-content: space-between;
+  padding: 5px 0%;
 
-  .socials {
+  .right {
+    flex-basis: 15%;
     display: flex;
-    justify-content: space-around;
-    margin-right: 1vw;
 
-    a {
-      margin-right: 0.5vw;
+    .socials {
+      display: flex;
+      margin-right: 1vw;
+
+      a {
+        margin-right: 0.5vw;
+      }
+    }
+
+    .toggleButton {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      height: 24px;
+      background: none;
+      border: none;
+
+      svg {
+        margin-right: 8px;
+      }
+    }
+
+    .toggleButton:hover {
+      cursor: pointer;
     }
   }
-
-  .toggleButton {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 24px;
-    background: none;
-    border: none;
-
-    svg {
-      margin-right: 8px;
-    }
-  }
-
-  .toggleButton:hover {
-    cursor: pointer;
-  }
-
 }

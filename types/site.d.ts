@@ -8,7 +8,7 @@ interface DarkModeContextType {
 interface BioSection {
   title: string;
   content: string;
-  icon: JSX.Element;
+  icon: (props: any) => JSX.Element;
 }
 
 interface SelectOption {

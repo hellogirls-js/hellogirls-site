@@ -11,6 +11,7 @@ import Link from "next/link";
 import styles from "./Menu.module.scss";
 
 import { DarkModeContext } from "context/DarkModeContext";
+import ScrollIndicator from "component/utility/ScrollIndicator";
 
 export default function Menu() {
   const { colorTheme, toggleColorTheme } = useContext(DarkModeContext);
@@ -25,29 +26,35 @@ export default function Menu() {
 
   return (
     <div className={`${styles.menu} ${styles[colorTheme]}`}>
-      <div className={styles.socials}>
-        <Link href="https://github.com/neeneemi/hellogirls-site">
-          <IconBrandGithub size={ICON_SIZE} />
-        </Link>
-        <Link href="https://twitter.com/HELLOGlRLS">
-          <IconBrandTwitter size={ICON_SIZE} />
-        </Link>
-        <Link href="https://retrospring.net/@hellogirls">
-          <IconMessageCircle size={ICON_SIZE} />
-        </Link>
+      <ScrollIndicator />
+      <div className={styles.right}>
+        <div className={styles.socials}>
+          <Link
+            href="https://github.com/neeneemi/hellogirls-site"
+            target="_blank"
+          >
+            <IconBrandGithub size={ICON_SIZE} />
+          </Link>
+          <Link href="https://twitter.com/HELLOGlRLS" target="_blank">
+            <IconBrandTwitter size={ICON_SIZE} />
+          </Link>
+          <Link href="https://retrospring.net/@hellogirls" target="_blank">
+            <IconMessageCircle size={ICON_SIZE} />
+          </Link>
+        </div>
+        <button
+          id="theme-toggle"
+          className={styles.toggleButton}
+          onClick={() => {
+            toggleColorTheme();
+          }}
+        >
+          {buttonIcon}{" "}
+          <span id={styles.buttonText}>
+            {colorTheme} mode{colorTheme === "dark" && " (WIP)"}
+          </span>
+        </button>
       </div>
-      <button
-        id="theme-toggle"
-        className={styles.toggleButton}
-        onClick={() => {
-          toggleColorTheme();
-        }}
-      >
-        {buttonIcon}{" "}
-        <span id={styles.buttonText}>
-          {colorTheme} mode{colorTheme === "dark" && " (WIP)"}
-        </span>
-      </button>
     </div>
   );
 }

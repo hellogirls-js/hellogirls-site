@@ -134,3 +134,11 @@ export default function LuckyBirthday() {
     </MainLayout>
   );
 }
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      title: "lucky birthday viewer",
+    },
+  };
+}

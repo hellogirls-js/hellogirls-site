@@ -18,7 +18,7 @@ export default function Header({ heading }: { heading: string }) {
             getBeforeInit={(instance) => {
               instance
                 .type(heading)
-                .pause(5500)
+                .pause(5000)
                 .delete(heading.length)
                 .type("https://hellogirls.info");
 

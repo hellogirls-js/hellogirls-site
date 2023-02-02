@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import {
+  IconCat,
   IconFolders,
   IconHeart,
+  IconNews,
   IconPhotoHeart,
   IconUsers,
 } from "@tabler/icons-react";
@@ -42,6 +44,11 @@ function NavigationMenu({ isOpen }: { isOpen: boolean }) {
           </Link>
         </li>
         <li>
+          <Link href="/posts">
+            <IconNews size={16} /> posts
+          </Link>
+        </li>
+        <li>
           <Link href="/gallery">
             <IconPhotoHeart size={16} /> art gallery
           </Link>
@@ -49,6 +56,11 @@ function NavigationMenu({ isOpen }: { isOpen: boolean }) {
         <li>
           <Link href="/ocs">
             <IconUsers size={16} /> oc profiles
+          </Link>
+        </li>
+        <li>
+          <Link href="/cat">
+            <IconCat size={16} /> moo moo
           </Link>
         </li>
       </ul>
