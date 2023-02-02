@@ -1,0 +1,26 @@
+
+.light {
+  --button-bg-light: #dde29e;
+  --button-text-light: #5f661c;
+  --button-border-light: #b0b86a;
+
+  .button {
+    background: var(--button-bg-light);
+    color: var(--button-text-light);
+    border-color: var(--button-border-light);
+  }
+}
+
+.buttonContainer {
+  padding: 5px;
+
+  .button {
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+    font-size: 12pt;
+    border-radius: 3px;
+  }
+  
+}
+

@@ -1,0 +1,86 @@
+@use "../../../../../styles/vars.module.scss";
+
+.page {
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 768px) {
+    flex-flow: column;
+  }
+
+  .formContainer {
+    flex: 0 0 38%;
+    display: flex;
+    flex-flow: column;
+
+    @media screen and (max-width: 768px) {
+      flex-flow: column-reverse;
+      flex: 0 0 50%;
+    }
+
+    .form {
+
+      .dateGroup {
+        display: flex;
+        flex-flow: row;
+      }
+
+    }
+
+    .image {
+      width: 100%;
+      height: 400px;
+      background-image: url("../../../../../assets/rabbits.png");
+      background-size: auto 400px;
+      background-repeat: no-repeat;
+
+      @media screen and (max-width: 768px) {
+        height: 250px;
+        background-size: auto 250px;
+      }
+    }
+  }
+
+  .result {
+    flex: 0 0 58%;
+    height: 65vh;
+    min-height: 65vh;
+    max-height: 65vh;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16pt;
+
+    strong {
+      font-size: 16pt;
+    }
+
+    em {
+      font-size: 12pt;
+    }
+
+    .placeholder {
+      height: 100%;
+      line-height: 30vh;
+      text-align: center;
+      font-family: vars.$header-font;
+    }
+
+    @media screen and (max-width: 768px) {
+      flex: 0 0 20%;
+    }
+  }
+}
+
+.light {
+
+  .result {
+    background-color: vars.$light-heading-bg;
+    border: 1px solid vars.$light-heading-border;
+
+    .placeholder {
+      color: #a099cf;
+    }
+  }
+
+}
+

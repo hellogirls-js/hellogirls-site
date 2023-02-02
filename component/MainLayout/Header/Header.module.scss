@@ -18,7 +18,7 @@
 
   .headerText {
     background: vars.$light-heading-bg;
-    border: 1px solid #d3cfeb;
+    border: 1px solid vars.$light-heading-border;
 
     .headerLink {
       --ti-cursor-color: vars.$light-text;
