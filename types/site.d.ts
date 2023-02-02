@@ -1,4 +1,4 @@
-type ColorThemeOption = "dark" | "light";
+type ColorThemeOption = "dark" | "light" | "";
 
 interface DarkModeContextType {
   colorTheme: ColorThemeOption;

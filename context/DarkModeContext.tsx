@@ -1,7 +1,12 @@
 import { useColorScheme, useLocalStorage } from "@mantine/hooks";
 import { createContext } from "react";
 
-const DarkModeContext = createContext<DarkModeContextType>();
+function func() {}
+
+const DarkModeContext = createContext<DarkModeContextType>({
+  colorTheme: "",
+  toggleColorTheme: func,
+});
 
 /**
  *

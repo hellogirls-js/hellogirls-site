@@ -13,6 +13,7 @@
       "warn"
     ],
     "unused-imports/no-unused-imports": "warn",
-      "react/jsx-key": "warn"
+      "react/jsx-key": "warn",
+    "react-hooks/exhaustive-deps": "off"
   }
 }
