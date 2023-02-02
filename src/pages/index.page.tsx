@@ -1,6 +1,5 @@
 import {
   IconCircleCheck,
-  IconSignature,
   IconZodiacAries,
 } from "@tabler/icons-react";
 import { useContext } from "react";
@@ -9,6 +8,8 @@ import Link from "next/link";
 import styles from "@/styles/Home.module.scss";
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
+import { IconSignature } from "component/utility/AnimatedIcons";
+import { useAnimation } from "framer-motion";
 
 export default function Home() {
   const { colorTheme } = useContext(DarkModeContext);
@@ -34,8 +35,21 @@ export default function Home() {
   ];
 
   function ProfileCard({ section }: { section: BioSection }) {
+    const controls = useAnimation();
+    function handleMouseEnterControls() {
+      controls.start("hover");
+    }
+
+    function handleMouseLeaveControls() {
+      controls.start("initial");
+    }
+
     return (
-      <div className={styles.profileElement}>
+      <div 
+        className={styles.profileElement} 
+        onMouseEnter={handleMouseEnterControls} 
+        onMouseLeave={handleMouseLeaveControls}
+      >
         <div className={styles.profileIcon}>{section.icon}</div>
         <div className={styles.profileInfo}>
           <div className={styles.profileTitle}>{section.title}</div>

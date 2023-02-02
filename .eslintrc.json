@@ -15,5 +15,15 @@
     "unused-imports/no-unused-imports": "warn",
       "react/jsx-key": "warn",
     "react-hooks/exhaustive-deps": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.page.mdx"],
+      "extends": "plugin:mdx/recommended",
+      "settings": {
+        "mdx/code-blocks": true,
+        "mdx/language-mapper": {}
+      }
+    }
+  ]
 }

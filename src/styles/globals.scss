@@ -15,6 +15,17 @@ html, body {
     font-family: vars.$header-font;
   }
 
+  h3 {
+    font-size: 19pt;
+    margin: 0;
+  }
+
+  hr {
+    width: 98%;
+    min-height: 1px;
+    margin: 3vh auto;
+  }
+
 }
 
 :root {
