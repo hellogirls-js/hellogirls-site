@@ -46,7 +46,6 @@
 .profile {
   display: flex;
   margin: auto;
-  width: 90%;
 
   @media screen and (max-width: 810px) {
     flex-flow: column;
