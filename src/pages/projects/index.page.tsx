@@ -81,6 +81,19 @@ export default function Projects(props: any) {
       ),
       finished: false,
     },
+    {
+      title: "pc rice",
+      url: "https://github.com/neeneemi/dotfiles",
+      description: (
+        <p className={styles.projectDesc}>
+          after learning what ricing is and being hit with a strong desire to
+          have the custom pc of my dreams, i decided to install an ubuntu-based
+          os from scratch to rice my pc. this rice was inspired by niki
+          shiina&apos;s sanrio card and was build on xubuntu.
+        </p>
+      ),
+      finished: true,
+    },
   ];
 
   function Project({ proj }: { proj: ProjectObject }) {
