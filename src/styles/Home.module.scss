@@ -36,6 +36,10 @@
           color: var(--icon-color);
           border-color: var(--icon-border);
         }
+
+        .techDescription {
+          color: vars.$light-subtext;
+        }
       }
     }
   }
@@ -43,7 +47,42 @@
 }
 
 .dark {
+  --icon-border: #7b72ca;
+  --icon-color: #aab44d;
   font-size: 14pt;
+
+  .profile {
+
+    .profileElement {
+      background: vars.$dark-text-bg;
+      box-shadow: 2px 2px 3px vars.$dark-shadow;
+    }
+
+    .summary {
+      background: vars.$dark-text-bg;
+      box-shadow: 2px 2px 3px vars.$dark-shadow;
+    }
+  }
+
+  .technologies {
+
+    .tech{
+
+      .techItem {
+        background: vars.$dark-text-bg;
+        box-shadow: 2px 2px 3px vars.$dark-shadow;
+      }
+
+      .techIcon {
+        color: var(--icon-color);
+        border-color: var(--icon-border);
+      }
+
+      .techDescription {
+        color: vars.$dark-subtext;
+      }
+    }
+  }
 }
 
 .hidden {
@@ -150,7 +189,6 @@
 
     .techDescription {
       font-size: 12pt;
-      color: vars.$light-subtext;
       line-height: 1.5;
       padding: 10px;
     }

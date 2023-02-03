@@ -3,7 +3,8 @@
 .dark {
 
   .headerText {
-
+    background: vars.$dark-heading-bg;
+    border: 1px solid vars.$dark-heading-border;
     .headerLink {
       --ti-cursor-color: vars.$dark-text;
       color: vars.$dark-text;

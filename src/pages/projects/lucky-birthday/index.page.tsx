@@ -4,8 +4,7 @@ import Image from "next/image";
 
 import dates from "../../../../data/array_vals.json";
 import MakoCringe from "../../../../assets/MakoCringe.png";
-
-import styles from "./styles/Lucky.module.scss";
+import styles from "../styles/Lucky.module.scss";
 
 import MainLayout from "component/MainLayout";
 import Select from "component/utility/Select";

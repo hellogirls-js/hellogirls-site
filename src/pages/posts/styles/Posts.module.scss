@@ -1,0 +1,28 @@
+@use "../../../../styles/vars.module.scss";
+
+.posts {
+  width: 60%;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+
+  .post {
+    padding: 20px;
+    border-radius: 10px;
+  }
+}
+
+.light {
+  .post {
+    background: #fff;
+    box-shadow: 2px 2px 3px vars.$light-shadow;
+  }
+}
+
+.dark {
+  .post {
+    background: vars.$dark-text-bg;
+    box-shadow: 2px 2px 3px vars.$dark-shadow;
+  }
+}

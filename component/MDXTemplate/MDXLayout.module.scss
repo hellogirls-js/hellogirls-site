@@ -1,0 +1,68 @@
+@use "../../styles/vars.module.scss";
+
+.mdx {
+  min-height: 100vh;
+
+  .component {
+    width: 50%;
+    min-height: 100%;
+    margin: auto;
+    margin-top: 4%;
+    padding: 20px;
+    border-radius: 20px;
+    border-width: 1px;
+    border-style: solid;
+    line-height: 1.5;
+    font-size: 14pt;
+
+    @media screen and (max-width: 768px) {
+      width: 90%;
+      padding: 3%;
+      font-size: 12pt;
+    }
+
+    h1 {
+      font-family: vars.$header-font;
+    }
+  }
+}
+
+.light {
+  background: linear-gradient(vars.$light-bg, vars.$light-bg-grad);
+  color: vars.$light-text;
+
+  a:link, a:visited {
+    color: vars.$light-link;
+  }
+
+  strong {
+    color: vars.$light-bold-text;
+  }
+
+  h1, h2 {
+    color: vars.$light-heading-2;
+  }
+
+  hr {
+    border: none;
+    background: vars.$light-heading-border;
+  }
+
+  .component {
+    background: #fff;
+    border-color: vars.$light-heading-border;
+  }
+}
+
+.dark {
+  background-color: vars.$dark-bg;
+  color: vars.$dark-text;
+
+  a:link, a:visited {
+    color: vars.$dark-link;
+  }
+
+  strong {
+    color: vars.$dark-bold-text;
+  }
+}

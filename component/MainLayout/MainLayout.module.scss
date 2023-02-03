@@ -1,7 +1,7 @@
 @use "../../styles/vars.module.scss";
 
 .dark {
-  background-color: vars.$dark-bg;
+  background: vars.$dark-bg;
   color: vars.$dark-text;
 
   a:link, a:visited {
@@ -15,7 +15,7 @@
 }
 
 .light {
-  background: linear-gradient(vars.$light-bg, vars.$light-bg-grad);
+  background: vars.$light-bg;
   color: vars.$light-text;
 
   a:link, a:visited {
@@ -38,7 +38,7 @@
 }
 
 .main {
-  min-height: 100%;
+  min-height: 100vh;
 
   .component {
     width: 85vw;

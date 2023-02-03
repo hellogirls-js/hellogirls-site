@@ -6,9 +6,17 @@
     gap: 20px;
     grid-template-columns: 25% 25% 25% 25%;
 
+    @media screen and (max-width: 768px) {
+      display: block;
+    }
+
     .project {
       padding: 20px;
       border-radius: 10px;
+
+      @media screen and (max-width: 768px) {
+        margin: 5% 0%;
+      }
 
       .projectUrl {
         margin: 4% 0% 2% 0%;
@@ -46,6 +54,29 @@
 
       .projectDesc {
         color: vars.$light-subtext;
+      }
+    }
+  }
+}
+
+.dark {
+  --link-bg: #6f7448;
+  .projectsGrid {
+
+    .project {
+      background: vars.$dark-text-bg;
+      box-shadow: 2px 2px 3px vars.$dark-shadow;
+
+      .projectUrl {
+
+        a:link, a:visited {
+          background: var(--link-bg);
+          color: #fff;
+        }
+      }
+
+      .projectDesc {
+        color: vars.$dark-subtext;
       }
     }
   }

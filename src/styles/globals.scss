@@ -13,11 +13,19 @@ html, body {
     font-size: 24pt;
     margin: 4vh 0vw;
     font-family: vars.$header-font;
+
+    @media screen and (max-width: 768px) {
+      font-size: 20pt;
+    }
   }
 
   h3 {
     font-size: 19pt;
     margin: 0;
+
+    @media screen and (max-width: 768px) {
+      font-size: 18pt;
+    }
   }
 
   hr {

@@ -47,6 +47,10 @@
     flex-basis: 15%;
     display: flex;
 
+    @media screen and (max-width: 768px) {
+      flex-basis: 110%;
+    }
+
     .socials {
       display: flex;
       margin-right: 1vw;
