@@ -6,6 +6,7 @@ import {
   IconNextJS,
   IconSass,
 } from "component/utility/AnimatedIcons";
+import { useMediaQuery } from "@mantine/hooks";
 
 export default function Tech({ styles }: { styles: any }) {
   const TECH_LIST = [
@@ -36,7 +37,9 @@ export default function Tech({ styles }: { styles: any }) {
   ];
 
   function TechItem({ tech, custom }: { tech: any; custom: number }) {
-    const ICON_SIZE = 60;
+    const isDesktop = useMediaQuery("(min-width: 810px)");
+
+    const ICON_SIZE = isDesktop ? 60 : 50;
     return (
       <motion.div
         className={styles.techItem}

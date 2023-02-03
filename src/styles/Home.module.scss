@@ -154,27 +154,45 @@
   margin-bottom: 15%;
 
   .tech {
-    width: 90%;
+    width: 100%;
     margin: auto;
     margin-top: 3%;
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
 
+    @media screen and (min-width: 810px) {
+      flex-flow: row nowrap;
+    }
+
     .techItem {
-      flex-basis: 18%;
-      padding: 15px;
+      padding: 5px;
       border-radius: 10px;
+      width: 100%;
+      margin-bottom: 5%;
+
+      @media screen and (min-width: 810px) {
+        flex-basis: 18%;
+        margin-bottom: 0;
+        padding: 15px;
+      }
     }
 
     .techIcon {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       margin: auto;
-      padding: 7px;
+      padding: 4px;
       border-radius: 50%;
       border-width: 3px;
       border-style: solid;
+
+      @media screen and (min-width: 810px) {
+        width: 60px;
+        height: 60px;
+        padding: 7px;
+      }
     }
 
     .techIcon:hover {
@@ -182,9 +200,13 @@
     }
 
     .techName {
-      margin: 3vh 0vw 1vh 0vw;
+      margin: 1% 0vw 1% 0vw;
       text-align: center;
       font-weight: 600;
+
+      @media screen and (min-width: 810px) {
+        margin: 3vh 0vw 1vh 0vw;
+      }
     }
 
     .techDescription {
