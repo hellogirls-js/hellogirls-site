@@ -21,6 +21,11 @@ export default function LuckyBirthday() {
     message: string;
   }
 
+  interface BirthdayRanking {
+    rank: number;
+    birthday: string;
+  }
+
   const [birthday, setBirthday] = useState<string | null>();
   const [month, setMonth] = useState<string | null>();
   const [date, setDate] = useState<string | null>();
@@ -36,6 +41,47 @@ export default function LuckyBirthday() {
 
   for (let i = 0; i < datesArray.length; i++) {
     datesArray[i] = i + 1;
+  }
+
+  function BirthdayTable() {
+    const TableRow = ({
+      result,
+      index,
+    }: {
+      result: BirthdayRanking;
+      index: number;
+    }) => {
+      return (
+        <tr
+          className={`${styles.row} ${
+            index % 2 === 0 ? styles.even : styles.odd
+          }`}
+        >
+          <td className={styles.cell}>#{result.rank}</td>
+          <td className={styles.cell}>
+            {dayjs(`2023-${result.birthday}`).format("MMMM D")}
+          </td>
+        </tr>
+      );
+    };
+
+    return (
+      <table className={styles.table}>
+        <thead>
+          <tr className={styles.row}>
+            <th className={`${styles.tableHeading} ${styles.cell}`}>ranking</th>
+            <th className={`${styles.tableHeading} ${styles.cell}`}>
+              birthday
+            </th>
+          </tr>
+        </thead>
+        <tbody className={styles.tableBody}>
+          {dates.map((date, index) => (
+            <TableRow key={date.rank} result={date} index={index} />
+          ))}
+        </tbody>
+      </table>
+    );
   }
 
   useEffect(() => {
@@ -65,70 +111,76 @@ export default function LuckyBirthday() {
   return (
     <MainLayout heading="lucky birthday ranking">
       <div className={`${styles.page} ${styles[colorTheme]}`}>
-        <div className={styles.formContainer}>
-          <form id="form" className={styles.form}>
-            <h2 style={{ margin: 0, marginBottom: "2vh" }}>
-              find your lucky birthday ranking
-            </h2>
-            <div className={styles.dateGroup}>
-              <Select
-                label="month"
-                placeholder="Month..."
-                data={monthsArray.map((month) => {
-                  return { value: month, name: month };
-                })}
-                onChange={setMonth}
+        <div className={styles.topSection}>
+          <div className={styles.formContainer}>
+            <form id="form" className={styles.form}>
+              <h2 style={{ margin: 0, marginBottom: "2vh" }}>
+                find your lucky birthday ranking
+              </h2>
+              <div className={styles.dateGroup}>
+                <Select
+                  label="month"
+                  placeholder="Month..."
+                  data={monthsArray.map((month) => {
+                    return { value: month, name: month };
+                  })}
+                  onChange={setMonth}
+                />
+                <Select
+                  label="date"
+                  placeholder="Date..."
+                  data={datesArray.map((date) => {
+                    return { value: date, name: date };
+                  })}
+                  onChange={setDate}
+                />
+              </div>
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setBirthday(
+                    dayjs(`${month} ${date}, ${YEAR}`).format("MM-DD")
+                  );
+                }}
+                value="I'm feeling lucky!"
               />
-              <Select
-                label="date"
-                placeholder="Date..."
-                data={datesArray.map((date) => {
-                  return { value: date, name: date };
-                })}
-                onChange={setDate}
-              />
-            </div>
-            <Button
-              onClick={(e) => {
-                e.preventDefault();
-                setBirthday(dayjs(`${month} ${date}, ${YEAR}`).format("MM-DD"));
-              }}
-              value="I'm feeling lucky!"
-            />
-          </form>
-          <div className={styles.image} />
+            </form>
+            <div className={styles.image} />
+          </div>
+
+          <div className={styles.result}>
+            {result ? (
+              <div className={styles.resultText}>
+                {result.rank === 0 ? (
+                  <p>Sorry, that date is invalid</p>
+                ) : (
+                  <>
+                    <p>
+                      Your lucky ranking is <strong>#{result.rank}</strong>
+                    </p>
+                    <p>
+                      <em>{result.message}</em>
+                      {result.rank > 300 && (
+                        <Image
+                          src={MakoCringe.src}
+                          alt="Um."
+                          width={MakoCringe.width}
+                          height={MakoCringe.height}
+                        />
+                      )}
+                    </p>
+                  </>
+                )}
+              </div>
+            ) : (
+              <div className={styles.placeholder}>
+                your result will show up here o( ❛ᴗ❛ )o
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className={styles.result}>
-          {result ? (
-            <div className={styles.resultText}>
-              {result.rank === 0 ? (
-                <p>Sorry, that date is invalid</p>
-              ) : (
-                <>
-                  <p>
-                    Your lucky ranking is <strong>#{result.rank}</strong>
-                  </p>
-                  <p>
-                    <em>{result.message}</em>
-                    {result.rank > 300 && (
-                      <Image
-                        src={MakoCringe.src}
-                        alt="Um."
-                        width={MakoCringe.width}
-                        height={MakoCringe.height}
-                      />
-                    )}
-                  </p>
-                </>
-              )}
-            </div>
-          ) : (
-            <div className={styles.placeholder}>
-              your result will show up here o( ❛ᴗ❛ )o
-            </div>
-          )}
-        </div>
+        <BirthdayTable />
       </div>
     </MainLayout>
   );
