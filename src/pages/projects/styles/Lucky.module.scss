@@ -10,12 +10,16 @@
     display: flex;
     justify-content: space-between;
 
+    @media screen and (max-width: 810px) {
+      flex-direction: column;
+    }
+
     .formContainer {
       flex: 0 0 38%;
       display: flex;
       flex-flow: column;
 
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 810px) {
         flex-flow: column-reverse;
         flex: 0 0 50%;
       }
@@ -52,6 +56,13 @@
       padding: 10px;
       font-size: 16pt;
 
+      @media screen and (max-width: 810px) {
+        margin-top: 10%;
+        height: 20vh;
+        min-height: 20vh;
+        max-height: 20vh;
+      }
+
       strong {
         font-size: 16pt;
       }
@@ -65,6 +76,12 @@
         line-height: 30vh;
         text-align: center;
         font-family: vars.$header-font;
+
+        @media screen and (max-width: 810px) {
+          margin-top: 15%;
+          line-height: 4vh;
+          font-size: 12pt;
+        }
       }
 
       @media screen and (max-width: 768px) {
@@ -78,6 +95,10 @@
     margin: auto;
     border-radius: 10px;
     padding: 20px;
+
+    @media screen and (max-width: 810px) {
+      width: 100%;
+    }
 
     .cell {
       width: 50%;
@@ -113,5 +134,17 @@
     }
   }
 
+}
+
+.dark {
+
+  .result {
+    background-color: vars.$dark-heading-bg;
+    border: 1px solid vars.$dark-heading-border;
+  }
+
+  .placeholder {
+    color: #5d5497;
+  }
 }
 

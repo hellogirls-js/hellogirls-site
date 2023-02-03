@@ -32,3 +32,16 @@
     color: vars.$light-subtext;
   }
 }
+
+.dark {
+
+  select {
+    background: vars.$dark-text-bg;
+    color: vars.$dark-button-text;
+    border-color: vars.$dark-button-border;
+  }
+
+  .label {
+    color: vars.$dark-subtext;
+  }
+}

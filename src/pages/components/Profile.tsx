@@ -1,5 +1,6 @@
 import { useAnimation, motion } from "framer-motion";
 import Link from "next/link";
+import dayjs from "dayjs";
 
 import {
   IconCircleCheck,
@@ -11,6 +12,8 @@ import Strong from "component/utility/Strong";
 export default function Profile({ styles }: { styles: any }) {
   const ICON_SIZE = 40;
 
+  console.log(process.env.BIRTHDAY);
+
   const allAboutSon: BioSection[] = [
     {
       title: "name",
@@ -19,7 +22,7 @@ export default function Profile({ styles }: { styles: any }) {
     },
     {
       title: "age",
-      content: "23 years old",
+      content: `${dayjs().diff(dayjs("1999-03-30"), "year")} years old`,
       icon: IconZodiacAries,
     },
     {

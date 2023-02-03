@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useMediaQuery } from "@mantine/hooks";
 
 import {
   IconFramer,
@@ -6,7 +7,6 @@ import {
   IconNextJS,
   IconSass,
 } from "component/utility/AnimatedIcons";
-import { useMediaQuery } from "@mantine/hooks";
 
 export default function Tech({ styles }: { styles: any }) {
   const TECH_LIST = [

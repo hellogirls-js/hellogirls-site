@@ -11,6 +11,18 @@
   }
 }
 
+.dark {
+  --button-bg: #91946f;
+  --button-text: #3f4133;
+  --button-border: #75775a;
+
+  .button {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border-color: var(--button-border);
+  }
+}
+
 .buttonContainer {
   padding: 5px;
 

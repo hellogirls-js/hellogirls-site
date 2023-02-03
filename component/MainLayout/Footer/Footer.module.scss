@@ -3,6 +3,11 @@
 .footer {
   font-size: 10pt;
   padding: 2vh 5vw;
+  margin-top: 5%;
+
+  @media screen and (min-width: 810px) {
+    margin-top: 0%;
+  }
 }
 
 .light {

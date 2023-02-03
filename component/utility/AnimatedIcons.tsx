@@ -146,8 +146,8 @@ export function IconFramer(props: any) {
       strokeWidth={props.strokeWidth || 2}
       stroke="currentColor"
       fill="none"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       variants={props.variants}
       animate={props.controls}
       custom={props.custom}
