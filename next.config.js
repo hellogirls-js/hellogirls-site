@@ -10,6 +10,14 @@ const withMDX = require("@next/mdx")({
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js", "page.mdx"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "assets.enstars.link",
+      },
+    ],
+  },
 };
 
 module.exports = withMDX(nextConfig);
