@@ -2,8 +2,13 @@
 
 .footer {
   font-size: 10pt;
-  padding: 2vh 5vw;
+  padding: 3vh 5vw;
   margin-top: 5%;
+  text-align: center;
+
+  p {
+    margin: 0.5% 0%;
+  }
 
   @media screen and (min-width: 810px) {
     margin-top: 0%;
@@ -11,5 +16,11 @@
 }
 
 .light {
-    background-color: vars.$light-heading-bg;
+  background-color: vars.$light-heading-bg;
+  color: vars.$light-subtext;
+}
+
+.dark {
+  background-color: vars.$dark-heading-bg;
+  color: vars.$dark-subtext;
 }

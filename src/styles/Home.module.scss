@@ -58,6 +58,10 @@
       box-shadow: 2px 2px 3px vars.$dark-shadow;
     }
 
+    .profileIcon {
+      color: var(--icon-color);
+    }
+
     .summary {
       background: vars.$dark-text-bg;
       box-shadow: 2px 2px 3px vars.$dark-shadow;
@@ -153,6 +157,10 @@
   margin-top: 8%;
   margin-bottom: 15%;
   padding-bottom: 5%;
+
+  @media screen and (min-width: 810px) {
+    margin-bottom: 5%;
+  }
 
   .tech {
     width: 100%;
