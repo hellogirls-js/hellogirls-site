@@ -5,7 +5,7 @@
   padding-bottom: 30%;
 
   @media screen and (min-width: 810px) {
-    padding-bottom: 0%;
+    padding-bottom: 5%;
   }
 
   .component {
@@ -28,6 +28,13 @@
     h1 {
       font-family: vars.$header-font;
     }
+
+    blockquote {
+      margin: 1% 0 1% 1%;
+      padding: 0px 2%;
+      border-left-width: 5px;
+      border-left-style: solid;
+    }
   }
 }
 
@@ -49,6 +56,10 @@
 
   hr {
     background: vars.$light-heading-border;
+  }
+
+  blockquote {
+    border-left-color: vars.$light-blockquote;
   }
 
   .component {
@@ -75,6 +86,10 @@
 
   hr {
     background: vars.$dark-heading-border;
+  }
+
+  blockquote {
+    border-left-color: vars.$dark-blockquote;
   }
 
   .component {

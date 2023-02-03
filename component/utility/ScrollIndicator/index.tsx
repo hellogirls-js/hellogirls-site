@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { motion, useScroll } from "framer-motion";
+import { useContext, useEffect, useState } from "react";
 
 import styles from "./ScrollIndicator.module.scss";
 
@@ -8,15 +7,27 @@ import { DarkModeContext } from "context/DarkModeContext";
 export default function ScrollIndicator() {
   const { colorTheme } = useContext(DarkModeContext);
 
-  const { scrollYProgress } = useScroll();
+  const [progress, setProgress] = useState<number>(0);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      var winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      var height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      var scrolled = (winScroll / height) * 100;
+      setProgress(scrolled);
+    });
+  }, []);
 
   return (
     <div className={styles[colorTheme]}>
       <div className={styles.indicator}>
-        <motion.div
+        <div
           className={styles.bar}
           id="bar"
-          style={{ scaleX: scrollYProgress }}
+          style={{ width: `${progress}%` }}
         />
       </div>
     </div>

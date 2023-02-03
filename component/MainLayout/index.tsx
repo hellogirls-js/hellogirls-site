@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import Footer from "./Footer";
 import Header from "./Header";
@@ -16,6 +16,10 @@ export default function MainLayout({
   heading: string;
 }) {
   const { colorTheme } = useContext(DarkModeContext);
+
+  useEffect(() => {
+    document.body.className = styles[colorTheme];
+  }, []);
 
   return (
     <div id="main-layout" className={`${styles.main} ${styles[colorTheme]}`}>

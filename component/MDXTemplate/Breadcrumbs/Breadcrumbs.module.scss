@@ -1,3 +1,13 @@
+@use "../../../styles/vars.module.scss";
+
 .breadcrumbs {
   padding: 3vh 8vw;
+}
+
+.light {
+  color: vars.$light-subtext;
+}
+
+.dark {
+  color: vars.$dark-subtext;
 }

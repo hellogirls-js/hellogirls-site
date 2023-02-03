@@ -21,7 +21,7 @@ export default function Projects(props: any) {
       description: (
         <p className={styles.projectDesc}>
           a tool designed for users to easily retrieve their lucky birthday
-          ranking based off off Japanese birthday luck fortunes. inspired by my
+          ranking based off of japanese birthday luck fortunes. inspired by my
           inability to locate my birthday on the small, blurry charts commonly
           reposted on twitter.
         </p>

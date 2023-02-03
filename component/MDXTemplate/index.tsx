@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import styles from "./MDXLayout.module.scss";
 import Breadcrumbs from "./Breadcrumbs";
@@ -15,6 +15,11 @@ export default function MDXTemplate({
   meta: any;
 }) {
   const { colorTheme } = useContext(DarkModeContext);
+
+  useEffect(() => {
+    document.body.className = styles[colorTheme];
+  }, []);
+
   return (
     <div id="mdx-layout" className={`${styles.mdx} ${styles[colorTheme]}`}>
       <Menu />
