@@ -1,0 +1,23 @@
+.accordion {
+  width: 60%;
+  margin: auto;
+  margin-top: 5%;
+
+  @media screen and (max-width: 810px) {
+    width: 100%;
+  }
+
+  .accordionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+      font-size: 20pt;
+    }
+  }
+
+  .accordionHeader:hover {
+    cursor: pointer;
+  }
+}

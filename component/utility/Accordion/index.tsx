@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 
@@ -6,7 +6,7 @@ import styles from "./Accordion.module.scss";
 
 export default function Accordion({
   title,
-  icon = <IconChevronDown />,
+  icon = <IconChevronDown size={30} />,
   children,
 }: {
   title?: string | ReactNode;
@@ -15,13 +15,18 @@ export default function Accordion({
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    console.log(isOpen);
+  }, [isOpen]);
+
   const openDrawer = {
     hidden: {
       height: 0,
+      opacity: 0,
     },
     visible: {
-      height: "100%",
-      transition: { duration: 0.3, delay: 0.01 },
+      height: "auto",
+      opacity: 1,
     },
   };
 
@@ -31,14 +36,20 @@ export default function Accordion({
         className={styles.accordionHeader}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {title}
+        <h3>{title}</h3>
+        <motion.div
+          className={styles.accordionIcon}
+          animate={{ rotate: isOpen ? 180 : 0 }}
+        >
+          {icon}
+        </motion.div>
       </div>
       <motion.div
         className={styles.accordionContent}
         variants={openDrawer}
-        initial={"hidden"}
+        initial="hidden"
         animate={isOpen ? "hidden" : "visible"}
-        style={{}}
+        transition={{ duration: 0.3 }}
       >
         {children}
       </motion.div>
