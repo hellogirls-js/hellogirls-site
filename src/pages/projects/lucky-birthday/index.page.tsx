@@ -10,6 +10,7 @@ import MainLayout from "component/MainLayout";
 import Select from "component/utility/Select";
 import Button from "component/utility/Button";
 import { DarkModeContext } from "context/DarkModeContext";
+import Accordion from "component/utility/Accordion";
 
 export default function LuckyBirthday() {
   const YEAR = new Date().getFullYear();
@@ -180,7 +181,9 @@ export default function LuckyBirthday() {
           </div>
         </div>
 
-        <BirthdayTable />
+        <Accordion title="wanna view the results as a table?">
+          <BirthdayTable />
+        </Accordion>
       </div>
     </MainLayout>
   );
