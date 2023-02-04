@@ -16,6 +16,7 @@
       "react/jsx-key": "warn",
     "react-hooks/exhaustive-deps": "off",
     "import/no-anonymous-default-export": [
+      "off",
       2,
       {
         "allowAnonymousFunction": true

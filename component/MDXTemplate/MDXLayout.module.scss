@@ -25,6 +25,10 @@
       font-size: 12pt;
     }
 
+    .postInfo {
+      font-size: 12pt;
+    }
+
     h1 {
       font-family: vars.$header-font;
     }
@@ -65,6 +69,10 @@
   .component {
     background: #fff;
     border-color: vars.$light-heading-border;
+
+    .postInfo {
+      color: vars.$light-subtext;
+    }
   }
 }
 
@@ -95,5 +103,9 @@
   .component {
     background: vars.$dark-text-bg;
     border-color: vars.$dark-heading-border;
+
+    .postInfo {
+      color: vars.$dark-subtext;
+    }
   }
 }

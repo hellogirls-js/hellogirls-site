@@ -15,3 +15,13 @@ interface SelectOption {
   value: string;
   name: string;
 }
+
+interface PostMeta {
+  id: number;
+  title: string;
+  author: string;
+  url: string;
+  description: string;
+  dateCreated?: number;
+  dateUpdated?: number;
+}

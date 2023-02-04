@@ -49,7 +49,7 @@ export default function Menu() {
             toggleColorTheme();
           }}
         >
-          {buttonIcon} <span id={styles.buttonText}>{colorTheme} mode</span>
+          {buttonIcon} <span id={styles.buttonText}>{colorTheme}</span>
         </button>
       </div>
     </div>
