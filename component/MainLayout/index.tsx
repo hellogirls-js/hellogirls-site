@@ -19,7 +19,7 @@ export default function MainLayout({
 
   useEffect(() => {
     document.body.className = styles[colorTheme];
-  }, []);
+  }, [colorTheme]);
 
   return (
     <div id="main-layout" className={`${styles.main} ${styles[colorTheme]}`}>
