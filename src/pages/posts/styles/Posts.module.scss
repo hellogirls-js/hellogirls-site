@@ -3,6 +3,17 @@
 .posts {
   width: 60%;
 
+  .postStats {
+    font-size: 11pt;
+    margin-top: 1%;
+    display: flex;
+    gap: 2%;
+
+    .postDates {
+      font-size: 10pt;
+    }
+  }
+
   @media screen and (max-width: 768px) {
     width: 100%;
   }
@@ -17,6 +28,10 @@
   .post {
     background: #fff;
     box-shadow: 2px 2px 3px vars.$light-shadow;
+
+    .postStats {
+      color: vars.$light-subtext;
+    }
   }
 }
 
@@ -24,5 +39,9 @@
   .post {
     background: vars.$dark-text-bg;
     box-shadow: 2px 2px 3px vars.$dark-shadow;
+
+    .postStats {
+      color: vars.$dark-subtext;
+    }
   }
 }

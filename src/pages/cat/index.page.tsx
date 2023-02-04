@@ -11,7 +11,7 @@ export default function Cat() {
   const { colorTheme } = useContext(DarkModeContext);
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-  const { data: pics } = useSWR("/api/readfiles", fetcher);
+  const { data: pics } = useSWR("/api/readmoo", fetcher);
 
   function PictureFrame({ src }: { src: string }) {
     return (
