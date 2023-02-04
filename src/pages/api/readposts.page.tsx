@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
-import { promisify } from "util";
 
 import { NextApiRequest, NextApiResponse } from "next";
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const dirPath = "pages/post";
   const dir = path.resolve("./src", dirPath);
@@ -33,61 +33,44 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         path.resolve("./src/pages/post", post),
         "utf8"
       );
+      const { birthtimeMs, mtimeMs } = fs.statSync(
+        path.resolve("./src/pages/post", post)
+      );
+      if (!content) {
+        res.statusCode = 500;
+        throw Error("Content could not be read");
+      }
+      const meta = content.match(metaRegex);
+      const metaJsonArray = meta && meta[0].match(jsonRegex);
 
-      const stat = promisify(fs.stat);
+      const metaJson =
+        metaJsonArray &&
+        metaJsonArray[0]
+          .replaceAll("\n", "")
+          .replace("{  ", "{")
+          .replace("title:", '"title":')
+          .replace("id:", '"id":')
+          .replace("author:", '"author":')
+          .replace("url:", '"url":')
+          .replace("description:", '"description":')
+          .replaceAll(",  ", ",");
 
-      let birthtimeMs, mtimeMs;
+      if (!metaJson) {
+        res.statusCode = 500;
+        throw Error("No meta found");
+      }
 
-      stat(path.resolve("./src/pages/post", post))
-        .then((stats) => {
-          console.log("stats:", stats);
-          birthtimeMs = stats.birthtimeMs;
-          mtimeMs = stats.mtimeMs;
+      const postJson = JSON.parse(metaJson);
 
-          if (!content) {
-            res.statusCode = 500;
-            throw Error("Content could not be read");
-          }
-          const meta = content.match(metaRegex);
-          const metaJsonArray = meta && meta[0].match(jsonRegex);
+      postJson.dateCreated = birthtimeMs;
+      postJson.dateUpdated = mtimeMs;
 
-          const metaJson =
-            metaJsonArray &&
-            metaJsonArray[0]
-              .replaceAll("\n", "")
-              .replace("{  ", "{")
-              .replace("title:", '"title":')
-              .replace("id:", '"id":')
-              .replace("author:", '"author":')
-              .replace("url:", '"url":')
-              .replace("description:", '"description":')
-              .replaceAll(",  ", ",");
-
-          if (!metaJson) {
-            res.statusCode = 500;
-            throw Error("No meta found");
-          }
-
-          const postJson = JSON.parse(metaJson);
-
-          if (birthtimeMs && mtimeMs) {
-            postJson.dateCreated = birthtimeMs;
-            postJson.dateUpdated = mtimeMs;
-          }
-
-          postsInfo.push(postJson);
-
-          res.statusCode = 200;
-          res.json(postsInfo);
-        })
-        .catch((err) => {
-          console.error(err);
-          res.statusCode = 500;
-          throw Error("File stats could not be read");
-        });
+      postsInfo.push(postJson);
     });
   } catch (err) {
     console.error(err);
     res.statusCode = 500;
   }
+  res.statusCode = 200;
+  res.json(postsInfo);
 };
