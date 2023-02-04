@@ -1,0 +1,70 @@
+@use "../../../../styles/vars.module.scss";
+
+.cat {
+
+  p {
+    line-height: 1.5;
+
+    @media screen and (min-width: 810px) {
+      margin: auto;
+      width: 80%;
+    }
+  }
+
+  .gallery {
+    margin: 5% auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+    .picture {
+      margin: 1vh 1vw;
+      border-radius: 10px;
+      padding: 10px;
+
+      img {
+        border-radius: 5px;
+        border-width: 1px;
+        border-style: solid;
+      }
+    }
+  }
+}
+
+.light {
+  --image-border: #b3b0d4;
+
+  .gallery {
+    
+    .picture {
+      background: #fff;
+      box-shadow: 2px 2px 3px vars.$light-shadow;
+      
+      img { 
+        border-color: var(--image-border);
+      }
+    }
+  }
+}
+
+.dark {
+  --image-border: #18133f;
+
+  .gallery {
+
+    .picture {
+      background: vars.$dark-text-bg;
+      box-shadow: 2px 2px 3px vars.$dark-shadow;
+
+      img {
+        border-color: var(--image-border);
+        opacity: 0.8;
+        transition: opacity 0.2s;
+      }
+
+      img:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
