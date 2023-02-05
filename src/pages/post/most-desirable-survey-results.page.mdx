@@ -1,0 +1,46 @@
+import fs from "fs"
+import path from "path"
+import React from "react"
+import MDXTemplate from "../../../component/MDXTemplate"
+import CardCG from "../../../component/utility/CardCG"
+
+export const meta = {
+  title: "it's here--! the ensemble stars characters that are most desirable for marriage!",
+  id: 2,
+  urlName: "most-desirable-survey-results",
+  author: "son",
+  url: "https://twitter.com/HELLOGlRLS",
+  description: "the results of the survey i conducted asking ensemble stars who they believe to be the most desirable for marriage."
+}
+
+# it's here--! the ensemble stars characters that are most desirable for marriage!
+
+hello! i conducted a [survey on twitter](https://twitter.com/HELLOGlRLS/status/1619519203962421250?s=20) asking ensemble stars fans who they believe to be the most and least desirable for marriage. this was inspired by a survey conducted in among the korean fanbase. the survey i did received almost **1000** responses, and i'm excited to share the results with you all!
+
+here's how the survey worked:
+
+- i asked responders to choose only **one** character for most and least desirable each. this is because i wanted people to think about who they were choosing and provide a thoughtful (yet hilarious) response.
+- for the most desirable section, i limited the character options to those that are 3rd years or older. this was the sake of my own sanity as someone in my 20's.
+- i kept the survey open for a week, as i was told that if i kept it open for any longer it might lose traction.
+
+so, with that listed out, let's get started, shall we?
+
+---
+
+
+
+
+export default ({ children, dateCreated, dateUpdated }) => <MDXTemplate meta={{...meta, dateCreated, dateUpdated}}>{children}</MDXTemplate>
+
+export async function getServerSideProps() {
+  const file = path.join("./src/pages/post", `${meta.urlName}.page.mdx`);
+  const { birthtimeMs, mtimeMs } = fs.statSync(path.resolve("./src/pages/post", `${meta.urlName}.page.mdx`));
+
+  return {
+    props: {
+      dateCreated: birthtimeMs,
+      dateUpdated: mtimeMs,
+      title: meta.title,
+    },
+  };
+}
