@@ -19,7 +19,7 @@ export default function Posts(props: any) {
     return (
       <div className={styles.post}>
         <h3 className={styles.postTitle}>
-          <Link href={`/post/${post.id}`}>{post.title}</Link>
+          <Link href={`/post/${post.urlName}`}>{post.title}</Link>
         </h3>
         <div className={styles.postStats}>
           <div className={styles.postAuthor}>

@@ -50,6 +50,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
           .replace("{  ", "{")
           .replace("title:", '"title":')
           .replace("id:", '"id":')
+          .replace("urlName:", '"urlName":')
           .replace("author:", '"author":')
           .replace("url:", '"url":')
           .replace("description:", '"description":')

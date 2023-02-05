@@ -20,6 +20,7 @@ interface PostMeta {
   id: number;
   title: string;
   author: string;
+  urlName: string;
   url: string;
   description: string;
   dateCreated?: number;

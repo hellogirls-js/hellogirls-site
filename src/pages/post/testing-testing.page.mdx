@@ -1,3 +1,5 @@
+import fs from "fs"
+import path from "path"
 import React from "react"
 import MDXTemplate from "../../../component/MDXTemplate"
 import CardCG from "../../../component/utility/CardCG"
@@ -5,6 +7,7 @@ import CardCG from "../../../component/utility/CardCG"
 export const meta = {
   title: "testing, testing!",
   id: 1,
+  urlName: "testing-testing",
   author: "son",
   url: "https://twitter.com/HELLOGlRLS",
   description: "a post testing the functionality of mdx with a nextjs application. will be using this format to write more posts about various topics."
@@ -32,11 +35,16 @@ __my top three enstars characters are__
 
 yep, that's pretty much it! just wanted to see how the markdown syntax would look on this site. thanks for checking this page out!
 
-export default ({ children }) => <MDXTemplate meta={meta}>{children}</MDXTemplate>
+export default ({ children, dateCreated, dateUpdated }) => <MDXTemplate meta={{...meta, dateCreated, dateUpdated}}>{children}</MDXTemplate>
 
 export async function getServerSideProps() {
+  const file = path.join("./src/pages/post", `${meta.urlName}.page.mdx`);
+  const { birthtimeMs, mtimeMs } = fs.statSync(path.resolve("./src/pages/post", `${meta.urlName}.page.mdx`));
+
   return {
     props: {
+      dateCreated: birthtimeMs,
+      dateUpdated: mtimeMs,
       title: meta.title,
     },
   };

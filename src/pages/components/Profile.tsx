@@ -12,8 +12,6 @@ import Strong from "component/utility/Strong";
 export default function Profile({ styles }: { styles: any }) {
   const ICON_SIZE = 40;
 
-  console.log(process.env.BIRTHDAY);
-
   const allAboutSon: BioSection[] = [
     {
       title: "name",
