@@ -1,0 +1,31 @@
+import fs from "fs"
+import path from "path"
+import React from "react"
+import MDXTemplate from "../../../component/MDXTemplate"
+import CardCG from "../../../component/utility/CardCG"
+
+export const meta = {
+  title: "part 2! the ensemble stars characters that are least desirable for marriage!",
+  id: 3,
+  urlName: "least-desirable-survey-results",
+  author: "son",
+  url: "https://twitter.com/HELLOGlRLS",
+  description: "the results of the survey i conducted asking ensemble stars who they believe to be the least desirable for marriage."
+}
+
+# part 2! the ensemble stars characters that are least desirable for marriage!
+
+export default ({ children, dateCreated, dateUpdated }) => <MDXTemplate meta={{...meta, dateCreated, dateUpdated}}>{children}</MDXTemplate>
+
+export async function getServerSideProps() {
+  const file = path.join("./src/pages/post", `${meta.urlName}.page.mdx`);
+  const { birthtimeMs, mtimeMs } = fs.statSync(path.resolve("./src/pages/post", `${meta.urlName}.page.mdx`));
+
+  return {
+    props: {
+      dateCreated: birthtimeMs,
+      dateUpdated: mtimeMs,
+      title: meta.title,
+    },
+  };
+}
