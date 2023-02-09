@@ -189,12 +189,15 @@ export default function Profile({ styles }: { styles: any }) {
             despite my strong interest in ensemble stars, i spend too much time
             drawing and coding to actually read any stories! i try to avoid
             making any generalizations about certain characters because of this.
-            the characters i have the most knowledge of are{" "}
+            the characters i know the most about are
             <Strong>niki</Strong> and his fellow unitmates!
           </p>
           <p>
-            i also have a very cute cat named <Strong>moo moo</Strong>! i love
-            her dearly and will talk about her sometimes.
+            i also have a very cute cat named{" "}
+            <Link href="/cat">
+              <Strong>moo moo</Strong>
+            </Link>
+            ! i love her dearly and will talk about her sometimes.
           </p>
         </motion.div>
       </div>
