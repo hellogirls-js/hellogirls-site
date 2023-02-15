@@ -1076,7 +1076,7 @@ his idol activities he can operate at early morning hours like hes down and read
 
 and those are the results! i hope everyone was as entertained as i was reading these responses! i will get the least desirable list done soon. thank you for reading and sticking with me!!
 
-export default ({ children, dateCreated, dateUpdated }) => <MDXTemplate meta={{...meta, dateCreated, dateUpdated}}>{children}</MDXTemplate>
+export default ({ children }) => <MDXTemplate meta={meta}>{children}</MDXTemplate>
 
 export async function getServerSideProps() {
   const file = path.join("./src/pages/post", `${meta.urlName}.page.mdx`);
@@ -1084,8 +1084,6 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      dateCreated: birthtimeMs,
-      dateUpdated: mtimeMs,
       title: meta.title,
     },
   };
