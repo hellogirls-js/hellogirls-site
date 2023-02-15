@@ -64,6 +64,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       const postJson = JSON.parse(metaJson);
+
+      postsInfo.push(postJson);
     });
   } catch (err) {
     console.error(err);
