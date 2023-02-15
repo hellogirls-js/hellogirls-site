@@ -19,9 +19,11 @@ export default function CardCG({
   const aspectHeight = 720;
   const aspectRatio = aspectWidth / aspectHeight;
 
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 900px)");
 
-  const width = isMobile ? 320 : 680;
+  const is1024 = useMediaQuery("(min-width: 900px) and (max-width: 1080px)");
+
+  const width = isMobile ? 320 : is1024 ? 480 : 680;
 
   const { colorTheme } = useContext(DarkModeContext);
 
