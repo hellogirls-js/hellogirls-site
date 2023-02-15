@@ -35,6 +35,12 @@
       font-family: vars.$header-font;
     }
 
+    h2 {
+      @media screen and (max-width: 768px) {
+        font-size: 16pt;
+      }
+    }
+
     blockquote {
       margin: 1% 0 1% 1%;
       padding: 0px 2%;
@@ -58,6 +64,10 @@
 
   h1, h2 {
     color: vars.$light-heading-2;
+  }
+
+  h3 {
+    color: vars.$light-link;
   }
 
   hr {
@@ -92,6 +102,10 @@
 
   h1, h2 {
     color: vars.$dark-heading-2;
+  }
+
+  h3 {
+    color: vars.$dark-link;
   }
 
   hr {
