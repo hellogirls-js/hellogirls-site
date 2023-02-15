@@ -4,7 +4,6 @@ import dayjs from "dayjs";
 import styles from "../MDXLayout.module.scss";
 
 export default function PostInfo({ meta }: { meta: PostMeta }) {
-  console.log(meta);
   return (
     <div className={styles.postInfo}>
       <span>

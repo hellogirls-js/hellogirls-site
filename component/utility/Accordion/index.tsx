@@ -15,10 +15,6 @@ export default function Accordion({
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useEffect(() => {
-    console.log(isOpen);
-  }, [isOpen]);
-
   const openDrawer = {
     hidden: {
       height: 0,
