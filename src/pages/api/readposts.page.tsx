@@ -54,7 +54,11 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
           .replace("author:", '"author":')
           .replace("url:", '"url":')
           .replace("description:", '"description":')
+          .replace("dateCreated:", '"dateCreated":')
+          .replace("dateUpdated:", '"dateUpdated":')
           .replaceAll(",  ", ",");
+
+      console.log(metaJson);
 
       if (!metaJson) {
         res.statusCode = 500;
