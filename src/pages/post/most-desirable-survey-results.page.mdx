@@ -1,4 +1,3 @@
-import fs from "fs"
 import path from "path"
 import React from "react"
 import MDXTemplate from "../../../component/MDXTemplate"
@@ -1083,9 +1082,6 @@ if you enjoy my coding and survey endeavors i have a [buy me a coffee](https://w
 export default ({ children }) => <MDXTemplate meta={meta}>{children}</MDXTemplate>
 
 export async function getServerSideProps() {
-  const file = path.join("./src/pages/post", `${meta.urlName}.page.mdx`);
-  const { birthtimeMs, mtimeMs } = fs.statSync(path.resolve("./src/pages/post", `${meta.urlName}.page.mdx`));
-
   return {
     props: {
       title: meta.title,

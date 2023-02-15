@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 
