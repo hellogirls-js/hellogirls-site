@@ -162,6 +162,11 @@ export default function Profile({ styles }: { styles: any }) {
           initial="hidden"
           animate="visible"
         >
+          <h3>
+            <Link href="/twitter" style={{ textDecoration: "underline" }}>
+              please read this if you&apos;re from twitter!
+            </Link>
+          </h3>
           <p>
             hi! my name is <Strong>son</Strong>. i&apos;m a black web developer
             and part time artist. my passion for coding reignited, and i created
