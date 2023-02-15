@@ -28,12 +28,12 @@ export default function Posts(props: any) {
               {post.author}
             </Link>
           </div>
-          {/* {post.dateCreated && post.dateUpdated && (
+          {post.dateCreated && post.dateUpdated && (
             <div className={styles.postDates}>
               | {dayjs(post.dateCreated).format("MM/DD/YYYY h:mma")}, last
               updated: {dayjs(post.dateUpdated).format("MM/DD/YYYY h:mma")}
             </div>
-          )} */}
+          )}
         </div>
         <blockquote className={styles.postDesc}>{post.description}</blockquote>
       </div>

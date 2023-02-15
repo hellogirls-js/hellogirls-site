@@ -54,6 +54,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
           .replace("author:", '"author":')
           .replace("url:", '"url":')
           .replace("description:", '"description":')
+          .replace("dateCreated:", '"dateCreated":')
+          .replace("dateUpdated:", '"dateUpdated":')
           .replaceAll(",  ", ",");
 
       if (!metaJson) {
@@ -62,9 +64,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       const postJson = JSON.parse(metaJson);
-
-      postJson.dateCreated = birthtimeMs;
-      postJson.dateUpdated = mtimeMs;
 
       postsInfo.push(postJson);
     });

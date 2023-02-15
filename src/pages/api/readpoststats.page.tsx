@@ -19,7 +19,5 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
   const fileName = `${id}.page.mdx`;
 
-  console.log("posts:", posts);
-
   res.statusCode = 200;
 };
