@@ -58,19 +58,12 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
           .replace("dateUpdated:", '"dateUpdated":')
           .replaceAll(",  ", ",");
 
-      console.log(metaJson);
-
       if (!metaJson) {
         res.statusCode = 500;
         throw Error("No meta found");
       }
 
       const postJson = JSON.parse(metaJson);
-
-      postJson.dateCreated = birthtimeMs;
-      postJson.dateUpdated = mtimeMs;
-
-      postsInfo.push(postJson);
     });
   } catch (err) {
     console.error(err);
