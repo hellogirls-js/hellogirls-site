@@ -1,0 +1,56 @@
+@use "../../../../styles/vars.module.scss";
+
+.page {
+  min-height: 100vh;
+
+  .barChart {
+    width: 90%;
+    margin: auto;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-bottom: 3vh;
+
+    @media screen and (max-width: 810px) {
+      width: 100%;
+    }
+  }
+
+  .tooltip {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .desirableContainer {
+    width: 90%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 5;
+
+    .desirableLabel {
+      font-size: 20pt;
+      font-family: vars.$header-font;
+    }
+  }
+}
+
+.light {
+  .barChart {
+    background: #fff;
+    box-shadow: 2px 2px 3px vars.$light-shadow;
+
+    .tooltip {
+      background: #fff;
+      box-shadow: 2px 2px 3px vars.$light-shadow;
+      border: 1px solid vars.$light-heading-border;
+    }
+  }
+}
+
+.dark {
+  .barChart {
+    background: vars.$dark-text-bg;
+    box-shadow: 2px 2px 3px vars.$dark-shadow;
+  }
+}
