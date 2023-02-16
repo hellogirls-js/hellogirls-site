@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useMediaQuery } from "@mantine/hooks";
 import { useContext } from "react";
 
 import styles from "./CardCG.module.scss";
@@ -17,19 +16,12 @@ export default function CardCG({
 }) {
   const aspectWidth = 1560;
   const aspectHeight = 720;
-  const aspectRatio = aspectWidth / aspectHeight;
-
-  const isMobile = useMediaQuery("(max-width: 900px)");
-
-  const is1024 = useMediaQuery("(min-width: 900px) and (max-width: 1080px)");
-
-  const width = isMobile ? 320 : is1024 ? 480 : 680;
 
   const { colorTheme } = useContext(DarkModeContext);
 
   return (
     <div className={`${styles.imgContainer} ${styles[colorTheme]}`}>
-      <Image src={src} alt={alt} width={width} height={width / aspectRatio} />
+      <Image src={src} alt={alt} width={aspectWidth} height={aspectHeight} />
       {caption && <div className={styles.caption}>{caption}</div>}
     </div>
   );

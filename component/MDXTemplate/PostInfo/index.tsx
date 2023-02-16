@@ -10,14 +10,12 @@ export default function PostInfo({ meta }: { meta: PostMeta }) {
         written by: <Link href={meta.url}>{meta.author}</Link>
       </span>
       {meta.dateCreated && (
-        <span>
-          on {dayjs(meta.dateCreated).format("MM/DD/YYYY h:mma")}
-          {meta.dateUpdated &&
-            meta.dateCreated !== meta.dateUpdated &&
-            `, last updated: ${dayjs(meta.dateUpdated).format(
-              "MM/DD/YYYY h:mma"
-            )}`}
-        </span>
+        <div>{dayjs(meta.dateCreated).format("MM/DD/YYYY h:mma")}</div>
+      )}
+      {meta.dateUpdated && meta.dateCreated !== meta.dateUpdated && (
+        <div>
+          last updated: {dayjs(meta.dateUpdated).format("MM/DD/YYYY h:mma")}
+        </div>
       )}
     </div>
   );
