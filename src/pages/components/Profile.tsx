@@ -162,11 +162,6 @@ export default function Profile({ styles }: { styles: any }) {
           initial="hidden"
           animate="visible"
         >
-          <h3>
-            <Link href="/twitter" style={{ textDecoration: "underline" }}>
-              please read this if you&apos;re from twitter!
-            </Link>
-          </h3>
           <p>
             hi! my name is <Strong>son</Strong>. i&apos;m a black web developer
             and part time artist. my passion for coding reignited, and i created
@@ -188,7 +183,7 @@ export default function Profile({ styles }: { styles: any }) {
             my age, i try to not follow back people under the age of 18 or with
             no age listed. i talk a lot about whatever interests me at the
             moment, which currently happens to be{" "}
-            <Strong>ensemble stars</Strong>.
+            <Strong>ensemble stars</Strong>. i suggest reading <Link href="/twitter">this before following</Link>.
           </p>
           <p>
             despite my strong interest in ensemble stars, i spend too much time
