@@ -18,15 +18,46 @@
   .tooltip {
     padding: 10px;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+
+    .tooltipText {
+      flex-basis: 1 0 50%;
+
+      .tooltipName {
+        font-family: vars.$header-font;
+        font-size: 1.3em;
+        font-weight: 600;
+      }
+
+      .tooltipContent {
+
+        .tooltipData {
+          font-weight: 700;
+        }
+      }
+    }
+
+    .tooltipImgWrapper {
+      padding: 2px;
+      flex-basis: 0 0 120px;
+
+      .tooltipImg {
+        width: 120px;
+        object-fit: cover;
+      }
+    }
   }
 
   .desirableContainer {
     width: 90%;
+    margin: auto;
     position: fixed;
     bottom: 0;
     display: flex;
     justify-content: space-around;
     z-index: 5;
+    border-radius: 10px 10px 0px 0px;
 
     .desirableLabel {
       font-size: 20pt;
@@ -36,6 +67,11 @@
 }
 
 .light {
+  .desirableContainer {
+    background: #fff;
+    box-shadow: 2px 0px 3px vars.$light-shadow;
+  }
+
   .barChart {
     background: #fff;
     box-shadow: 2px 2px 3px vars.$light-shadow;
@@ -44,6 +80,20 @@
       background: #fff;
       box-shadow: 2px 2px 3px vars.$light-shadow;
       border: 1px solid vars.$light-heading-border;
+
+      .tooltipText {
+
+        .tooltipName {
+          color: vars.$light-heading-2;
+        }
+
+        .tooltipContent {
+
+          .tooltipData {
+            color: vars.$light-link;
+          }
+        }
+      }
     }
   }
 }
@@ -52,5 +102,25 @@
   .barChart {
     background: vars.$dark-text-bg;
     box-shadow: 2px 2px 3px vars.$dark-shadow;
+
+    .tooltip {
+      background: vars.$dark-text-bg;
+      box-shadow: 2px 2px 3px vars.$dark-shadow;
+      border: 1px solid vars.$dark-heading-border;
+
+      .tooltipText {
+
+        .tooltipName {
+          color: vars.$dark-heading-2;
+        }
+
+        .tooltipContent {
+
+          .tooltipData {
+            color: vars.$dark-link;
+          }
+        }
+      }
+    }
   }
 }

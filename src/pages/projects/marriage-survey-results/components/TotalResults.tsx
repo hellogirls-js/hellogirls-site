@@ -1,6 +1,7 @@
 import {
   Bar,
   BarChart,
+  CartesianGrid,
   Cell,
   ReferenceLine,
   Tooltip,
@@ -14,10 +15,12 @@ import {
   NameType,
   ValueType,
 } from "recharts/types/component/DefaultTooltipContent";
+import Image from "next/image";
 
 import totalResults from "../../../../../data/survey-results/total-results.json";
 import styles from "../../styles/Survey.module.scss";
 
+import { twoStarIDs } from "data/twoStarIds";
 import { DarkModeContext } from "context/DarkModeContext";
 
 interface Result {
@@ -37,9 +40,8 @@ export default function TotalResults({
 }) {
   const { colorTheme } = useContext(DarkModeContext);
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1100px)");
   const [data, setData] = useState<Result[]>(totalResults);
-
-  console.log(enData);
 
   useEffect(() => {
     let anzu = totalResults[totalResults.length - 1];
@@ -66,7 +68,7 @@ export default function TotalResults({
     active,
   }: TooltipProps<ValueType, NameType>) {
     if (payload && active) {
-      console.log(payload[0].payload);
+      let imgUrl;
       // not anzu or seiya
       const payloadData = payload[0].payload;
       let firstName, lastName;
@@ -75,12 +77,15 @@ export default function TotalResults({
         let charaData = enData.find(
           (c: any) => c.character_id === payloadData.id
         );
-        firstName = charaData.firstName
+        firstName = charaData.first_name
           ? charaData.first_name.toLowerCase()
           : null;
         lastName = charaData.last_name
           ? charaData.last_name.toLowerCase()
           : null;
+        imgUrl = `https://assets.enstars.link/assets/card_full1_${
+          (twoStarIDs as any)[charaData.character_id]
+        }_normal.png`;
       } else {
         firstName = data.find(
           (c: Result) => c.id === payloadData.id
@@ -97,13 +102,30 @@ export default function TotalResults({
             </div>
             <div className={styles.tooltipContent}>
               <p>
-                most desirable votes: <span>{payloadData.md}</span>
+                most desirable:{" "}
+                <span className={styles.tooltipData}>{payloadData.md}</span>{" "}
+                votes
               </p>
               <p>
-                least desirable votes: <span>{Math.abs(payloadData.ld)}</span>
+                least desirable:{" "}
+                <span className={styles.tooltipData}>
+                  {Math.abs(payloadData.ld)}
+                </span>{" "}
+                votes
               </p>
             </div>
           </div>
+          {imgUrl && (
+            <div className={styles.tooltipImgWrapper}>
+              <Image
+                src={imgUrl}
+                width={300}
+                height={300 / 1.775}
+                alt={`${firstName} ${lastName}`}
+                className={styles.tooltipImg}
+              />
+            </div>
+          )}
         </div>
       );
     }
@@ -117,14 +139,16 @@ export default function TotalResults({
         <div className={styles.desirableLabel}>Most desirable</div>
       </div>
       <div className={`${styles.barChart}`}>
+        <h2>total results</h2>
         <BarChart
-          width={isMobile ? 300 : 1000}
+          width={isMobile ? 300 : isTablet ? 650 : 1000}
           height={2000}
           data={data}
           layout="vertical"
           stackOffset="sign"
           style={{ margin: "auto" }}
         >
+          <CartesianGrid strokeDasharray="5 5" />
           <XAxis type="number" hide />
           <YAxis type="category" dataKey="id" hide />
           <Tooltip content={<GraphTooltip />} />
