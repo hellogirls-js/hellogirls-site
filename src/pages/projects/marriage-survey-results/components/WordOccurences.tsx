@@ -1,12 +1,16 @@
-import { useMediaQuery } from "@mantine/hooks";
+import { useListState, useMediaQuery } from "@mantine/hooks";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useRef } from "react";
+import { IconX } from "@tabler/icons-react";
 
 import styles from "../../styles/Survey.module.scss";
 import mostDesirable from "../../../../../data/survey-results/most_desirable.json";
 
 import { twoStarIDs } from "data/twoStarIds";
 import Strong from "component/utility/Strong";
+import TextInput from "component/utility/TextInput";
+import Button from "component/utility/Button";
 
 interface Result {
   id: any;
@@ -23,22 +27,26 @@ export default function WordOccurences({
 }) {
   let isMobile = useMediaQuery("(max-width: 812px)");
   let isTablet = useMediaQuery("(min-width: 812px) and (max-width: 1120px)");
+  const [wordArray, handlers] = useListState<string>([]);
 
   /**
    *
    * @param {{id: number; count: number}} obj the count object
    * @param {number} width the number of bars
    * @param {number} maxHeight the max height of an element
+   * @param {boolean} animate? whether to animate the element or not
    * @returns {JSX.Element} a JSX element
    */
   function WordOccurenceBar({
     obj,
     width,
     maxHeight,
+    animate = true,
   }: {
     obj: { id: number; count: number };
     width: number;
     maxHeight: number;
+    animate?: boolean;
   }) {
     const WIDTH = 100 / width - 8;
     const HEIGHT = (obj.count / maxHeight) * 70;
@@ -50,9 +58,14 @@ export default function WordOccurences({
     let firstName = enData
       .find((ch: any) => ch.character_id === obj.id)
       .first_name.toLowerCase();
-    let lastName = enData
-      .find((ch: any) => ch.character_id === obj.id)
-      .last_name.toLowerCase();
+    let lastName =
+      enData.find((ch: any) => ch.character_id === obj.id).last_name &&
+      enData.find((ch: any) => ch.character_id === obj.id).last_name !==
+        undefined
+        ? enData
+            .find((ch: any) => ch.character_id === obj.id)
+            .last_name.toLowerCase()
+        : "";
     return (
       <motion.div
         className={styles.barContainer}
@@ -60,14 +73,26 @@ export default function WordOccurences({
           width: isMobile ? "100%" : `${WIDTH}%`,
           height: isMobile ? `${WIDTH}%` : "100%",
         }}
-        initial={{ opacity: 0, x: isMobile ? -100 : 0, y: isMobile ? 0 : 200 }}
-        whileInView={{
-          opacity: 1,
-          x: 0,
-          y: 0,
-          transition: { duration: 0.5 },
-        }}
-        viewport={{ once: true, amount: 0.8 }}
+        initial={
+          animate
+            ? {
+                opacity: 0,
+                x: isMobile ? -100 : 0,
+                y: isMobile ? 0 : 200,
+              }
+            : undefined
+        }
+        whileInView={
+          animate
+            ? {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                transition: { duration: 0.5 },
+              }
+            : undefined
+        }
+        viewport={animate ? { once: true, amount: 0.8 } : undefined}
       >
         <div className={styles.barLabel}>
           {!isMobile && (
@@ -106,10 +131,18 @@ export default function WordOccurences({
   }
 
   /**
-   * @param {string[]} words the words you want to look for
-   * @returns JSX element
+   * the base graph
+   * @param {string[]} words the given words
+   * @param {boolean} animate? whether to animate the bars. defaults to true
+   * @returns {JSX.Element} a graph
    */
-  function WordOccurenceGraph({ words }: { words: string[] }) {
+  function BaseGraph({
+    words,
+    animate = true,
+  }: {
+    words: string[];
+    animate?: boolean;
+  }) {
     let countArray: { id: number; count: number }[] = [];
     let filteredResults: Result[] = [];
     words.forEach((word) => {
@@ -147,7 +180,10 @@ export default function WordOccurences({
     let remainders =
       countArray.length > 5 ? countArray.slice(6, countArray.length) : [];
 
-    return (
+    function Empty() {
+      return <div className={styles.empty}>no responses :(</div>;
+    }
+    return words.length ? (
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1, transition: { delayChildren: 1.5 } }}
@@ -169,6 +205,7 @@ export default function WordOccurences({
               obj={obj}
               width={splitArray.length}
               maxHeight={countArray[0].count}
+              animate={animate}
             />
           ))}
         </div>
@@ -192,6 +229,44 @@ export default function WordOccurences({
           </div>
         )}
       </motion.div>
+    ) : (
+      <Empty />
+    );
+  }
+
+  /**
+   * the graph including the graph description and title
+   * @param {string} title title of the graph
+   * @param {string[]} words the words you want to look for
+   * @param {any} children children, description of the graph
+   * @returns JSX element
+   */
+  function WordOccurenceGraph({
+    title,
+    words,
+    children,
+  }: {
+    title: string;
+    words: string[];
+    children: any;
+  }) {
+    return (
+      <div>
+        <MotionParagraph title={title}>
+          {children}
+          <p className={styles.subtext}>
+            phrases i searched for:{" "}
+            {words.map((word, i) =>
+              i < words.length - 1 ? (
+                <span key={word}>&quot;{word}&quot;, </span>
+              ) : (
+                <span key={word}>&quot;{word}&quot;</span>
+              )
+            )}
+          </p>
+        </MotionParagraph>
+        <BaseGraph words={words} />
+      </div>
     );
   }
 
@@ -219,6 +294,49 @@ export default function WordOccurences({
     );
   }
 
+  function WordInput() {
+    let inputRef = useRef<HTMLInputElement | null>(null);
+
+    return (
+      <div className={styles.inputSection}>
+        <div className={styles.inputRow}>
+          <TextInput
+            ref={inputRef}
+            id="input-word"
+            placeholder="input word or phrase"
+          />
+          <Button
+            value="add phrase"
+            onClick={(e) => {
+              let val = (
+                document.getElementById("input-word") as HTMLInputElement
+              ).value;
+              if (val && val.length > 0) {
+                handlers.append(val);
+              }
+            }}
+          />
+        </div>
+        <div className={styles.givenWords}>
+          <span className={styles.givenWordsTitle}>chosen words: </span>{" "}
+          {wordArray.map((word, i) => (
+            <span key={word} className={styles.givenWord}>
+              {word}{" "}
+              <span
+                onClick={() => {
+                  handlers.remove(i);
+                }}
+                className={styles.x}
+              >
+                <IconX size={14} strokeWidth={3} />
+              </span>
+            </span>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <motion.div
       className={styles.wordOccurences}
@@ -235,116 +353,75 @@ export default function WordOccurences({
         the responses for most desirable, as i found more common word trends in
         this responses compared to responses for least desirable.
       </p>
-      <MotionParagraph title="malewife">
+
+      <WordOccurenceGraph title="malewife" words={["malewife", "male wife"]}>
         <p>
           these are the characters who were referred to as a{" "}
           <Strong>&quot;malewife&quot;</Strong> the most often.
         </p>
-        <p className={styles.subtext}>
-          phrases i searched for: &quot;malewife&quot;, &quot;male wife&quot;
-        </p>
-      </MotionParagraph>
+      </WordOccurenceGraph>
 
-      <WordOccurenceGraph words={["malewife", "male wife"]} />
-
-      <MotionParagraph title="babygirl">
+      <WordOccurenceGraph
+        title="babygirl"
+        words={["babygirl", "baby girl", "bbygirl", "bbygrl", "bbg", "bbgorl"]}
+      >
         <p>
           these are the characters who were referred to as a{" "}
           <Strong>&quot;babygirl&quot;</Strong> the most often.
         </p>
-        <p className={styles.subtext}>
-          phrases i searched for: &quot;babygirl&quot;, &quot;baby girl&quot;,
-          &quot;bbygirl&quot;, &quot;bbygrl&quot;, &quot;bbg&quot;,
-          &quot;bbgorl&quot;
-        </p>
-      </MotionParagraph>
+      </WordOccurenceGraph>
 
       <WordOccurenceGraph
-        words={["babygirl", "baby girl", "bbygirl", "bbygrl", "bbg", "bbgorl"]}
-      />
-
-      <MotionParagraph title="lesbian and sapphic">
+        title="lesbianism & being sapphic"
+        words={["lesbian", "lesbianism", "sapphic", "wlw"]}
+      >
         <p>
           these characters&apos; responses contained the most references to{" "}
           <Strong>lesbianism and being sapphic</Strong>.
         </p>
-        <p className={styles.subtext}>
-          phrases i searched for: &quot;lesbian&quot;, &quot;lesbianism&quot;,
-          &quot;sapphic&quot;, &quot;wlw&quot;
-        </p>
-      </MotionParagraph>
+      </WordOccurenceGraph>
 
-      <WordOccurenceGraph words={["lesbian", "lesbianism", "sapphic", "wlw"]} />
-
-      <MotionParagraph title="wife and girlfriend">
+      <WordOccurenceGraph
+        title="wife & girlfriend"
+        words={[" wife", " wife.", " wife,", "girlfriend", " gf "]}
+      >
         <p>
           you guys considered these characters to be{" "}
           <Strong>wife material</Strong> rather than husband material (so true).
         </p>
-        <p className={styles.subtext}>
-          phrases i searched for: &quot; wife&quot;, &quot; wife.&quot;, &quot;
-          wife,&quot; (these are all to differentiate from &quot;malewife&quot;
-          occurences), &quot;girlfriend&quot;, &quot; gf &quot;
-        </p>
-      </MotionParagraph>
+      </WordOccurenceGraph>
 
       <WordOccurenceGraph
-        words={[" wife", " wife.", " wife,", "girlfriend", " gf "]}
-      />
-
-      <MotionParagraph title="neurodivergency">
+        title="neurodivergency"
+        words={["autism", "autistic", "adhd", "neurodivergent", " nd"]}
+      >
         <p>
           these characters got the most responses referencing{" "}
           <Strong>neurodivergency</Strong> as a factor when choosing who&apos;s
           the most desirable.
         </p>
-        <p className={styles.subtext}>
-          phrases i searched for: &quot;autism&quot;, &quot;autistic&quot;,
-          &quot;adhd&quot;, &quot;neurodivergent&quot;, &quot; nd&quot;
-        </p>
-      </MotionParagraph>
+      </WordOccurenceGraph>
 
       <WordOccurenceGraph
-        words={["autism", "autistic", "adhd", "neurodivergent", " nd"]}
-      />
-
-      <MotionParagraph title="normalness and stability">
-        <p>
-          these characters had the most references to{" "}
-          <Strong>being normal</Strong> when analyzing what makes them
-          desirable.
-        </p>
-        <p className={styles.subtext}>
-          phrases i searched for: &quot;normal&quot;, &quot;stable&quot;,
-          &quot;sane&quot;, &quot;some guy&quot;, &quot;just some guy&quot;,
-          &quot;just a guy&quot;
-        </p>
-      </MotionParagraph>
-
-      <WordOccurenceGraph
+        title="normalness & stabiltiy"
         words={[
           " normal",
-          "stable",
+          " stable",
           " sane",
           "some guy",
           "just some guy",
           "just a guy",
         ]}
-      />
-
-      <MotionParagraph title="physical appearance">
+      >
         <p>
-          these characters have a strong <Strong>physical appearance</Strong>{" "}
-          when it comes to the majority of responses.
+          these characters had the most references to{" "}
+          <Strong>being normal</Strong> when analyzing what makes them
+          desirable.
         </p>
-        <p className={styles.subtext}>
-          phrases i searched for: &quot;pretty&quot;, &quot;beautiful&quot;,
-          &quot;prettier&quot;, &quot;attractive&quot;, &quot;attracted&quot;,
-          &quot; hot&quot;, &quot;handsome&quot;, &quot;sexy&quot;
-        </p>
-      </MotionParagraph>
+      </WordOccurenceGraph>
 
       <WordOccurenceGraph
+        title="physical appearance"
         words={[
           "pretty",
           "beautiful",
@@ -355,7 +432,19 @@ export default function WordOccurences({
           "handsome",
           "sexy",
         ]}
-      />
+      >
+        <p>
+          these characters have a strong <Strong>physical appearance</Strong>{" "}
+          when it comes to the majority of responses.
+        </p>
+      </WordOccurenceGraph>
+
+      <MotionParagraph title="try it yourself">
+        input words or phrases to see which characters has responses that
+        contain those words or phrases.
+      </MotionParagraph>
+      <WordInput />
+      <BaseGraph words={wordArray} animate={false} />
     </motion.div>
   );
 }

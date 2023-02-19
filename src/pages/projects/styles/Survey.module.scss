@@ -11,8 +11,13 @@
     }
   }
 
+  .subtext {
+    font-size: 0.9em;
+    font-style: italic;
+  }
+
   .contents {
-    padding: 1%;
+    padding: 0.5% 1%;
     width: 35%;
     border-radius: 5px;
     font-size: 1.1em;
@@ -23,7 +28,9 @@
     }
 
     h4 {
+      margin: 0;
       font-size: 1.2em;
+      padding: 1% 0%;
     }
 
     ul {
@@ -109,13 +116,53 @@
     }
   }
 
+  .inputSection {
+    width: 60%;
+    margin: 2% auto 0% auto;
+
+    @media screen and (max-width: 812px) {
+      width: 100%;
+    }
+
+    .inputRow {
+      display: flex;
+      align-items: center;
+      padding: 1% 2%;
+    }
+
+    .givenWords {
+      font-size: 1.2em;
+      padding: 1% 4%;
+
+      .givenWordsTitle {
+        font-weight: bold;
+      }
+
+      .givenWord {
+        margin: 0px 1%;
+        padding: 5px 10px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        .x {
+          padding-left: 10px
+        }
+        .x:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
   .wordOccurences {
     margin-bottom: 5%;
 
     .wordOccurenceSection {
       width: 60%;
       margin: 6% auto 0% auto;
-      padding: 1% 2%;
+      padding: 0.5% 2%;
       border-radius: 10px;
 
       @media screen and (max-width: 812px) {
@@ -128,11 +175,26 @@
       }
     }
 
+    .empty {
+      font-family: vars.$header-font;
+      font-size: 1.3em;
+      text-align: center;
+      width: 60%;
+      min-height: 150px;
+      line-height: 150px;
+      padding: 2%;
+      margin: auto;
+
+      @media screen and (max-width: 812px) {
+        width: 100%;
+      }
+    }
+
     .occurenceGraph {
       width: 60%;
       margin: 2% auto 3% auto;
       height: 500px;
-      padding: 2% 2% 0% 2%;
+      padding: 0% 2%;
       border-bottom-width: 1px;
       border-bottom-style: solid;
 
@@ -228,6 +290,10 @@
     color: vars.$light-heading-2;
   }
 
+  .subtext {
+    color: vars.$light-subtext;
+  }
+
   .contents {
     background: vars.$light-heading-bg;
     border: 1px solid vars.$light-heading-border;
@@ -275,8 +341,6 @@
     }
   }
 
-  
-
   .wordOccurences {
 
     .wordOccurenceSection {
@@ -286,6 +350,10 @@
       .subtext {
         color: vars.$light-subtext;
       }
+    }
+
+    .empty {
+      color: vars.$light-subtext;
     }
 
     .occurenceGraph {
@@ -312,12 +380,25 @@
       }
     }   
   }
+
+  .inputSection {
+    .givenWords {
+      .givenWord {
+        background: vars.$light-button-text;
+        color: #fff;
+      }
+    }
+  }
 }
 
 .dark {
 
   h3 {
     color: vars.$dark-heading-2;
+  }
+
+  .subtext {
+    color: vars.$dark-subtext;
   }
 
   .contents {
@@ -367,8 +448,6 @@
     }
   }
 
-  
-
   .wordOccurences {
 
     .wordOccurenceSection {
@@ -378,6 +457,10 @@
       .subtext {
         color: vars.$dark-subtext;
       }
+    }
+
+    .empty {
+      color: vars.$dark-subtext;
     }
 
     .occurenceGraph {
@@ -403,5 +486,14 @@
         }
       }
     }   
+  }
+
+  .inputSection {
+    .givenWords {
+      .givenWord {
+        background: vars.$dark-button-text;
+        color: #fff;
+      }
+    }
   }
 }

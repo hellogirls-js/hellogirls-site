@@ -86,6 +86,8 @@ export async function getServerSideProps() {
       rawData,
       enData,
       title: "marriage survey results",
+      description:
+        "data visualizations of the results for the ensemble stars marriage survey",
     },
   };
 }
