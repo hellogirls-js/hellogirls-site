@@ -8,6 +8,7 @@ import WordOccurences from "./components/WordOccurences";
 
 import { DarkModeContext } from "context/DarkModeContext";
 import MainLayout from "component/MainLayout";
+import ScrollToTop from "component/utility/ScrollToTop";
 
 function getData(url: string): Promise<any> {
   return fetch(url)
@@ -68,6 +69,7 @@ export default function MarriageSurveyResults({
           <TotalResults rawData={rawData.data} enData={enData.data} />
           <WordOccurences rawData={rawData.data} enData={enData.data} />
         </div>
+        <ScrollToTop />
       </div>
     </MainLayout>
   );

@@ -440,7 +440,7 @@ export default function WordOccurences({
       </WordOccurenceGraph>
 
       <MotionParagraph title="try it yourself">
-        input words or phrases to see which characters has responses that
+        input words or phrases to see which characters have responses that
         contain those words or phrases.
       </MotionParagraph>
       <WordInput />
