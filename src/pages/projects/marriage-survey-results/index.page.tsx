@@ -28,6 +28,22 @@ function getData(url: string): Promise<any> {
     });
 }
 
+function Contents() {
+  return (
+    <div className={styles.contents}>
+      <h4>contents</h4>
+      <ul>
+        <li>
+          <Link href="#total">total results</Link>
+        </li>
+        <li>
+          <Link href="#occurences">comparing words</Link>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
 export default function MarriageSurveyResults({
   rawData,
   enData,
@@ -48,6 +64,7 @@ export default function MarriageSurveyResults({
               makotools
             </Link>
           </p>
+          <Contents />
           <TotalResults rawData={rawData.data} enData={enData.data} />
           <WordOccurences rawData={rawData.data} enData={enData.data} />
         </div>

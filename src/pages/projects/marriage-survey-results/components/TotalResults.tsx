@@ -134,7 +134,7 @@ export default function TotalResults({
 
   return (
     <div className={styles.totalResults}>
-      <h2>total results</h2>
+      <h2 id="total">total results</h2>
       <div className={`${styles.barChart}`}>
         <div className={styles.desirableContainer}>
           <div className={styles.desirableLabel}>least desirable</div>

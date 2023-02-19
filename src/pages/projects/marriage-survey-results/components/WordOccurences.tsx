@@ -21,8 +21,8 @@ export default function WordOccurences({
   rawData: any;
   enData: any;
 }) {
-  let isMobile = useMediaQuery("(max-width: 768px)");
-  let isTablet = useMediaQuery("(min-width: 810px) and (max-width: 1120px)");
+  let isMobile = useMediaQuery("(max-width: 812px)");
+  let isTablet = useMediaQuery("(min-width: 812px) and (max-width: 1120px)");
 
   /**
    *
@@ -209,9 +209,9 @@ export default function WordOccurences({
         whileInView={{
           opacity: 1,
           x: 0,
-          transition: { duration: 0.3, delay: 0.1 },
+          transition: { duration: 0.5, delay: 0.1 },
         }}
-        viewport={{ once: true, amount: "all" }}
+        viewport={{ once: true, amount: 0.5 }}
       >
         <h3>{title}</h3>
         {children}
@@ -226,7 +226,7 @@ export default function WordOccurences({
       whileInView={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
       viewport={{ once: true }}
     >
-      <h2>comparing words</h2>
+      <h2 id="occurences">comparing words</h2>
       <p>
         there were some words that kept coming up when i was reading through the
         responses. i wrote some code to analyze where these words occur the
@@ -290,6 +290,71 @@ export default function WordOccurences({
 
       <WordOccurenceGraph
         words={[" wife", " wife.", " wife,", "girlfriend", " gf "]}
+      />
+
+      <MotionParagraph title="neurodivergency">
+        <p>
+          these characters got the most responses referencing{" "}
+          <Strong>neurodivergency</Strong> as a factor when choosing who&apos;s
+          the most desirable.
+        </p>
+        <p className={styles.subtext}>
+          phrases i searched for: &quot;autism&quot;, &quot;autistic&quot;,
+          &quot;adhd&quot;, &quot;neurodivergent&quot;, &quot; nd&quot;
+        </p>
+      </MotionParagraph>
+
+      <WordOccurenceGraph
+        words={["autism", "autistic", "adhd", "neurodivergent", " nd"]}
+      />
+
+      <MotionParagraph title="normalness and stability">
+        <p>
+          these characters had the most references to{" "}
+          <Strong>being normal</Strong> when analyzing what makes them
+          desirable.
+        </p>
+        <p className={styles.subtext}>
+          phrases i searched for: &quot;normal&quot;, &quot;stable&quot;,
+          &quot;sane&quot;, &quot;some guy&quot;, &quot;just some guy&quot;,
+          &quot;just a guy&quot;
+        </p>
+      </MotionParagraph>
+
+      <WordOccurenceGraph
+        words={[
+          " normal",
+          "stable",
+          " sane",
+          "some guy",
+          "just some guy",
+          "just a guy",
+        ]}
+      />
+
+      <MotionParagraph title="physical appearance">
+        <p>
+          these characters have a strong <Strong>physical appearance</Strong>{" "}
+          when it comes to the majority of responses.
+        </p>
+        <p className={styles.subtext}>
+          phrases i searched for: &quot;pretty&quot;, &quot;beautiful&quot;,
+          &quot;prettier&quot;, &quot;attractive&quot;, &quot;attracted&quot;,
+          &quot; hot&quot;, &quot;handsome&quot;, &quot;sexy&quot;
+        </p>
+      </MotionParagraph>
+
+      <WordOccurenceGraph
+        words={[
+          "pretty",
+          "beautiful",
+          "prettier",
+          "attractive",
+          "attracted",
+          " hot",
+          "handsome",
+          "sexy",
+        ]}
       />
     </motion.div>
   );
