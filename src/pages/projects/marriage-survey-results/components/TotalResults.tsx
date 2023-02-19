@@ -134,12 +134,12 @@ export default function TotalResults({
 
   return (
     <>
-      <div className={styles.desirableContainer}>
-        <div className={styles.desirableLabel}>Least desirable</div>
-        <div className={styles.desirableLabel}>Most desirable</div>
-      </div>
+      <h2>total results</h2>
       <div className={`${styles.barChart}`}>
-        <h2>total results</h2>
+        <div className={styles.desirableContainer}>
+          <div className={styles.desirableLabel}>least desirable</div>
+          <div className={styles.desirableLabel}>most desirable</div>
+        </div>
         <BarChart
           width={isMobile ? 300 : isTablet ? 650 : 1000}
           height={2000}
@@ -182,6 +182,10 @@ export default function TotalResults({
             width={1}
           />
         </BarChart>
+        <div className={styles.desirableContainer}>
+          <div className={styles.desirableLabel}>least desirable</div>
+          <div className={styles.desirableLabel}>most desirable</div>
+        </div>
       </div>
     </>
   );

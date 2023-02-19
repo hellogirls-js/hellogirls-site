@@ -3,6 +3,7 @@ import { useContext } from "react";
 import styles from "../styles/Survey.module.scss";
 
 import TotalResults from "./components/TotalResults";
+import WordOccurences from "./components/WordOccurences";
 
 import { DarkModeContext } from "context/DarkModeContext";
 import MainLayout from "component/MainLayout";
@@ -39,6 +40,7 @@ export default function MarriageSurveyResults({
     <MainLayout heading="enstars marriage survey results">
       <div className={`${styles.page} ${styles[colorTheme]}`}>
         <TotalResults rawData={rawData.data} enData={enData.data} />
+        <WordOccurences rawData={rawData.data} enData={enData.data} />
       </div>
     </MainLayout>
   );
