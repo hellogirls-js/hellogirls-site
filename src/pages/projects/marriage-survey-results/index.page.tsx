@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import Link from "next/link";
 
 import styles from "../styles/Survey.module.scss";
 
@@ -39,8 +40,17 @@ export default function MarriageSurveyResults({
   return (
     <MainLayout heading="enstars marriage survey results">
       <div className={`${styles.page} ${styles[colorTheme]}`}>
-        <TotalResults rawData={rawData.data} enData={enData.data} />
-        <WordOccurences rawData={rawData.data} enData={enData.data} />
+        <div>
+          <p>
+            character data, such as name, image color, and renders, is provided
+            by{" "}
+            <Link href="https://stars.ensemble.moe" target="_blank">
+              makotools
+            </Link>
+          </p>
+          <TotalResults rawData={rawData.data} enData={enData.data} />
+          <WordOccurences rawData={rawData.data} enData={enData.data} />
+        </div>
       </div>
     </MainLayout>
   );

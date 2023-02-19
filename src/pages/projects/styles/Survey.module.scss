@@ -11,71 +11,79 @@
     }
   }
 
-  .barChart {
-    width: 90%;
-    margin: auto;
-    border-radius: 10px;
-    padding: 5px 10px;
-    margin-bottom: 3vh;
+  .totalResults {
+    margin-bottom: 10%;
 
-    @media screen and (max-width: 810px) {
-      width: 100%;
+    .barChart {
+      width: 90%;
+      margin: auto;
+      border-radius: 10px;
+      padding: 5px 10px;
+      margin-bottom: 3vh;
+
+      @media screen and (max-width: 810px) {
+        width: 100%;
+      }
     }
-  }
 
-  .tooltip {
-    padding: 10px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
+    .tooltip {
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
 
-    .tooltipText {
-      flex-basis: 1 0 50%;
+      .tooltipText {
+        flex-basis: 1 0 50%;
 
-      .tooltipName {
-        font-family: vars.$header-font;
-        font-size: 1.3em;
-        font-weight: 600;
+        .tooltipName {
+          font-family: vars.$header-font;
+          font-size: 1.3em;
+          font-weight: 600;
+        }
+
+        .tooltipContent {
+
+          .tooltipData {
+            font-weight: 700;
+          }
+        }
       }
 
-      .tooltipContent {
+      .tooltipImgWrapper {
+        padding: 2px;
+        flex-basis: 0 0 120px;
 
-        .tooltipData {
-          font-weight: 700;
+        .tooltipImg {
+          width: 120px;
+          object-fit: cover;
         }
       }
     }
 
-    .tooltipImgWrapper {
-      padding: 2px;
-      flex-basis: 0 0 120px;
+    .desirableContainer {
+      width: 100%;
+      margin: auto;
+      padding: 1%;
+      bottom: 0;
+      display: flex;
+      justify-content: space-around;
+      z-index: 5;
 
-      .tooltipImg {
-        width: 120px;
-        object-fit: cover;
+      .desirableLabel {
+        font-size: 1.2em;
+        font-family: vars.$header-font;
+
+        @media screen and (max-width: 768px) {
+          font-size: 0.8em;
+        }
       }
     }
   }
 
-  .desirableContainer {
-    width: 100%;
-    margin: auto;
-    bottom: 0;
-    display: flex;
-    justify-content: space-around;
-    z-index: 5;
-
-    .desirableLabel {
-      font-size: 1.2em;
-      font-family: vars.$header-font;
-
-      @media screen and (max-width: 768px) {
-        font-size: 0.8em;
-      }
-    }
-  }
+  
 
   .wordOccurences {
+    margin-bottom: 5%;
 
     .wordOccurenceSection {
       width: 60%;
@@ -142,6 +150,8 @@
           }
 
           .labelImageContainer {
+            margin: auto;
+            padding: 0 5px;
             border-radius: 10px;
             overflow: clip;
 
@@ -192,37 +202,41 @@
     color: vars.$light-heading-2;
   }
 
-  .barChart {
-    background: #fff;
-    box-shadow: 2px 2px 3px vars.$light-shadow;
-
-    .desirableContainer {
-
-      .desirableLabel {
-        color: vars.$light-subtext;
-      }
-    }
-
-    .tooltip {
+  .totalResults {
+    .barChart {
       background: #fff;
       box-shadow: 2px 2px 3px vars.$light-shadow;
-      border: 1px solid vars.$light-heading-border;
 
-      .tooltipText {
+      .desirableContainer {
 
-        .tooltipName {
-          color: vars.$light-heading-2;
+        .desirableLabel {
+          color: vars.$light-subtext;
         }
+      }
 
-        .tooltipContent {
+      .tooltip {
+        background: #fff;
+        box-shadow: 2px 2px 3px vars.$light-shadow;
+        border: 1px solid vars.$light-heading-border;
 
-          .tooltipData {
-            color: vars.$light-link;
+        .tooltipText {
+
+          .tooltipName {
+            color: vars.$light-heading-2;
+          }
+
+          .tooltipContent {
+
+            .tooltipData {
+              color: vars.$light-link;
+            }
           }
         }
       }
     }
   }
+
+  
 
   .wordOccurences {
 
@@ -267,37 +281,41 @@
     color: vars.$dark-heading-2;
   }
 
-  .barChart {
-    background: vars.$dark-text-bg;
-    box-shadow: 2px 2px 3px vars.$dark-shadow;
-
-    .desirableContainer {
-
-      .desirableLabel {
-        color: vars.$dark-subtext;
-      }
-    }
-
-    .tooltip {
+  .totalResults {
+    .barChart {
       background: vars.$dark-text-bg;
       box-shadow: 2px 2px 3px vars.$dark-shadow;
-      border: 1px solid vars.$dark-heading-border;
 
-      .tooltipText {
+      .desirableContainer {
 
-        .tooltipName {
-          color: vars.$dark-heading-2;
+        .desirableLabel {
+          color: vars.$dark-subtext;
         }
+      }
 
-        .tooltipContent {
+      .tooltip {
+        background: vars.$dark-text-bg;
+        box-shadow: 2px 2px 3px vars.$dark-shadow;
+        border: 1px solid vars.$dark-heading-border;
 
-          .tooltipData {
-            color: vars.$dark-link;
+        .tooltipText {
+
+          .tooltipName {
+            color: vars.$dark-heading-2;
+          }
+
+          .tooltipContent {
+
+            .tooltipData {
+              color: vars.$dark-link;
+            }
           }
         }
       }
     }
   }
+
+  
 
   .wordOccurences {
 
