@@ -26,7 +26,6 @@ export default function ScrollToTop() {
   }, []);
 
   useEffect(() => {
-    console.log(scroll);
     if (scroll > 300) {
       setVisible(true);
     } else if (scroll <= 300) {

@@ -1,16 +1,18 @@
 import { useListState, useMediaQuery } from "@mantine/hooks";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IconX } from "@tabler/icons-react";
 
 import styles from "../../styles/Survey.module.scss";
+import leastDesirable from "../../../../../data/survey-results/least_desirable.json";
 import mostDesirable from "../../../../../data/survey-results/most_desirable.json";
 
 import { twoStarIDs } from "data/twoStarIds";
 import Strong from "component/utility/Strong";
 import TextInput from "component/utility/TextInput";
 import Button from "component/utility/Button";
+import Switch from "component/utility/Switch";
 
 interface Result {
   id: any;
@@ -28,6 +30,17 @@ export default function WordOccurences({
   let isMobile = useMediaQuery("(max-width: 812px)");
   let isTablet = useMediaQuery("(min-width: 812px) and (max-width: 1120px)");
   const [wordArray, handlers] = useListState<string>([]);
+  const [customData, setCustomData] = useState<Result[]>(mostDesirable);
+  const [checked, setChecked] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(checked);
+    if (checked) {
+      setCustomData(leastDesirable);
+    } else {
+      setCustomData(mostDesirable);
+    }
+  }, [checked]);
 
   /**
    *
@@ -55,16 +68,31 @@ export default function WordOccurences({
     let imgUrl = `https://assets.enstars.link/assets/card_full1_${
       (twoStarIDs as any)[obj.id]
     }_normal.png`;
-    let firstName = enData
-      .find((ch: any) => ch.character_id === obj.id)
-      .first_name.toLowerCase();
+    let firstName =
+      enData.find((ch: any) => ch.character_id === obj.id)?.first_name &&
+      enData.find((ch: any) => ch.character_id === obj.id)?.first_name !==
+        undefined
+        ? enData
+            .find((ch: any) => ch.character_id === obj.id)
+            .first_name.toLowerCase()
+        : obj.id === 61
+        ? "seiya"
+        : obj.id === 0
+        ? "anzu"
+        : obj.id === -1
+        ? "kaname"
+        : "";
     let lastName =
-      enData.find((ch: any) => ch.character_id === obj.id).last_name &&
-      enData.find((ch: any) => ch.character_id === obj.id).last_name !==
+      enData.find((ch: any) => ch.character_id === obj.id)?.last_name &&
+      enData.find((ch: any) => ch.character_id === obj.id)?.last_name !==
         undefined
         ? enData
             .find((ch: any) => ch.character_id === obj.id)
             .last_name.toLowerCase()
+        : obj.id === 61
+        ? "hidaka"
+        : obj.id === -1
+        ? "tojo"
         : "";
     return (
       <motion.div
@@ -138,15 +166,17 @@ export default function WordOccurences({
    */
   function BaseGraph({
     words,
+    dataType = mostDesirable,
     animate = true,
   }: {
     words: string[];
+    dataType?: Result[];
     animate?: boolean;
   }) {
     let countArray: { id: number; count: number }[] = [];
     let filteredResults: Result[] = [];
     words.forEach((word) => {
-      let filteredArray: Result[] = mostDesirable.filter((d: Result) =>
+      let filteredArray: Result[] = dataType.filter((d: Result) =>
         d.reason.toLowerCase().includes(word)
       );
       filteredResults = [...filteredResults, filteredArray].flat();
@@ -183,7 +213,7 @@ export default function WordOccurences({
     function Empty() {
       return <div className={styles.empty}>no responses :(</div>;
     }
-    return words.length ? (
+    return splitArray.length ? (
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1, transition: { delayChildren: 1.5 } }}
@@ -219,6 +249,10 @@ export default function WordOccurences({
               let firstName =
                 c.id === 61
                   ? "seiya"
+                  : c.id === 0
+                  ? "anzu"
+                  : c.id === -1
+                  ? "kaname"
                   : enData
                       .find((ch: any) => ch.character_id === c.id)
                       .first_name.toLowerCase();
@@ -244,10 +278,12 @@ export default function WordOccurences({
   function WordOccurenceGraph({
     title,
     words,
+    dataType = mostDesirable,
     children,
   }: {
     title: string;
     words: string[];
+    dataType?: Result[];
     children: any;
   }) {
     return (
@@ -265,7 +301,7 @@ export default function WordOccurences({
             )}
           </p>
         </MotionParagraph>
-        <BaseGraph words={words} />
+        <BaseGraph words={words} dataType={dataType} />
       </div>
     );
   }
@@ -316,6 +352,12 @@ export default function WordOccurences({
               }
             }}
           />
+          <Switch
+            leftLabel="most desirable"
+            rightLabel="least desirable"
+            checked={checked}
+            onClick={setChecked}
+          />
         </div>
         <div className={styles.givenWords}>
           <span className={styles.givenWordsTitle}>chosen words: </span>{" "}
@@ -349,11 +391,10 @@ export default function WordOccurences({
         there were some words that kept coming up when i was reading through the
         responses. i wrote some code to analyze where these words occur the
         most. the units for these charts is based on the number of responses
-        found that contain these phrases. keep in mind that this only analyzes
-        the responses for most desirable, as i found more common word trends in
-        this responses compared to responses for least desirable.
+        found that contain these phrases.
       </p>
 
+      <h2 id="md-occurences">most desirable occurences</h2>
       <WordOccurenceGraph title="malewife" words={["malewife", "male wife"]}>
         <p>
           these are the characters who were referred to as a{" "}
@@ -439,12 +480,74 @@ export default function WordOccurences({
         </p>
       </WordOccurenceGraph>
 
+      <h2 id="ld-occurences">least desirable occurences</h2>
+      <p>
+        if you are sensitive to character criticism or seeing your favorite
+        here, i recommend turning back now.
+      </p>
+
+      <WordOccurenceGraph
+        title="mental stability"
+        words={[
+          "crazy",
+          "mental illness",
+          "mentally ill",
+          "insane",
+          "insanity",
+          "mental",
+          "depression",
+          "depressed",
+        ]}
+        dataType={leastDesirable}
+      >
+        <p>
+          the <Strong>mental status</Strong> of these characters stood out as
+          unappealing for many responders.
+        </p>
+      </WordOccurenceGraph>
+
+      <WordOccurenceGraph
+        title="physical unattractiveness"
+        words={["ugly", "unattractive", "hideous"]}
+        dataType={leastDesirable}
+      >
+        <p>
+          many people have pointed to these characters&apos;{" "}
+          <Strong>unappealing looks</Strong> for a reason to not marry them.
+        </p>
+      </WordOccurenceGraph>
+
+      <WordOccurenceGraph
+        title="clash in sexuality"
+        words={["gay", "lesbian"]}
+        dataType={leastDesirable}
+      >
+        <p>
+          responders deemed these characters as undesirable due to{" "}
+          <Strong>differences in sexuality</Strong>.
+        </p>
+      </WordOccurenceGraph>
+
+      <WordOccurenceGraph
+        title="no homewrecking!"
+        words={["married", "homewrecker"]}
+        dataType={leastDesirable}
+      >
+        <p>
+          according to you guys, these characters are{" "}
+          <Strong>already married</Strong> and are therefore emotionally
+          unavailable.
+        </p>
+      </WordOccurenceGraph>
+
       <MotionParagraph title="try it yourself">
-        input words or phrases to see which characters have responses that
-        contain those words or phrases.
+        <p>
+          input words or phrases to see which characters have responses that
+          contain those words or phrases.
+        </p>
       </MotionParagraph>
       <WordInput />
-      <BaseGraph words={wordArray} animate={false} />
+      <BaseGraph words={wordArray} animate={false} dataType={customData} />
     </motion.div>
   );
 }

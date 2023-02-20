@@ -4,7 +4,7 @@
   min-height: 100vh;
 
   h3 {
-    margin: 2% 0%;
+    margin: 0;
 
     @media screen and (max-width: 768px) {
       text-align: center;
@@ -162,7 +162,7 @@
     .wordOccurenceSection {
       width: 60%;
       margin: 6% auto 0% auto;
-      padding: 0.5% 2%;
+      padding: 1.5% 2%;
       border-radius: 10px;
 
       @media screen and (max-width: 812px) {
@@ -180,8 +180,8 @@
       font-size: 1.3em;
       text-align: center;
       width: 60%;
-      min-height: 150px;
-      line-height: 150px;
+      min-height: 500px;
+      line-height: 500px;
       padding: 2%;
       margin: auto;
 
@@ -386,6 +386,7 @@
       .givenWord {
         background: vars.$light-button-text;
         color: #fff;
+        box-shadow: 1px 1px 3px vars.$light-shadow;
       }
     }
   }
@@ -491,8 +492,9 @@
   .inputSection {
     .givenWords {
       .givenWord {
-        background: vars.$dark-button-text;
+        background: vars.$dark-heading-border;
         color: #fff;
+        box-shadow: 1px 1px 3px vars.$dark-shadow;
       }
     }
   }
