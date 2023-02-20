@@ -5,6 +5,7 @@ import styles from "../styles/Survey.module.scss";
 
 import TotalResults from "./components/TotalResults";
 import WordOccurences from "./components/WordOccurences";
+import WordCloud from "./components/WordCloud";
 
 import { DarkModeContext } from "context/DarkModeContext";
 import MainLayout from "component/MainLayout";
@@ -39,6 +40,17 @@ function Contents() {
         </li>
         <li>
           <Link href="#occurences">comparing words</Link>
+          <ul>
+            <li>
+              <Link href="#md-occurences">most desirable</Link>
+            </li>
+            <li>
+              <Link href="#ld-occurences">least desirable</Link>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <Link href="#cloud">word cloud</Link>
         </li>
       </ul>
     </div>
@@ -68,6 +80,7 @@ export default function MarriageSurveyResults({
           <Contents />
           <TotalResults rawData={rawData.data} enData={enData.data} />
           <WordOccurences rawData={rawData.data} enData={enData.data} />
+          <WordCloud />
         </div>
         <ScrollToTop />
       </div>

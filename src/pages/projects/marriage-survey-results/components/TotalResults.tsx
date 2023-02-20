@@ -135,6 +135,10 @@ export default function TotalResults({
   return (
     <div className={styles.totalResults}>
       <h2 id="total">total results</h2>
+      <p>
+        hover over each bar (or tap if you&apos;re on a mobile device!) to view
+        more details.
+      </p>
       <div className={`${styles.barChart}`}>
         <div className={styles.desirableContainer}>
           <div className={styles.desirableLabel}>least desirable</div>

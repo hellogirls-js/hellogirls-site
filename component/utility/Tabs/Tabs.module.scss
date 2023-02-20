@@ -1,0 +1,62 @@
+@use "../../../styles/vars.module.scss";
+
+.tabs {
+  --border-width: 1px;
+
+  width: 100%;
+  margin: 3% auto;
+
+  .tabHeading {
+    display: flex;
+    width: 100%;
+
+    .tabHeadingItem {
+      padding: 1% 2%;
+      flex-grow: 1;
+      text-align: center;
+      font-family: vars.$header-font;
+      font-size: 1.2em;
+      transition: 0.2s;
+    }
+
+    .tabHeadingItem.inactive {
+      cursor: pointer;
+      border-bottom-width: var(--border-width);
+      border-bottom-style: solid;
+    }
+
+    .tabHeadingItem.active {
+      border-radius: 5px 5px 0px 0px;
+      border-width: var(--border-width);
+      border-style: solid;
+      border-bottom: none;
+    }
+  }
+
+  .tabContent {
+    
+    .tabPanel {
+      padding: 1%;
+    }
+  }
+}
+
+.light {
+
+  .tabHeading {
+
+    .tabHeadingItem.inactive, .tabHeadingItem.active {
+      border-color: vars.$light-button-border;
+    }
+  }
+}
+
+.dark {
+
+  .tabHeading {
+
+    .tabHeadingItem.inactive, .tabHeadingItem.active {
+      border-color: vars.$dark-button-border;
+    }
+  }
+}
