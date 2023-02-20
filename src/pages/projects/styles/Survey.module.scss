@@ -1,0 +1,511 @@
+@use "../../../../styles/vars.module.scss";
+
+.page {
+  min-height: 100vh;
+
+  h3 {
+    margin: 0;
+
+    @media screen and (max-width: 768px) {
+      text-align: center;
+    }
+  }
+
+  .subtext {
+    font-size: 0.9em;
+    font-style: italic;
+  }
+
+  .contents {
+    padding: 0.5% 1%;
+    width: 35%;
+    border-radius: 5px;
+    font-size: 1.1em;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 1% 3%;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 1.2em;
+      padding: 1% 0%;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin: 2% 0%;
+
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .totalResults {
+    margin-bottom: 10%;
+
+    .barChart {
+      width: 90%;
+      margin: auto;
+      border-radius: 10px;
+      padding: 5px 10px;
+      margin-bottom: 3vh;
+
+      @media screen and (max-width: 810px) {
+        width: 100%;
+      }
+    }
+
+    .tooltip {
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+
+      .tooltipText {
+        flex-basis: 1 0 50%;
+
+        .tooltipName {
+          font-family: vars.$header-font;
+          font-size: 1.3em;
+          font-weight: 600;
+        }
+
+        .tooltipContent {
+
+          .tooltipData {
+            font-weight: 700;
+          }
+        }
+      }
+
+      .tooltipImgWrapper {
+        padding: 2px;
+        flex-basis: 0 0 120px;
+
+        .tooltipImg {
+          width: 120px;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .desirableContainer {
+      width: 100%;
+      margin: auto;
+      padding: 1%;
+      bottom: 0;
+      display: flex;
+      justify-content: space-around;
+      z-index: 5;
+
+      .desirableLabel {
+        font-size: 1.2em;
+        font-family: vars.$header-font;
+
+        @media screen and (max-width: 768px) {
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+
+  .inputSection {
+    width: 60%;
+    margin: 2% auto 0% auto;
+
+    @media screen and (max-width: 812px) {
+      width: 100%;
+    }
+
+    .inputRow {
+      display: flex;
+      align-items: center;
+      padding: 1% 2%;
+      border-radius: 10px;
+    }
+
+    .givenWords {
+      font-size: 1.2em;
+      padding: 1% 4%;
+
+      .givenWordsTitle {
+        font-weight: bold;
+      }
+
+      .givenWord {
+        margin: 0px 1%;
+        padding: 5px 10px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        .x {
+          padding-left: 10px
+        }
+        .x:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .wordOccurences {
+    margin-bottom: 5%;
+
+    .wordOccurenceSection {
+      width: 60%;
+      margin: 6% auto 0% auto;
+      padding: 1.5% 2%;
+      border-radius: 10px;
+
+      @media screen and (max-width: 812px) {
+        width: 100%;
+      }
+
+      .subtext {
+        font-size: 0.8em;
+        font-style: italic;
+      }
+    }
+
+    .empty {
+      font-family: vars.$header-font;
+      font-size: 1.3em;
+      text-align: center;
+      width: 60%;
+      min-height: 500px;
+      line-height: 500px;
+      padding: 2%;
+      margin: auto;
+
+      @media screen and (max-width: 812px) {
+        width: 100%;
+      }
+    }
+
+    .occurenceGraph {
+      width: 60%;
+      margin: 2% auto 3% auto;
+      height: 500px;
+      padding: 0% 2%;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+
+      @media screen and (max-width: 812px) {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 10%;
+        border-bottom: none;
+        border-left-width: 1px;
+        border-left-style: solid;
+      }
+
+      .barContainer {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-end;
+        justify-content: flex-end;
+        
+
+        @media screen and (max-width: 812px) {
+          flex-flow: row-reverse nowrap;
+          align-items: flex-start;
+          width: 100%
+        }
+
+        @media screen and (min-width: 812px) {
+          height: 100%;
+        }
+
+        .barLabel {
+          z-index: 2;
+          margin: auto;
+          
+
+          @media screen and (max-width: 812px) {
+            width: 20%;
+          }
+
+          @media screen and (min-width: 812px) {
+            height: 20%;
+            margin-bottom: 30%;
+          }
+
+          .labelImageContainer {
+            margin: auto;
+            border-radius: 10px;
+            overflow: clip;
+
+            @media screen and (max-width: 812px) {
+              width: 100%;
+              max-height: 75px;
+            }
+
+            @media screen and (min-width: 812px) {
+              height: 90%;
+            }
+
+            .labelImage {
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+
+          .labelText {
+            height: 10%;
+            padding: 5% 0%;
+            margin-bottom: 10%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
+          }
+        }
+
+        .occurenceBar {
+          border-radius: 5px 5px 0px 0px;
+          text-align: center;
+          font-weight: bolder;
+
+          @media screen and (max-width: 812px) {
+            border-radius: 0px 5px 5px 0px;
+          }
+        }
+      }
+
+      
+    }
+  }
+}
+
+.light {
+
+  h3 {
+    color: vars.$light-heading-2;
+  }
+
+  .subtext {
+    color: vars.$light-subtext;
+  }
+
+  .contents {
+    background: vars.$light-heading-bg;
+    border: 1px solid vars.$light-heading-border;
+
+    ul {
+      li {
+        a:link, a:visited {
+          color: vars.$light-subtext;
+        }
+      }
+    }
+  }
+
+  .totalResults {
+    .barChart {
+      background: #fff;
+      box-shadow: 2px 2px 3px vars.$light-shadow;
+
+      .desirableContainer {
+
+        .desirableLabel {
+          color: vars.$light-subtext;
+        }
+      }
+
+      .tooltip {
+        background: #fff;
+        box-shadow: 2px 2px 3px vars.$light-shadow;
+        border: 1px solid vars.$light-heading-border;
+
+        .tooltipText {
+
+          .tooltipName {
+            color: vars.$light-heading-2;
+          }
+
+          .tooltipContent {
+
+            .tooltipData {
+              color: vars.$light-link;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .wordOccurences {
+
+    .wordOccurenceSection {
+      background: #fff;
+      box-shadow: 2px 2px 3px vars.$light-shadow;
+
+      .subtext {
+        color: vars.$light-subtext;
+      }
+    }
+
+    .empty {
+      color: vars.$light-subtext;
+    }
+
+    .occurenceGraph {
+      border-color: vars.$light-subtext;
+
+      .barContainer {
+
+        .barLabel {
+          
+          .labelImageContainer {
+            background: #fff;
+            box-shadow: 2px 2px 3px vars.$light-shadow;
+          }
+
+          .labelText {
+            color: vars.$light-subtext;
+          }
+        }
+
+        .occurenceBar {
+          background-color: vars.$light-link;
+          color: #fff;
+        }
+      }
+    }   
+  }
+
+  .inputSection {
+    .inputRow {
+      background: vars.$light-heading-bg;
+      border: 1px solid vars.$light-heading-border;
+    }
+    .givenWords {
+      .givenWord {
+        background: vars.$light-button-text;
+        color: #fff;
+        box-shadow: 1px 1px 3px vars.$light-shadow;
+      }
+    }
+  }
+}
+
+.dark {
+
+  h3 {
+    color: vars.$dark-heading-2;
+  }
+
+  .subtext {
+    color: vars.$dark-subtext;
+  }
+
+  .contents {
+    background: vars.$dark-heading-bg;
+    border: 1px solid vars.$dark-heading-border;
+
+    ul {
+      li {
+        a:link, a:visited {
+          color: vars.$dark-subtext;
+        }
+      }
+    }
+  }
+
+  .totalResults {
+    .barChart {
+      background: vars.$dark-text-bg;
+      box-shadow: 2px 2px 3px vars.$dark-shadow;
+
+      .desirableContainer {
+
+        .desirableLabel {
+          color: vars.$dark-subtext;
+        }
+      }
+
+      .tooltip {
+        background: vars.$dark-text-bg;
+        box-shadow: 2px 2px 3px vars.$dark-shadow;
+        border: 1px solid vars.$dark-heading-border;
+
+        .tooltipText {
+
+          .tooltipName {
+            color: vars.$dark-heading-2;
+          }
+
+          .tooltipContent {
+
+            .tooltipData {
+              color: vars.$dark-link;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .wordOccurences {
+
+    .wordOccurenceSection {
+      background: vars.$dark-text-bg;
+      box-shadow: 2px 2px 3px vars.$dark-shadow;
+
+      .subtext {
+        color: vars.$dark-subtext;
+      }
+    }
+
+    .empty {
+      color: vars.$dark-subtext;
+    }
+
+    .occurenceGraph {
+      border-color: vars.$dark-subtext;
+
+      .barContainer {
+
+        .barLabel {
+          
+          .labelImageContainer {
+            background: vars.$dark-text-bg;
+            box-shadow: 2px 2px 3px vars.$dark-shadow;
+          }
+
+          .labelText {
+            color: vars.$dark-subtext;
+          }
+        }
+
+        .occurenceBar {
+          background-color: vars.$light-link;
+          color: #fff;
+        }
+      }
+    }   
+  }
+
+  .inputSection {
+    .inputRow {
+      background: vars.$dark-heading-bg;
+      border: 1px solid vars.$dark-heading-border;
+    }
+
+    .givenWords {
+      .givenWord {
+        background: vars.$dark-heading-border;
+        color: #fff;
+        box-shadow: 1px 1px 3px vars.$dark-shadow;
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+@use "../../../styles/vars.module.scss";
+
+.inputMain {
+  padding: 2%;
+  display: inline-flex;
+  flex-flow: column;
+
+  input[type=text] {
+    width: 100%;
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 12pt;
+    border-radius: 3px;
+  }
+
+  .label {
+    margin-bottom: 1vh;
+  }
+}
+
+.light {
+  --input-bg-light: #fff;
+
+  input[type=text] {
+    background: var(--input-bg-light);
+    color: vars.$light-button-text;
+    border-color: vars.$light-button-border;
+  }
+
+  .label {
+    color: vars.$light-subtext;
+  }
+}
+
+.dark {
+
+  input[type=text] {
+    background: vars.$dark-text-bg;
+    color: vars.$dark-button-text;
+    border-color: vars.$dark-button-border;
+  }
+
+  .label {
+    color: vars.$dark-subtext;
+  }
+}
