@@ -316,13 +316,13 @@ export default function WordOccurences({
     return (
       <motion.div
         className={styles.wordOccurenceSection}
-        initial={{ opacity: 0, x: -200 }}
-        whileInView={{
-          opacity: 1,
-          x: 0,
-          transition: { duration: 0.5, delay: 0.1 },
-        }}
-        viewport={{ once: true, amount: 0.5 }}
+        // initial={{ opacity: 0, x: -200 }}
+        // whileInView={{
+        //   opacity: 1,
+        //   x: 0,
+        //   transition: { duration: 0.5, delay: 0.1 },
+        // }}
+        // viewport={{ once: true, amount: 0.5 }}
       >
         <h3>{title}</h3>
         {children}
