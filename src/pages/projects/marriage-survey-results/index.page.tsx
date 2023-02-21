@@ -80,7 +80,7 @@ export default function MarriageSurveyResults({
           <Contents />
           <TotalResults rawData={rawData.data} enData={enData.data} />
           <WordOccurences rawData={rawData.data} enData={enData.data} />
-          <WordCloud />
+          <WordCloud rawData={rawData.data} enData={enData.data} />
         </div>
         <ScrollToTop />
       </div>

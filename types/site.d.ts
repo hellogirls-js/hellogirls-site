@@ -26,3 +26,9 @@ interface PostMeta {
   dateCreated?: number;
   dateUpdated?: number;
 }
+
+interface Result {
+  id: any;
+  name: string;
+  reason: string;
+}

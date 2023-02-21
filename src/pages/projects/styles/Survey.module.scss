@@ -290,6 +290,32 @@
 
   .wordCloud {
     margin-bottom: 10%;
+
+    .wordCloudContainer {
+      padding: 3% 0% 2% 0%;
+
+      .iconsContainer {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        margin: 2% 0%;
+        
+        .icon {
+          width: 70px;
+          height: 70px;
+          overflow: clip;
+          border-radius: 50%;
+          margin: 1% 3px;
+          cursor: pointer;
+
+          .iconImage {
+            object-fit: cover;
+            margin-left: -190px;
+            margin-top: -20px;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -403,6 +429,20 @@
       }
     }
   }
+
+  .wordCloud {
+
+    .wordCloudContainer {
+
+      .iconsContainer {
+        
+        .icon {
+          background: #fff;
+          border: 1px solid vars.$light-heading-border;
+        }
+      }
+    }
+  }
 }
 
 .dark {
@@ -513,6 +553,19 @@
         background: vars.$dark-heading-border;
         color: #fff;
         box-shadow: 1px 1px 3px vars.$dark-shadow;
+      }
+    }
+  }
+
+  .wordCloud {
+
+    .wordCloudContainer {
+
+      .iconsContainer {
+        
+        .icon {
+          background: vars.$dark-text-bg;
+        }
       }
     }
   }

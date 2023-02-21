@@ -14,12 +14,6 @@ import TextInput from "component/utility/TextInput";
 import Button from "component/utility/Button";
 import Switch from "component/utility/Switch";
 
-interface Result {
-  id: any;
-  name: string;
-  reason: string;
-}
-
 export default function WordOccurences({
   rawData,
   enData,

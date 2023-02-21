@@ -1,6 +1,8 @@
 import { IconArrowUp } from "@tabler/icons-react";
 import { useContext, useEffect, useRef, useState } from "react";
 
+import Tooltip from "../Tooltip";
+
 import styles from "./ScrollToTop.module.scss";
 
 import { DarkModeContext } from "context/DarkModeContext";
@@ -34,16 +36,20 @@ export default function ScrollToTop() {
   }, [scroll]);
 
   return (
-    <div
-      id="scroll-to-top"
-      ref={buttonRef}
-      className={`${styles.scrollToTop} ${styles[colorTheme]}`}
-      style={{
-        visibility: visible ? "visible" : "hidden",
-        opacity: visible ? 1 : 0,
-      }}
-    >
-      <IconArrowUp size={40} />
+    <div className={`${styles.scrollToTop} ${styles[colorTheme]}`}>
+      <Tooltip label="back to top">
+        <div
+          id="scroll-to-top"
+          ref={buttonRef}
+          className={styles.scrollButton}
+          style={{
+            visibility: visible ? "visible" : "hidden",
+            opacity: visible ? 1 : 0,
+          }}
+        >
+          <IconArrowUp size={40} />
+        </div>
+      </Tooltip>
     </div>
   );
 }

@@ -74,7 +74,7 @@ export default function Navigation() {
 
   return (
     <div className={`${styles.nav} ${styles[colorTheme]}`}>
-      <Tooltip label="navigation">
+      <Tooltip label="navigation" position="bottom">
         <NavigationButton isOpen={isOpen} onClick={openMenu} />
       </Tooltip>
 
