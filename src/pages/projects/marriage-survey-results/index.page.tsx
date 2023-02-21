@@ -56,6 +56,9 @@ function Contents() {
         <li>
           <Link href="#cloud">word cloud</Link>
         </li>
+        <li>
+          <Link href="#conclusion">conclusion</Link>
+        </li>
       </ul>
     </div>
   );
@@ -97,11 +100,31 @@ export default function MarriageSurveyResults({
             </Link>
             . thank you so much!
           </p>
+          <p>(psst, i recommend viewing this site on desktop!)</p>
           <Contents />
           <RankingSummary rawData={rawData.data} enData={enData.data} />
           <TotalResults rawData={rawData.data} enData={enData.data} />
           <WordOccurences rawData={rawData.data} enData={enData.data} />
           <WordCloud rawData={rawData.data} enData={enData.data} />
+          <h2 id="conclusion">conclusion</h2>
+          <p>
+            thank you for taking the time to go thru this page! i hope you had
+            as much fun analyzing things as i did. if you think i should keep
+            doing things like this lemme know via{" "}
+            <Link href="https://curiouscat.me/hellogirlsqa" target="_blank">
+              curiouscat
+            </Link>
+            ! i also have a{" "}
+            <Link
+              href="https://www.buymeacoffee.com/hellogirls"
+              target="_blank"
+            >
+              buy me a coffee account
+            </Link>{" "}
+            if you appreciate my analyzing efforts (nothing expected tho, i just
+            did this for fun haha).
+          </p>
+          <p>see you guys later!</p>
         </div>
         <ScrollToTop />
       </div>
