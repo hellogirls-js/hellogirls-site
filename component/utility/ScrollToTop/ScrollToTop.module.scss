@@ -4,20 +4,27 @@
   position: fixed;
   bottom: 1%;
   right: 2%;
-  height: 40px;
-  width: 40px;
-  padding: 10px 10px;
-  border-radius: 50%;
-  transition: background 0.3s;
-  transition: opacity 0.3s;
+  height: 50px;
+  width: 50px;
+  
 
   @media screen and (min-width: 810px) {
-    bottom: 6%;
+    bottom: 10%;
+    right: 4%;
   }
-}
 
-.scrollToTop:hover {
-  cursor: pointer;
+  .scrollButton {
+    width: 40px;
+    height: 40px;
+    padding: 10px 10px;
+    border-radius: 50%;
+    transition: background 0.3s;
+    transition: opacity 0.3s;
+  }
+
+  .scrollButton:hover {
+    cursor: pointer;
+  }
 }
 
 .light {
@@ -26,10 +33,12 @@
   --button-hover: #e5e3fa;
   --button-open: #a8b346;
 
-  background: #fff;
-  color: var(--button-color);
-  border: 2px solid var(--button-border);
-  box-shadow: 1px 1px 3px vars.$light-shadow;
+  .scrollButton {
+    background: #fff;
+    color: var(--button-color);
+    border: 2px solid var(--button-border);
+    box-shadow: 1px 1px 3px vars.$light-shadow;
+  }
 }
 
 .dark {
@@ -38,8 +47,10 @@
   --button-hover: #1c193f;
   --button-open: #7f882b;
 
-  background: vars.$dark-bg;
+  .scrollButton {
+    background: vars.$dark-bg;
     color: var(--button-color);
     border: 2px solid var(--button-border);
     box-shadow: 2px 2px 3px vars.$dark-shadow;
+  }
 }

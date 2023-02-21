@@ -23,14 +23,6 @@ import styles from "../../styles/Survey.module.scss";
 import { twoStarIDs } from "data/twoStarIds";
 import { DarkModeContext } from "context/DarkModeContext";
 
-interface Result {
-  id: number;
-  md: number;
-  ld: number;
-  firstName?: string | null;
-  lastName?: string | null;
-}
-
 export default function TotalResults({
   rawData,
   enData,
@@ -41,7 +33,7 @@ export default function TotalResults({
   const { colorTheme } = useContext(DarkModeContext);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1100px)");
-  const [data, setData] = useState<Result[]>(totalResults);
+  const [data, setData] = useState<TotalResult[]>(totalResults);
 
   useEffect(() => {
     let anzu = totalResults[totalResults.length - 1];
@@ -88,9 +80,11 @@ export default function TotalResults({
         }_normal.png`;
       } else {
         firstName = data.find(
-          (c: Result) => c.id === payloadData.id
+          (c: TotalResult) => c.id === payloadData.id
         )?.firstName;
-        lastName = data.find((c: Result) => c.id === payloadData.id)?.lastName;
+        lastName = data.find(
+          (c: TotalResult) => c.id === payloadData.id
+        )?.lastName;
         firstName = firstName ? firstName.toLowerCase() : null;
         lastName = lastName ? lastName.toLowerCase() : null;
       }
@@ -135,6 +129,21 @@ export default function TotalResults({
   return (
     <div className={styles.totalResults}>
       <h2 id="total">total results</h2>
+      <p>
+        one thing i wanted to analyze is how many votes each character got
+        between most and least desirable. i wanted to view these results
+        side-by-side to see if there were a stark contrast between a
+        character&apos;s most desirable and least desirable vote count. i
+        decided the best way to do this was to create a bar graph that show
+        cased the number of least desirable votes as a negative number and the
+        most desirable votes as a positive number. therefore, the number of
+        least desirable votes will show up on the left side of the graph and the
+        most desirable votes will show up on the right side.
+      </p>
+      <p>
+        hover over each bar (or tap if you&apos;re on a mobile device!) to view
+        more details.
+      </p>
       <div className={`${styles.barChart}`}>
         <div className={styles.desirableContainer}>
           <div className={styles.desirableLabel}>least desirable</div>

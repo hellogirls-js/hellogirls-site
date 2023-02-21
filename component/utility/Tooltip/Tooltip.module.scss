@@ -1,32 +1,42 @@
 @use "../../../styles/vars.module.scss";
 
 .wrapper {
-  width: 100%;
+  display: inline-block;
+  position: relative;
 
   div {
     margin: auto;
   }
 
   .tooltip {
-    visibility: hidden;
-    margin-top: 2%;
+    position: absolute;
+    display: none;
     z-index: 2;
     text-align: center;
     background-color: vars.$tooltip-bg;
     color: #fff;
     padding: 0.5vh 0.25vw;
     font-size: 10pt;
-    width: 80px;
     border-radius: 5px;
     text-align: center;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: 0.3s;
+  }
+
+  .tooltip.bottom {
+    bottom: 0;
+    margin-bottom: -40%;
+  }
+
+  .tooltip.top {
+    top: 0;
+    margin-top: -30%;
   }
 }
 
 .wrapper:hover {
   .tooltip {
-    visibility: visible;
+    display: inline-block;
     opacity: 1;
   }
 }

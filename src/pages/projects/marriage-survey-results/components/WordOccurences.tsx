@@ -1,7 +1,7 @@
 import { useListState, useMediaQuery } from "@mantine/hooks";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { IconX } from "@tabler/icons-react";
 
 import styles from "../../styles/Survey.module.scss";
@@ -14,12 +14,6 @@ import TextInput from "component/utility/TextInput";
 import Button from "component/utility/Button";
 import Switch from "component/utility/Switch";
 
-interface Result {
-  id: any;
-  name: string;
-  reason: string;
-}
-
 export default function WordOccurences({
   rawData,
   enData,
@@ -30,17 +24,6 @@ export default function WordOccurences({
   let isMobile = useMediaQuery("(max-width: 812px)");
   let isTablet = useMediaQuery("(min-width: 812px) and (max-width: 1120px)");
   const [wordArray, handlers] = useListState<string>([]);
-  const [customData, setCustomData] = useState<Result[]>(mostDesirable);
-  const [checked, setChecked] = useState<boolean>(false);
-
-  useEffect(() => {
-    console.log(checked);
-    if (checked) {
-      setCustomData(leastDesirable);
-    } else {
-      setCustomData(mostDesirable);
-    }
-  }, [checked]);
 
   /**
    *
@@ -120,7 +103,7 @@ export default function WordOccurences({
               }
             : undefined
         }
-        viewport={animate ? { once: true, amount: 0.8 } : undefined}
+        viewport={animate ? { once: true, amount: 0.6 } : undefined}
       >
         <div className={styles.barLabel}>
           {!isMobile && (
@@ -332,50 +315,58 @@ export default function WordOccurences({
 
   function WordInput() {
     let inputRef = useRef<HTMLInputElement | null>(null);
+    const [checked, setChecked] = useState<boolean>(false);
 
     return (
-      <div className={styles.inputSection}>
-        <div className={styles.inputRow}>
-          <TextInput
-            ref={inputRef}
-            id="input-word"
-            placeholder="input word or phrase"
-          />
-          <Button
-            value="add phrase"
-            onClick={(e) => {
-              let val = (
-                document.getElementById("input-word") as HTMLInputElement
-              ).value;
-              if (val && val.length > 0) {
-                handlers.append(val);
-              }
-            }}
-          />
-          <Switch
-            leftLabel="most desirable"
-            rightLabel="least desirable"
-            checked={checked}
-            onClick={setChecked}
-          />
-        </div>
-        <div className={styles.givenWords}>
-          <span className={styles.givenWordsTitle}>chosen words: </span>{" "}
-          {wordArray.map((word, i) => (
-            <span key={word} className={styles.givenWord}>
-              {word}{" "}
-              <span
-                onClick={() => {
-                  handlers.remove(i);
-                }}
-                className={styles.x}
-              >
-                <IconX size={14} strokeWidth={3} />
+      <>
+        <div className={styles.inputSection}>
+          <div className={styles.inputRow}>
+            <TextInput
+              refProp={inputRef}
+              id="input-word"
+              placeholder="input word or phrase"
+            />
+            <Button
+              value="add phrase"
+              onClick={(e) => {
+                let val = (
+                  document.getElementById("input-word") as HTMLInputElement
+                ).value;
+                if (val && val.length > 0) {
+                  handlers.append(val);
+                }
+              }}
+            />
+            <Switch
+              leftLabel="most desirable"
+              rightLabel="least desirable"
+              checked={checked}
+              onClick={setChecked}
+            />
+          </div>
+          <div className={styles.givenWords}>
+            <span className={styles.givenWordsTitle}>chosen words: </span>{" "}
+            {wordArray.map((word, i) => (
+              <span key={word} className={styles.givenWord}>
+                {word}{" "}
+                <span
+                  onClick={() => {
+                    handlers.remove(i);
+                  }}
+                  className={styles.x}
+                >
+                  <IconX size={14} strokeWidth={3} />
+                </span>
               </span>
-            </span>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+        <BaseGraph
+          words={wordArray}
+          animate={false}
+          dataType={checked ? leastDesirable : mostDesirable}
+        />
+      </>
     );
   }
 
@@ -494,7 +485,7 @@ export default function WordOccurences({
           "mentally ill",
           "insane",
           "insanity",
-          "mental",
+          "therapy",
           "depression",
           "depressed",
         ]}
@@ -530,7 +521,7 @@ export default function WordOccurences({
 
       <WordOccurenceGraph
         title="no homewrecking!"
-        words={["married", "homewrecker"]}
+        words={["already married", "homewrecker"]}
         dataType={leastDesirable}
       >
         <p>
@@ -547,7 +538,6 @@ export default function WordOccurences({
         </p>
       </MotionParagraph>
       <WordInput />
-      <BaseGraph words={wordArray} animate={false} dataType={customData} />
     </motion.div>
   );
 }

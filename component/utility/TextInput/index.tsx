@@ -5,7 +5,7 @@ import styles from "./TextInput.module.scss";
 import { DarkModeContext } from "context/DarkModeContext";
 
 export default function TextInput({
-  ref,
+  refProp,
   label,
   placeholder,
   value,
@@ -13,7 +13,7 @@ export default function TextInput({
   onChange,
   style,
 }: {
-  ref?: MutableRefObject<HTMLInputElement | null>;
+  refProp?: MutableRefObject<HTMLInputElement | null>;
   label?: string;
   placeholder?: string;
   value?: string;
@@ -26,7 +26,7 @@ export default function TextInput({
     <div className={`${styles.inputMain} ${styles[colorTheme]}`} style={style}>
       {label && <label className={styles.label}>{label}</label>}
       <input
-        ref={ref}
+        ref={refProp}
         className={styles.input}
         type="text"
         id={id}
