@@ -3,6 +3,10 @@
 .page {
   min-height: 100vh;
 
+  p {
+    line-height: 1.8;
+  }
+
   h3 {
     margin: 0;
 
@@ -17,7 +21,7 @@
   }
 
   .contents {
-    padding: 0.5% 1%;
+    padding: 0.5vw 1vh;
     width: 35%;
     border-radius: 5px;
     font-size: 1.1em;
@@ -130,6 +134,7 @@
 
     .inputRow {
       display: flex;
+      flex-flow: row wrap;
       align-items: center;
       padding: 1% 2%;
       border-radius: 10px;
@@ -299,12 +304,21 @@
         flex-flow: row wrap;
         align-items: center;
         margin: 2% 0%;
+
+        @media screen and (max-width: 812px) {
+          flex-flow: row nowrap;
+          width: 100%;
+          overflow-x: scroll;
+          padding: 3vh 0vw;
+        }
         
         .icon {
           width: 70px;
           height: 70px;
           overflow: clip;
           border-radius: 50%;
+          border-width: 1px;
+          border-style: solid;
           margin: 1% 3px;
           cursor: pointer;
 
@@ -313,6 +327,38 @@
             margin-left: -190px;
             margin-top: -20px;
           }
+        }
+
+        .icon.activeIcon {
+          border-width: 3px;
+        }
+      }
+
+      .charaInfo {
+        width: 60%;
+        margin: 4% auto;
+
+        .charaName {
+          text-align: center;
+          width: 100%;
+          margin: 2vh 0vw;
+          padding: 1vh 1vw;
+          font-size: 2em;
+          font-weight: 900;
+          border-radius: 10px;
+
+          @media screen and (max-width: 812px) {
+            font-size: 1.5em;
+          }
+        }
+      }
+
+      .cloud {
+
+        .cloudComponent {
+          width: 100%;
+          max-width: 100%;
+          margin-top: 3%;
         }
       }
     }
@@ -438,7 +484,20 @@
         
         .icon {
           background: #fff;
-          border: 1px solid vars.$light-heading-border;
+          border-color: vars.$light-heading-border;
+        }
+
+        .icon.activeIcon {
+          border-color: vars.$light-button-text;
+        }
+      }
+
+      .charaInfo {
+        --name-bg: #7972c4;
+
+        .charaName {
+          background-color: var(--name-bg);
+          color: #fff;
         }
       }
     }
@@ -565,6 +624,7 @@
         
         .icon {
           background: vars.$dark-text-bg;
+          border-color: vars.$dark-heading-border;
         }
       }
     }

@@ -70,12 +70,28 @@ export default function MarriageSurveyResults({
     <MainLayout heading="enstars marriage survey results">
       <div className={`${styles.page} ${styles[colorTheme]}`}>
         <div>
+          <h2>marriage survey results: an analysis</h2>
+          <p>
+            hey! a couple weeks ago, i conducted a survey asking ensemble stars
+            fans which characters they deemed to be the most and least desirable
+            for marriage. the results are available{" "}
+            <Link href="/post/most-desirable-survey-results" target="_blank">
+              here (most desirable)
+            </Link>{" "}
+            and{" "}
+            <Link href="/post/least-desirable-survey-results" target="_blank">
+              here (least desirable)
+            </Link>
+            . i had lots of fun running the survey and i wanted to do an
+            analysis of all the results and data, so here we are!
+          </p>
           <p>
             character data, such as name, image color, and renders, is provided
             by{" "}
             <Link href="https://stars.ensemble.moe" target="_blank">
               makotools
             </Link>
+            . thank you so much!
           </p>
           <Contents />
           <TotalResults rawData={rawData.data} enData={enData.data} />

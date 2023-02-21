@@ -103,7 +103,7 @@ export default function WordOccurences({
               }
             : undefined
         }
-        viewport={animate ? { once: true, amount: 0.8 } : undefined}
+        viewport={animate ? { once: true, amount: 0.6 } : undefined}
       >
         <div className={styles.barLabel}>
           {!isMobile && (
@@ -322,7 +322,7 @@ export default function WordOccurences({
         <div className={styles.inputSection}>
           <div className={styles.inputRow}>
             <TextInput
-              ref={inputRef}
+              refProp={inputRef}
               id="input-word"
               placeholder="input word or phrase"
             />
@@ -485,7 +485,7 @@ export default function WordOccurences({
           "mentally ill",
           "insane",
           "insanity",
-          "mental",
+          "therapy",
           "depression",
           "depressed",
         ]}

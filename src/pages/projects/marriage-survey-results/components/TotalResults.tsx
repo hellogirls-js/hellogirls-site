@@ -136,6 +136,17 @@ export default function TotalResults({
     <div className={styles.totalResults}>
       <h2 id="total">total results</h2>
       <p>
+        one thing i wanted to analyze is how many votes each character got
+        between most and least desirable. i wanted to view these results
+        side-by-side to see if there were a stark contrast between a
+        character&apos;s most desirable and least desirable vote count. i
+        decided the best way to do this was to create a bar graph that show
+        cased the number of least desirable votes as a negative number and the
+        most desirable votes as a positive number. therefore, the number of
+        least desirable votes will show up on the left side of the graph and the
+        most desirable votes will show up on the right side.
+      </p>
+      <p>
         hover over each bar (or tap if you&apos;re on a mobile device!) to view
         more details.
       </p>
