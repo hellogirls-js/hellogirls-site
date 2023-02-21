@@ -27,6 +27,14 @@ interface PostMeta {
   dateUpdated?: number;
 }
 
+interface TotalResult {
+  id: number;
+  md: number;
+  ld: number;
+  firstName?: string | null;
+  lastName?: string | null;
+}
+
 interface Result {
   id: any;
   name: string;

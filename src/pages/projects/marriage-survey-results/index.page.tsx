@@ -6,6 +6,7 @@ import styles from "../styles/Survey.module.scss";
 import TotalResults from "./components/TotalResults";
 import WordOccurences from "./components/WordOccurences";
 import WordCloud from "./components/WordCloud";
+import RankingSummary from "./components/RankingSummary";
 
 import { DarkModeContext } from "context/DarkModeContext";
 import MainLayout from "component/MainLayout";
@@ -35,6 +36,9 @@ function Contents() {
     <div className={styles.contents}>
       <h4>contents</h4>
       <ul>
+        <li>
+          <Link href="#summary">ranking summary</Link>
+        </li>
         <li>
           <Link href="#total">total results</Link>
         </li>
@@ -94,6 +98,7 @@ export default function MarriageSurveyResults({
             . thank you so much!
           </p>
           <Contents />
+          <RankingSummary rawData={rawData.data} enData={enData.data} />
           <TotalResults rawData={rawData.data} enData={enData.data} />
           <WordOccurences rawData={rawData.data} enData={enData.data} />
           <WordCloud rawData={rawData.data} enData={enData.data} />

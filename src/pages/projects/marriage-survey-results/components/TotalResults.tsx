@@ -23,14 +23,6 @@ import styles from "../../styles/Survey.module.scss";
 import { twoStarIDs } from "data/twoStarIds";
 import { DarkModeContext } from "context/DarkModeContext";
 
-interface Result {
-  id: number;
-  md: number;
-  ld: number;
-  firstName?: string | null;
-  lastName?: string | null;
-}
-
 export default function TotalResults({
   rawData,
   enData,
@@ -41,7 +33,7 @@ export default function TotalResults({
   const { colorTheme } = useContext(DarkModeContext);
   const isMobile = useMediaQuery("(max-width: 768px)");
   const isTablet = useMediaQuery("(min-width: 768px) and (max-width: 1100px)");
-  const [data, setData] = useState<Result[]>(totalResults);
+  const [data, setData] = useState<TotalResult[]>(totalResults);
 
   useEffect(() => {
     let anzu = totalResults[totalResults.length - 1];
@@ -88,9 +80,11 @@ export default function TotalResults({
         }_normal.png`;
       } else {
         firstName = data.find(
-          (c: Result) => c.id === payloadData.id
+          (c: TotalResult) => c.id === payloadData.id
         )?.firstName;
-        lastName = data.find((c: Result) => c.id === payloadData.id)?.lastName;
+        lastName = data.find(
+          (c: TotalResult) => c.id === payloadData.id
+        )?.lastName;
         firstName = firstName ? firstName.toLowerCase() : null;
         lastName = lastName ? lastName.toLowerCase() : null;
       }
