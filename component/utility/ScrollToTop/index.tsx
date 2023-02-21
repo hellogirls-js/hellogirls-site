@@ -37,7 +37,7 @@ export default function ScrollToTop() {
 
   return (
     <div className={`${styles.scrollToTop} ${styles[colorTheme]}`}>
-      <Tooltip label="back to top">
+      <Tooltip label="back to top" position="bottom">
         <div
           id="scroll-to-top"
           ref={buttonRef}
