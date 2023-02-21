@@ -47,6 +47,7 @@ export default function Projects(props: any) {
     },
     {
       title: "enstars marriage survey data visualization",
+      url: "/projects/marriage-survey-results",
       description: (
         <p className={styles.projectDesc}>
           i created a survey for fans of ensemble stars to decide which
@@ -55,7 +56,7 @@ export default function Projects(props: any) {
           as well as announcing the results of the survey live on this site.
         </p>
       ),
-      finished: false,
+      finished: true,
     },
     {
       title: "enstars on fire twitter bot",

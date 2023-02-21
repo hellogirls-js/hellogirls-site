@@ -1,0 +1,56 @@
+@use "../../../styles/vars.module.scss";
+
+.scrollToTop {
+  position: fixed;
+  bottom: 1%;
+  right: 2%;
+  height: 50px;
+  width: 50px;
+  
+
+  @media screen and (min-width: 810px) {
+    bottom: 10%;
+    right: 4%;
+  }
+
+  .scrollButton {
+    width: 40px;
+    height: 40px;
+    padding: 10px 10px;
+    border-radius: 50%;
+    transition: background 0.3s;
+    transition: opacity 0.3s;
+  }
+
+  .scrollButton:hover {
+    cursor: pointer;
+  }
+}
+
+.light {
+  --button-border: #b5aef0;
+  --button-color: #7c73ce;
+  --button-hover: #e5e3fa;
+  --button-open: #a8b346;
+
+  .scrollButton {
+    background: #fff;
+    color: var(--button-color);
+    border: 2px solid var(--button-border);
+    box-shadow: 1px 1px 3px vars.$light-shadow;
+  }
+}
+
+.dark {
+  --button-border: #8d85d3;
+  --button-color: #a59dec;
+  --button-hover: #1c193f;
+  --button-open: #7f882b;
+
+  .scrollButton {
+    background: vars.$dark-bg;
+    color: var(--button-color);
+    border: 2px solid var(--button-border);
+    box-shadow: 2px 2px 3px vars.$dark-shadow;
+  }
+}

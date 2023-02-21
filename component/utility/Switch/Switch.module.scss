@@ -1,0 +1,82 @@
+@use "../../../styles/vars.module.scss";
+
+.switchContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  .label {
+    text-align: center;
+    width: 33%;
+    word-wrap: break-word;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 28px;
+    margin: 0px 3px;
+
+    input {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      -moz-transition: transform 0.3s;
+      transition: transform 0.3s;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: 0.4s;
+      border-radius: 28px;
+
+      .sliderButton {
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        -moz-transition: transform 0.3s;
+        transition: transform 0.3s;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.light {
+
+  .switch {
+
+    .slider {
+      background-color: vars.$light-button-border;
+
+      .sliderButton {
+        background-color: vars.$light-bg;
+      }
+    }
+
+    
+  }
+}
+
+.dark {
+  .switch {
+
+    .slider {
+      background-color: vars.$dark-button-border;
+
+      .sliderButton {
+        background-color: vars.$dark-text;
+      }
+    }
+
+    
+  }
+}
