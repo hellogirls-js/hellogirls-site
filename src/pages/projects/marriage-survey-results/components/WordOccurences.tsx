@@ -23,7 +23,6 @@ export default function WordOccurences({
 }) {
   let isMobile = useMediaQuery("(max-width: 812px)");
   let isTablet = useMediaQuery("(min-width: 812px) and (max-width: 1120px)");
-  const [wordArray, handlers] = useListState<string>([]);
 
   /**
    *
@@ -316,6 +315,7 @@ export default function WordOccurences({
   function WordInput() {
     let inputRef = useRef<HTMLInputElement | null>(null);
     const [checked, setChecked] = useState<boolean>(false);
+    const [wordArray, handlers] = useListState<string>([]);
 
     return (
       <>
@@ -329,11 +329,13 @@ export default function WordOccurences({
             <Button
               value="add phrase"
               onClick={(e) => {
-                let val = (
-                  document.getElementById("input-word") as HTMLInputElement
-                ).value;
+                let textBox = document.getElementById(
+                  "input-word"
+                ) as HTMLInputElement;
+                let val = textBox.value;
                 if (val && val.length > 0) {
                   handlers.append(val);
+                  textBox.value = "";
                 }
               }}
             />
