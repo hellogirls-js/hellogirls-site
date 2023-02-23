@@ -5,6 +5,7 @@
     display: grid;
     gap: 20px;
     grid-template-columns: 25% 25% 25% 25%;
+    padding-bottom: 2%;
 
     @media screen and (max-width: 768px) {
       display: block;
