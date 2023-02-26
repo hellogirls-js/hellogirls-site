@@ -1,0 +1,614 @@
+[
+  {
+    "units": "4. Knights, 9. Valkyrie",
+    "characters": "17. Ritsu Sakuma, 20. Arashi Narukami, 34. Mika Kagehira, 69. Mayoi Ayase"
+  },
+  {
+    "units": "2. fine, 4. Knights",
+    "characters": "6. Tori Himemiya, 10. Tsukasa Suou, 14. Souma Kanzaki, 17. Ritsu Sakuma, 19. Yuzuru Fushimi, 20. Arashi Narukami, 22. Eichi Tenshouin, 24. Izumi Sena, 27. Wataru Hibiki, 33. Leo Tsukinaga, 40. Madara Mikejima, 70. Tatsumi Kazehaya, 72. HiMERU"
+  },
+  {
+    "units": "8. Akatsuki, 10. Switch",
+    "characters": "26. Kuro Kiryuu, 39. Tsumugi Aoba"
+  },
+  {
+    "units": "3. UNDEAD, 4. Knights, 9. Valkyrie",
+    "characters": "10. Tsukasa Suou, 15. Adonis Otogari, 16. Koga Oogami, 17. Ritsu Sakuma, 22. Eichi Tenshouin, 24. Izumi Sena, 29. Rei Sakuma, 34. Mika Kagehira, 35. Shu Itsuki"
+  },
+  {
+    "units": "7. 2wink, 16. Crazy:B",
+    "characters": "4. Hinata Aoi, 8. Yuta Aoi, 19. Yuzuru Fushimi, 27. Wataru Hibiki, 67. Hiiro Amagi, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "15. ALKALOID",
+    "characters": "69. Mayoi Ayase, 70. Tatsumi Kazehaya"
+  },
+  {
+    "units": "3. UNDEAD, 9. Valkyrie, 11. MaM",
+    "characters": "28. Kanata Shinkai, 29. Rei Sakuma, 34. Mika Kagehira, 35. Shu Itsuki, 40. Madara Mikejima"
+  },
+  {
+    "units": "1. Trickstar, 16. Crazy:B",
+    "characters": "13. Makoto Yuuki, 71. Rinne Amagi, 74. Niki Shiina"
+  },
+  {
+    "units": "15. ALKALOID, 16. Crazy:B",
+    "characters": "1. Tetora Nagumo, 5. Midori Takamine, 7. Shinobu Sengoku, 42. Jun Sazanami, 67. Hiiro Amagi, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU"
+  },
+  {
+    "units": "9. Valkyrie, 14. Eden, 16. Crazy:B",
+    "characters": "15. Adonis Otogari, 21. Keito Hasumi, 35. Shu Itsuki, 50. Nagisa Ran, 51. Ibara Saegusa, 70. Tatsumi Kazehaya, 71. Rinne Amagi"
+  },
+  {
+    "units": "4. Knights, 7. 2wink, 15. ALKALOID, 16. Crazy:B",
+    "characters": "4. Hinata Aoi, 8. Yuta Aoi, 10. Tsukasa Suou, 17. Ritsu Sakuma, 18. Mao Isara, 27. Wataru Hibiki, 67. Hiiro Amagi, 68. Aira Shiratori, 71. Rinne Amagi, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "9. Valkyrie, 15. ALKALOID, 16. Crazy:B",
+    "characters": "7. Shinobu Sengoku, 10. Tsukasa Suou, 19. Yuzuru Fushimi, 23. Kaoru Hakaze, 25. Chiaki Morisawa, 34. Mika Kagehira, 35. Shu Itsuki, 67. Hiiro Amagi, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "7. 2wink, 9. Valkyrie, 14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "9. Mitsuru Tenma, 15. Adonis Otogari, 17. Ritsu Sakuma, 19. Yuzuru Fushimi, 20. Arashi Narukami, 34. Mika Kagehira, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 67. Hiiro Amagi, 70. Tatsumi Kazehaya"
+  },
+  {
+    "units": "10. Switch, 16. Crazy:B",
+    "characters": "1. Tetora Nagumo, 2. Hajime Shino, 7. Shinobu Sengoku, 13. Makoto Yuuki, 14. Souma Kanzaki, 15. Adonis Otogari, 25. Chiaki Morisawa, 26. Kuro Kiryuu, 27. Wataru Hibiki, 33. Leo Tsukinaga, 34. Mika Kagehira, 37. Sora Harukawa, 38. Natsume Sakasaki, 39. Tsumugi Aoba, 40. Madara Mikejima, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "6. Ra*bits, 7. 2wink",
+    "characters": "3. Tomoya Mashiro, 4. Hinata Aoi, 7. Shinobu Sengoku, 8. Yuta Aoi, 9. Mitsuru Tenma, 24. Izumi Sena, 30. Nazuna Nito, 33. Leo Tsukinaga, 37. Sora Harukawa, 69. Mayoi Ayase"
+  },
+  {
+    "units": "15. ALKALOID, 16. Crazy:B",
+    "characters": "25. Chiaki Morisawa, 74. Niki Shiina"
+  },
+  {
+    "units": "3. UNDEAD, 11. MaM, 16. Crazy:B",
+    "characters": "15. Adonis Otogari, 16. Koga Oogami, 20. Arashi Narukami, 34. Mika Kagehira, 40. Madara Mikejima, 41. Hiyori Tomoe, 42. Jun Sazanami, 71. Rinne Amagi"
+  },
+  {
+    "units": "4. Knights, 6. Ra*bits, 8. Akatsuki, 15. ALKALOID",
+    "characters": "6. Tori Himemiya, 14. Souma Kanzaki, 20. Arashi Narukami, 28. Kanata Shinkai, 69. Mayoi Ayase, 72. HiMERU"
+  },
+  {
+    "units": "1. Trickstar, 4. Knights, 9. Valkyrie, 14. Eden, 15. ALKALOID",
+    "characters": "3. Tomoya Mashiro, 8. Yuta Aoi, 10. Tsukasa Suou, 13. Makoto Yuuki, 17. Ritsu Sakuma, 18. Mao Isara, 19. Yuzuru Fushimi, 20. Arashi Narukami, 24. Izumi Sena, 28. Kanata Shinkai, 33. Leo Tsukinaga, 34. Mika Kagehira, 37. Sora Harukawa, 38. Natsume Sakasaki, 39. Tsumugi Aoba, 41. Hiyori Tomoe, 50. Nagisa Ran, 67. Hiiro Amagi, 68. Aira Shiratori, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "9. Valkyrie",
+    "characters": "28. Kanata Shinkai, 34. Mika Kagehira, 35. Shu Itsuki, 38. Natsume Sakasaki, 51. Ibara Saegusa"
+  },
+  {
+    "units": "4. Knights, 6. Ra*bits, 9. Valkyrie",
+    "characters": "2. Hajime Shino, 10. Tsukasa Suou, 17. Ritsu Sakuma, 18. Mao Isara, 20. Arashi Narukami, 24. Izumi Sena, 30. Nazuna Nito, 33. Leo Tsukinaga, 34. Mika Kagehira, 35. Shu Itsuki"
+  },
+  {
+    "units": "7. 2wink, 10. Switch, 16. Crazy:B",
+    "characters": "4. Hinata Aoi, 8. Yuta Aoi, 27. Wataru Hibiki, 39. Tsumugi Aoba"
+  },
+  {
+    "units": "4. Knights, 15. ALKALOID",
+    "characters": "4. Hinata Aoi, 5. Midori Takamine, 6. Tori Himemiya, 7. Shinobu Sengoku, 8. Yuta Aoi, 10. Tsukasa Suou, 17. Ritsu Sakuma, 24. Izumi Sena, 30. Nazuna Nito, 33. Leo Tsukinaga, 34. Mika Kagehira, 38. Natsume Sakasaki, 68. Aira Shiratori, 72. HiMERU, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "9. Valkyrie",
+    "characters": "5. Midori Takamine, 28. Kanata Shinkai, 34. Mika Kagehira, 39. Tsumugi Aoba, 71. Rinne Amagi, 74. Niki Shiina"
+  },
+  {
+    "units": "3. UNDEAD, 9. Valkyrie, 10. Switch",
+    "characters": "16. Koga Oogami, 24. Izumi Sena, 29. Rei Sakuma, 38. Natsume Sakasaki"
+  },
+  {
+    "units": "6. Ra*bits, 9. Valkyrie, 14. Eden",
+    "characters": "2. Hajime Shino, 7. Shinobu Sengoku, 9. Mitsuru Tenma, 13. Makoto Yuuki, 16. Koga Oogami, 19. Yuzuru Fushimi, 21. Keito Hasumi, 33. Leo Tsukinaga, 35. Shu Itsuki, 39. Tsumugi Aoba, 40. Madara Mikejima, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 68. Aira Shiratori, 74. Niki Shiina"
+  },
+  {
+    "units": "5. RYUSEITAI, 8. Akatsuki, 16. Crazy:B, 17. Double Face",
+    "characters": "1. Tetora Nagumo, 5. Midori Takamine, 10. Tsukasa Suou, 13. Makoto Yuuki, 17. Ritsu Sakuma, 20. Arashi Narukami, 24. Izumi Sena, 25. Chiaki Morisawa, 28. Kanata Shinkai, 30. Nazuna Nito, 33. Leo Tsukinaga, 38. Natsume Sakasaki, 39. Tsumugi Aoba, 40. Madara Mikejima, 42. Jun Sazanami, 69. Mayoi Ayase, 72. HiMERU, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "8. Akatsuki, 11. MaM, 14. Eden",
+    "characters": "26. Kuro Kiryuu, 30. Nazuna Nito, 34. Mika Kagehira, 40. Madara Mikejima, 42. Jun Sazanami"
+  },
+  {
+    "units": "16. Crazy:B",
+    "characters": "74. Niki Shiina"
+  },
+  {
+    "units": "3. UNDEAD, 4. Knights, 14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "24. Izumi Sena, 29. Rei Sakuma, 51. Ibara Saegusa, 72. HiMERU"
+  },
+  {
+    "units": "9. Valkyrie, 16. Crazy:B",
+    "characters": "34. Mika Kagehira, 69. Mayoi Ayase, 74. Niki Shiina"
+  },
+  {
+    "units": "1. Trickstar, 15. ALKALOID, 16. Crazy:B",
+    "characters": "10. Tsukasa Suou, 19. Yuzuru Fushimi, 67. Hiiro Amagi, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "5. RYUSEITAI, 7. 2wink, 10. Switch, 15. ALKALOID",
+    "characters": "5. Midori Takamine, 28. Kanata Shinkai, 29. Rei Sakuma, 38. Natsume Sakasaki, 42. Jun Sazanami, 69. Mayoi Ayase"
+  },
+  {
+    "units": "15. ALKALOID",
+    "characters": "33. Leo Tsukinaga, 67. Hiiro Amagi, 72. HiMERU"
+  },
+  {
+    "units": "4. Knights",
+    "characters": "10. Tsukasa Suou, 17. Ritsu Sakuma, 24. Izumi Sena, 34. Mika Kagehira"
+  },
+  {
+    "units": "5. RYUSEITAI, 8. Akatsuki",
+    "characters": "14. Souma Kanzaki, 15. Adonis Otogari, 20. Arashi Narukami, 21. Keito Hasumi, 26. Kuro Kiryuu"
+  },
+  {
+    "units": "5. RYUSEITAI, 11. MaM, 14. Eden, 16. Crazy:B",
+    "characters": "5. Midori Takamine, 25. Chiaki Morisawa, 28. Kanata Shinkai, 40. Madara Mikejima, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 70. Tatsumi Kazehaya, 72. HiMERU, 74. Niki Shiina"
+  },
+  {
+    "units": "2. fine, 4. Knights, 16. Crazy:B",
+    "characters": "20. Arashi Narukami, 22. Eichi Tenshouin, 27. Wataru Hibiki, 67. Hiiro Amagi, 71. Rinne Amagi"
+  },
+  {
+    "units": "3. UNDEAD, 7. 2wink, 9. Valkyrie, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "8. Yuta Aoi, 16. Koga Oogami, 27. Wataru Hibiki, 28. Kanata Shinkai, 29. Rei Sakuma, 33. Leo Tsukinaga, 34. Mika Kagehira, 35. Shu Itsuki, 40. Madara Mikejima, 67. Hiiro Amagi, 69. Mayoi Ayase, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "67. Hiiro Amagi, 68. Aira Shiratori, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "14. Eden",
+    "characters": "41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa"
+  },
+  {
+    "units": "3. UNDEAD, 9. Valkyrie, 10. Switch, 14. Eden, 15. ALKALOID",
+    "characters": "9. Mitsuru Tenma, 15. Adonis Otogari, 16. Koga Oogami, 25. Chiaki Morisawa, 26. Kuro Kiryuu, 27. Wataru Hibiki, 28. Kanata Shinkai, 37. Sora Harukawa, 67. Hiiro Amagi, 68. Aira Shiratori, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 71. Rinne Amagi"
+  },
+  {
+    "units": "6. Ra*bits, 10. Switch",
+    "characters": "2. Hajime Shino, 33. Leo Tsukinaga, 37. Sora Harukawa"
+  },
+  {
+    "units": "3. UNDEAD, 7. 2wink, 9. Valkyrie, 10. Switch, 14. Eden, 15. ALKALOID",
+    "characters": "19. Yuzuru Fushimi, 20. Arashi Narukami, 23. Kaoru Hakaze, 28. Kanata Shinkai, 29. Rei Sakuma, 30. Nazuna Nito, 34. Mika Kagehira, 35. Shu Itsuki, 38. Natsume Sakasaki, 40. Madara Mikejima, 41. Hiyori Tomoe, 50. Nagisa Ran, 51. Ibara Saegusa, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 72. HiMERU"
+  },
+  {
+    "units": "1. Trickstar, 16. Crazy:B",
+    "characters": "12. Hokuto Hidaka"
+  },
+  {
+    "units": "3. UNDEAD, 4. Knights, 5. RYUSEITAI, 8. Akatsuki",
+    "characters": "5. Midori Takamine, 15. Adonis Otogari, 16. Koga Oogami, 20. Arashi Narukami, 24. Izumi Sena, 26. Kuro Kiryuu"
+  },
+  {
+    "units": "3. UNDEAD, 9. Valkyrie, 14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "2. Hajime Shino, 14. Souma Kanzaki, 15. Adonis Otogari, 16. Koga Oogami, 23. Kaoru Hakaze, 26. Kuro Kiryuu, 27. Wataru Hibiki, 29. Rei Sakuma, 38. Natsume Sakasaki, 41. Hiyori Tomoe, 50. Nagisa Ran, 51. Ibara Saegusa, 67. Hiiro Amagi, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "9. Valkyrie, 14. Eden, 16. Crazy:B",
+    "characters": "15. Adonis Otogari, 20. Arashi Narukami, 51. Ibara Saegusa, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "2. fine, 8. Akatsuki, 9. Valkyrie, 14. Eden",
+    "characters": "22. Eichi Tenshouin, 27. Wataru Hibiki, 34. Mika Kagehira, 35. Shu Itsuki, 41. Hiyori Tomoe, 50. Nagisa Ran, 68. Aira Shiratori"
+  },
+  {
+    "units": "3. UNDEAD, 8. Akatsuki, 9. Valkyrie",
+    "characters": "2. Hajime Shino, 6. Tori Himemiya, 15. Adonis Otogari, 24. Izumi Sena, 26. Kuro Kiryuu, 29. Rei Sakuma, 30. Nazuna Nito, 50. Nagisa Ran, 70. Tatsumi Kazehaya"
+  },
+  {
+    "units": "1. Trickstar, 3. UNDEAD, 4. Knights, 5. RYUSEITAI, 9. Valkyrie, 10. Switch, 16. Crazy:B",
+    "characters": "10. Tsukasa Suou, 11. Subaru Akehoshi, 17. Ritsu Sakuma, 18. Mao Isara, 24. Izumi Sena, 28. Kanata Shinkai, 33. Leo Tsukinaga, 34. Mika Kagehira, 35. Shu Itsuki, 38. Natsume Sakasaki, 67. Hiiro Amagi, 71. Rinne Amagi"
+  },
+  {
+    "units": "2. fine, 7. 2wink, 16. Crazy:B",
+    "characters": "6. Tori Himemiya, 19. Yuzuru Fushimi, 22. Eichi Tenshouin, 27. Wataru Hibiki, 68. Aira Shiratori"
+  },
+  {
+    "units": "4. Knights, 5. RYUSEITAI, 11. MaM, 14. Eden, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "1. Tetora Nagumo, 5. Midori Takamine, 7. Shinobu Sengoku, 9. Mitsuru Tenma, 11. Subaru Akehoshi, 12. Hokuto Hidaka, 15. Adonis Otogari, 19. Yuzuru Fushimi, 20. Arashi Narukami, 24. Izumi Sena, 26. Kuro Kiryuu, 37. Sora Harukawa, 42. Jun Sazanami, 51. Ibara Saegusa, 67. Hiiro Amagi, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "4. Knights, 15. ALKALOID, 17. Double Face",
+    "characters": "1. Tetora Nagumo, 20. Arashi Narukami, 22. Eichi Tenshouin, 39. Tsumugi Aoba, 68. Aira Shiratori, 69. Mayoi Ayase, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "3. UNDEAD, 6. Ra*bits, 9. Valkyrie",
+    "characters": "15. Adonis Otogari, 20. Arashi Narukami, 28. Kanata Shinkai, 30. Nazuna Nito, 34. Mika Kagehira, 35. Shu Itsuki"
+  },
+  {
+    "units": "3. UNDEAD, 9. Valkyrie, 10. Switch, 14. Eden, 16. Crazy:B",
+    "characters": "29. Rei Sakuma, 34. Mika Kagehira, 38. Natsume Sakasaki, 50. Nagisa Ran, 74. Niki Shiina"
+  },
+  {
+    "units": "1. Trickstar, 14. Eden, 16. Crazy:B",
+    "characters": "11. Subaru Akehoshi, 15. Adonis Otogari, 26. Kuro Kiryuu, 71. Rinne Amagi"
+  },
+  {
+    "units": "2. fine, 6. Ra*bits, 14. Eden",
+    "characters": "2. Hajime Shino, 3. Tomoya Mashiro, 6. Tori Himemiya, 19. Yuzuru Fushimi, 22. Eichi Tenshouin, 38. Natsume Sakasaki, 41. Hiyori Tomoe, 51. Ibara Saegusa"
+  },
+  {
+    "units": "4. Knights, 5. RYUSEITAI, 16. Crazy:B",
+    "characters": "17. Ritsu Sakuma, 28. Kanata Shinkai, 71. Rinne Amagi"
+  },
+  {
+    "units": "10. Switch, 14. Eden",
+    "characters": "2. Hajime Shino, 14. Souma Kanzaki, 15. Adonis Otogari, 17. Ritsu Sakuma, 18. Mao Isara, 27. Wataru Hibiki, 29. Rei Sakuma, 30. Nazuna Nito, 34. Mika Kagehira, 37. Sora Harukawa, 38. Natsume Sakasaki, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 68. Aira Shiratori, 70. Tatsumi Kazehaya, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "10. Switch",
+    "characters": "37. Sora Harukawa, 38. Natsume Sakasaki, 39. Tsumugi Aoba"
+  },
+  {
+    "units": "10. Switch, 14. Eden",
+    "characters": "10. Tsukasa Suou, 20. Arashi Narukami, 22. Eichi Tenshouin, 23. Kaoru Hakaze, 35. Shu Itsuki, 39. Tsumugi Aoba, 41. Hiyori Tomoe, 51. Ibara Saegusa"
+  },
+  {
+    "units": "2. fine, 3. UNDEAD, 4. Knights, 5. RYUSEITAI, 6. Ra*bits, 9. Valkyrie, 11. MaM, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "15. Adonis Otogari, 20. Arashi Narukami, 33. Leo Tsukinaga, 40. Madara Mikejima, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 71. Rinne Amagi"
+  },
+  {
+    "units": "3. UNDEAD, 9. Valkyrie, 14. Eden, 16. Crazy:B",
+    "characters": "23. Kaoru Hakaze, 24. Izumi Sena, 34. Mika Kagehira, 35. Shu Itsuki, 41. Hiyori Tomoe, 42. Jun Sazanami, 71. Rinne Amagi"
+  },
+  {
+    "units": "6. Ra*bits, 9. Valkyrie",
+    "characters": "6. Tori Himemiya, 20. Arashi Narukami, 30. Nazuna Nito, 34. Mika Kagehira, 35. Shu Itsuki, 70. Tatsumi Kazehaya"
+  },
+  {
+    "units": "6. Ra*bits",
+    "characters": "3. Tomoya Mashiro"
+  },
+  {
+    "units": "1. Trickstar, 4. Knights",
+    "characters": "11. Subaru Akehoshi, 12. Hokuto Hidaka, 13. Makoto Yuuki, 17. Ritsu Sakuma, 18. Mao Isara, 24. Izumi Sena, 33. Leo Tsukinaga, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "7. 2wink, 9. Valkyrie, 14. Eden, 17. Double Face",
+    "characters": "30. Nazuna Nito, 34. Mika Kagehira, 42. Jun Sazanami, 51. Ibara Saegusa"
+  },
+  {
+    "units": "1. Trickstar",
+    "characters": "11. Subaru Akehoshi, 12. Hokuto Hidaka, 13. Makoto Yuuki, 18. Mao Isara"
+  },
+  {
+    "units": "6. Ra*bits, 8. Akatsuki, 9. Valkyrie, 15. ALKALOID",
+    "characters": "9. Mitsuru Tenma, 19. Yuzuru Fushimi, 20. Arashi Narukami, 70. Tatsumi Kazehaya, 74. Niki Shiina"
+  },
+  {
+    "units": "4. Knights, 16. Crazy:B",
+    "characters": "10. Tsukasa Suou, 17. Ritsu Sakuma, 18. Mao Isara, 20. Arashi Narukami, 24. Izumi Sena, 33. Leo Tsukinaga, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "3. UNDEAD, 5. RYUSEITAI, 9. Valkyrie, 14. Eden, 15. ALKALOID",
+    "characters": "8. Yuta Aoi, 15. Adonis Otogari, 16. Koga Oogami, 17. Ritsu Sakuma, 18. Mao Isara, 20. Arashi Narukami, 23. Kaoru Hakaze, 24. Izumi Sena, 27. Wataru Hibiki, 28. Kanata Shinkai, 29. Rei Sakuma, 33. Leo Tsukinaga, 34. Mika Kagehira, 39. Tsumugi Aoba, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 67. Hiiro Amagi, 69. Mayoi Ayase, 70. Tatsumi Kazehaya"
+  },
+  {
+    "units": "4. Knights, 5. RYUSEITAI, 9. Valkyrie, 10. Switch, 15. ALKALOID, 16. Crazy:B",
+    "characters": "24. Izumi Sena, 34. Mika Kagehira, 38. Natsume Sakasaki, 67. Hiiro Amagi, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "4. Knights, 15. ALKALOID, 16. Crazy:B",
+    "characters": "10. Tsukasa Suou, 17. Ritsu Sakuma, 20. Arashi Narukami, 24. Izumi Sena, 33. Leo Tsukinaga, 67. Hiiro Amagi, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "1. Trickstar, 2. fine, 5. RYUSEITAI, 7. 2wink, 11. MaM",
+    "characters": "3. Tomoya Mashiro, 4. Hinata Aoi, 5. Midori Takamine, 8. Yuta Aoi, 11. Subaru Akehoshi, 12. Hokuto Hidaka, 13. Makoto Yuuki, 17. Ritsu Sakuma, 18. Mao Isara, 22. Eichi Tenshouin, 28. Kanata Shinkai, 30. Nazuna Nito, 37. Sora Harukawa, 40. Madara Mikejima, 71. Rinne Amagi, 74. Niki Shiina"
+  },
+  {
+    "units": "14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "8. Yuta Aoi, 34. Mika Kagehira, 38. Natsume Sakasaki, 41. Hiyori Tomoe, 67. Hiiro Amagi, 69. Mayoi Ayase, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "4. Knights, 9. Valkyrie",
+    "characters": "24. Izumi Sena, 33. Leo Tsukinaga, 35. Shu Itsuki"
+  },
+  {
+    "units": "3. UNDEAD, 11. MaM, 14. Eden, 16. Crazy:B, 17. Double Face",
+    "characters": "9. Mitsuru Tenma, 12. Hokuto Hidaka, 14. Souma Kanzaki, 15. Adonis Otogari, 16. Koga Oogami, 17. Ritsu Sakuma, 20. Arashi Narukami, 34. Mika Kagehira, 40. Madara Mikejima, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 67. Hiiro Amagi, 71. Rinne Amagi, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "2. fine, 3. UNDEAD",
+    "characters": "16. Koga Oogami, 22. Eichi Tenshouin"
+  },
+  {
+    "units": "4. Knights",
+    "characters": "17. Ritsu Sakuma, 24. Izumi Sena, 27. Wataru Hibiki"
+  },
+  {
+    "units": "4. Knights, 6. Ra*bits",
+    "characters": "2. Hajime Shino, 6. Tori Himemiya, 10. Tsukasa Suou, 20. Arashi Narukami, 24. Izumi Sena, 30. Nazuna Nito"
+  },
+  {
+    "units": "2. fine, 5. RYUSEITAI, 14. Eden, 15. ALKALOID",
+    "characters": "1. Tetora Nagumo, 2. Hajime Shino, 5. Midori Takamine, 12. Hokuto Hidaka, 19. Yuzuru Fushimi, 25. Chiaki Morisawa, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 70. Tatsumi Kazehaya"
+  },
+  {
+    "units": "4. Knights, 6. Ra*bits, 9. Valkyrie, 15. ALKALOID, 16. Crazy:B",
+    "characters": "2. Hajime Shino, 10. Tsukasa Suou, 20. Arashi Narukami, 24. Izumi Sena, 30. Nazuna Nito, 34. Mika Kagehira, 35. Shu Itsuki, 67. Hiiro Amagi, 71. Rinne Amagi"
+  },
+  {
+    "units": "14. Eden, 16. Crazy:B",
+    "characters": "50. Nagisa Ran, 74. Niki Shiina"
+  },
+  {
+    "units": "2. fine, 10. Switch, 15. ALKALOID",
+    "characters": "6. Tori Himemiya, 10. Tsukasa Suou, 19. Yuzuru Fushimi, 22. Eichi Tenshouin, 27. Wataru Hibiki, 37. Sora Harukawa, 68. Aira Shiratori"
+  },
+  {
+    "units": "2. fine, 10. Switch",
+    "characters": "6. Tori Himemiya, 10. Tsukasa Suou, 19. Yuzuru Fushimi, 37. Sora Harukawa, 38. Natsume Sakasaki, 39. Tsumugi Aoba"
+  },
+  {
+    "units": "2. fine, 6. Ra*bits, 15. ALKALOID",
+    "characters": "6. Tori Himemiya, 7. Shinobu Sengoku, 9. Mitsuru Tenma, 19. Yuzuru Fushimi, 30. Nazuna Nito, 37. Sora Harukawa, 67. Hiiro Amagi, 68. Aira Shiratori"
+  },
+  {
+    "units": "5. RYUSEITAI, 10. Switch, 16. Crazy:B",
+    "characters": "37. Sora Harukawa, 39. Tsumugi Aoba, 71. Rinne Amagi, 72. HiMERU, 74. Niki Shiina"
+  },
+  {
+    "units": "3. UNDEAD, 5. RYUSEITAI, 14. Eden, 16. Crazy:B, 17. Double Face",
+    "characters": "14. Souma Kanzaki, 15. Adonis Otogari, 18. Mao Isara, 23. Kaoru Hakaze, 25. Chiaki Morisawa, 28. Kanata Shinkai, 41. Hiyori Tomoe, 42. Jun Sazanami, 67. Hiiro Amagi, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "15. ALKALOID",
+    "characters": "69. Mayoi Ayase"
+  },
+  {
+    "units": "5. RYUSEITAI, 11. MaM, 14. Eden, 16. Crazy:B, 17. Double Face",
+    "characters": "22. Eichi Tenshouin, 27. Wataru Hibiki, 28. Kanata Shinkai, 38. Natsume Sakasaki, 40. Madara Mikejima, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 67. Hiiro Amagi, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "11. MaM",
+    "characters": "33. Leo Tsukinaga, 40. Madara Mikejima"
+  },
+  {
+    "units": "1. Trickstar, 4. Knights, 5. RYUSEITAI, 7. 2wink, 15. ALKALOID, 16. Crazy:B",
+    "characters": "4. Hinata Aoi, 5. Midori Takamine, 7. Shinobu Sengoku, 8. Yuta Aoi, 11. Subaru Akehoshi, 23. Kaoru Hakaze, 24. Izumi Sena, 25. Chiaki Morisawa, 27. Wataru Hibiki, 28. Kanata Shinkai, 33. Leo Tsukinaga, 37. Sora Harukawa, 38. Natsume Sakasaki, 68. Aira Shiratori, 69. Mayoi Ayase, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "1. Trickstar, 2. fine, 3. UNDEAD, 4. Knights, 6. Ra*bits, 7. 2wink, 9. Valkyrie, 14. Eden",
+    "characters": "2. Hajime Shino, 3. Tomoya Mashiro, 4. Hinata Aoi, 6. Tori Himemiya, 7. Shinobu Sengoku, 8. Yuta Aoi, 10. Tsukasa Suou, 11. Subaru Akehoshi, 12. Hokuto Hidaka, 13. Makoto Yuuki, 14. Souma Kanzaki, 15. Adonis Otogari, 16. Koga Oogami, 17. Ritsu Sakuma, 18. Mao Isara, 20. Arashi Narukami, 22. Eichi Tenshouin, 23. Kaoru Hakaze, 26. Kuro Kiryuu, 27. Wataru Hibiki, 28. Kanata Shinkai, 29. Rei Sakuma, 30. Nazuna Nito, 34. Mika Kagehira, 35. Shu Itsuki, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 69. Mayoi Ayase"
+  },
+  {
+    "units": "4. Knights, 5. RYUSEITAI, 8. Akatsuki, 9. Valkyrie",
+    "characters": "5. Midori Takamine, 10. Tsukasa Suou, 14. Souma Kanzaki, 17. Ritsu Sakuma, 20. Arashi Narukami, 24. Izumi Sena, 26. Kuro Kiryuu, 33. Leo Tsukinaga, 40. Madara Mikejima, 74. Niki Shiina"
+  },
+  {
+    "units": "3. UNDEAD, 9. Valkyrie, 11. MaM, 14. Eden",
+    "characters": "6. Tori Himemiya, 15. Adonis Otogari, 16. Koga Oogami, 20. Arashi Narukami, 28. Kanata Shinkai, 34. Mika Kagehira, 35. Shu Itsuki, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 69. Mayoi Ayase, 71. Rinne Amagi"
+  },
+  {
+    "units": "5. RYUSEITAI, 9. Valkyrie, 14. Eden",
+    "characters": "5. Midori Takamine, 15. Adonis Otogari, 30. Nazuna Nito, 34. Mika Kagehira, 35. Shu Itsuki, 39. Tsumugi Aoba, 50. Nagisa Ran, 69. Mayoi Ayase, 72. HiMERU"
+  },
+  {
+    "units": "3. UNDEAD, 9. Valkyrie, 10. Switch, 14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "17. Ritsu Sakuma, 29. Rei Sakuma, 35. Shu Itsuki, 39. Tsumugi Aoba, 69. Mayoi Ayase, 71. Rinne Amagi"
+  },
+  {
+    "units": "1. Trickstar",
+    "characters": "8. Yuta Aoi, 11. Subaru Akehoshi, 12. Hokuto Hidaka, 13. Makoto Yuuki, 14. Souma Kanzaki, 15. Adonis Otogari, 17. Ritsu Sakuma, 18. Mao Isara"
+  },
+  {
+    "units": "4. Knights, 6. Ra*bits, 7. 2wink",
+    "characters": "3. Tomoya Mashiro, 4. Hinata Aoi, 6. Tori Himemiya, 7. Shinobu Sengoku, 10. Tsukasa Suou, 25. Chiaki Morisawa, 30. Nazuna Nito, 34. Mika Kagehira"
+  },
+  {
+    "units": "2. fine, 4. Knights, 5. RYUSEITAI, 6. Ra*bits, 9. Valkyrie, 10. Switch, 14. Eden, 15. ALKALOID",
+    "characters": "17. Ritsu Sakuma, 18. Mao Isara, 22. Eichi Tenshouin, 24. Izumi Sena, 33. Leo Tsukinaga, 34. Mika Kagehira, 35. Shu Itsuki, 37. Sora Harukawa, 38. Natsume Sakasaki, 41. Hiyori Tomoe, 68. Aira Shiratori"
+  },
+  {
+    "units": "7. 2wink",
+    "characters": "4. Hinata Aoi"
+  },
+  {
+    "units": "4. Knights, 5. RYUSEITAI, 6. Ra*bits, 9. Valkyrie, 15. ALKALOID",
+    "characters": "2. Hajime Shino, 3. Tomoya Mashiro, 5. Midori Takamine, 7. Shinobu Sengoku, 10. Tsukasa Suou, 12. Hokuto Hidaka, 23. Kaoru Hakaze, 34. Mika Kagehira, 67. Hiiro Amagi, 68. Aira Shiratori, 69. Mayoi Ayase, 70. Tatsumi Kazehaya"
+  },
+  {
+    "units": "3. UNDEAD, 15. ALKALOID, 16. Crazy:B",
+    "characters": "67. Hiiro Amagi"
+  },
+  {
+    "units": "4. Knights",
+    "characters": "17. Ritsu Sakuma, 34. Mika Kagehira, 41. Hiyori Tomoe"
+  },
+  {
+    "units": "4. Knights, 9. Valkyrie, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "10. Tsukasa Suou, 12. Hokuto Hidaka, 17. Ritsu Sakuma, 18. Mao Isara, 20. Arashi Narukami, 24. Izumi Sena, 33. Leo Tsukinaga, 34. Mika Kagehira, 35. Shu Itsuki, 41. Hiyori Tomoe, 67. Hiiro Amagi, 69. Mayoi Ayase, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "11. MaM, 14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "40. Madara Mikejima, 41. Hiyori Tomoe, 42. Jun Sazanami, 70. Tatsumi Kazehaya, 74. Niki Shiina"
+  },
+  {
+    "units": "1. Trickstar, 3. UNDEAD, 5. RYUSEITAI, 10. Switch, 11. MaM, 16. Crazy:B",
+    "characters": "10. Tsukasa Suou, 12. Hokuto Hidaka, 18. Mao Isara, 21. Keito Hasumi, 23. Kaoru Hakaze, 25. Chiaki Morisawa, 29. Rei Sakuma, 38. Natsume Sakasaki, 40. Madara Mikejima, 70. Tatsumi Kazehaya, 71. Rinne Amagi"
+  },
+  {
+    "units": "3. UNDEAD, 4. Knights, 6. Ra*bits, 9. Valkyrie, 10. Switch, 15. ALKALOID",
+    "characters": "15. Adonis Otogari, 20. Arashi Narukami, 27. Wataru Hibiki, 28. Kanata Shinkai, 34. Mika Kagehira, 69. Mayoi Ayase"
+  },
+  {
+    "units": "2. fine, 6. Ra*bits, 8. Akatsuki, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "2. Hajime Shino, 10. Tsukasa Suou, 19. Yuzuru Fushimi, 21. Keito Hasumi, 22. Eichi Tenshouin, 27. Wataru Hibiki, 33. Leo Tsukinaga, 38. Natsume Sakasaki, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 68. Aira Shiratori, 70. Tatsumi Kazehaya, 72. HiMERU, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "2. fine",
+    "characters": "6. Tori Himemiya"
+  },
+  {
+    "units": "6. Ra*bits, 16. Crazy:B",
+    "characters": "2. Hajime Shino, 3. Tomoya Mashiro, 9. Mitsuru Tenma, 30. Nazuna Nito, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "5. RYUSEITAI, 6. Ra*bits",
+    "characters": "2. Hajime Shino, 28. Kanata Shinkai"
+  },
+  {
+    "units": "14. Eden",
+    "characters": "41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa"
+  },
+  {
+    "units": "3. UNDEAD, 4. Knights, 5. RYUSEITAI, 9. Valkyrie",
+    "characters": "5. Midori Takamine, 17. Ritsu Sakuma, 23. Kaoru Hakaze, 24. Izumi Sena, 25. Chiaki Morisawa, 28. Kanata Shinkai, 34. Mika Kagehira, 35. Shu Itsuki"
+  },
+  {
+    "units": "6. Ra*bits, 10. Switch, 15. ALKALOID",
+    "characters": "39. Tsumugi Aoba, 51. Ibara Saegusa, 68. Aira Shiratori, 69. Mayoi Ayase"
+  },
+  {
+    "units": "3. UNDEAD, 4. Knights, 8. Akatsuki, 10. Switch, 14. Eden, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "10. Tsukasa Suou, 14. Souma Kanzaki, 15. Adonis Otogari, 16. Koga Oogami, 18. Mao Isara, 21. Keito Hasumi, 23. Kaoru Hakaze, 25. Chiaki Morisawa, 27. Wataru Hibiki, 29. Rei Sakuma, 37. Sora Harukawa, 40. Madara Mikejima, 42. Jun Sazanami, 51. Ibara Saegusa, 67. Hiiro Amagi, 69. Mayoi Ayase, 71. Rinne Amagi, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "10. Switch, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "29. Rei Sakuma, 37. Sora Harukawa, 38. Natsume Sakasaki, 39. Tsumugi Aoba, 50. Nagisa Ran, 51. Ibara Saegusa, 67. Hiiro Amagi, 69. Mayoi Ayase, 74. Niki Shiina"
+  },
+  {
+    "units": "5. RYUSEITAI, 10. Switch, 14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "1. Tetora Nagumo, 5. Midori Takamine, 7. Shinobu Sengoku, 9. Mitsuru Tenma, 12. Hokuto Hidaka, 14. Souma Kanzaki, 20. Arashi Narukami, 22. Eichi Tenshouin, 25. Chiaki Morisawa, 28. Kanata Shinkai, 34. Mika Kagehira, 37. Sora Harukawa, 38. Natsume Sakasaki, 39. Tsumugi Aoba, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 67. Hiiro Amagi, 68. Aira Shiratori, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "3. UNDEAD, 4. Knights, 9. Valkyrie",
+    "characters": "10. Tsukasa Suou, 17. Ritsu Sakuma, 18. Mao Isara, 20. Arashi Narukami, 24. Izumi Sena, 29. Rei Sakuma, 30. Nazuna Nito, 34. Mika Kagehira, 35. Shu Itsuki, 41. Hiyori Tomoe, 71. Rinne Amagi, 72. HiMERU"
+  },
+  {
+    "units": "4. Knights, 15. ALKALOID, 16. Crazy:B",
+    "characters": "23. Kaoru Hakaze, 24. Izumi Sena, 25. Chiaki Morisawa, 33. Leo Tsukinaga, 67. Hiiro Amagi, 69. Mayoi Ayase, 71. Rinne Amagi, 72. HiMERU, 74. Niki Shiina"
+  },
+  {
+    "units": "6. Ra*bits, 7. 2wink, 9. Valkyrie, 10. Switch",
+    "characters": "2. Hajime Shino, 4. Hinata Aoi, 6. Tori Himemiya, 11. Subaru Akehoshi, 20. Arashi Narukami, 34. Mika Kagehira, 37. Sora Harukawa, 41. Hiyori Tomoe, 67. Hiiro Amagi, 68. Aira Shiratori, 69. Mayoi Ayase"
+  },
+  {
+    "units": "1. Trickstar, 4. Knights, 6. Ra*bits, 14. Eden",
+    "characters": "2. Hajime Shino, 11. Subaru Akehoshi, 12. Hokuto Hidaka, 15. Adonis Otogari, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 69. Mayoi Ayase"
+  },
+  {
+    "units": "6. Ra*bits, 7. 2wink, 11. MaM, 16. Crazy:B, 17. Double Face",
+    "characters": "2. Hajime Shino, 4. Hinata Aoi, 6. Tori Himemiya, 7. Shinobu Sengoku, 8. Yuta Aoi, 17. Ritsu Sakuma, 40. Madara Mikejima, 68. Aira Shiratori, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "1. Trickstar, 4. Knights, 6. Ra*bits, 7. 2wink, 9. Valkyrie, 10. Switch, 11. MaM, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "2. Hajime Shino, 6. Tori Himemiya, 8. Yuta Aoi, 10. Tsukasa Suou, 11. Subaru Akehoshi, 13. Makoto Yuuki, 17. Ritsu Sakuma, 18. Mao Isara, 20. Arashi Narukami, 22. Eichi Tenshouin, 24. Izumi Sena, 28. Kanata Shinkai, 30. Nazuna Nito, 33. Leo Tsukinaga, 34. Mika Kagehira, 37. Sora Harukawa, 38. Natsume Sakasaki, 40. Madara Mikejima, 67. Hiiro Amagi, 68. Aira Shiratori, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "4. Knights, 14. Eden, 16. Crazy:B",
+    "characters": "33. Leo Tsukinaga, 41. Hiyori Tomoe, 70. Tatsumi Kazehaya, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "3. UNDEAD, 5. RYUSEITAI, 8. Akatsuki, 14. Eden, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "17. Ritsu Sakuma, 40. Madara Mikejima, 67. Hiiro Amagi, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "6. Ra*bits, 9. Valkyrie",
+    "characters": "30. Nazuna Nito, 33. Leo Tsukinaga, 34. Mika Kagehira"
+  },
+  {
+    "units": "6. Ra*bits, 10. Switch",
+    "characters": "20. Arashi Narukami, 30. Nazuna Nito, 37. Sora Harukawa, 68. Aira Shiratori"
+  },
+  {
+    "units": "15. ALKALOID, 16. Crazy:B",
+    "characters": "10. Tsukasa Suou, 23. Kaoru Hakaze, 29. Rei Sakuma, 34. Mika Kagehira, 38. Natsume Sakasaki, 40. Madara Mikejima, 67. Hiiro Amagi, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "1. Trickstar, 3. UNDEAD, 4. Knights, 5. RYUSEITAI, 6. Ra*bits, 7. 2wink, 9. Valkyrie, 10. Switch, 14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "1. Tetora Nagumo, 7. Shinobu Sengoku, 8. Yuta Aoi, 9. Mitsuru Tenma, 10. Tsukasa Suou, 11. Subaru Akehoshi, 12. Hokuto Hidaka, 13. Makoto Yuuki, 14. Souma Kanzaki, 15. Adonis Otogari, 16. Koga Oogami, 18. Mao Isara, 23. Kaoru Hakaze, 24. Izumi Sena, 25. Chiaki Morisawa, 27. Wataru Hibiki, 29. Rei Sakuma, 34. Mika Kagehira, 37. Sora Harukawa, 38. Natsume Sakasaki, 41. Hiyori Tomoe, 42. Jun Sazanami, 51. Ibara Saegusa, 68. Aira Shiratori, 70. Tatsumi Kazehaya, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "4. Knights, 14. Eden",
+    "characters": "30. Nazuna Nito, 33. Leo Tsukinaga, 34. Mika Kagehira, 51. Ibara Saegusa, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "1. Trickstar, 2. fine",
+    "characters": "3. Tomoya Mashiro, 6. Tori Himemiya, 12. Hokuto Hidaka, 13. Makoto Yuuki, 24. Izumi Sena, 27. Wataru Hibiki, 30. Nazuna Nito"
+  },
+  {
+    "units": "4. Knights, 5. RYUSEITAI, 10. Switch, 14. Eden",
+    "characters": "10. Tsukasa Suou, 13. Makoto Yuuki, 28. Kanata Shinkai, 37. Sora Harukawa, 38. Natsume Sakasaki, 39. Tsumugi Aoba, 51. Ibara Saegusa"
+  },
+  {
+    "units": "6. Ra*bits",
+    "characters": "2. Hajime Shino, 3. Tomoya Mashiro, 9. Mitsuru Tenma, 30. Nazuna Nito"
+  },
+  {
+    "units": "2. fine, 10. Switch, 14. Eden",
+    "characters": "22. Eichi Tenshouin, 39. Tsumugi Aoba, 41. Hiyori Tomoe, 50. Nagisa Ran"
+  },
+  {
+    "units": "7. 2wink, 9. Valkyrie, 14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "4. Hinata Aoi, 8. Yuta Aoi, 20. Arashi Narukami, 34. Mika Kagehira, 35. Shu Itsuki, 38. Natsume Sakasaki, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 67. Hiiro Amagi, 69. Mayoi Ayase, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "9. Valkyrie, 15. ALKALOID",
+    "characters": "16. Koga Oogami, 33. Leo Tsukinaga, 34. Mika Kagehira, 35. Shu Itsuki, 67. Hiiro Amagi, 68. Aira Shiratori, 73. Kohaku Oukawa"
+  },
+  {
+    "units": "7. 2wink",
+    "characters": "4. Hinata Aoi, 8. Yuta Aoi, 71. Rinne Amagi"
+  },
+  {
+    "units": "3. UNDEAD, 4. Knights, 14. Eden, 16. Crazy:B",
+    "characters": "4. Hinata Aoi, 20. Arashi Narukami, 23. Kaoru Hakaze, 33. Leo Tsukinaga, 50. Nagisa Ran, 69. Mayoi Ayase, 71. Rinne Amagi, 72. HiMERU, 74. Niki Shiina"
+  },
+  {
+    "units": "6. Ra*bits, 11. MaM, 16. Crazy:B",
+    "characters": "20. Arashi Narukami, 30. Nazuna Nito, 40. Madara Mikejima, 70. Tatsumi Kazehaya, 71. Rinne Amagi"
+  },
+  {
+    "units": "7. 2wink, 14. Eden, 16. Crazy:B",
+    "characters": "51. Ibara Saegusa, 71. Rinne Amagi, 74. Niki Shiina"
+  },
+  {
+    "units": "5. RYUSEITAI, 8. Akatsuki",
+    "characters": "1. Tetora Nagumo, 21. Keito Hasumi, 26. Kuro Kiryuu, 40. Madara Mikejima"
+  },
+  {
+    "units": "9. Valkyrie, 14. Eden, 15. ALKALOID, 16. Crazy:B",
+    "characters": "19. Yuzuru Fushimi, 50. Nagisa Ran, 51. Ibara Saegusa, 74. Niki Shiina"
+  },
+  {
+    "units": "15. ALKALOID, 16. Crazy:B",
+    "characters": "67. Hiiro Amagi, 69. Mayoi Ayase, 71. Rinne Amagi, 74. Niki Shiina"
+  },
+  {
+    "units": "3. UNDEAD, 7. 2wink",
+    "characters": "13. Makoto Yuuki, 23. Kaoru Hakaze, 24. Izumi Sena, 29. Rei Sakuma, 68. Aira Shiratori"
+  },
+  {
+    "units": "5. RYUSEITAI, 6. Ra*bits, 8. Akatsuki, 11. MaM, 14. Eden, 16. Crazy:B, 17. Double Face",
+    "characters": "5. Midori Takamine, 6. Tori Himemiya, 9. Mitsuru Tenma, 10. Tsukasa Suou, 13. Makoto Yuuki, 20. Arashi Narukami, 21. Keito Hasumi, 22. Eichi Tenshouin, 23. Kaoru Hakaze, 24. Izumi Sena, 26. Kuro Kiryuu, 28. Kanata Shinkai, 35. Shu Itsuki, 38. Natsume Sakasaki, 40. Madara Mikejima, 42. Jun Sazanami, 51. Ibara Saegusa, 67. Hiiro Amagi, 68. Aira Shiratori, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 71. Rinne Amagi, 72. HiMERU, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "3. UNDEAD, 4. Knights, 9. Valkyrie",
+    "characters": "1. Tetora Nagumo, 20. Arashi Narukami, 29. Rei Sakuma, 30. Nazuna Nito, 35. Shu Itsuki, 50. Nagisa Ran"
+  },
+  {
+    "units": "3. UNDEAD, 6. Ra*bits, 8. Akatsuki, 9. Valkyrie, 16. Crazy:B, 17. Double Face",
+    "characters": "9. Mitsuru Tenma, 15. Adonis Otogari, 20. Arashi Narukami, 24. Izumi Sena, 26. Kuro Kiryuu, 28. Kanata Shinkai, 29. Rei Sakuma, 30. Nazuna Nito, 34. Mika Kagehira, 39. Tsumugi Aoba, 71. Rinne Amagi, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "1. Trickstar, 5. RYUSEITAI, 6. Ra*bits, 9. Valkyrie, 10. Switch, 11. MaM, 15. ALKALOID, 16. Crazy:B, 17. Double Face",
+    "characters": "1. Tetora Nagumo, 5. Midori Takamine, 6. Tori Himemiya, 10. Tsukasa Suou, 13. Makoto Yuuki, 14. Souma Kanzaki, 15. Adonis Otogari, 16. Koga Oogami, 18. Mao Isara, 20. Arashi Narukami, 30. Nazuna Nito, 34. Mika Kagehira, 37. Sora Harukawa, 38. Natsume Sakasaki, 39. Tsumugi Aoba, 40. Madara Mikejima, 41. Hiyori Tomoe, 50. Nagisa Ran, 67. Hiiro Amagi, 68. Aira Shiratori, 69. Mayoi Ayase, 70. Tatsumi Kazehaya, 73. Kohaku Oukawa, 74. Niki Shiina"
+  },
+  {
+    "units": "1. Trickstar, 3. UNDEAD, 8. Akatsuki, 9. Valkyrie, 14. Eden, 16. Crazy:B",
+    "characters": "12. Hokuto Hidaka, 19. Yuzuru Fushimi, 21. Keito Hasumi, 23. Kaoru Hakaze, 29. Rei Sakuma, 34. Mika Kagehira, 35. Shu Itsuki, 42. Jun Sazanami, 51. Ibara Saegusa, 71. Rinne Amagi"
+  },
+  {
+    "units": "1. Trickstar",
+    "characters": "11. Subaru Akehoshi, 12. Hokuto Hidaka, 13. Makoto Yuuki, 18. Mao Isara"
+  },
+  {
+    "units": "3. UNDEAD, 14. Eden, 16. Crazy:B",
+    "characters": "21. Keito Hasumi, 22. Eichi Tenshouin, 23. Kaoru Hakaze, 27. Wataru Hibiki, 29. Rei Sakuma, 41. Hiyori Tomoe, 42. Jun Sazanami, 50. Nagisa Ran, 51. Ibara Saegusa, 71. Rinne Amagi, 72. HiMERU"
+  }
+]
