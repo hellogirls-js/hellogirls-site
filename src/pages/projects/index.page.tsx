@@ -59,6 +59,17 @@ export default function Projects(props: any) {
       finished: true,
     },
     {
+      title: "mini follower survey!",
+      url: "/projects/follower-survey",
+      description: (
+        <p className={styles.projectDesc}>
+          a mini survey i conducted among my followers to see who the most
+          popular enstars characters and units are.
+        </p>
+      ),
+      finished: true,
+    },
+    {
       title: "enstars on fire twitter bot",
       description: (
         <p className={styles.projectDesc}>
