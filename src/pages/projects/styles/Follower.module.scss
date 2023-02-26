@@ -1,0 +1,171 @@
+@use "../../../../styles/vars.module.scss";
+
+.page {
+  padding-bottom: 2%;
+  
+  p {
+    line-height: 1.5;
+  }
+
+  ul {
+    width: 60%;
+    font-size: 1.1em;
+
+    @media screen and (max-width: 812px) {
+      width: 90%;
+    }
+
+    li {
+      margin: 2% 0%;
+      line-height: 1.5;
+    }
+  }
+
+  .rankingGrid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+
+    @media screen and (max-width: 1000px) {
+      display: block;
+    }
+    
+    .gridItem {
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+
+      @media screen and (max-width: 1000px) {
+        margin: 2.5% 0%;
+      }
+
+      h4 {
+        margin: 1% 0%;
+        font-size: 1.5em;
+        font-weight: 900;
+      }
+
+      .ranking {
+        font-size: 1.3em;
+        font-weight: 700;
+      }
+    }
+  }
+
+  .rankingList {
+    width: 90%;
+
+    @media screen and (max-width: 1000px) {
+      width: 100%;
+    }
+
+    .listItem {
+      display: flex;
+      gap: 5%;
+      align-items: center;
+      margin: 2% 0%;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1.5em;
+
+      @media screen and (max-width: 1000px) {
+        display: block;
+        font-size: 1.3em;
+        text-align: center;
+      }
+
+      h4 {
+        margin: 1% 0%;
+        font-size: 1.7em;
+        font-weight: 900;
+      }
+
+      .ranking {
+        font-size: 1.3em;
+        font-weight: 700;
+      }
+
+      .listContent {
+        margin: 0% 2%;
+      }
+    }
+
+    .listItem:first-child {
+      margin-top: 8%;
+    }
+  }
+}
+
+.light {
+  h3 {
+    color: vars.$light-heading-2;
+  }
+
+  .rankingGrid {
+
+    .gridItem {
+      background: #fff;
+      box-shadow: 2px 2px 3px vars.$light-shadow;
+
+      h4 {
+        color: vars.$light-heading-2;
+      }
+
+      .ranking {
+        color: vars.$light-subtext;
+      }
+    }
+  }
+
+  .rankingList {
+    .listItem {
+      background: #fff;
+      box-shadow: 2px 2px 3px vars.$light-shadow;
+
+      h4 {
+        color: vars.$light-heading-2;
+      }
+
+      .ranking {
+        color: vars.$light-subtext;
+      }
+    }
+  }
+}
+
+.dark {
+  h3 {
+    color: vars.$dark-heading-2;
+  }
+
+  .rankingGrid {
+
+    .gridItem {
+      background: vars.$dark-text-bg;
+      box-shadow: 2px 2px 3px vars.$dark-shadow;
+
+      h4 {
+        color: vars.$dark-heading-2;
+      }
+
+      .ranking {
+        color: vars.$dark-subtext;
+      }
+    }
+  }
+
+  .rankingList {
+    .listItem {
+      background: vars.$dark-text-bg;
+      box-shadow: 2px 2px 3px vars.$dark-shadow;
+
+      h4 {
+        color: vars.$dark-heading-2;
+      }
+
+      .ranking {
+        color: vars.$dark-subtext;
+      }
+    }
+  }
+}
