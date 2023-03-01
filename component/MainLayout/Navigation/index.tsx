@@ -63,6 +63,9 @@ function NavigationMenu({ isOpen }: { isOpen: boolean }) {
             <IconCat size={16} /> moo moo
           </Link>
         </li>
+        <li>
+          <Link href="/tools/ranking-converter">ranking converter</Link>
+        </li>
       </ul>
     </div>
   );
