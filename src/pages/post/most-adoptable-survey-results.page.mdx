@@ -1,0 +1,68 @@
+import path from "path"
+import React from "react"
+import MDXTemplate from "../../../component/MDXTemplate"
+import CardCG from "../../../component/utility/CardCG"
+
+export const meta = {
+  title: "survey results: the most adoptable characters in ensemble stars",
+  id: 4,
+  urlName: "most-adoptable-survey-results",
+  author: "son",
+  url: "https://twitter.com/HELLOGlRLS",
+  description: "the results of the survey i conducted asking fans which ensemble stars character they believe to be the most adoptable.",
+  dateCreated: 1677782160000,
+  dateUpdated: 1677782160000
+}
+
+# survey results: the most adoptable characters in ensemble stars
+
+hello, i am back! last month, i conducted a survey asking ensemble stars fans who they believed to be the most and least desirable for marriage. that poll was a huge success, so i decided to come back for round two! this time, asking people who they believed to be the most and least adoptable among the ensemble stars cast. the results for this survey was interesting and i'm excited to share them.
+
+however, i want to do something different this time around. i wanna share who i believed would be some of the first place winners for most adoptable. i will list out my hypotheses below. these are based on observations within the fanbase as well as my own personal biases, haha. so, let's go!
+
+## POTENTIAL WINNER #1 -- HAJIME SHINO
+
+<CardCG src="https://static.wikia.nocookie.net/ensemble-stars/images/c/ca/%28Lost_Gretel%29_Hajime_Shino_CG.png" alt="hajime shino" />
+
+this is who i truly believed to be the first place winner of this poll. hajime is cute, sweet, hardworking, and polite. he is, in my opinion, the ideal child. there is a reason why there are so many upperclassmen who care about her deeply. she is self-sufficient, making him a low maintenance child and is so sweet and loving. #HAJIMESHINOSWEEP
+
+## POTENTIAL WINNER #2 -- KOHAKU OUKAWA
+
+<CardCG src="https://static.wikia.nocookie.net/ensemble-stars/images/a/ad/%28Amber-Colored_Blossom_in_Bloom%29_Kohaku_Oukawa_CG.png" alt="kohaku oukawa" />
+
+everyone thinks kohaku is a sweetie pie. he's cute and pink and his somewhat strict attitude makes him more endearing and you can't help but want to make her smile. she is bingus for a reason and it's because he's cute.
+
+## POTENTIAL WINNER #3 -- HIIRO AMAGI
+
+<CardCG src="https://static.wikia.nocookie.net/ensemble-stars/images/c/c9/%28Curiosity_and_Challenges%29_Hiiro_Amagi_CG.png" alt="hiiro amagi" />
+
+hiiro is earnest and willing to learn, which makes him a joy to be around. being a younger brother as well, hiiro was made to tug at your maternal instincts. you can't help but be jealous of rinne when you see him. LUV U HIIRO!!
+
+## POTENTIAL WINNER #4 -- SORA HARUKAWA
+
+<CardCG src="https://static.wikia.nocookie.net/ensemble-stars/images/f/f9/%28Gentle_Interactions%29_Sora_Harukawa_CG.png" alt="sora harukawa" />
+
+HaHa! sora is very sweet and has youthful energy. i'm sure he's captured the hearts of many fans and many want him to be their own kid.
+
+## POTENTIAL WINNER #5 -- TORI HIMEMIYA
+
+<CardCG src="https://static.wikia.nocookie.net/ensemble-stars/images/2/26/%28An_Inspiration_for_Someone_Out_There%29_Tori_Himemiya_CG.png" alt="tori himemiya" />
+
+even though y'all really did not like this guy during the first survey, you can't help but admit that tori is THE original small pink thing. he's the littlest member of the cast. she's pink. she's cute. no one can help but want to pick him up from a cardboard box. i just know the tori fans will come through for this poll.
+
+## POTENTIAL WINNER #6 -- SHINOBU SENGOKU 
+
+<CardCG src="https://static.wikia.nocookie.net/ensemble-stars/images/6/61/%28StarFes_of_Bonds%29_Shinobu_Sengoku_CG.png" alt="shinobu sengoku" />
+
+fucking look at him.
+
+export default ({ children }) => <MDXTemplate meta={meta}>{children}</MDXTemplate>
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      title: meta.title,
+      description: meta.description
+    },
+  };
+}
