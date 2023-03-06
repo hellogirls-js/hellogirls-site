@@ -68,19 +68,19 @@ function convert(input: string): string {
 
       switch (rankString[rankString.length - 1]) {
         case "1":
-          suffix = "ST";
+          suffix = rankString.length > 1 && rankString[0] !== "1" ? "ST" : "TH";
           break;
         case "2":
-          suffix = "ND";
+          suffix = rankString.length > 1 && rankString[0] !== "1" ? "ND" : "TH";
           break;
         case "3":
-          suffix = "RD";
+          suffix = rankString.length > 1 && rankString[0] !== "1" ? "RD" : "TH";
           break;
         default:
           break;
       }
 
-      const header = `${rank}${suffix} -- ${entry.name.toUpperCase()} (${
+      const header = `## ${rank}${suffix} PLACE -- ${entry.name.toUpperCase()} (${
         entry.count
       } ${entry.count === 1 ? "VOTE" : "VOTES"})${SPACE}`;
 
@@ -92,7 +92,8 @@ function convert(input: string): string {
           convertedString += `> ${response
             .replace("<", '{"<"}')
             .replace(">", '{">"}')
-            .replace("\n", "\n>\n")}${SPACE}`;
+            .replace("\n\n", "\n")
+            .replace("\n", "\n>\n> ")}${SPACE}`;
       });
     });
 
