@@ -15,6 +15,8 @@ export default function Posts(props: any) {
 
   const { data: posts } = useSWR("/api/readposts", fetcher);
 
+  posts.sort((a: any, b: any) => b.id - a.id);
+
   function Post({ post }: { post: PostMeta }) {
     return (
       <div className={styles.post}>
