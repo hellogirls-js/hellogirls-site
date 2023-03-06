@@ -54,7 +54,10 @@ function convert(input: string): string {
 
     countArr.sort((a, b) => a.count - b.count);
 
-    countArr.forEach((entry, i) => {
+    let i = 0;
+    let prevValue: number;
+    countArr.forEach((entry, index) => {
+      if (prevValue !== entry.count) i = index;
       const SPACE = "\n\n";
       let entries = dataArr.filter((d) => d.id === entry.id);
       let responses: string[] = entries
@@ -95,6 +98,7 @@ function convert(input: string): string {
             .replace("\n\n", "\n")
             .replace("\n", "\n>\n> ")}${SPACE}`;
       });
+      prevValue = entry.count;
     });
 
     return convertedString;
