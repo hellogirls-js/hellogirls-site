@@ -15,8 +15,6 @@ export default function Posts(props: any) {
 
   const { data: posts } = useSWR("/api/readposts", fetcher);
 
-  posts.sort((a: any, b: any) => b.id - a.id);
-
   function Post({ post }: { post: PostMeta }) {
     return (
       <div className={styles.post}>
@@ -47,7 +45,9 @@ export default function Posts(props: any) {
       <div className={`${styles.posts} ${styles[colorTheme]}`}>
         <h2>posts</h2>
         {posts &&
-          posts.map((post: PostMeta) => <Post key={post.id} post={post} />)}
+          posts
+            .sort((a: any, b: any) => b.id - a.id)
+            .map((post: PostMeta) => <Post key={post.id} post={post} />)}
         {!posts && <div>Loading...</div>}
       </div>
     </MainLayout>
