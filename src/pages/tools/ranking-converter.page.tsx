@@ -10,12 +10,14 @@ import Button from "component/utility/Button";
 interface RawData {
   choice: string;
   reason: string;
+  include: string;
 }
 
 interface ParsedData {
   id: number;
   name: string;
   reason: string;
+  include: string;
 }
 
 interface CountData {
@@ -35,6 +37,7 @@ function convert(input: string): string {
         id: parseInt(separated[0]),
         name: separated[1],
         reason: data.reason,
+        include: data.include,
       };
     });
 
@@ -54,7 +57,9 @@ function convert(input: string): string {
     countArr.forEach((entry, i) => {
       const SPACE = "\n\n";
       let entries = dataArr.filter((d) => d.id === entry.id);
-      let responses = entries.map((e) => e.reason);
+      let responses: string[] = entries
+        .filter((e) => e.include !== "L")
+        .map((e) => e.reason);
 
       const rank = countArr.length - i;
       const rankString = `${rank}`;
@@ -83,9 +88,11 @@ function convert(input: string): string {
       convertedString += `<CardCG src="" alt="${entry.name.toLowerCase()}" />${SPACE}`;
 
       responses.forEach((response) => {
-        convertedString += `> ${response
-          .replace("<", '{"<"}')
-          .replace(">", '{">"}')}${SPACE}`;
+        if (response.length > 0)
+          convertedString += `> ${response
+            .replace("<", '{"<"}')
+            .replace(">", '{">"}')
+            .replace("\n", "\n>\n")}${SPACE}`;
       });
     });
 
