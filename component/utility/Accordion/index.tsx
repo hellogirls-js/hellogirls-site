@@ -18,11 +18,11 @@ export default function Accordion({
   const openDrawer = {
     hidden: {
       height: 0,
-      opacity: 0,
+      display: "none",
     },
     visible: {
       height: "auto",
-      opacity: 1,
+      display: "block",
     },
   };
 
@@ -41,11 +41,11 @@ export default function Accordion({
         </motion.div>
       </div>
       <motion.div
+        layout
         className={styles.accordionContent}
         variants={openDrawer}
         initial="hidden"
-        animate={isOpen ? "hidden" : "visible"}
-        transition={{ duration: 0.3 }}
+        animate={isOpen ? "visible" : "hidden"}
       >
         {children}
       </motion.div>
