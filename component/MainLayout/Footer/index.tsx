@@ -9,10 +9,7 @@ export default function Footer() {
   const { colorTheme } = useContext(DarkModeContext);
   return (
     <footer className={`${styles.footer} ${styles[colorTheme]}`}>
-      <p>
-        created by son{" "}
-        <Link href="https://twitter.com/HELLOGlRLS">@HELLOGlRLS</Link>
-      </p>
+      <p>created by son</p>
       <p>
         this website uses{" "}
         <Link href="https://nextjs.org/" target="_blank">
@@ -27,13 +24,6 @@ export default function Footer() {
           tabler icons
         </Link>
         .
-      </p>
-      <p>
-        special thanks to{" "}
-        <Link href="https://kiramekiatelier.github.io/" target="_blank">
-          kirameki atelier
-        </Link>{" "}
-        for reviving my creative spirit!
       </p>
     </footer>
   );

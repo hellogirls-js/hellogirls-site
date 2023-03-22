@@ -14,7 +14,7 @@ export default function Profile({ styles }: { styles: any }) {
 
   const allAboutSon: BioSection[] = [
     {
-      title: "name",
+      title: "nickname",
       content: "son",
       icon: IconSignature,
     },
@@ -25,7 +25,7 @@ export default function Profile({ styles }: { styles: any }) {
     },
     {
       title: "pronouns",
-      content: "she/he (they = OK)",
+      content: "any pronouns!",
       icon: IconCircleCheck,
     },
   ];
@@ -163,10 +163,21 @@ export default function Profile({ styles }: { styles: any }) {
           animate="visible"
         >
           <p>
-            hi! my name is <Strong>son</Strong>. i&apos;m a black web developer
-            and part time artist. my passion for coding reignited, and i created
-            this website to store my coding projects! you might see me dabbling
-            in data projects, among other things.
+            hi! you can call me <Strong>son</Strong>. i&apos;m a black web
+            developer and part time artist. my passion for coding reignited, and
+            i created this website to store my coding projects! you might see me
+            dabbling in data projects, among other things.
+          </p>
+          <p>
+            i started coding at a very young age (when i was ten years old!).
+            it&apos; embarrassing to admit, but what got me into web design was
+            seeing the various pokemon fansites that were popular in the mid
+            2000&apos;s to early 2010&apos;s. it was a niche community, yet i
+            wouldn&apos;t be where i am if i never discovered them. i expanded
+            my knowledge of coding in high school, where i learned
+            object-oriented programming. then, i picked up the tools necessary
+            for front-end development in college and managed to score myself
+            some internships.
           </p>
           <p>
             some of the media i&apos;m currently interested in includes{" "}
@@ -176,25 +187,8 @@ export default function Profile({ styles }: { styles: any }) {
             catch me rambling about that once in a while.
           </p>
           <p>
-            i&apos;m{" "}
-            <Link href="https://twitter.com/HELLOGlRLS">active on twitter</Link>{" "}
-            and don&apos;t know how to shut up, which means i write a lot of
-            posts, but don&apos;t retweet a lot. follow at your own risk! due to
-            my age, i try to not follow back people under the age of 18 or with
-            no age listed. i talk a lot about whatever interests me at the
-            moment, which currently happens to be{" "}
-            <Strong>ensemble stars</Strong>. i suggest reading <Link href="/twitter">this before following</Link>.
-          </p>
-          <p>
-            despite my strong interest in ensemble stars, i spend too much time
-            drawing and coding to actually read any stories! i try to avoid
-            making any generalizations about certain characters because of this.
-            the characters i know the most about are <Strong>niki</Strong> and
-            his fellow unitmates!
-          </p>
-          <p>
             i also have a very cute cat named{" "}
-            <Link href="/cat">
+            <Link href="/cat" style={{ textDecoration: "underline" }}>
               <Strong>moo moo</Strong>
             </Link>
             ! i love her dearly and will talk about her sometimes.

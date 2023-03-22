@@ -1,0 +1,21 @@
+@use "../../../styles/vars.module.scss";
+
+.fieldset {
+  border-radius: 10px;
+  width: 80%;
+  margin: auto;
+  padding: 4vh auto;
+
+  @media screen and (max-width: 812px) {
+    width: 100%;
+  }
+
+  .legend {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+}
+
+.fieldset.light {
+    background-color: #fff;
+}
