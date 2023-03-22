@@ -406,33 +406,12 @@ export default function WordOccurences({
       </WordOccurenceGraph>
 
       <WordOccurenceGraph
-        title="lesbianism & being sapphic"
-        words={["lesbian", "lesbianism", "sapphic", "wlw"]}
-      >
-        <p>
-          these characters&apos; responses contained the most references to{" "}
-          <Strong>lesbianism and being sapphic</Strong>.
-        </p>
-      </WordOccurenceGraph>
-
-      <WordOccurenceGraph
         title="wife & girlfriend"
         words={[" wife", " wife.", " wife,", "girlfriend", " gf "]}
       >
         <p>
           you guys considered these characters to be{" "}
-          <Strong>wife material</Strong> rather than husband material (so true).
-        </p>
-      </WordOccurenceGraph>
-
-      <WordOccurenceGraph
-        title="neurodivergency"
-        words={["autism", "autistic", "adhd", "neurodivergent", " nd"]}
-      >
-        <p>
-          these characters got the most responses referencing{" "}
-          <Strong>neurodivergency</Strong> as a factor when choosing who&apos;s
-          the most desirable.
+          <Strong>wife material</Strong> (so true).
         </p>
       </WordOccurenceGraph>
 
@@ -478,26 +457,6 @@ export default function WordOccurences({
         if you are sensitive to character criticism or seeing your favorite
         here, i recommend turning back now.
       </p>
-
-      <WordOccurenceGraph
-        title="mental stability"
-        words={[
-          "crazy",
-          "mental illness",
-          "mentally ill",
-          "insane",
-          "insanity",
-          "therapy",
-          "depression",
-          "depressed",
-        ]}
-        dataType={leastDesirable}
-      >
-        <p>
-          the <Strong>mental status</Strong> of these characters stood out as
-          unappealing for many responders.
-        </p>
-      </WordOccurenceGraph>
 
       <WordOccurenceGraph
         title="physical unattractiveness"

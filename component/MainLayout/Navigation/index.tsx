@@ -48,7 +48,8 @@ function NavigationMenu({ isOpen }: { isOpen: boolean }) {
             <IconNews size={16} /> posts
           </Link>
         </li>
-        <li>
+        {/* these will be added later */}
+        {/* <li>
           <Link href="/gallery">
             <IconPhotoHeart size={16} /> art gallery
           </Link>
@@ -57,7 +58,7 @@ function NavigationMenu({ isOpen }: { isOpen: boolean }) {
           <Link href="/ocs">
             <IconUsers size={16} /> oc profiles
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link href="/cat">
             <IconCat size={16} /> moo moo
