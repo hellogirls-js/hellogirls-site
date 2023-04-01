@@ -21,6 +21,11 @@
     background: vars.$dark-heading-border;
   }
 
+  blockquote {
+    border-left-color: vars.$dark-blockquote;
+  }
+
+
 }
 
 .light {
@@ -44,6 +49,10 @@
     background: vars.$light-heading-border;
   }
 
+  blockquote {
+    border-left-color: vars.$light-blockquote;
+  }
+
 }
 
 .main {
@@ -54,5 +63,12 @@
     min-height: 100vh;
     margin: auto;
     margin-top: 8vh;
+  }
+
+  blockquote {
+    margin: 1% 0 1% 1%;
+    padding: 0px 2%;
+    border-left-width: 5px;
+    border-left-style: solid;
   }
 }
