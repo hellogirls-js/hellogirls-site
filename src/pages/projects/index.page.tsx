@@ -46,6 +46,23 @@ export default function Projects(props: any) {
       finished: true,
     },
     {
+      title: "idle niki game",
+      url: "https://idleniki.hellogirls.info",
+      description: (
+        <p className={styles.projectDesc}>
+          an incremental game i created out of boredom. synopsis:{" "}
+          <q>
+            Niki finally quits being an idol, hoping to stay dedicated to
+            cooking. However, he&apos;s fired from Cafe Cinnamon due to his past
+            as an idol. Driven by his desire to stay in the food industry, he
+            opens a new restaurant by himself. Now, he must work from the bottom
+            up to sustain himself!
+          </q>
+        </p>
+      ),
+      finished: true,
+    },
+    {
       title: "enstars marriage survey data visualization",
       url: "/projects/marriage-survey-results",
       description: (
