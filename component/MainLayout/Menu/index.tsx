@@ -37,7 +37,7 @@ export default function Menu() {
           >
             <IconBrandGithub size={ICON_SIZE} />
           </Link>
-          <Link href="https://retrospring.net/@hellogirls" target="_blank">
+          <Link href="mailto:son@hellogirls.info" target="_blank">
             <IconMessageCircle size={ICON_SIZE} />
           </Link>
           <Link href="https://www.buymeacoffee.com/hellogirls" target="_blank">
