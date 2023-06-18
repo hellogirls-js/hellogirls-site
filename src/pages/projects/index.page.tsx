@@ -46,8 +46,8 @@ export default function Projects(props: any) {
       finished: true,
     },
     {
-      title: "idle niki game",
-      url: "https://idleniki.hellogirls.info",
+      title: "cafe shiinamon!",
+      url: "https://cafeshiinamon.hellogirls.info",
       description: (
         <p className={styles.projectDesc}>
           an incremental game i created out of boredom. synopsis:{" "}
@@ -58,6 +58,19 @@ export default function Projects(props: any) {
             opens a new restaurant by himself. Now, he must work from the bottom
             up to sustain himself!
           </q>
+        </p>
+      ),
+      finished: true,
+    },
+    {
+      title: "anzunator",
+      url: "https://anzunator.hellogirls.info",
+      description: (
+        <p className={styles.projectDesc}>
+          an enstars version of akinator featuring our favorite producer, anzu!
+          she knows a lot about the idols and can help find the one you&apos;re
+          thinking of. uses a lot of array filtering and is surprisingly not
+          buggy!
         </p>
       ),
       finished: true,
