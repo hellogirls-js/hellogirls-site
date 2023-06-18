@@ -1,0 +1,45 @@
+.main {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background-color: #ffe6b7;
+  width: 100vw;
+  height: 100vh;
+
+  .container {
+    width: 65%;
+    margin: auto;
+    margin-top: 3%;
+
+    .top {
+      display: flex;
+      gap: 2%;
+
+      .imageContainer {
+        flex: 0 1 267px;
+        transform: rotate(5deg);
+        z-index: 2;
+
+        .image img {
+          border-radius: 10px;
+          box-shadow: 4px 4px 0px #be95ca;
+        }
+      }
+      
+      .basicBio {
+        position: relative;
+        flex: 1 0 60%;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 4px 4px 0px #be95ca;
+
+        .bioName {
+          position: absolute;
+          top: -10%;
+          
+        }
+      }
+    }
+  }
+}
+
