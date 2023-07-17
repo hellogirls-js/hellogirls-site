@@ -16,6 +16,16 @@ interface ProjectObject {
 export default function Projects(props: any) {
   const CONTENT: ProjectObject[] = [
     {
+      title: "playground about page",
+      url: "https://about.hellogirls.info",
+      description: (
+        <p className={styles.projectDesc}>
+          an about page that i made for fun with cute features such as a music player and a chatbox. the site has two different layouts for mobile and desktop to let me play more with my creativity.
+        </p>
+      ),
+      finished: true, 
+    },
+    {
       title: "lucky birthday ranking",
       url: "/projects/lucky-birthday",
       description: (
