@@ -86,6 +86,17 @@ export default function Projects(props: any) {
       finished: true,
     },
     {
+      title: "enstars height comparison tool",
+      url: "https://height-comparison.hellogirls.info",
+      description: (
+        <p className={styles.projectDesc}>
+          a tool similar to hikaku-sittater that lets you compare the heights of
+          ensemble stars characters directly. i am now addicted to jquery.
+        </p>
+      ),
+      finished: true,
+    },
+    {
       title: "enstars marriage survey data visualization",
       url: "/projects/marriage-survey-results",
       description: (
