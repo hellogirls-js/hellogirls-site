@@ -1,5 +1,6 @@
 import {
   IconBrandGithub,
+  IconBrandTwitter,
   IconCoffee,
   IconMessageCircle,
   IconMoonStars,
@@ -31,10 +32,10 @@ export default function Menu() {
       <ScrollIndicator />
       <div className={styles.right}>
         <div className={styles.socials}>
-          <Link
-            href="https://github.com/hellogirls-js/hellogirls-site"
-            target="_blank"
-          >
+          <Link href="https://twitter.com/hellogirls_dev" target="_blank">
+            <IconBrandTwitter size={ICON_SIZE} />
+          </Link>
+          <Link href="https://github.com/hellogirls-js" target="_blank">
             <IconBrandGithub size={ICON_SIZE} />
           </Link>
           <Link href="mailto:son@hellogirls.info" target="_blank">

@@ -99,6 +99,18 @@ export default function Projects(props: any) {
       finished: true,
     },
     {
+      title: "hold-hands",
+      url: "https://holdhands.hellogirls.info",
+      description: (
+        <p className={styles.projectDesc}>
+          basically a non-functional twitter clone. a website inspired by the
+          ensemble stars in-universe social media site, hold-hands. warnings for
+          immature jokes and strong language!
+        </p>
+      ),
+      finished: true,
+    },
+    {
       title: "enstars marriage survey data visualization",
       url: "/projects/marriage-survey-results",
       description: (
