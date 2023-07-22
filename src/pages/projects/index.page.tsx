@@ -6,8 +6,6 @@ import styles from "./styles/Projects.module.scss";
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
 
-export const runtime = "edge";
-
 interface ProjectObject {
   title: string;
   url?: string;
@@ -22,10 +20,12 @@ export default function Projects(props: any) {
       url: "https://about.hellogirls.info",
       description: (
         <p className={styles.projectDesc}>
-          an about page that i made for fun with cute features such as a music player and a chatbox. the site has two different layouts for mobile and desktop to let me play more with my creativity.
+          an about page that i made for fun with cute features such as a music
+          player and a chatbox. the site has two different layouts for mobile
+          and desktop to let me play more with my creativity.
         </p>
       ),
-      finished: true, 
+      finished: true,
     },
     {
       title: "lucky birthday ranking",
