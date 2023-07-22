@@ -8,6 +8,8 @@ import { DarkModeContext } from "context/DarkModeContext";
 import Menu from "component/MainLayout/Menu";
 import Navigation from "component/MainLayout/Navigation";
 
+export const runtime = "experimental-edge";
+
 export default function MDXTemplate({
   children,
   meta,
