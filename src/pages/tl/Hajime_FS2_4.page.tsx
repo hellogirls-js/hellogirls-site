@@ -3,8 +3,6 @@ import Script from "next/script";
 import MainLayout from "component/MainLayout";
 import HajimeFS2 from "assets/hajime_fs2.png";
 
-export const runtime = "experimental-edge";
-
 export default function TL({ title }: { title: string }) {
   return (
     <MainLayout heading={title}>

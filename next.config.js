@@ -8,9 +8,6 @@ const withMDX = require("@next/mdx")({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    runtime: "experimental-edge",
-  },
   reactStrictMode: true,
   pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js", "page.mdx"],
   images: {

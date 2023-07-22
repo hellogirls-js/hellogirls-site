@@ -3,8 +3,6 @@ import fs from "fs";
 
 import { NextApiRequest, NextApiResponse } from "next";
 
-export const runtime = "experimental-edge";
-
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const id = req.body;
   const dir = path.resolve("./src", "/pages/post");

@@ -3,8 +3,6 @@ import path from "path";
 
 import { NextApiRequest, NextApiResponse } from "next";
 
-export const runtime = "experimental-edge";
-
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const dirPath = "pages/post";
