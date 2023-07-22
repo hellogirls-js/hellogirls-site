@@ -8,6 +8,8 @@ import styles from "./styles/Posts.module.scss";
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
 
+export const runtime = "edge";
+
 export default function Posts(props: any) {
   const { colorTheme } = useContext(DarkModeContext);
 

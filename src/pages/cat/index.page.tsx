@@ -7,6 +7,8 @@ import styles from "./styles/Cat.module.scss";
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
 
+export const runtime = "edge";
+
 export default function Cat() {
   const { colorTheme } = useContext(DarkModeContext);
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
