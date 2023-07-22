@@ -12,6 +12,8 @@ import Button from "component/utility/Button";
 import { DarkModeContext } from "context/DarkModeContext";
 import Accordion from "component/utility/Accordion";
 
+export const runtime = "edge";
+
 export default function LuckyBirthday() {
   const YEAR = new Date().getFullYear();
 

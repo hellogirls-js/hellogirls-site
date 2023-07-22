@@ -13,6 +13,8 @@ import MainLayout from "component/MainLayout";
 import ScrollToTop from "component/utility/ScrollToTop";
 import getData from "component/utility/data";
 
+export const runtime = "edge";
+
 function Contents() {
   return (
     <div className={styles.contents}>
