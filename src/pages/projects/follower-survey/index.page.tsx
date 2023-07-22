@@ -11,7 +11,7 @@ import Strong from "component/utility/Strong";
 import { twoStarIDs } from "data/twoStarIds";
 import { ASPECT_RATIO } from "component/utility/constants";
 
-export const runtime = "edge";
+export const runtime = "experimental-edge";
 
 interface FollowerData {
   units: string;
