@@ -199,7 +199,7 @@ export default function Cat() {
             {pics ? (
               pics.map((p: string) => <GalleryPic key={p} src={p} />)
             ) : (
-              <h4>Could not retrieve gallery pics</h4>
+              <h4>Loading...</h4>
             )}
           </div>
         </div>
