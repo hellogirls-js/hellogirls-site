@@ -63,7 +63,7 @@ export default function Cat() {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
   const { data: img } = useSWR("/api/moomoo/portrait", fetcher);
-  const { data: pics } = useSWR("/api/moomoo", fetcher);
+  const { data: pics, error } = useSWR("/api/moomoo", fetcher);
 
   return (
     <MainLayout heading="cat wiki :3">
@@ -196,9 +196,11 @@ export default function Cat() {
 
           <h3 id="gallery">Gallery</h3>
           <div className={styles.wikiGallery}>
-            {pics.map((p: string) => (
-              <GalleryPic key={p} src={p} />
-            ))}
+            {pics ? (
+              pics.map((p: string) => <GalleryPic key={p} src={p} />)
+            ) : (
+              <h4>Loading...</h4>
+            )}
           </div>
         </div>
       </div>
