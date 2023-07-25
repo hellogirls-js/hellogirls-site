@@ -1,70 +1,129 @@
 @use "../../../../styles/vars.module.scss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap');
 
 .cat {
+  width: 67vw;
+  margin: auto;
+  padding-bottom: 8%;
 
-  p {
-    line-height: 1.5;
+  h2, h3 {
+    border-bottom: 1px solid vars.$light-heading-border;
+    padding: 5px 0px;
+    font-family: 'Noto Serif', serif;
+  }
 
-    @media screen and (min-width: 810px) {
-      margin: auto;
-      width: 80%;
+  h4 {
+    margin: 0;
+    margin-bottom: 1%;
+  }
+
+  .catWikiHeader {
+    
+    h2 {
+      padding-top: 0px;
     }
   }
 
-  .gallery {
-    margin: 5% auto;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+  .wikiContents {
+    padding: 10px;
+    width: 25%;
+    border-radius: 8px;
+    display: inline-block;
 
-    .picture {
-      margin: 1vh 1vw;
-      border-radius: 10px;
-      padding: 10px;
+    h4 {
+      text-align: center;
+    }
 
-      img {
-        border-radius: 5px;
-        border-width: 1px;
-        border-style: solid;
+    li {
+      margin: 4% 0px;
+    }
+
+    @media screen and (max-width: 810px) {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .catWikiContent {
+    .catWikiInfo {
+      float: right;
+      clear: right;
+      text-align: center;
+      margin: 0% 0% 3% 3%;
+
+      .catWikiInfoBox {
+        padding: 8px;
+        border-radius: 8px;
+
+        img {
+          border-radius: 5px;
+        }
+
+        .catWikiBoxTable {
+          text-align: left;
+          border-spacing: 2px 10px;
+
+          .catWikiTableLabel {
+            font-weight: bold;
+          }
+        }
+      }
+
+      @media screen and (max-width: 810px) {
+        float: none;
+        clear: none;
+        width: 100%;
+        margin: 0;
       }
     }
+
+    p {
+      line-height: 1.7;
+    }
+
+    .wikiGallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3%;
+      margin: auto;
+
+      .wikiGalleryPic {
+        padding: 4% 2%;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+
+        img {
+          border-radius: 5px;
+        }
+      }
+
+      @media screen and (max-width: 810px) {
+        display: block;
+      }
+    }
+  }
+
+  @media screen and (max-width: 810px) {
+    width: 100%;
   }
 }
 
 .light {
   --image-border: #b3b0d4;
 
-  .gallery {
-    
-    .picture {
-      background: #fff;
-      box-shadow: 2px 2px 3px vars.$light-shadow;
-      
-      img { 
-        border-color: var(--image-border);
-      }
-    }
+  .catWikiInfoBox, .wikiContents, .wikiGalleryPic {
+    background-color: #fff;
+    box-shadow: 1px 1px 3px vars.$light-shadow;
   }
+
 }
 
 .dark {
   --image-border: #18133f;
 
-  .gallery {
-
-    .picture {
-      background: vars.$dark-text-bg;
-      box-shadow: 2px 2px 3px vars.$dark-shadow;
-
-      img {
-        border-color: var(--image-border);
-        opacity: 0.8;
-        transition: opacity 0.2s;
-      }
-
-      img:hover {
-        opacity: 1;
-      }
-    }
+  .catWikiInfoBox, .wikiContents, .wikiGalleryPic {
+    background-color: vars.$dark-text-bg;
+    box-shadow: 1px 1px 3px vars.$dark-shadow;
   }
 }
