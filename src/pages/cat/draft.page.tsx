@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useState } from "react";
+import { ReactNode, useContext } from "react";
 import useSWR from "swr";
 import Image from "next/image";
 import dayjs from "dayjs";
@@ -8,7 +8,6 @@ import styles from "./styles/Cat.module.scss";
 
 import { DarkModeContext } from "context/DarkModeContext";
 import MainLayout from "component/MainLayout";
-import { IconX } from "@tabler/icons-react";
 
 const MOOMOO_DAY = "2018-10-20";
 
