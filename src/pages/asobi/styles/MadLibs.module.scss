@@ -1,0 +1,105 @@
+.madlibsContainer {
+  position: relative;
+  width: 96%;
+  margin: auto;
+  height: 100%;
+
+  .madlibsContentBlock {
+    z-index: 2;
+    position: relative;
+    width: 50%;
+    margin: auto;
+  }
+
+  .madlibsHeading {
+    display: block;
+    text-align: center;
+    padding: 2% 3.5%;
+    border-radius: 40px;
+    text-transform: uppercase;
+    background-color: #d4c600;
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.1rem;
+    }
+  }
+
+  .madlibsMainContent {
+    margin-top: 2vh;
+    font-size: 1.2rem;
+    padding: 2%;
+
+    .madlibsButton {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      user-select: none;
+      cursor: pointer;
+      text-align: center;
+      width: 80%;
+      margin: 3% auto;
+      padding: 2%;
+      background-color: #0087c5;
+      color: #fff;
+      border-radius: 30px;
+    }
+
+    .madlibsButton:hover {
+      background-color: #00a1e9;
+      color: #00397a;
+    }
+
+    p {
+      padding: 1% 2%;
+      margin: 1% 0%;
+      background-color: #ffffff33;
+      border-radius: 20px;
+    }
+
+    .madlibsPartialButtonContainer {
+      width: 100%;
+      margin-top: 3vh;
+
+      .madlibsPartialButton {
+        width: 25%;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+        user-select: none;
+        cursor: pointer;
+        text-align: center;
+        background-color: #ba2636;
+        padding: 2%;
+        border-radius: 30px;
+        color: #fff;
+      }
+
+      .madlibsRightButton {
+        float: right;
+      }
+
+      .madlibsLeftButton {
+        float: left;
+      }
+    }
+  }
+
+  .madlibsSora {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: -10%;
+    background-image: linear-gradient(transparent 60%, #fff 93%);
+
+    img {
+      position: relative;
+      z-index: -1;
+      height: 150%;
+      width: auto;
+      user-select: none;
+      pointer-events: none;
+    }
+  }
+}

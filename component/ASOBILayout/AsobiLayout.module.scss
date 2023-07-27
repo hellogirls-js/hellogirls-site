@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+.asobi {
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  width: 100vw;
+
+  a:link, a:visited {
+    color: #00a1e9;
+  }
+
+  h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .asobiHeader {
+    padding: 0.5% 2%;
+    width: auto;
+    height: 15vh;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    /* background-image: linear-gradient(transparent, #f2f5f8); */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .asobiLogo {
+    width: auto;
+    font-weight: 800;
+    user-select: none;
+  }
+
+  .logoLetter {
+    display: inline-block;
+    font-size: 4.5rem;
+  }
+
+  .logoLetter.logoLetterA {
+    color: #ccb100;
+  }
+
+  .logoLetter.logoLetterS {
+    color: #00a1e9;
+    transform: translateY(-3px);
+  }
+
+  .logoLetter.logoLetterO {
+    color: #d4c600;
+    transform: translateY(1px);
+  }
+
+  .logoLetter.logoLetterB {
+    color: #284b97;
+    transform: translateY(-3px);
+  }
+
+  .logoLetter.logoLetterI {
+    color: #ba2636;
+  }
+
+  .logoLetter.logoLetterExclaim {
+    transform: rotate(-5deg);
+  }
+
+  .asobiTitle {
+    position: relative;
+    padding: 1% 4%;
+    background-color: #ba2636;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+    border-radius: 60px;
+
+    h2 {
+      font-weight: 800;
+      text-transform: uppercase;
+      transform: rotate(2deg);
+    }
+  }
+
+  .asobiTitle::after {
+    content: "";
+    position: absolute;
+    bottom: -25px;
+    right: 20%;
+    border-width: 25px 0px 0px 25px;
+    border-style: solid;
+    border-color: #ba2636 transparent;
+    display: block;
+    width: 0;
+  }
+
+  .asobiContainer {
+    height: 75vh;
+    box-sizing: border-box;
+    max-height: calc(92vh - 20px);
+    overflow: clip;
+    margin-top: 20px;
+  }
+
+  .asobiFooter {
+    font-size: 0.8rem;
+    height: 5vh;
+    padding: 1% 2%;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .asobiCharas {
+
+      img {
+        pointer-events: none;
+        user-select: none;
+      }
+    }
+  }
+
+  
+}
