@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ColorRing } from "react-loader-spinner";
 
 import styles from "../styles/MadLibs.module.scss";
 import AsobiSora1 from "../../../../assets/asobi_sora_1.png";
@@ -17,6 +18,15 @@ function MadLibsLoading() {
   return (
     <div className={styles.madlibsContentBlock}>
       <div className={styles.madlibsMainContent}>
+        <ColorRing
+          visible={true}
+          height="200"
+          width="200"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{ margin: "auto" }}
+          wrapperClass="blocks-wrapper"
+          colors={["#ccb100", "#00a1e9", "#d4c600", "#284b97", "#ba2636"]}
+        />
         <h3>Loading...</h3>
       </div>
     </div>
