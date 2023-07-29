@@ -21,22 +21,25 @@ type Action =
 
 function reducer(state: State, action: Action): State {
   let prev = state.gameIndex;
+  let newIndex = state.gameIndex;
   switch (action.type) {
     case "clickNext":
       let newObj = state.gameObj;
+      newIndex += 1;
       newObj[action.payload.blanks[prev]] = action.payload.value;
       return {
         ...state,
         prevIndex: prev - 1,
-        gameIndex: state.gameIndex++,
+        gameIndex: newIndex,
         gameObj: newObj,
       };
       break;
     case "clickPrev":
+      newIndex -= 1;
       return {
         ...state,
         prevIndex: prev,
-        gameIndex: state.gameIndex--,
+        gameIndex: newIndex,
       };
       break;
     case "finish":
@@ -72,19 +75,15 @@ export default function MadLibsGame({
   useEffect(() => {
     if (textboxRef.current) {
       if (state.prevIndex < state.gameIndex) {
-        console.log(
-          state.gameObj,
-          state.gameObj[blanksArr.current[state.gameIndex]]
-        );
         if (state.gameObj[blanksArr.current[state.gameIndex]]) {
-          textboxRef.current.placeholder =
+          textboxRef.current.value =
             state.gameObj[blanksArr.current[state.gameIndex]];
         } else {
           textboxRef.current.value = "";
         }
       } else {
         textboxRef.current.value =
-          state.gameObj[blanksArr.current[state.prevIndex]];
+          state.gameObj[blanksArr.current[state.gameIndex]];
       }
     }
   }, [state.gameIndex]);
@@ -120,24 +119,26 @@ export default function MadLibsGame({
           )}
           <div
             className={`${styles.madlibsPartialButton} ${styles.madlibsRightButton}`}
-            onClick={() => {
-              if (state.gameIndex < blanksArr.current.length - 1) {
-                dispatch({
-                  type: "clickNext",
-                  payload: {
-                    value: textboxRef.current ? textboxRef.current.value : "",
-                    blanks: blanksArr.current,
-                  },
-                });
-              } else {
-                dispatch({
-                  type: "finish",
-                  payload: {
-                    value: textboxRef.current ? textboxRef.current.value : "",
-                    blanks: blanksArr.current,
-                  },
-                });
-                setResult(state.gameObj);
+            onMouseUp={() => {
+              if (textboxRef.current && textboxRef.current.value.length) {
+                if (state.gameIndex < blanksArr.current.length - 1) {
+                  dispatch({
+                    type: "clickNext",
+                    payload: {
+                      value: textboxRef.current?.value || "",
+                      blanks: blanksArr.current,
+                    },
+                  });
+                } else {
+                  dispatch({
+                    type: "finish",
+                    payload: {
+                      value: textboxRef.current?.value || "",
+                      blanks: blanksArr.current,
+                    },
+                  });
+                  setResult(state.gameObj);
+                }
               }
             }}
           >

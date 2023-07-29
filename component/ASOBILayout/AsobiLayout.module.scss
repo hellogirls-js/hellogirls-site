@@ -145,8 +145,10 @@
     }
 
     @media screen and (max-width: 768px) {
+      height: auto;
       display: block;
-      padding: 5%;
+      padding: 2%;
+      z-index: -1;
     }
   }
 
