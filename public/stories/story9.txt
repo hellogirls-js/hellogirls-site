@@ -1,0 +1,1 @@
+You are a |NOUN_1| who knows nothing about the |NOUN_2|. You are the |ADJECTIVE_1| one here. I can make YOU |VERB_1| but I suggest you one thing. You don't want to |VERB_2| with a |NOUN_3| like me.

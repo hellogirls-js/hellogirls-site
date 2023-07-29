@@ -1,0 +1,198 @@
+.madlibsContainer {
+  position: relative;
+  width: 96%;
+  margin: auto;
+  height: 100%;
+
+  .madlibsContentBlock {
+    z-index: 2;
+    position: relative;
+    width: 50%;
+    margin: auto;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .madlibsHeading {
+    display: block;
+    text-align: center;
+    padding: 2% 3.5%;
+    border-radius: 40px;
+    text-transform: uppercase;
+    background-color: #d4c600;
+
+    h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.1rem;
+    }
+
+    .wordPrompt {
+      color: #ba2636;
+    }
+  }
+
+  .madlibsMainContent {
+    margin-top: 2vh;
+    font-size: 1.2rem;
+    padding: 2%;
+    text-align: center;
+
+    .madlibsButton {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      user-select: none;
+      cursor: pointer;
+      text-align: center;
+      width: 80%;
+      margin: 3% auto;
+      padding: 2%;
+      background-color: #0087c5;
+      color: #fff;
+      border-radius: 30px;
+    }
+
+    .madlibsButton:hover {
+      background-color: #00a1e9;
+      color: #00397a;
+    }
+
+    p {
+      text-align: left;
+      padding: 1% 2%;
+      margin: 1% 0%;
+      background-color: #ffffff33;
+      border-radius: 20px;
+    }
+
+    .madlibsTextbox {
+      width: 90%;
+      margin: auto;
+      padding: 2%;
+      border: 2px solid #0087c5;
+      font-size: 1.5rem;
+    }
+
+    .madlibsTextbox:focus {
+      border: 2px solid transparent;
+      outline: 3px solid #ba2636;
+    }
+
+    .madlibsResult {
+      line-height: 2;
+      background-color: #fff;
+      border: 2px solid #0087c5;
+      padding: 20px;
+
+      .givenWord {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #ffc6cb;
+        color: #a10a37;
+        padding: 1px 5px;
+        border-radius: 10px;
+        font-weight: 700;
+      }
+    }
+
+    .madlibsPartialButtonContainer {
+      width: 100%;
+      margin-top: 6vh;
+      overflow: hidden;
+
+      .madlibsPartialButton {
+        width: 25%;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+        user-select: none;
+        cursor: pointer;
+        text-align: center;
+        background-color: #ba2636;
+        padding: 2%;
+        border-radius: 30px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+      }
+
+      .madlibsRightButton {
+        float: right;
+      }
+
+      .madlibsLeftButton {
+        float: left;
+      }
+    }
+
+    .madlibsProgressBarContainer {
+      clear: both;
+      width: 90%;
+      margin: auto;
+      margin-top: 10vh;
+
+      .madlibsProgressBar {
+        width: 100%;
+        position: relative;
+        height: 2vh;
+        background-color: #e5eaec;
+        border-radius: 10px;
+        overflow: clip;
+
+        .madlibsProgress {
+          height: 100%;
+          display: block;
+          background-color: #22adee;
+          transition: width 0.1s;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  .madlibsInstructions {
+    
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  .madlibsSora {
+    position: absolute;
+    height: 100%;
+    background-image: linear-gradient(transparent 60%, #fff 93%);
+
+    img {
+      position: relative;
+      z-index: -1;
+      height: 150%;
+      width: auto;
+      user-select: none;
+      pointer-events: none;
+
+      @media screen and (max-width: 768px) {
+        height: 400%;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      bottom: 0;
+      left: -25vw;
+      margin-bottom: 20vh;
+      height: 33%;
+      overflow: clip;
+    }
+
+    @media screen and (min-width: 768px) {
+      top: 0; 
+      left: -10%;
+    }
+  }
+}

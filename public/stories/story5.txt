@@ -1,0 +1,1 @@
+Hey everyone! My name is |NAME_1|. I was born |MONTH_1| |NUMBER_1|! And I’m a |NOUN_1| of |NOUN_2| gakuen high school. I’m a |ADJECTIVE_1| |NOUN_1| right there! And my blood type is |ADJECTIVE_2|. And my class is |ADJECTIVE_3| That’s pretty much it. Thank you.
