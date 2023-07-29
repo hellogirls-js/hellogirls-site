@@ -154,7 +154,13 @@
 
     @media (max-width: 768px) {
       width: 100%;
-      height: 100%;
+    }
+  }
+
+  .madlibsInstructions {
+    
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
     }
   }
 

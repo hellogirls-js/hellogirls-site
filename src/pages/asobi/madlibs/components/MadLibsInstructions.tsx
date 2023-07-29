@@ -14,7 +14,7 @@ export default function MadLibsInstructions({
       <div className={`${styles.madlibsSoraStart} ${styles.madlibsHeading}`}>
         <h3>How to Play</h3>
       </div>
-      <div className={styles.madlibsMainContent}>
+      <div className={styles.madlibsMainContent} style={{ marginTop: "0vh" }}>
         <p>
           Here&apos;s how this works! Sora will give the player a series of
           prompts, asking for words that fulfill a specific category, such as a

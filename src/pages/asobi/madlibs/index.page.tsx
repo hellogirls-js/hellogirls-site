@@ -70,7 +70,15 @@ export default function MadLibs() {
             setStoryError={setStoryError}
           />
         )}
-        <div className={styles.madlibsSora}>
+        <div
+          className={styles.madlibsSora}
+          style={{
+            marginBottom:
+              currentPage === "result" || currentPage === "instructions"
+                ? "1vh"
+                : "20vh",
+          }}
+        >
           <Image
             src={soraImg.src}
             alt="sora"
