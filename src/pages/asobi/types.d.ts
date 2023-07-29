@@ -7,4 +7,7 @@ type WordCategory =
   | "ENSTARSUNIT"
   | "BODYPART"
   | "NAME"
-  | "MONTH";
+  | "MONTH"
+  | "PRONOUN";
+
+type WordModifier = "PASTTENSE" | "ING" | "PLURAL";

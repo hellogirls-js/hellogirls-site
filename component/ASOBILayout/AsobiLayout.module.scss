@@ -21,13 +21,16 @@
   .asobiHeader {
     padding: 0.5% 2%;
     width: auto;
-    height: 15vh;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     /* background-image: linear-gradient(transparent, #f2f5f8); */
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+    @media screen and (max-width: 768px) {
+      display: block;
+    }
   }
 
   .asobiLogo {
@@ -82,6 +85,12 @@
       text-transform: uppercase;
       transform: rotate(2deg);
     }
+
+    @media screen and (max-width: 768px) {
+      z-index: -1;
+      float: right;
+      margin-top: -5vh;
+    }
   }
 
   .asobiTitle::after {
@@ -102,6 +111,12 @@
     max-height: calc(92vh - 20px);
     overflow: clip;
     margin-top: 20px;
+
+    @media screen and (max-width: 768px) {
+      position: relative;
+      height: 90vh;
+      margin-top: 30px;
+    }
   }
 
   .asobiFooter {
@@ -124,7 +139,14 @@
       img {
         pointer-events: none;
         user-select: none;
+        width: 50px;
+        height: auto;
       }
+    }
+
+    @media screen and (max-width: 768px) {
+      display: block;
+      padding: 5%;
     }
   }
 
