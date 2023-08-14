@@ -11,3 +11,5 @@ type WordCategory =
   | "PRONOUN";
 
 type WordModifier = "PASTTENSE" | "ING" | "PLURAL";
+
+type PhraseCategory = "SONG" | "NAME";
