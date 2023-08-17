@@ -1,6 +1,6 @@
 import { ColorRing } from "react-loader-spinner";
 import useSWR from "swr";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import styles from "../../styles/Ninjaman.module.scss";
@@ -43,6 +43,8 @@ export default function NinjamanGame() {
   const { data: phrase } = useSWR("/api/ninjaman/get", fetcher);
 
   const [shinobuSprite, setShinobuSprite] = useState(AsobiShinobu1);
+  const [isShinobuIdle, setShinobuIdle] = useState(true);
+  const [guessAmt, setGuessAmt] = useState(0);
 
   const GUESS_COUNT = 12;
 
