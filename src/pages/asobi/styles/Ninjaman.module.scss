@@ -30,6 +30,10 @@
   margin: auto;
   height: 100%;
 
+  @media screen and (max-width: 812px) {
+    height: auto;
+  }
+
   .ninjamanHeading {
     display: block;
     text-align: center;
@@ -43,6 +47,10 @@
       font-size: 2rem;
       font-weight: 800;
       letter-spacing: 0.1rem;
+
+      @media screen and (max-width: 812px) {
+        font-size: 1.3rem;
+      }
     }
 
   } 
@@ -53,13 +61,26 @@
     display: flex;
     gap: 3%;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 812px) {
+      flex-flow: column;
       width: 100%;
     }
 
     .ninjamanShinobuBoard {
       z-index: -1;
       width: 350px;
+      min-width: 350px;
+      max-width: 350px;
+      flex-basis: 350px;
+
+      @media screen and (max-width: 812px) {
+        margin: auto;
+        width: auto;
+        min-width: auto;
+        max-width: auto;
+        height: auto;
+        flex-basis: auto;
+      }
 
       .ninjamanBoardTarget {
         position: relative;
@@ -74,6 +95,24 @@
         margin-left: 100px;
         margin-top: -10px;
         background-image: linear-gradient(transparent 60%, #fff 75%);
+
+        .ninjamanShnoobPhrase {
+          position: absolute;
+          top: 80px;
+          left: -140px;
+          max-width: 150px;
+          background-color: #e2d300;
+          font-family: 'Open Sans', sans-serif;
+          font-weight: 800;
+          text-transform: uppercase;
+          padding: 5px 10px;
+          border-radius: 10px;
+
+          @media screen and (max-width: 812px) {
+            top: 40px;
+            padding: 5px;
+          }
+        }
       }
 
       .ninjamanBoardShnoob::after {
@@ -103,6 +142,10 @@
         border-radius: 20px;
         border: 5px solid #d85965;
 
+        @media screen and (max-width: 812px) {
+          font-size: 1.1rem;
+        }
+
         .categoryLabel {
           color: #d85965;
         }
@@ -113,6 +156,10 @@
         display: flex;
         flex-flow: row wrap;
         margin: 2vh 0vw;
+
+        @media screen and (max-width: 812px) {
+          margin-top: 1vh;
+        }
 
         .ninjamanPhraseGroup {
           display: flex;
@@ -125,6 +172,11 @@
             width: 50px;
             height: 75px;
             margin: 3px 3px;
+
+            @media screen and (max-width: 812px) {
+              width: 35px;
+              height: 40px;
+            }
           }
 
           .ninjamanLetterBlock {
@@ -145,6 +197,10 @@
             background-color: #e4effc;
             border-radius: 5px;
             box-shadow: 3px 3px 0px #a0c5f0;
+
+            @media screen and (max-width: 812px) {
+              font-size: 30px;
+            }
           }
         }
 
@@ -172,6 +228,11 @@
             border-radius: 5px;
             margin: 0px 3px;
             box-shadow: 2px 2px 0px #6cb3f5;
+
+            @media screen and (max-width: 812px) {
+              font-size: 1.2rem;
+              padding: 5px 7px;
+            }
           }
 
           .ninjamanKeyboardKey.notGuessed {
@@ -196,16 +257,29 @@
     margin-top: 5vh;
     gap: 5%;
 
+    @media screen and (max-width: 812px) {
+      flex-flow: column;
+      width: 98%;
+    }
+
     .ninjamanPageContentContainer {
       width: 100%;
 
       .ninjamanContent {
         width: 90%;
         margin: 5vh auto 0vh auto;
+
+        @media screen and (max-width: 812px) {
+          margin-top: 5px;
+        }
     
         p {
           font-size: 1.3rem;
           line-height: 1.5;
+
+          @media screen and (max-width: 812px) {
+            font-size: 1rem;
+          }
         }
     
         .ninjamanHomeButtons {
@@ -213,6 +287,12 @@
           margin: auto;
           display: flex;
           justify-content: space-between;
+
+          @media screen and (max-width: 812px) {
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 5vh;
+          }
     
           .ninjamanHomeButton {
             $home-button-size: 20vh;
@@ -233,6 +313,13 @@
             cursor: pointer;
             font-family: 'Open Sans', sans-serif;
             transition: transform 0.2s;
+
+            @media screen and (max-width: 812px) {
+              width: 100%;
+              height: auto;
+              margin-top: 5px;
+              padding: 10px;
+            }
           }
     
           .ninjamanHomeButton:hover {
@@ -245,6 +332,11 @@
           display: flex;
           align-items: center;
           justify-content: flex-end;
+
+          @media screen and (max-width: 812px) {
+            display: block;
+            margin-bottom: 5vh;
+          }
     
           .ninjamanInstructionsButton {
             cursor: pointer;
@@ -260,6 +352,12 @@
             padding: 3vh 1vw;
             border-radius: 30px;
             transition: transform 0.2s;
+
+            @media screen and (max-width: 812px) {
+              width: 100%;
+              font-size: 1.2rem;
+              padding: 5px;
+            }
           }
     
           .ninjamanInstructionsButton:hover {
@@ -275,10 +373,21 @@
       width: 272px;
       animation: shinobuHomeIdle 1s linear 0s infinite forwards alternate;
       margin-top: 10px;
+      z-index: -1;
+
+      @media screen and (max-width: 812px) {
+        
+      }
 
       img {
         pointer-events: none;
         user-select: none;
+
+        @media screen and (max-width: 812px) {
+          height: 250px;
+          width: auto;
+          margin: auto;
+        }
       }
     }
 

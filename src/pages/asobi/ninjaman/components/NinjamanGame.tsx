@@ -2,11 +2,14 @@ import { ColorRing } from "react-loader-spinner";
 import useSWR from "swr";
 import { useEffect, useReducer } from "react";
 import Image, { StaticImageData } from "next/image";
+import { useMediaQuery } from "@mantine/hooks";
 
 import styles from "../../styles/Ninjaman.module.scss";
-import AsobiShinobu1 from "../../../../../assets/asobi_shinobu_1.png";
-import AsobiShinobu2 from "../../../../../assets/asobi_shinobu_2.png";
-import AsobiShinobu4 from "../../../../../assets/asobi_shinobu_4.png";
+import AsobiShinobuIdle from "../../../../../assets/asobi_shinobu_1.png";
+import AsobiShinobuHit from "../../../../../assets/asobi_shinobu_2.png";
+import AsobiShinobuWin from "../../../../../assets/asobi_shinobu_3.png";
+import AsobiShinobuMiss from "../../../../../assets/asobi_shinobu_4.png";
+import AsobiShinobuLose from "../../../../../assets/asobi_shinobu_5.png";
 import AsobiTarget from "../../../../../assets/asobi_target.png";
 import AsobiShuriken from "../../../../../assets/asobi_shuriken.png";
 
@@ -23,9 +26,11 @@ interface Shuriken {
 }
 
 interface State {
+  playGame: boolean;
+  wonGame: boolean;
   shinobuSprite: StaticImageData;
   isShinobuIdle: boolean;
-  guessAmt: number;
+  missAmt: number;
   guessedLetters: string[];
   letterKeys: Letter[][];
   hitShurikens: Shuriken[];
@@ -42,6 +47,15 @@ type Action =
     }
   | {
       type: "resetToIdle";
+    }
+  | {
+      type: "loseState";
+    }
+  | {
+      type: "winState";
+      payload: {
+        letterKey: Letter;
+      };
     };
 
 function NinjamanGameLoading() {
@@ -70,12 +84,36 @@ function NinjamanGameLoading() {
 
 function reducer(state: State, action: Action): State {
   // state changes: shinobu sprite transition, show shuriken
+  let newMissAmt: number;
+  let newGuessedLetters: string[];
+  let newHitShurikens: Shuriken[];
+  let newMissShurikens: Shuriken[];
   switch (action.type) {
     case "chooseLetter":
-      let newGuessAmt = state.guessAmt;
-      newGuessAmt++;
-      let newGuessedLetters = state.guessedLetters;
-      newGuessedLetters.push(action.payload.letterKey.letter);
+      newHitShurikens = state.hitShurikens;
+      newMissShurikens = state.missShurikens;
+      newGuessedLetters = state.guessedLetters;
+      newMissAmt = state.missAmt;
+      if (!newGuessedLetters.includes(action.payload.letterKey.letter)) {
+        newGuessedLetters.push(action.payload.letterKey.letter);
+        if (action.payload.isPresent) {
+          let recentHit = state.hitShurikens.filter(
+            (shuriken) => !shuriken.visible
+          )[0];
+          let recentHitIndex = state.hitShurikens.findIndex(
+            (shuriken) => !shuriken.visible
+          );
+          newHitShurikens[recentHitIndex] = { ...recentHit, visible: true };
+        } else {
+          let recentMiss = state.missShurikens.filter(
+            (shuriken) => !shuriken.visible
+          )[0];
+          let recentMissIndex = state.missShurikens.findIndex(
+            (shuriken) => !shuriken.visible
+          );
+          newMissShurikens[recentMissIndex] = { ...recentMiss, visible: true };
+        }
+      }
       let newKeys = state.letterKeys;
       let currentKey = newKeys
         .flat()
@@ -88,31 +126,17 @@ function reducer(state: State, action: Action): State {
           }
         }
       }
-      let newHitShurikens = state.hitShurikens;
-      let newMissShurikens = state.missShurikens;
-      if (action.payload.isPresent) {
-        let recentHit = state.hitShurikens.filter(
-          (shuriken) => !shuriken.visible
-        )[0];
-        let recentHitIndex = state.hitShurikens.findIndex(
-          (shuriken) => !shuriken.visible
-        );
-        newHitShurikens[recentHitIndex] = { ...recentHit, visible: true };
-      } else {
-        let recentMiss = state.missShurikens.filter(
-          (shuriken) => !shuriken.visible
-        )[0];
-        let recentMissIndex = state.missShurikens.findIndex(
-          (shuriken) => !shuriken.visible
-        );
-        newMissShurikens[recentMissIndex] = { ...recentMiss, visible: true };
-      }
+      let missLength = newMissShurikens.filter(
+        (sh) => sh.visible === true
+      ).length;
       return {
         ...state,
-        guessAmt: newGuessAmt,
+        missAmt: missLength,
         guessedLetters: newGuessedLetters,
         letterKeys: newKeys,
-        shinobuSprite: action.payload.isPresent ? AsobiShinobu2 : AsobiShinobu4,
+        shinobuSprite: action.payload.isPresent
+          ? AsobiShinobuHit
+          : AsobiShinobuMiss,
         isShinobuIdle: false,
         hitShurikens: newHitShurikens,
         missShurikens: newMissShurikens,
@@ -121,23 +145,76 @@ function reducer(state: State, action: Action): State {
     case "resetToIdle":
       return {
         ...state,
-        shinobuSprite: AsobiShinobu1,
+        shinobuSprite: AsobiShinobuIdle,
         isShinobuIdle: true,
       };
+      break;
+    case "winState":
+      newHitShurikens = state.hitShurikens;
+      newGuessedLetters = [
+        ...state.guessedLetters,
+        action.payload.letterKey.letter,
+      ];
+      newHitShurikens[newHitShurikens.length - 1] = {
+        ...newHitShurikens[newHitShurikens.length - 1],
+        visible: true,
+      };
+      return {
+        ...state,
+        playGame: false,
+        wonGame: true,
+        shinobuSprite: AsobiShinobuWin,
+        isShinobuIdle: false,
+        hitShurikens: newHitShurikens,
+        guessedLetters: newGuessedLetters,
+      };
+      break;
+    case "loseState":
+      newGuessedLetters = state.guessedLetters;
+      let missShurikenVal = {
+        ...state.missShurikens[state.missShurikens.length - 1],
+        visible: true,
+      };
+      newMissShurikens = state.missShurikens;
+      newMissShurikens[newMissShurikens.length - 1] = missShurikenVal;
+      KEYBOARD_ARR.flat().forEach((key) => {
+        if (!newGuessedLetters.includes(key.letter)) {
+          newGuessedLetters.push(key.letter);
+        }
+      });
+      return {
+        ...state,
+        playGame: false,
+        shinobuSprite: AsobiShinobuLose,
+        isShinobuIdle: false,
+        guessedLetters: newGuessedLetters,
+        missShurikens: newMissShurikens,
+      };
+      break;
+    default:
+      return state;
       break;
   }
 }
 
+/**
+ *
+ * @returns the actual game content
+ */
 export default function NinjamanGame() {
+  const isMobile = useMediaQuery("(max-width: 812px)");
+
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data: phrase } = useSWR("/api/ninjaman/get", fetcher, {
     revalidateOnFocus: false,
   });
 
   const [state, dispatch] = useReducer(reducer, {
-    shinobuSprite: AsobiShinobu1,
+    playGame: true,
+    wonGame: false,
+    shinobuSprite: AsobiShinobuIdle,
     isShinobuIdle: true,
-    guessAmt: 0,
+    missAmt: 0,
     guessedLetters: [],
     letterKeys: KEYBOARD_ARR,
     hitShurikens: [
@@ -314,17 +391,28 @@ export default function NinjamanGame() {
     ],
   });
 
-  const GUESS_COUNT = 12;
+  const MISS_COUNT = 7;
 
   useEffect(() => {
-    if (!state.isShinobuIdle && state.shinobuSprite !== AsobiShinobu1) {
+    if (
+      !state.isShinobuIdle &&
+      (state.shinobuSprite === AsobiShinobuHit ||
+        state.shinobuSprite === AsobiShinobuMiss)
+    ) {
       setTimeout(() => {
         dispatch({ type: "resetToIdle" });
       }, 2000);
     }
-  }, [state.shinobuSprite]);
+    if (state.missAmt >= MISS_COUNT) {
+      dispatch({
+        type: "loseState",
+      });
+    }
+  }, [state.shinobuSprite, state.missAmt]);
 
   function NinjamanShinobuBoard() {
+    let divide = isMobile ? 1.65 : 1;
+
     return (
       <div className={styles.ninjamanShinobuBoard}>
         <div className={styles.ninjamanBoardTarget}>
@@ -332,8 +420,8 @@ export default function NinjamanGame() {
             <div
               className={styles.ninjamanShuriken}
               style={{
-                left: shuriken.coordinates.x,
-                top: shuriken.coordinates.y,
+                left: shuriken.coordinates.x / divide,
+                top: shuriken.coordinates.y / divide,
                 display: shuriken.visible ? "block" : "none",
               }}
               key={index}
@@ -341,8 +429,8 @@ export default function NinjamanGame() {
               <Image
                 src={AsobiShuriken.src}
                 alt="shuriken"
-                width={AsobiShuriken.width / 1.5}
-                height={AsobiShuriken.height / 1.5}
+                width={AsobiShuriken.width / (isMobile ? 2.5 : 1.5)}
+                height={AsobiShuriken.height / (isMobile ? 2.5 : 1.5)}
               />
             </div>
           ))}
@@ -350,8 +438,8 @@ export default function NinjamanGame() {
             <div
               className={styles.ninjamanShuriken}
               style={{
-                left: shuriken.coordinates.x,
-                top: shuriken.coordinates.y,
+                left: shuriken.coordinates.x / divide,
+                top: shuriken.coordinates.y / divide,
                 display: shuriken.visible ? "block" : "none",
               }}
               key={index}
@@ -359,16 +447,16 @@ export default function NinjamanGame() {
               <Image
                 src={AsobiShuriken.src}
                 alt="shuriken"
-                width={AsobiShuriken.width / 1.5}
-                height={AsobiShuriken.height / 1.5}
+                width={AsobiShuriken.width / (isMobile ? 2.5 : 1.5)}
+                height={AsobiShuriken.height / (isMobile ? 2.5 : 1.5)}
               />
             </div>
           ))}
           <div className={styles.ninjamanTarget}>
             <Image
               src={AsobiTarget.src}
-              width={AsobiTarget.width / 1.5}
-              height={AsobiTarget.height / 1.5}
+              width={AsobiTarget.width / (isMobile ? 2.5 : 1.5)}
+              height={AsobiTarget.height / (isMobile ? 2.5 : 1.5)}
               alt="target"
             />
           </div>
@@ -378,11 +466,25 @@ export default function NinjamanGame() {
             state.isShinobuIdle && styles.idle
           }`}
         >
+          <div
+            className={styles.ninjamanShnoobPhrase}
+            style={{
+              display: state.isShinobuIdle ? "none" : "block",
+            }}
+          >
+            {state.shinobuSprite === AsobiShinobuHit
+              ? "Wow, de gozaru!"
+              : state.shinobuSprite === AsobiShinobuWin
+              ? "We did it, de gozaru!!"
+              : state.shinobuSprite === AsobiShinobuLose
+              ? "Aw man, de gozaru..."
+              : "Not quite, de gozaru..."}
+          </div>
           <Image
             src={state.shinobuSprite.src}
             alt="shinobu"
-            width={state.shinobuSprite.width / 1.5}
-            height={state.shinobuSprite.height / 1.5}
+            width={state.shinobuSprite.width / (isMobile ? 3 : 1.5)}
+            height={state.shinobuSprite.height / (isMobile ? 3 : 1.5)}
           />
         </div>
       </div>
@@ -428,16 +530,46 @@ export default function NinjamanGame() {
                 className={`${styles.ninjamanKeyboardKey} ${
                   keyObj.isGuessed ? styles.guessed : styles.notGuessed
                 }`}
-                disabled={keyObj.isGuessed || !state.isShinobuIdle}
+                disabled={
+                  keyObj.isGuessed || !state.isShinobuIdle || !state.playGame
+                }
                 onClick={(e) => {
-                  if (state.guessAmt < GUESS_COUNT) {
-                    dispatch({
-                      type: "chooseLetter",
-                      payload: {
-                        letterKey: keyObj,
-                        isPresent: phrase.phrase.includes(keyObj.letter),
-                      },
-                    });
+                  // check if all letters are guessed
+                  let uniquePhraseLetters = Array.from(phrase.phrase).filter(
+                    (letter, index: number, arr) =>
+                      arr.indexOf(letter) === index && letter !== " "
+                  );
+                  let guessedLettersAmt = 0;
+                  let tempGuessedLetters = [
+                    ...state.guessedLetters,
+                    (e.target as HTMLInputElement).value,
+                  ];
+                  for (let i = 0; i < uniquePhraseLetters.length; i++) {
+                    if (
+                      tempGuessedLetters.includes(
+                        (uniquePhraseLetters as string[])[i]
+                      )
+                    ) {
+                      guessedLettersAmt++;
+                    }
+                  }
+                  if (state.missAmt < MISS_COUNT) {
+                    if (guessedLettersAmt >= uniquePhraseLetters.length) {
+                      dispatch({
+                        type: "winState",
+                        payload: {
+                          letterKey: keyObj,
+                        },
+                      });
+                    } else {
+                      dispatch({
+                        type: "chooseLetter",
+                        payload: {
+                          letterKey: keyObj,
+                          isPresent: phrase.phrase.includes(keyObj.letter),
+                        },
+                      });
+                    }
                   }
                 }}
               />

@@ -30,7 +30,8 @@ export default function NinjamanInstructions({
               I&apos;ll explain the rules to you! Basically, I will come up with
               a phrase. You&apos;re responsible for guessing this phrase by
               suggesting one letter at a time to me. Try to guess the phrase
-              before I run out of shurikens, okay, de gozaru?
+              before I run out of shurikens, okay, de gozaru? You have seven
+              tries!
             </p>
 
             <div className={styles.ninjamanInstructionsButtons}>
