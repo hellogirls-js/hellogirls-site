@@ -13,3 +13,8 @@ type WordCategory =
 type WordModifier = "PASTTENSE" | "ING" | "PLURAL";
 
 type PhraseCategory = "SONG" | "NAME";
+
+interface Letter {
+  letter: string;
+  isGuessed: boolean;
+}

@@ -48,11 +48,12 @@
   } 
 
   .ninjamanGameContainer {
-    width: 90%;
+    width: 80%;
     margin: auto;
     display: flex;
+    gap: 3%;
 
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 768px) {
       width: 100%;
     }
 
@@ -60,12 +61,19 @@
       z-index: -1;
       width: 350px;
 
+      .ninjamanBoardTarget {
+        position: relative;
+
+        .ninjamanShuriken {
+          position: absolute;
+        }
+      }
+
       .ninjamanBoardShnoob {
         position: relative;
         margin-left: 100px;
         margin-top: -10px;
         background-image: linear-gradient(transparent 60%, #fff 75%);
-        animation: shinobuGameIdle 0.5s linear 0s infinite forwards alternate;
       }
 
       .ninjamanBoardShnoob::after {
@@ -76,9 +84,15 @@
         width: 100%;
         height: 20%;
       }
+
+      .ninjamanBoardShnoob.idle {
+        animation: shinobuGameIdle 0.5s linear 0s infinite forwards alternate;
+      }
     }
 
     .ninjamanGameNotShnoob {
+      flex-grow: 1;
+
       .ninjamanGameCategory {
         display: inline-block;
         font-family: 'Open Sans', sans-serif;
@@ -97,21 +111,44 @@
       .ninjamanGameLetters {
         flex-grow: 1;
         display: flex;
-        align-items: flex-start;
-        justify-content: center;
+        flex-flow: row wrap;
+        margin: 2vh 0vw;
 
-        .ninjamanLetter {
-          display: inline-block;
-          width: 50px;
-          height: 75px;
-          margin: 3px 3px;
+        .ninjamanPhraseGroup {
+          display: flex;
+          align-items: center;
+          margin-right: 50px;
+          margin-top: 15px;
+
+          .ninjamanLetter {
+            display: inline-block;
+            width: 50px;
+            height: 75px;
+            margin: 3px 3px;
+          }
+
+          .ninjamanLetterBlock {
+            background-color: #d0e1f5;
+            box-shadow: 3px 3px 0px #a0c5f0;
+            border-radius: 5px;
+          }
+
+          .ninjamanLetterText {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 45px;
+            color: #00397a;
+            font-weight: 800;
+            user-select: none;
+            background-color: #e4effc;
+            border-radius: 5px;
+            box-shadow: 3px 3px 0px #a0c5f0;
+          }
         }
 
-        .ninjamanLetterBlock {
-          background-color: #d0e1f5;
-          box-shadow: 3px 3px 0px #709dd1;
-          border-radius: 5px;
-        }
+        
       }
 
       .ninjamanKeyboard {
@@ -127,16 +164,24 @@
           justify-content: center;
 
           .ninjamanKeyboardKey {
-            cursor: pointer;
             font-size: 1.5rem;
-            background: #e2d300;
-            box-shadow: 2px 2px 0px #6cb3f5;
             border: none;
             font-family: 'Open Sans', sans-serif;
             font-weight: 800;
             padding: 10px;
             border-radius: 5px;
             margin: 0px 3px;
+            box-shadow: 2px 2px 0px #6cb3f5;
+          }
+
+          .ninjamanKeyboardKey.notGuessed {
+            background: #e2d300;
+            cursor: pointer;
+          }
+
+          .ninjamanKeyboardKey.guessed {
+            background: #a5cef5;
+            color: #8eadcc;
           }
         }
       }
