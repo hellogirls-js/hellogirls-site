@@ -111,14 +111,13 @@
 
     @media screen and (max-width: 768px) {
       position: relative;
-      height: 90vh;
+      height: auto;
       margin-top: 30px;
     }
 
     @media screen and (min-width: 768px) {
       height: 75vh;
       max-height: calc(92vh - 20px);
-      overflow: clip;
     }
   }
 
