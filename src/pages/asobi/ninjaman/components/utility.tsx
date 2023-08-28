@@ -33,8 +33,176 @@ export const KEYBOARD_ARR: Letter[][] = [
   ],
 ];
 
-// export const KEYBOARD_ARR: Letter[][] = [
-//   [{letter: "Q", isGuessed: false}, {letter: "W", isGuessed: false}, {letter: "E", isGuessed: false}, {letter: "R", isGuessed: false}, {letter: "T", isGuessed: false}, "Y", "U", "I", "O", "P"],
-//   ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-//   ["Z", "X", "C", "V", "B", "N", "M"],
-// ];
+export const hitShurikens: Shuriken[] = [
+  {
+    visible: false,
+    coordinates: {
+      x: 20,
+      y: 10,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 120,
+      y: 95,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 30,
+      y: 100,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 100,
+      y: 6,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 98,
+      y: 67,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 5,
+      y: 67,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 70,
+      y: 120,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 72,
+      y: 20,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 40,
+      y: 40,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 100,
+      y: 42,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 50,
+      y: 80,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 72,
+      y: 56,
+    },
+  },
+];
+
+export const missShurikens: Shuriken[] = [
+  {
+    visible: false,
+    coordinates: {
+      x: -30,
+      y: 32,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 55,
+      y: 142,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 120,
+      y: -5,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 140,
+      y: 80,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: -20,
+      y: 72,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 30,
+      y: -20,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: -10,
+      y: 100,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 130,
+      y: 120,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 143,
+      y: 40,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: 90,
+      y: -30,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: -10,
+      y: -30,
+    },
+  },
+  {
+    visible: false,
+    coordinates: {
+      x: -20,
+      y: 120,
+    },
+  },
+];

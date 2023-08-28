@@ -18,3 +18,13 @@ interface Letter {
   letter: string;
   isGuessed: boolean;
 }
+
+interface Coord {
+  x: number;
+  y: number;
+}
+
+interface Shuriken {
+  visible: boolean;
+  coordinates: Coord;
+}
