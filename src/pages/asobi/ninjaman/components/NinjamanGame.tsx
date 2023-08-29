@@ -3,6 +3,7 @@ import useSWR from "swr";
 import { useEffect, useReducer } from "react";
 import Image, { StaticImageData } from "next/image";
 import { useMediaQuery } from "@mantine/hooks";
+import { IconRefresh } from "@tabler/icons-react";
 
 import styles from "../../styles/Ninjaman.module.scss";
 import AsobiShinobuIdle from "../../../../../assets/asobi_shinobu_1.png";
@@ -13,17 +14,7 @@ import AsobiShinobuLose from "../../../../../assets/asobi_shinobu_5.png";
 import AsobiTarget from "../../../../../assets/asobi_target.png";
 import AsobiShuriken from "../../../../../assets/asobi_shuriken.png";
 
-import { KEYBOARD_ARR } from "./utility";
-
-interface Coord {
-  x: number;
-  y: number;
-}
-
-interface Shuriken {
-  visible: boolean;
-  coordinates: Coord;
-}
+import { KEYBOARD_ARR, hitShurikens, missShurikens } from "./utility";
 
 interface State {
   playGame: boolean;
@@ -36,6 +27,22 @@ interface State {
   hitShurikens: Shuriken[];
   missShurikens: Shuriken[];
 }
+
+let tempKeys = KEYBOARD_ARR;
+let tempHits = hitShurikens;
+let tempMisses = missShurikens;
+
+const defaultState: State = {
+  playGame: true,
+  wonGame: false,
+  shinobuSprite: AsobiShinobuIdle,
+  isShinobuIdle: true,
+  missAmt: 0,
+  guessedLetters: [],
+  letterKeys: tempKeys,
+  hitShurikens: tempHits,
+  missShurikens: tempMisses,
+};
 
 type Action =
   | {
@@ -56,7 +63,9 @@ type Action =
       payload: {
         letterKey: Letter;
       };
-    };
+    }
+  | { type: "fetchData" }
+  | { type: "newGame" };
 
 function NinjamanGameLoading() {
   return (
@@ -82,121 +91,6 @@ function NinjamanGameLoading() {
   );
 }
 
-function reducer(state: State, action: Action): State {
-  // state changes: shinobu sprite transition, show shuriken
-  let newMissAmt: number;
-  let newGuessedLetters: string[];
-  let newHitShurikens: Shuriken[];
-  let newMissShurikens: Shuriken[];
-  switch (action.type) {
-    case "chooseLetter":
-      newHitShurikens = state.hitShurikens;
-      newMissShurikens = state.missShurikens;
-      newGuessedLetters = state.guessedLetters;
-      newMissAmt = state.missAmt;
-      if (!newGuessedLetters.includes(action.payload.letterKey.letter)) {
-        newGuessedLetters.push(action.payload.letterKey.letter);
-        if (action.payload.isPresent) {
-          let recentHit = state.hitShurikens.filter(
-            (shuriken) => !shuriken.visible
-          )[0];
-          let recentHitIndex = state.hitShurikens.findIndex(
-            (shuriken) => !shuriken.visible
-          );
-          newHitShurikens[recentHitIndex] = { ...recentHit, visible: true };
-        } else {
-          let recentMiss = state.missShurikens.filter(
-            (shuriken) => !shuriken.visible
-          )[0];
-          let recentMissIndex = state.missShurikens.findIndex(
-            (shuriken) => !shuriken.visible
-          );
-          newMissShurikens[recentMissIndex] = { ...recentMiss, visible: true };
-        }
-      }
-      let newKeys = state.letterKeys;
-      let currentKey = newKeys
-        .flat()
-        .filter((key) => key === action.payload.letterKey)[0];
-      currentKey = { ...currentKey, isGuessed: true };
-      for (let i = 0; i < newKeys.length; i++) {
-        for (let j = 0; j < newKeys[i].length; j++) {
-          if (newKeys[i][j].letter === currentKey.letter) {
-            newKeys[i][j] = currentKey;
-          }
-        }
-      }
-      let missLength = newMissShurikens.filter(
-        (sh) => sh.visible === true
-      ).length;
-      return {
-        ...state,
-        missAmt: missLength,
-        guessedLetters: newGuessedLetters,
-        letterKeys: newKeys,
-        shinobuSprite: action.payload.isPresent
-          ? AsobiShinobuHit
-          : AsobiShinobuMiss,
-        isShinobuIdle: false,
-        hitShurikens: newHitShurikens,
-        missShurikens: newMissShurikens,
-      };
-      break;
-    case "resetToIdle":
-      return {
-        ...state,
-        shinobuSprite: AsobiShinobuIdle,
-        isShinobuIdle: true,
-      };
-      break;
-    case "winState":
-      newHitShurikens = state.hitShurikens;
-      newGuessedLetters = [
-        ...state.guessedLetters,
-        action.payload.letterKey.letter,
-      ];
-      newHitShurikens[newHitShurikens.length - 1] = {
-        ...newHitShurikens[newHitShurikens.length - 1],
-        visible: true,
-      };
-      return {
-        ...state,
-        playGame: false,
-        wonGame: true,
-        shinobuSprite: AsobiShinobuWin,
-        isShinobuIdle: false,
-        hitShurikens: newHitShurikens,
-        guessedLetters: newGuessedLetters,
-      };
-      break;
-    case "loseState":
-      newGuessedLetters = state.guessedLetters;
-      let missShurikenVal = {
-        ...state.missShurikens[state.missShurikens.length - 1],
-        visible: true,
-      };
-      newMissShurikens = state.missShurikens;
-      newMissShurikens[newMissShurikens.length - 1] = missShurikenVal;
-      KEYBOARD_ARR.flat().forEach((key) => {
-        if (!newGuessedLetters.includes(key.letter)) {
-          newGuessedLetters.push(key.letter);
-        }
-      });
-      return {
-        ...state,
-        playGame: false,
-        shinobuSprite: AsobiShinobuLose,
-        isShinobuIdle: false,
-        guessedLetters: newGuessedLetters,
-        missShurikens: newMissShurikens,
-      };
-      break;
-    default:
-      return state;
-      break;
-  }
-}
-
 /**
  *
  * @returns the actual game content
@@ -205,191 +99,350 @@ export default function NinjamanGame() {
   const isMobile = useMediaQuery("(max-width: 812px)");
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  const { data: phrase } = useSWR("/api/ninjaman/get", fetcher, {
+  const { data: phrase, mutate } = useSWR("/api/ninjaman/get", fetcher, {
     revalidateOnFocus: false,
   });
 
-  const [state, dispatch] = useReducer(reducer, {
-    playGame: true,
-    wonGame: false,
-    shinobuSprite: AsobiShinobuIdle,
-    isShinobuIdle: true,
-    missAmt: 0,
-    guessedLetters: [],
-    letterKeys: KEYBOARD_ARR,
-    hitShurikens: [
-      {
-        visible: false,
-        coordinates: {
-          x: 20,
-          y: 10,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 120,
-          y: 95,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 30,
-          y: 100,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 100,
-          y: 6,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 98,
-          y: 67,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 5,
-          y: 67,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 70,
-          y: 120,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 72,
-          y: 20,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 40,
-          y: 40,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 100,
-          y: 42,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 50,
-          y: 80,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 72,
-          y: 56,
-        },
-      },
-    ],
-    missShurikens: [
-      {
-        visible: false,
-        coordinates: {
-          x: -30,
-          y: 32,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 55,
-          y: 142,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 120,
-          y: -5,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 140,
-          y: 80,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: -20,
-          y: 72,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 30,
-          y: -20,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: -10,
-          y: 100,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 130,
-          y: 120,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 143,
-          y: 40,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: 90,
-          y: -30,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: -10,
-          y: -30,
-        },
-      },
-      {
-        visible: false,
-        coordinates: {
-          x: -20,
-          y: 120,
-        },
-      },
-    ],
-  });
+  function reducer(state: State, action: Action): State {
+    // state changes: shinobu sprite transition, show shuriken
+    let newMissAmt: number;
+    let newGuessedLetters: string[];
+    let newHitShurikens: Shuriken[];
+    let newMissShurikens: Shuriken[];
+    switch (action.type) {
+      case "chooseLetter":
+        newHitShurikens = state.hitShurikens;
+        newMissShurikens = state.missShurikens;
+        newGuessedLetters = state.guessedLetters;
+        newMissAmt = state.missAmt;
+        if (!newGuessedLetters.includes(action.payload.letterKey.letter)) {
+          newGuessedLetters.push(action.payload.letterKey.letter);
+          if (action.payload.isPresent) {
+            let recentHit = state.hitShurikens.filter(
+              (shuriken) => !shuriken.visible
+            )[0];
+            let recentHitIndex = state.hitShurikens.findIndex(
+              (shuriken) => !shuriken.visible
+            );
+            newHitShurikens[recentHitIndex] = { ...recentHit, visible: true };
+          } else {
+            let recentMiss = state.missShurikens.filter(
+              (shuriken) => !shuriken.visible
+            )[0];
+            let recentMissIndex = state.missShurikens.findIndex(
+              (shuriken) => !shuriken.visible
+            );
+            newMissShurikens[recentMissIndex] = {
+              ...recentMiss,
+              visible: true,
+            };
+          }
+        }
+        let newKeys = state.letterKeys;
+        let currentKey = newKeys
+          .flat()
+          .filter((key) => key === action.payload.letterKey)[0];
+        currentKey = { ...currentKey, isGuessed: true };
+        for (let i = 0; i < newKeys.length; i++) {
+          for (let j = 0; j < newKeys[i].length; j++) {
+            if (newKeys[i][j].letter === currentKey.letter) {
+              newKeys[i][j] = currentKey;
+            }
+          }
+        }
+        let missLength = newMissShurikens.filter(
+          (sh) => sh.visible === true
+        ).length;
+        return {
+          ...state,
+          missAmt: missLength,
+          guessedLetters: newGuessedLetters,
+          letterKeys: newKeys,
+          shinobuSprite: action.payload.isPresent
+            ? AsobiShinobuHit
+            : AsobiShinobuMiss,
+          isShinobuIdle: false,
+          hitShurikens: newHitShurikens,
+          missShurikens: newMissShurikens,
+        };
+        break;
+      case "resetToIdle":
+        return {
+          ...state,
+          shinobuSprite: AsobiShinobuIdle,
+          isShinobuIdle: true,
+        };
+        break;
+      case "winState":
+        newHitShurikens = state.hitShurikens;
+        newGuessedLetters = [
+          ...state.guessedLetters,
+          action.payload.letterKey.letter,
+        ];
+        newHitShurikens[newHitShurikens.length - 1] = {
+          ...newHitShurikens[newHitShurikens.length - 1],
+          visible: true,
+        };
+        return {
+          ...state,
+          playGame: false,
+          wonGame: true,
+          shinobuSprite: AsobiShinobuWin,
+          isShinobuIdle: false,
+          hitShurikens: newHitShurikens,
+          guessedLetters: newGuessedLetters,
+        };
+        break;
+      case "loseState":
+        newGuessedLetters = state.guessedLetters;
+        let missShurikenVal = {
+          ...state.missShurikens[state.missShurikens.length - 1],
+          visible: true,
+        };
+        newMissShurikens = state.missShurikens;
+        newMissShurikens[newMissShurikens.length - 1] = missShurikenVal;
+        KEYBOARD_ARR.flat().forEach((key) => {
+          if (!newGuessedLetters.includes(key.letter)) {
+            newGuessedLetters.push(key.letter);
+          }
+        });
+        return {
+          ...state,
+          playGame: false,
+          shinobuSprite: AsobiShinobuLose,
+          isShinobuIdle: false,
+          guessedLetters: newGuessedLetters,
+          missShurikens: newMissShurikens,
+        };
+        break;
+      case "fetchData":
+        mutate();
+        let tempKeys = KEYBOARD_ARR;
+        let tempHits = hitShurikens;
+        let tempMisses = missShurikens;
+        return {
+          ...state,
+          playGame: true,
+          wonGame: false,
+          shinobuSprite: AsobiShinobuIdle,
+          isShinobuIdle: true,
+          missAmt: 0,
+          guessedLetters: [],
+          letterKeys: [
+            [
+              { letter: "Q", isGuessed: false },
+              { letter: "W", isGuessed: false },
+              { letter: "E", isGuessed: false },
+              { letter: "R", isGuessed: false },
+              { letter: "T", isGuessed: false },
+              { letter: "Y", isGuessed: false },
+              { letter: "U", isGuessed: false },
+              { letter: "I", isGuessed: false },
+              { letter: "O", isGuessed: false },
+              { letter: "P", isGuessed: false },
+            ],
+            [
+              { letter: "A", isGuessed: false },
+              { letter: "S", isGuessed: false },
+              { letter: "D", isGuessed: false },
+              { letter: "F", isGuessed: false },
+              { letter: "G", isGuessed: false },
+              { letter: "H", isGuessed: false },
+              { letter: "J", isGuessed: false },
+              { letter: "K", isGuessed: false },
+              { letter: "L", isGuessed: false },
+            ],
+            [
+              { letter: "Z", isGuessed: false },
+              { letter: "X", isGuessed: false },
+              { letter: "C", isGuessed: false },
+              { letter: "V", isGuessed: false },
+              { letter: "B", isGuessed: false },
+              { letter: "N", isGuessed: false },
+              { letter: "M", isGuessed: false },
+            ],
+          ],
+          hitShurikens: [
+            {
+              visible: false,
+              coordinates: {
+                x: 20,
+                y: 10,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 120,
+                y: 95,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 30,
+                y: 100,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 100,
+                y: 6,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 98,
+                y: 67,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 5,
+                y: 67,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 70,
+                y: 120,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 72,
+                y: 20,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 40,
+                y: 40,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 100,
+                y: 42,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 50,
+                y: 80,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 72,
+                y: 56,
+              },
+            },
+          ],
+          missShurikens: [
+            {
+              visible: false,
+              coordinates: {
+                x: -30,
+                y: 32,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 55,
+                y: 142,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 120,
+                y: -5,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 140,
+                y: 80,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: -20,
+                y: 72,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 30,
+                y: -20,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: -10,
+                y: 100,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 130,
+                y: 120,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 143,
+                y: 40,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: 90,
+                y: -30,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: -10,
+                y: -30,
+              },
+            },
+            {
+              visible: false,
+              coordinates: {
+                x: -20,
+                y: 120,
+              },
+            },
+          ],
+        };
+        break;
+      default:
+        return state;
+        break;
+    }
+  }
+
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
   const MISS_COUNT = 7;
 
@@ -587,9 +640,20 @@ export default function NinjamanGame() {
         <div className={styles.ninjamanGameContainer}>
           <NinjamanShinobuBoard />
           <div className={styles.ninjamanGameNotShnoob}>
-            <div className={styles.ninjamanGameCategory}>
-              <span className={styles.categoryLabel}>Category:</span>{" "}
-              {phrase.type}
+            <div className={styles.ninjamanCategoryAndButton}>
+              <div className={styles.ninjamanGameCategory}>
+                <span className={styles.categoryLabel}>Category:</span>{" "}
+                {phrase.type}
+              </div>
+              <div
+                className={styles.ninjamanReplayButton}
+                style={{ display: state.playGame ? "none" : "block" }}
+                onClick={(e) => {
+                  dispatch({ type: "fetchData" });
+                }}
+              >
+                <IconRefresh /> New game
+              </div>
             </div>
             <div className={styles.ninjamanGameLetters}>
               {phrase.phrase.split(" ").map((phrase: string, index: number) => {

@@ -132,24 +132,45 @@
     .ninjamanGameNotShnoob {
       flex-grow: 1;
 
-      .ninjamanGameCategory {
-        display: inline-block;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 800;
-        text-transform: uppercase;
-        font-size: 1.5rem;
-        padding: 10px 10px;
-        border-radius: 20px;
-        border: 5px solid #d85965;
+      .ninjamanCategoryAndButton {
+        display: flex;
+        align-items: center;
+        gap: 10px;
 
-        @media screen and (max-width: 812px) {
-          font-size: 1.1rem;
+        .ninjamanReplayButton {
+          font-family: 'Open Sans', sans-serif;
+          font-weight: 800;
+          background-color: #d85965;
+          text-transform: uppercase;
+          font-size: 1.5rem;
+          border-radius: 20px;
+          color: #fff;
+          padding: 15px 15px;
+          user-select: none;
+          cursor: pointer;
         }
 
-        .categoryLabel {
-          color: #d85965;
+        .ninjamanGameCategory {
+          display: inline-block;
+          font-family: 'Open Sans', sans-serif;
+          font-weight: 800;
+          text-transform: uppercase;
+          font-size: 1.5rem;
+          padding: 10px;
+          border-radius: 20px;
+          border: 5px solid #d85965;
+
+          @media screen and (max-width: 812px) {
+            font-size: 1.1rem;
+          }
+
+          .categoryLabel {
+            color: #d85965;
+          }
         }
       }
+
+      
 
       .ninjamanGameLetters {
         flex-grow: 1;
