@@ -10,7 +10,7 @@ export default function Tooltip({
 }: {
   label: string;
   style?: CSSProperties;
-  position: string;
+  position: "top" | "bottom";
   children: any;
 }) {
   return (

@@ -9,7 +9,13 @@ import {
 } from "component/utility/AnimatedIcons";
 import Strong from "component/utility/Strong";
 
-export default function Profile({ styles }: { styles: any }) {
+export default function Profile({
+  styles,
+  birthday,
+}: {
+  styles: any;
+  birthday: string;
+}) {
   const ICON_SIZE = 40;
 
   const allAboutSon: BioSection[] = [
@@ -20,7 +26,7 @@ export default function Profile({ styles }: { styles: any }) {
     },
     {
       title: "age",
-      content: `${dayjs().diff(dayjs("1999-03-30"), "year")} years old`,
+      content: `${dayjs().diff(dayjs(birthday), "year")} years old`,
       icon: IconZodiacAries,
     },
     {

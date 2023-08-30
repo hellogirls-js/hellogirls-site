@@ -1,4 +1,4 @@
-import { MutableRefObject, useContext } from "react";
+import { CSSProperties, MutableRefObject, useContext } from "react";
 
 import styles from "./TextInput.module.scss";
 
@@ -12,6 +12,8 @@ export default function TextInput({
   id,
   onChange,
   style,
+  textboxStyle,
+  required = false,
 }: {
   refProp?: MutableRefObject<HTMLInputElement | null>;
   label?: string;
@@ -19,7 +21,9 @@ export default function TextInput({
   value?: string;
   id?: string;
   onChange?: any;
-  style?: any;
+  style?: CSSProperties;
+  textboxStyle?: CSSProperties;
+  required?: boolean;
 }) {
   const { colorTheme } = useContext(DarkModeContext);
   return (
@@ -33,6 +37,9 @@ export default function TextInput({
         onChange={onChange}
         placeholder={placeholder}
         value={value}
+        aria-label={placeholder}
+        style={textboxStyle}
+        required={required}
       />
     </div>
   );

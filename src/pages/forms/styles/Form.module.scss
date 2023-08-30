@@ -1,0 +1,87 @@
+@use "../../../../styles/vars.module.scss";
+
+.formPage {
+  width: 80%;
+  margin: auto;
+
+  @media screen and (max-width: 812px) {
+    width: 100%;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+
+  .formContainer {
+    margin: 5vh 0% 10vh 0%;
+    padding: 5%;
+    border-radius: 10px;
+
+    .formPart {
+      
+      .formSection {
+
+        .formLabel {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          .asterisk {
+            font-weight: 800;
+            font-size: 1.6rem;
+          }
+        }
+      }
+    }
+
+    .formNavButtonContainer {
+      margin-top: 5%;
+
+      .formNavButton {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 10%;
+        padding: 10px 20px;
+        border-radius: 5px;
+      }
+
+      .formNavButton.prevButton {
+        float: left;
+      }
+      
+      .formNavButton.nextButton {
+        float: right;
+      }
+    }
+  }
+}
+
+.light {
+  .formContainer {
+    background: #fff;
+    border: 1px solid vars.$light-shadow;
+
+    .asterisk {
+      color: vars.$light-link;
+    }
+
+    .formNavButton {
+      border: 1px solid vars.$light-form-button-border;
+      color: vars.$light-form-button-text;
+      background-color: vars.$light-form-button-bg;
+    }
+  }
+}
+
+.dark {
+  .formContainer {
+    background: vars.$dark-text-bg;
+    border: 1px solid vars.$dark-shadow;
+
+    .asterisk {
+      color: vars.$dark-link;
+    }
+  }
+}

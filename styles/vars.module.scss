@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono&display=swap');
 
 /* COLORS */
 
@@ -21,6 +21,9 @@ $light-blockquote: #b8c543;
 $light-bold-text: #6b65a8;
 $light-button-border: #b5aef0;
 $light-button-text: #7c73ce;
+$light-form-button-bg: #dde29e;
+$light-form-button-text: #5f661c;
+$light-form-button-border: #b0b86a;
 
 // dark colors
 
@@ -38,6 +41,9 @@ $dark-blockquote: #97a047;
 $dark-bold-text: #c2bdf5;
 $dark-button-border: #5b53a8;
 $dark-button-text: #ddd9ff;
+$dark-form-button-bg: #91946f;
+$dark-form-button-text: #3f4133;
+$dark-form-button-border: #75775a;
 
 /* FONTS */
 
