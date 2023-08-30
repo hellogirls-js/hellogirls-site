@@ -1,0 +1,157 @@
+import { useContext, useReducer, useState } from "react";
+import { motion } from "framer-motion";
+import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+
+import styles from "../styles/Form.module.scss";
+
+import FollowerSurveyIntro from "./components/FollowerSurveyIntro";
+
+import MainLayout from "component/MainLayout";
+import { DarkModeContext } from "context/DarkModeContext";
+
+interface State {
+  formData: {
+    name?: string | null;
+    twitter: string | null;
+    fave_unit: number | null;
+    fave_chara: number | null;
+    assumed_unit: number | null;
+    assumed_chara: number | null;
+    comment?: string | null;
+  };
+}
+
+type Action = {
+  type: "updateData";
+  payload: {
+    name?: string;
+    twitter?: string;
+    fave_unit?: number;
+    fave_chara?: number;
+    assumed_unit?: number;
+    assumed_chara?: number;
+    comment?: string;
+  };
+};
+
+export default function FollowerSurveyForm(props: {
+  title: string;
+  actionUrl: string;
+}) {
+  const defaultState: State = {
+    formData: {
+      name: null,
+      twitter: null,
+      fave_unit: null,
+      fave_chara: null,
+      assumed_unit: null,
+      assumed_chara: null,
+      comment: null,
+    },
+  };
+
+  function reducer(state: State, action: Action): State {
+    return defaultState;
+  }
+
+  const [isSubmitted, setSubmitted] = useState(false);
+  const [state, dispatch] = useReducer(reducer, {
+    formData: {
+      name: null,
+      twitter: null,
+      fave_unit: null,
+      fave_chara: null,
+      assumed_unit: null,
+      assumed_chara: null,
+      comment: null,
+    },
+  });
+
+  function FormButtons() {
+    return (
+      <div className={styles.formNavButtonContainer}>
+        <div className={`${styles.formNavButton} ${styles.prevButton}`}>
+          <IconArrowLeft /> previous
+        </div>
+        <div className={`${styles.formNavButton} ${styles.nextButton}`}>
+          next <IconArrowRight />
+        </div>
+      </div>
+    );
+  }
+
+  const { colorTheme } = useContext(DarkModeContext);
+  return (
+    <MainLayout heading={props.title}>
+      <div className={`${styles.formPage} ${styles[colorTheme]}`}>
+        <h2>the follower survey of the century</h2>
+        <p>
+          hi! first off, thank you so much for 2000 followers oh my goodness. to
+          continue, one day, i was in a really awful mood. i felt really
+          paranoid online and decided to private my account, one of the only
+          times i&apos;d ever do that. however, that wasn&apos;t enough to ease
+          my anxieties; i needed a genuine pick-me-up. at the time, i was in my
+          survey making era and thought about how i enjoyed reading the funny
+          comments people left on my surveys. impulsively, i opened google forms
+          and created a short-lived survey asking my followers who their
+          favorite characters and units in ensemble stars are. i intended to end
+          the survey whenever i felt ready to unprivate. my heart warmed when i
+          read all of the comments people left. they were entertaining and
+          managed to put a smile on my face. in return, i created a data
+          visualization showing how everyone responded to the survey.
+        </p>
+        <p>
+          i am <strong>NOT</strong> proud of the survey i created back then
+          (back then being like 7 months ago but WHATEVER). it was rushed,
+          uninspired, and blatantly revealed that i was unwilling to use
+          advanced data visualization tools such as D3 or do any sort of
+          meaningful analysis. i&apos;m committed to doing myself justice. with
+          a larger sample size and more motivation, i will create the ULTIMATE
+          character and unit popularity survey in ensemble stars (or, well,
+          among my followers).
+        </p>
+        <p>
+          that being said, thank you so much for taking part in this survey. and
+          most importantly, thank you for supporting my coding endeavors!!
+        </p>
+        <motion.div
+          className={styles.formContainer}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.7 }}
+          transition={{ duration: 0.5 }}
+        >
+          {!isSubmitted && (
+            <>
+              <form
+                id="follower-survey"
+                className={styles.form}
+                method="POST"
+                action={props.actionUrl}
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const target: HTMLFormElement = e.target as HTMLFormElement;
+                  const data = new FormData(target);
+                  const { action } = target;
+                }}
+              >
+                <FollowerSurveyIntro isVisible={true} />
+              </form>
+              <FormButtons />
+            </>
+          )}
+        </motion.div>
+      </div>
+    </MainLayout>
+  );
+}
+
+export async function getServerSideProps() {
+  const { FOLLOWER_FORM_DEPLOYMENT_URL } = process.env;
+  return {
+    props: {
+      title: "follower survey",
+      actionUrl: FOLLOWER_FORM_DEPLOYMENT_URL,
+    },
+  };
+}

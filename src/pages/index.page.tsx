@@ -13,7 +13,7 @@ export default function Home(props: any) {
   return (
     <MainLayout heading="welcome!">
       <div className={styles[colorTheme]}>
-        <Profile styles={styles} />
+        <Profile styles={styles} birthday={props.birthday} />
         <Tech styles={styles} />
       </div>
     </MainLayout>
@@ -21,9 +21,12 @@ export default function Home(props: any) {
 }
 
 export async function getServerSideProps() {
+  const birthday = process.env.BIRTHDAY;
+
   return {
     props: {
       title: "welcome!",
+      birthday: birthday,
     },
   };
 }

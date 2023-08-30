@@ -28,6 +28,10 @@
     border-color: vars.$light-button-border;
   }
 
+  input[type=text]:focus {
+    outline: 2px solid vars.$light-blockquote;
+  }
+
   .label {
     color: vars.$light-subtext;
   }
@@ -39,6 +43,10 @@
     background: vars.$dark-text-bg;
     color: vars.$dark-button-text;
     border-color: vars.$dark-button-border;
+  }
+
+  input[type=text]:focus {
+    outline: 2px solid vars.$dark-blockquote;
   }
 
   .label {
