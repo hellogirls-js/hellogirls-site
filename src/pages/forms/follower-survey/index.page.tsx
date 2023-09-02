@@ -9,35 +9,12 @@ import FollowerSurveyIntro from "./components/FollowerSurveyIntro";
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
 
-interface State {
-  formData: {
-    name?: string | null;
-    twitter: string | null;
-    fave_unit: number | null;
-    fave_chara: number | null;
-    assumed_unit: number | null;
-    assumed_chara: number | null;
-    comment?: string | null;
-  };
-}
-
-type Action = {
-  type: "updateData";
-  payload: {
-    name?: string;
-    twitter?: string;
-    fave_unit?: number;
-    fave_chara?: number;
-    assumed_unit?: number;
-    assumed_chara?: number;
-    comment?: string;
-  };
-};
-
 export default function FollowerSurveyForm(props: {
   title: string;
   actionUrl: string;
 }) {
+  const [isIntroBotChecked, setIntroBotChecked] = useState<boolean>(false);
+
   const defaultState: State = {
     formData: {
       name: null,
@@ -48,9 +25,45 @@ export default function FollowerSurveyForm(props: {
       assumed_chara: null,
       comment: null,
     },
+    formIndex: 1,
+    introFormError: null,
   };
 
   function reducer(state: State, action: Action): State {
+    if (action.type === "nextSection") {
+      switch (state.formIndex) {
+        case 1:
+          if (
+            (document.getElementById("user_twitter") as HTMLInputElement)
+              .value !== "" &&
+            !isIntroBotChecked
+          ) {
+            return {
+              ...state,
+              formData: {
+                ...state.formData,
+                name: (document.getElementById("user_name") as HTMLInputElement)
+                  .value,
+                twitter: (
+                  document.getElementById("user_twitter") as HTMLInputElement
+                ).value,
+              },
+              formIndex: 2,
+            };
+          } else {
+            return {
+              ...state,
+              introFormError: {
+                noUsername:
+                  (document.getElementById("user_twitter") as HTMLInputElement)
+                    .value === "",
+                isBot: isIntroBotChecked,
+              },
+            };
+          }
+          break;
+      }
+    }
     return defaultState;
   }
 
@@ -65,15 +78,25 @@ export default function FollowerSurveyForm(props: {
       assumed_chara: null,
       comment: null,
     },
+    formIndex: 1,
+    introFormError: null,
   });
 
   function FormButtons() {
     return (
       <div className={styles.formNavButtonContainer}>
-        <div className={`${styles.formNavButton} ${styles.prevButton}`}>
+        <div
+          className={`${styles.formNavButton} ${styles.prevButton}`}
+          style={{ display: state.formIndex === 1 ? "none" : "block" }}
+        >
           <IconArrowLeft /> previous
         </div>
-        <div className={`${styles.formNavButton} ${styles.nextButton}`}>
+        <div
+          className={`${styles.formNavButton} ${styles.nextButton}`}
+          onClick={() => {
+            dispatch({ type: "nextSection" });
+          }}
+        >
           next <IconArrowRight />
         </div>
       </div>
@@ -135,7 +158,12 @@ export default function FollowerSurveyForm(props: {
                   const { action } = target;
                 }}
               >
-                <FollowerSurveyIntro isVisible={true} />
+                <FollowerSurveyIntro
+                  isVisible={state.formIndex === 1}
+                  isBot={isIntroBotChecked}
+                  setIsBot={setIntroBotChecked}
+                  error={state.introFormError}
+                />
               </form>
               <FormButtons />
             </>

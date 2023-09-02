@@ -3,18 +3,7 @@
 .posts {
   width: 60%;
 
-  .postStats {
-    font-size: 11pt;
-    margin-top: 1%;
-    display: flex;
-    gap: 3px;
-
-    .postDates {
-      font-size: 10pt;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 812px) {
     width: 100%;
   }
 
@@ -22,6 +11,36 @@
     padding: 20px;
     border-radius: 10px;
     margin: 3% 0%;
+
+    .postTitle {
+      
+      @media screen and (max-width: 768px) {
+        font-size: 1.2rem;
+      }
+    }
+
+    .postAuthor {
+      font-size: 0.9rem;
+    }
+
+    .postStats {
+      font-size: 0.9rem;
+      margin-top: 1%;
+      display: flex;
+      gap: 3px;
+
+      .postDates {
+        font-size: 10pt;
+      }
+
+      @media screen and (max-width: 812px) {
+        flex-flow: column;
+      }
+    }
+
+    .postDesc {
+      margin-top: 2vh;
+    }
   }
 }
 
