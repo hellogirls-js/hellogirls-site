@@ -1,0 +1,51 @@
+import React from "react"
+import MDXTemplate from "../../../component/MDXTemplate"
+
+export const meta = {
+  title: "frequently asked questions",
+  id: 5,
+  urlName: "faq",
+  author: "son",
+  url: "https://twitter.com/HELLOGlRLS",
+  description: "some questions i commonly receive on my retrospring! please read this before sending an ask",
+  dateCreated: 1693684123983,
+  dateUpdated: 1693684123983 
+}
+
+# frequently asked questions
+
+hello, i noticed i've been getting some repeat questions on my retrospring so i'm gonna answer them right here! if i get more questions along these lines then i prob won't answer them cause i'm sorta getting tired of answering them OTL
+
+### how did you learn how to code/do you have any coding resources?
+
+i've been coding websites for a very long time so it's hard for me to remember all of the resources i've used to learn. i recommend websites such as [the mozilla docs](https://developer.mozilla.org/en-US/docs/Web), [w3schools](https://www.w3schools.com/), [stack overflow](https://stackoverflow.com/) for specific questions you have along the way, and in-person classes if a curriculum keeps you motivated! good luck :3
+
+### can you help me with this coding bug i have?
+
+i'll be honest i will most likely redirect you to stackoverflow because i'm bad at debugging things on the fly.
+
+### can you give me tips on coding something that doesn't involve web development
+
+i only focus on web development and javascript and i will also redirect you to stackoverflow... sorry...
+
+### hey one of your websites has a bug
+
+if you're able to describe the bug well enough to fit in a retrospring ask then please send it via retrospring! but if it's more convoluted or you're gonna send a vague description then please DM me or [my dev account](https://twitter.com/hellogirls_dev)
+
+### [something related to makotools]
+
+this is the reason why i wrote this up in the first place 💀 please either dm the [makotools twitter account](https://twitter.com/es_makotools) or drop your concern in the [discord server](https://discord.gg/TVVuahrD8d) i am on my hands and knees please dont send makotools related concerns in my askbox i am not the person you should be asking please. also please do not dm me with any makotools related concerns either.
+
+### can you unblock me
+
+if i don't remember why i blocked you and you don't fall under my dni then i will unblock you for free, sorry bout that! ^w^ if i do remember why i blocked you or you fall under my dni then i will unblock you for the small price of [one niki nui](https://www.buymeacoffee.com/hellogirls). so gamble wisely
+
+export default ({ children }) => <MDXTemplate meta={meta}>{children}</MDXTemplate>
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      title: meta.title
+    },
+  };
+}

@@ -18,19 +18,19 @@ export default function Posts(props: any) {
   function Post({ post }: { post: PostMeta }) {
     return (
       <div className={styles.post}>
+        <div className={styles.postAuthor}>
+          written by{" "}
+          <Link href={post.url} target="_blank">
+            {post.author}
+          </Link>
+        </div>
         <h3 className={styles.postTitle}>
           <Link href={`/post/${post.urlName}`}>{post.title}</Link>
         </h3>
         <div className={styles.postStats}>
-          <div className={styles.postAuthor}>
-            written by{" "}
-            <Link href={post.url} target="_blank">
-              {post.author}
-            </Link>
-          </div>
           {post.dateCreated && post.dateUpdated && (
             <div className={styles.postDates}>
-              | {dayjs(post.dateCreated).format("MM/DD/YYYY h:mma")}, last
+              {dayjs(post.dateCreated).format("MM/DD/YYYY h:mma")}, last
               updated: {dayjs(post.dateUpdated).format("MM/DD/YYYY h:mma")}
             </div>
           )}
