@@ -14,8 +14,26 @@
 
   .formContainer {
     margin: 5vh 0% 10vh 0%;
-    padding: 5%;
+    padding: 2% 5% 5% 5%;
     border-radius: 10px;
+
+    .formIndexContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-bottom: 3%;
+
+      .formIndex {
+        user-select: none;
+        width: 1.8vw;
+        height: 1.8vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 0.9rem;
+      }
+    }
 
     .formPart {
       
@@ -35,6 +53,7 @@
     }
 
     .formNavButtonContainer {
+      position: relative;
       margin-top: 5%;
 
       .formNavButton {
@@ -47,12 +66,14 @@
       }
 
       .formNavButton.prevButton {
-        float: left;
+        position: absolute;
+        left: 0;
         width: 10%;
       }
       
       .formNavButton.nextButton {
-        float: right;
+        position: absolute;
+        right: 0;
         width: 25%;
       }
     }
@@ -68,7 +89,12 @@
       color: vars.$light-link;
     }
 
-    .formNavButton {
+    .formIndex.regular {
+      border: 1px solid vars.$light-button-border;
+      color: vars.$light-button-text;
+    }
+
+    .formNavButton, .formIndex.completed {
       border: 1px solid vars.$light-form-button-border;
       color: vars.$light-form-button-text;
       background-color: vars.$light-form-button-bg;
@@ -85,7 +111,13 @@
       color: vars.$dark-link;
     }
 
-    .formNavButton {
+    .formIndex.regular {
+      border: 1px solid vars.$dark-button-border;
+      color: vars.$dark-button-text;
+      background-color: vars.$dark-heading-bg;
+    }
+
+    .formNavButton, .formIndex.completed {
       border: 1px solid vars.$dark-form-button-border;
       color: vars.$dark-form-button-text;
       background-color: vars.$dark-form-button-bg;

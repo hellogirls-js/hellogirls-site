@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, RefObject, SetStateAction } from "react";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
 
@@ -10,13 +10,20 @@ import Alert from "component/utility/Alert";
 
 export default function FollowerSurveyIntro({
   isVisible,
-  isBot,
   setIsBot,
+  setName,
+  setUsername,
+  nameRef,
+  usernameRef,
   error,
 }: {
   isVisible: boolean;
   isBot: boolean;
   setIsBot: Dispatch<SetStateAction<boolean>>;
+  setName: (newValue: string) => void;
+  setUsername: (newValue: string) => void;
+  nameRef: RefObject<HTMLInputElement>;
+  usernameRef: RefObject<HTMLInputElement>;
   error?: FormError | null;
 }) {
   const isDesktop = useMediaQuery("(min-width: 1000px)");
@@ -34,6 +41,10 @@ export default function FollowerSurveyIntro({
           placeholder="input your name"
           style={{ paddingLeft: 0, width: isDesktop ? "40%" : "100%" }}
           textboxStyle={{ padding: 8 }}
+          onChange={(e: InputEvent) =>
+            setName((e.currentTarget as HTMLInputElement).value)
+          }
+          refProp={nameRef}
         />
       </div>
       <div className={styles.formSection}>
@@ -62,6 +73,10 @@ export default function FollowerSurveyIntro({
           style={{ paddingLeft: 0, width: isDesktop ? "40%" : "100%" }}
           textboxStyle={{ padding: 8 }}
           required={true}
+          onChange={(e: InputEvent) =>
+            setUsername((e.currentTarget as HTMLInputElement).value)
+          }
+          refProp={usernameRef}
         />
       </div>
       {error?.isBot && (

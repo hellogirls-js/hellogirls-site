@@ -1,10 +1,13 @@
-import { useContext, useReducer, useState } from "react";
+import { useContext, useReducer, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { useDebouncedState } from "@mantine/hooks";
 
 import styles from "../styles/Form.module.scss";
 
 import FollowerSurveyIntro from "./components/FollowerSurveyIntro";
+import FollowerSurveyFave from "./components/FollowerSurveyFave";
+import FollowerSurveyIndex from "./components/FollowerSurveyIndex";
 
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
@@ -14,6 +17,11 @@ export default function FollowerSurveyForm(props: {
   actionUrl: string;
 }) {
   const [isIntroBotChecked, setIntroBotChecked] = useState<boolean>(false);
+  const [name, setName] = useDebouncedState<string>("", 300);
+  const [username, setUsername] = useDebouncedState<string>("", 300);
+
+  const nameInput = useRef<HTMLInputElement>(null);
+  const usernameInput = useRef<HTMLInputElement>(null);
 
   const defaultState: State = {
     formData: {
@@ -33,35 +41,41 @@ export default function FollowerSurveyForm(props: {
     if (action.type === "nextSection") {
       switch (state.formIndex) {
         case 1:
-          if (
-            (document.getElementById("user_twitter") as HTMLInputElement)
-              .value !== "" &&
-            !isIntroBotChecked
-          ) {
+          if (username !== null && username !== "" && !isIntroBotChecked) {
             return {
               ...state,
               formData: {
                 ...state.formData,
-                name: (document.getElementById("user_name") as HTMLInputElement)
-                  .value,
-                twitter: (
-                  document.getElementById("user_twitter") as HTMLInputElement
-                ).value,
+                name: name,
+                twitter: username,
               },
+              introFormError: null,
               formIndex: 2,
             };
           } else {
             return {
               ...state,
               introFormError: {
-                noUsername:
-                  (document.getElementById("user_twitter") as HTMLInputElement)
-                    .value === "",
+                noUsername: username === null || username === "",
                 isBot: isIntroBotChecked,
               },
             };
           }
           break;
+        default:
+          return state;
+      }
+    } else if (action.type === "prevSection") {
+      switch (state.formIndex) {
+        case 2:
+          if (usernameInput.current) usernameInput.current.value = username;
+          return {
+            ...state,
+            formIndex: 1,
+          };
+          break;
+        default:
+          return state;
       }
     }
     return defaultState;
@@ -87,7 +101,10 @@ export default function FollowerSurveyForm(props: {
       <div className={styles.formNavButtonContainer}>
         <div
           className={`${styles.formNavButton} ${styles.prevButton}`}
-          style={{ display: state.formIndex === 1 ? "none" : "block" }}
+          style={{ display: state.formIndex === 1 ? "none" : "flex" }}
+          onClick={() => {
+            dispatch({ type: "prevSection" });
+          }}
         >
           <IconArrowLeft /> previous
         </div>
@@ -146,6 +163,7 @@ export default function FollowerSurveyForm(props: {
         >
           {!isSubmitted && (
             <>
+              <FollowerSurveyIndex formIndex={state.formIndex} />
               <form
                 id="follower-survey"
                 className={styles.form}
@@ -163,7 +181,12 @@ export default function FollowerSurveyForm(props: {
                   isBot={isIntroBotChecked}
                   setIsBot={setIntroBotChecked}
                   error={state.introFormError}
+                  setName={setName}
+                  setUsername={setUsername}
+                  nameRef={nameInput}
+                  usernameRef={usernameInput}
                 />
+                <FollowerSurveyFave isVisible={state.formIndex === 2} />
               </form>
               <FormButtons />
             </>
