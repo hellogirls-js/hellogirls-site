@@ -1,6 +1,7 @@
 import { Dispatch, RefObject, SetStateAction } from "react";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
+import { motion } from "framer-motion";
 
 import styles from "../../styles/Form.module.scss";
 
@@ -28,7 +29,7 @@ export default function FollowerSurveyIntro({
 }) {
   const isDesktop = useMediaQuery("(min-width: 1000px)");
   return (
-    <div
+    <motion.div
       className={styles.formPart}
       style={{ display: isVisible ? "block" : "none" }}
     >
@@ -90,6 +91,6 @@ export default function FollowerSurveyIntro({
         id="intro-security-check"
         onChange={(e) => setIsBot((e.target as HTMLInputElement).checked)}
       />
-    </div>
+    </motion.div>
   );
 }

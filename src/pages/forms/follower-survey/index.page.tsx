@@ -2,6 +2,7 @@ import { useContext, useReducer, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { useDebouncedState } from "@mantine/hooks";
+import Link from "next/link";
 
 import styles from "../styles/Form.module.scss";
 
@@ -11,14 +12,23 @@ import FollowerSurveyIndex from "./components/FollowerSurveyIndex";
 
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
+import getData from "component/utility/data";
 
 export default function FollowerSurveyForm(props: {
   title: string;
   actionUrl: string;
+  rawData: any;
+  enData: any;
+  unitData: any;
 }) {
+  const { rawData, enData, unitData } = props;
+
   const [isIntroBotChecked, setIntroBotChecked] = useState<boolean>(false);
+  const [isFaveBotChecked, setFaveBotChecked] = useState<boolean>(false);
   const [name, setName] = useDebouncedState<string>("", 300);
   const [username, setUsername] = useDebouncedState<string>("", 300);
+  const [faveUnit, setFaveUnit] = useState<number | null>(null);
+  const [faveChara, setFaveChara] = useState<number | null>(null);
 
   const nameInput = useRef<HTMLInputElement>(null);
   const usernameInput = useRef<HTMLInputElement>(null);
@@ -35,6 +45,7 @@ export default function FollowerSurveyForm(props: {
     },
     formIndex: 1,
     introFormError: null,
+    faveFormError: null,
   };
 
   function reducer(state: State, action: Action): State {
@@ -101,7 +112,7 @@ export default function FollowerSurveyForm(props: {
       <div className={styles.formNavButtonContainer}>
         <div
           className={`${styles.formNavButton} ${styles.prevButton}`}
-          style={{ display: state.formIndex === 1 ? "none" : "flex" }}
+          style={{ visibility: state.formIndex === 1 ? "hidden" : "visible" }}
           onClick={() => {
             dispatch({ type: "prevSection" });
           }}
@@ -125,6 +136,12 @@ export default function FollowerSurveyForm(props: {
     <MainLayout heading={props.title}>
       <div className={`${styles.formPage} ${styles[colorTheme]}`}>
         <h2>the follower survey of the century</h2>
+        <h3>
+          <Link href="#follower-survey">
+            i am on mobile i do not care what you have to say. just take me to
+            the survey please.
+          </Link>
+        </h3>
         <p>
           hi! first off, thank you so much for 2000 followers oh my goodness. to
           continue, one day, i was in a really awful mood. i felt really
@@ -186,7 +203,18 @@ export default function FollowerSurveyForm(props: {
                   nameRef={nameInput}
                   usernameRef={usernameInput}
                 />
-                <FollowerSurveyFave isVisible={state.formIndex === 2} />
+                <FollowerSurveyFave
+                  isVisible={state.formIndex === 2}
+                  unitData={unitData.data}
+                  rawData={rawData.data}
+                  enData={enData.data}
+                  faveUnit={faveUnit}
+                  setFaveUnit={setFaveUnit}
+                  faveChara={faveChara}
+                  setFaveChara={setFaveChara}
+                  setIsBot={setFaveBotChecked}
+                  error={state.faveFormError}
+                />
               </form>
               <FormButtons />
             </>
@@ -199,10 +227,22 @@ export default function FollowerSurveyForm(props: {
 
 export async function getServerSideProps() {
   const { FOLLOWER_FORM_DEPLOYMENT_URL } = process.env;
+
+  const TL_DATA_URL = "https://tl.data.ensemble.moe/en/characters.json";
+  const DATA_URL = "https://data.ensemble.moe/ja/characters.json";
+  const UNIT_DATA = "https://tl.data.ensemble.moe/en/units.json";
+
+  const enData = await getData(TL_DATA_URL);
+  const rawData = await getData(DATA_URL);
+  const unitData = await getData(UNIT_DATA);
+
   return {
     props: {
       title: "follower survey",
       actionUrl: FOLLOWER_FORM_DEPLOYMENT_URL,
+      rawData,
+      enData,
+      unitData,
     },
   };
 }

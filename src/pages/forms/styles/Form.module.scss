@@ -1,5 +1,20 @@
 @use "../../../../styles/vars.module.scss";
 
+@keyframes selectedUnit {
+  0% {
+    transform: scale(0.8)
+  }
+  25% {
+    transform: scale(1)
+  }
+  50% {
+    transform: scale(1.4)
+  }
+  100% {
+    transform: scale(1.1)
+  }
+}
+
 .formPage {
   width: 80%;
   margin: auto;
@@ -14,7 +29,7 @@
 
   .formContainer {
     margin: 5vh 0% 10vh 0%;
-    padding: 2% 5% 5% 5%;
+    padding: 2% 5% 2% 5%;
     border-radius: 10px;
 
     .formIndexContainer {
@@ -25,13 +40,18 @@
 
       .formIndex {
         user-select: none;
-        width: 1.8vw;
-        height: 1.8vw;
+        width: 40px;
+        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
         font-size: 0.9rem;
+
+        @media screen and (max-width: 768px) {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
 
@@ -49,11 +69,87 @@
             font-size: 1.6rem;
           }
         }
+
+        .checkboxContainer {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          align-items: center;
+          justify-content: center;
+          gap: 3vh 2%;
+
+          @media screen and (max-width: 768px) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          
+          .unitCheckboxContainer, .unitCheckboxContainerPicked {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 120px;
+            user-select: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.2s;
+
+            input[type=radio] {
+              position: absolute;
+              margin: 0;
+              width: 100%;
+              height: 100%;
+              opacity: 0;
+              cursor: pointer;
+            }
+
+            .unitImage {
+              width: 75%;
+              height: 75%;
+              opacity: 0.5;
+              transition: opacity 0.2s;
+
+              img {
+                width: 75% !important;
+                height: 75% !important;
+                inset: auto !important;
+              }
+            }
+
+            .unitImage:hover {
+              opacity: 1;
+            }
+          }
+
+          .unitCheckboxContainer:hover {
+            transform: scale(1.05);
+          }
+
+          .unitCheckboxContainerPicked {
+            animation: selectedUnit 0.5s linear 0s 1 forwards none;
+            transform: scale(1.1);
+            transition: all 0.2s;
+
+            .checkboxIcon {
+              transform: scale(3);
+              position: absolute;
+              bottom: 5px;
+              right: 20px;
+              animation: selectedUnit 0.5s linear 0s 1 forwards none;
+            }
+
+            .unitImage {
+              opacity: 1;
+            }
+          }
+        }
       }
     }
 
     .formNavButtonContainer {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       margin-top: 5%;
 
       .formNavButton {
@@ -64,16 +160,8 @@
         padding: 10px 20px;
         border-radius: 5px;
       }
-
-      .formNavButton.prevButton {
-        position: absolute;
-        left: 0;
-        width: 10%;
-      }
       
       .formNavButton.nextButton {
-        position: absolute;
-        right: 0;
         width: 25%;
       }
     }
@@ -99,6 +187,28 @@
       color: vars.$light-form-button-text;
       background-color: vars.$light-form-button-bg;
     }
+
+    .unitCheckboxContainer, .unitCheckboxContainerPicked {
+      border: 1px solid vars.$light-button-border;
+    }
+
+    // .unitCheckboxContainer {
+    //   .unitImage {
+    //     img {
+    //       filter: invert(89%) sepia(12%) saturate(337%) hue-rotate(209deg) brightness(104%) contrast(107%);
+    //     }
+    //   }
+    // }
+
+    .unitCheckboxContainerPicked {
+      .checkboxIcon {
+        color: vars.$light-blockquote;
+        
+        svg {
+          filter: drop-shadow(1px 1px 0px vars.$light-heading-bg);
+        }
+      }
+    }
   }
 }
 
@@ -121,6 +231,16 @@
       border: 1px solid vars.$dark-form-button-border;
       color: vars.$dark-form-button-text;
       background-color: vars.$dark-form-button-bg;
+    }
+
+    .unitCheckboxContainer, .unitCheckboxContainerPicked {
+      border: 1px solid vars.$dark-button-border;
+    }
+
+    .unitCheckboxContainerPicked {
+      .checkboxIcon {
+        color: vars.$dark-button-text;
+      }
     }
   }
 }
