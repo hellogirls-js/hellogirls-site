@@ -11,6 +11,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>{`${pageProps.title || ""} ♡ hellogirls.info`}</title>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
+          crossOrigin="anonymous"
+        ></script>
         <meta
           name="description"
           content={
