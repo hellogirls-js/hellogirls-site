@@ -14,6 +14,13 @@ export default function Ninjaman() {
 
   return (
     <AsobiLayout title="Ninjaman">
+      <Head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
+          crossOrigin="anonymous"
+        ></script>
+      </Head>
       <div className={styles.ninjamanContainer}>
         {currentPage === "home" && (
           <NinjamanHome setCurrentPage={setCurrentPage} />
