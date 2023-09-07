@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import Head from "next/head";
 
 import Profile from "./components/Profile";
 import Tech from "./components/Tech";
@@ -11,12 +12,21 @@ export default function Home(props: any) {
   const { colorTheme } = useContext(DarkModeContext);
 
   return (
-    <MainLayout heading="welcome!">
-      <div className={styles[colorTheme]}>
-        <Profile styles={styles} birthday={props.birthday} />
-        <Tech styles={styles} />
-      </div>
-    </MainLayout>
+    <>
+      <Head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
+          crossOrigin="anonymous"
+        ></script>
+      </Head>
+      <MainLayout heading="welcome!">
+        <div className={styles[colorTheme]}>
+          <Profile styles={styles} birthday={props.birthday} />
+          <Tech styles={styles} />
+        </div>
+      </MainLayout>
+    </>
   );
 }
 
