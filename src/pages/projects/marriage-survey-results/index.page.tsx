@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Link from "next/link";
+import Head from "next/head";
 
 import styles from "../styles/Survey.module.scss";
 
@@ -57,6 +58,13 @@ export default function MarriageSurveyResults({
 
   return (
     <MainLayout heading="enstars marriage survey results">
+      <Head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
+          crossOrigin="anonymous"
+        ></script>
+      </Head>
       <div className={`${styles.page} ${styles[colorTheme]}`}>
         <div>
           <h2>marriage survey results: an analysis</h2>

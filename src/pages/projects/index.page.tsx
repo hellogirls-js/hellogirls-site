@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useContext } from "react";
+import Head from "next/head";
 
 import styles from "./styles/Projects.module.scss";
 
@@ -181,6 +182,13 @@ export default function Projects(props: any) {
 
   return (
     <MainLayout heading="projects">
+      <Head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
+          crossOrigin="anonymous"
+        ></script>
+      </Head>
       <div className={`${styles.projects} ${styles[colorTheme]}`}>
         <h2>current projects</h2>
         <div className={styles.projectsGrid}>
