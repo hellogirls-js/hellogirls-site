@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { ColorRing } from "react-loader-spinner";
-import Head from "next/head";
 
 import styles from "../styles/MadLibs.module.scss";
 import AsobiSora1 from "../../../../assets/asobi_sora_1.png";
@@ -56,13 +55,6 @@ export default function MadLibs() {
 
   return (
     <AsobiLayout title="Mad Libs">
-      <Head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
-          crossOrigin="anonymous"
-        ></script>
-      </Head>
       <div className={styles.madlibsContainer}>
         {currentPage === "home" && (
           <MadLibsHome
