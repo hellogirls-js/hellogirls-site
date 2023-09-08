@@ -1,6 +1,5 @@
 import React from "react"
 import MDXTemplate from "../../../component/MDXTemplate"
-import Head from "next/head"
 
 export const meta = {
   title: "frequently asked questions",
@@ -41,13 +40,7 @@ this is the reason why i wrote this up in the first place 💀 please either dm 
 
 if i don't remember why i blocked you and you don't fall under my dni then i will unblock you for free, sorry bout that! ^w^ if i do remember why i blocked you or you fall under my dni then i will unblock you for the small price of [one niki nui](https://www.buymeacoffee.com/hellogirls). so gamble wisely
 
-export default ({ children }) => <MDXTemplate meta={meta}><Head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
-          crossOrigin="anonymous"
-        ></script>
-      </Head>{children}</MDXTemplate>
+export default ({ children }) => <MDXTemplate meta={meta}>{children}</MDXTemplate>
 
 export async function getServerSideProps() {
   return {
