@@ -2,7 +2,6 @@ import { useContext } from "react";
 import useSWR from "swr";
 import Link from "next/link";
 import dayjs from "dayjs";
-import Head from "next/head";
 
 import styles from "./styles/Posts.module.scss";
 
@@ -43,13 +42,6 @@ export default function Posts(props: any) {
 
   return (
     <MainLayout heading="posts">
-      <Head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
-          crossOrigin="anonymous"
-        ></script>
-      </Head>
       <div className={`${styles.posts} ${styles[colorTheme]}`}>
         <h2>posts</h2>
         {posts &&
