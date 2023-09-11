@@ -100,6 +100,19 @@ export default function Projects(props: any) {
       finished: true,
     },
     {
+      title: "enstars webring",
+      url: "https://webring.hellogirls.info",
+      description: (
+        <p className={styles.projectDesc}>
+          a webring is a collection of websites that revolve around a common
+          theme. the concepot was popular in the 90&apos;s and early
+          2000&apos;s. i created a script to emulate a webring for enstars
+          websites.
+        </p>
+      ),
+      finished: true,
+    },
+    {
       title: "enstars marriage survey data visualization",
       url: "/projects/marriage-survey-results",
       description: (
