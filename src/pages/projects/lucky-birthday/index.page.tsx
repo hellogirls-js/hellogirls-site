@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import Head from "next/head";
 
 import dates from "../../../../data/array_vals.json";
 import MakoCringe from "../../../../assets/MakoCringe.png";
@@ -112,13 +111,6 @@ export default function LuckyBirthday() {
 
   return (
     <MainLayout heading="lucky birthday ranking">
-      <Head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
-          crossOrigin="anonymous"
-        ></script>
-      </Head>
       <div className={`${styles.page} ${styles[colorTheme]}`}>
         <div className={styles.topSection}>
           <div className={styles.formContainer}>
