@@ -109,7 +109,9 @@ export default function Profile({
           />
         </div>
         <div className={styles.profileInfo}>
-          <div className={styles.profileTitle}>{section.title}</div>
+          <div className={styles.profileTitle}>
+            <strong>{section.title}</strong>
+          </div>
           <div className={styles.profileContent}>{section.content}</div>
         </div>
       </div>
@@ -181,7 +183,7 @@ export default function Profile({
           </p>
           <p>
             i started coding at a very young age (when i was ten years old!).
-            it&apos; embarrassing to admit, but what got me into web design was
+            it&apos;s embarrassing to admit, but what got me into web design was
             seeing the various pokemon fansites that were popular in the mid
             2000&apos;s to early 2010&apos;s. it was a niche community, yet i
             wouldn&apos;t be where i am if i never discovered them. i expanded

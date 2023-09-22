@@ -10,6 +10,7 @@ interface State {
   };
   formIndex: 1 | 2 | 3 | 4;
   introFormError?: FormError | null;
+  faveFormError?: FormError | null;
 }
 
 type Action =
@@ -34,4 +35,6 @@ type Action =
 type FormError = {
   noUsername?: boolean;
   isBot?: boolean;
+  noFaveChara?: boolean;
+  noFaveUnit?: boolean;
 };
