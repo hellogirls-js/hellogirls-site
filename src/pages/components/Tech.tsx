@@ -41,17 +41,16 @@ export default function Tech({ styles }: { styles: any }) {
 
     const ICON_SIZE = isDesktop ? 60 : 50;
     return (
-      // <motion.div
-      //   className={styles.techItem}
-      //   initial={{ opacity: 0, x: -200 }}
-      //   whileInView={{
-      //     opacity: 1,
-      //     x: 0,
-      //     transition: { delay: custom * 0.5, duration: 0.5 },
-      //   }}
-      //   viewport={{ once: true }}
-      // >
-      <div className={styles.techItem}>
+      <motion.div
+        className={styles.techItem}
+        initial={{ opacity: 0, x: -200 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: { delay: custom * 0.5, duration: 0.5 },
+        }}
+        viewport={{ once: true }}
+      >
         <motion.div
           className={styles.techIcon}
           whileHover={{
@@ -64,20 +63,18 @@ export default function Tech({ styles }: { styles: any }) {
         </motion.div>
         <div className={styles.techName}>{tech.name}</div>
         <div className={styles.techDescription}>{tech.description}</div>
-      </div>
-      // </motion.div>
+      </motion.div>
     );
   }
 
   return (
-    // <motion.div
-    //   className={styles.technologies}
-    //   initial={{ opacity: 0 }}
-    //   whileInView={{ opacity: 1, transition: { delay: 0.1, duration: 0.3 } }}
-    //   viewport={{ once: true }}
-    // >
-    <div className={styles.technologies}>
-      {/* <motion.h2
+    <motion.div
+      className={styles.technologies}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { delay: 0.1, duration: 0.3 } }}
+      viewport={{ once: true }}
+    >
+      <motion.h2
         className={styles.heading2}
         initial={{ opacity: 0, x: -100 }}
         whileInView={{
@@ -86,22 +83,19 @@ export default function Tech({ styles }: { styles: any }) {
           transition: { delay: 0.5, duration: 0.3 },
         }}
         viewport={{ once: true }}
-      > */}
-      <h2 className={styles.heading2}>technologies used</h2>
-      {/* </motion.h2> */}
-      {/* <motion.div
+      >
+        technologies used
+      </motion.h2>
+      <motion.div
         className={styles.tech}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1, transition: { delay: 0.8, duration: 0.3 } }}
         viewport={{ once: true }}
-      > */}
-      <div className={styles.tech}>
+      >
         {TECH_LIST.map((tech, index) => (
           <TechItem tech={tech} key={tech.name} custom={index + 2} />
         ))}
-      </div>
-      {/* </motion.div> */}
-    </div>
-    // </motion.div>
+      </motion.div>
+    </motion.div>
   );
 }

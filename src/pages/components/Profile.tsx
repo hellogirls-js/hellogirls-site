@@ -76,30 +76,29 @@ export default function Profile({
     }
 
     return (
-      // <motion.div
-      //   whileHover={{ scale: 1.1 }}
-      //   className={styles.profileElement}
-      //   onMouseEnter={handleMouseEnterControls}
-      //   onMouseLeave={handleMouseLeaveControls}
-      //   variants={{
-      //     hiddenItem: {
-      //       opacity: 0,
-      //       y: 100,
-      //     },
-      //     visibleItem: {
-      //       opacity: 1,
-      //       y: 0,
-      //       transition: {
-      //         delay: custom * 0.8,
-      //         duration: 0.6,
-      //       },
-      //     },
-      //   }}
-      //   initial="hiddenItem"
-      //   animate="visibleItem"
-      //   custom={custom}
-      // >
-      <div className={styles.profileElement}>
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        className={styles.profileElement}
+        onMouseEnter={handleMouseEnterControls}
+        onMouseLeave={handleMouseLeaveControls}
+        variants={{
+          hiddenItem: {
+            opacity: 0,
+            y: 100,
+          },
+          visibleItem: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              delay: custom * 0.8,
+              duration: 0.6,
+            },
+          },
+        }}
+        initial="hiddenItem"
+        animate="visibleItem"
+        custom={custom}
+      >
         <div className={styles.profileIcon}>
           <section.icon
             size={ICON_SIZE}
@@ -114,14 +113,13 @@ export default function Profile({
           </div>
           <div className={styles.profileContent}>{section.content}</div>
         </div>
-      </div>
-      // </motion.div>
+      </motion.div>
     );
   }
 
   return (
     <>
-      {/* <motion.h2
+      <motion.h2
         className={styles.heading2}
         variants={{
           hidden: { opacity: 0, x: -100 },
@@ -136,11 +134,11 @@ export default function Profile({
         initial="hidden"
         animate="visible"
         custom={1}
-      > */}
-      <h2 className={styles.heading2}>who am i?</h2>
-      {/* </motion.h2> */}
+      >
+        who am i?
+      </motion.h2>
       <div className={styles.profile}>
-        {/* <motion.div
+        <motion.div
           className={styles.info}
           variants={{
             hiddenInfo: { opacity: 0 },
@@ -151,14 +149,12 @@ export default function Profile({
           initial="hiddenInfo"
           animate="visibleInfo"
           custom={2}
-        > */}
-        <div className={styles.info}>
+        >
           {allAboutSon.map((info, index) => (
             <ProfileCard key={info.title} section={info} custom={index + 3} />
           ))}
-        </div>
-        {/* </motion.div> */}
-        {/* <motion.div
+        </motion.div>
+        <motion.div
           className={styles.summary}
           variants={{
             hidden: { opacity: 0, y: -300 },
@@ -173,8 +169,7 @@ export default function Profile({
           custom={6}
           initial="hidden"
           animate="visible"
-        > */}
-        <div className={styles.summary}>
+        >
           <p>
             hi! you can call me <Strong>son</Strong>. i&apos;m a black web
             developer and part time artist. my passion for coding reignited, and
@@ -206,8 +201,7 @@ export default function Profile({
             </Link>
             ! i love her dearly and will talk about her sometimes.
           </p>
-        </div>
-        {/* </motion.div> */}
+        </motion.div>
       </div>
     </>
   );
