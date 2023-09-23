@@ -27,10 +27,10 @@
     background: var(--input-bg-light);
     color: vars.$light-button-text;
     border-color: vars.$light-button-border;
-  }
 
-  input[type=text]:focus {
-    outline: 2px solid vars.$light-blockquote;
+    &:focus {
+      outline: 2px solid vars.$light-blockquote;
+    }
   }
 
   .label {
@@ -44,10 +44,10 @@
     background: vars.$dark-text-bg;
     color: vars.$dark-button-text;
     border-color: vars.$dark-button-border;
-  }
 
-  input[type=text]:focus {
-    outline: 2px solid vars.$dark-blockquote;
+    &:focus {
+      outline: 2px solid vars.$dark-blockquote;
+    }
   }
 
   .label {

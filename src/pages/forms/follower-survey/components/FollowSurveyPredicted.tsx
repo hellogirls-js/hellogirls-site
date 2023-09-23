@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 import Image from "next/image";
-import { IconAlertTriangle, IconCircleCheck } from "@tabler/icons-react";
+import { IconCircleCheck } from "@tabler/icons-react";
 
 import styles from "../../styles/Form.module.scss";
 
@@ -9,7 +9,7 @@ import Alert from "component/utility/Alert";
 import Tooltip from "component/utility/Tooltip";
 import { twoStarIDs } from "data/twoStarIds";
 
-export default function FollowerSurveyFave({
+export default function FollowerSurveyPredicted({
   isVisible,
   unitData,
   rawData,
@@ -128,7 +128,10 @@ export default function FollowerSurveyFave({
     >
       <div className={styles.formSection}>
         <label className={styles.formLabel} htmlFor="faveUnit">
-          <h3>choose your favorite unit</h3>
+          <h3>
+            let&apos;s spice things up a bit, choose the unit you think is the
+            most popular
+          </h3>
           <Tooltip
             label="this is required"
             position="top"
@@ -137,15 +140,6 @@ export default function FollowerSurveyFave({
             <span className={styles.asterisk}>*</span>
           </Tooltip>
         </label>
-        {error?.noFaveUnit && (
-          <Alert
-            icon={<IconAlertTriangle />}
-            type="warning"
-            style={{ width: isDesktop ? "40%" : "100%", margin: "10px 0" }}
-          >
-            Please select your favorute unit!
-          </Alert>
-        )}
         <div className={styles.checkboxContainer}>
           {unitData.map((unit: any) => (
             <FaveUnitTile unit={unit} key={unit.id} />
@@ -154,7 +148,7 @@ export default function FollowerSurveyFave({
       </div>
       <div className={styles.formSection}>
         <label className={styles.formLabel} htmlFor="faveChara">
-          <h3>now, choose your favorite character</h3>
+          <h3>now, choose the character you think is the most popular</h3>
           <Tooltip
             label="this is required"
             position="top"
@@ -163,15 +157,6 @@ export default function FollowerSurveyFave({
             <span className={styles.asterisk}>*</span>
           </Tooltip>
         </label>
-        {error?.noFaveChara && (
-          <Alert
-            icon={<IconAlertTriangle />}
-            type="warning"
-            style={{ width: isDesktop ? "40%" : "100%", margin: "10px 0" }}
-          >
-            Please select your favorute character!
-          </Alert>
-        )}
         <div className={styles.checkboxContainer}>
           {enData.map((chara: any) => (
             <FaveCharaTile chara={chara} key={chara.character_id} />
@@ -179,11 +164,7 @@ export default function FollowerSurveyFave({
         </div>
       </div>
       {error?.isBot && (
-        <Alert
-          icon={<IconAlertTriangle />}
-          type="warning"
-          style={{ width: isDesktop ? "40%" : "100%", margin: "10px 0" }}
-        >
+        <Alert style={{ width: isDesktop ? "40%" : "100%" }}>
           Nice try, bot.
         </Alert>
       )}

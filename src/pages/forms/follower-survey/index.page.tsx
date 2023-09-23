@@ -1,7 +1,7 @@
 import { useContext, useReducer, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { useDebouncedState } from "@mantine/hooks";
+import { useDebouncedState, useMediaQuery } from "@mantine/hooks";
 import Link from "next/link";
 
 import styles from "../styles/Form.module.scss";
@@ -9,6 +9,8 @@ import styles from "../styles/Form.module.scss";
 import FollowerSurveyIntro from "./components/FollowerSurveyIntro";
 import FollowerSurveyFave from "./components/FollowerSurveyFave";
 import FollowerSurveyIndex from "./components/FollowerSurveyIndex";
+import FollowerSurveyPredicted from "./components/FollowSurveyPredicted";
+import FollowerSurveyComment from "./components/FollowerSurveyComment";
 
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
@@ -25,13 +27,22 @@ export default function FollowerSurveyForm(props: {
 
   const [isIntroBotChecked, setIntroBotChecked] = useState<boolean>(false);
   const [isFaveBotChecked, setFaveBotChecked] = useState<boolean>(false);
+  const [isPredictedBotChecked, setPredictedBotChecked] =
+    useState<boolean>(false);
+  const [isCommentBotChecked, setCommentBotChecked] = useState<boolean>(false);
   const [name, setName] = useDebouncedState<string>("", 300);
   const [username, setUsername] = useDebouncedState<string>("", 300);
   const [faveUnit, setFaveUnit] = useState<number | null>(null);
   const [faveChara, setFaveChara] = useState<number | null>(null);
+  const [predictedUnit, setPredictedUnit] = useState<number | null>(null);
+  const [predictedChara, setPredictedChara] = useState<number | null>(null);
+  const [comment, setComment] = useState<string | null>(null);
 
   const nameInput = useRef<HTMLInputElement>(null);
   const usernameInput = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const defaultState: State = {
     formData: {
@@ -44,8 +55,11 @@ export default function FollowerSurveyForm(props: {
       comment: null,
     },
     formIndex: 1,
+    submitForm: false,
     introFormError: null,
     faveFormError: null,
+    predictedFormError: null,
+    commentFormError: null,
   };
 
   function reducer(state: State, action: Action): State {
@@ -73,6 +87,81 @@ export default function FollowerSurveyForm(props: {
             };
           }
           break;
+        case 2:
+          if (!isFaveBotChecked && faveChara !== null && faveUnit !== null) {
+            formRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              formData: {
+                ...state.formData,
+                fave_chara: faveChara,
+                fave_unit: faveUnit,
+              },
+              faveFormError: null,
+              formIndex: 3,
+            };
+          } else {
+            formRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              faveFormError: {
+                noFaveChara: faveChara === null,
+                noFaveUnit: faveUnit === null,
+                isBot: isFaveBotChecked,
+              },
+            };
+          }
+          break;
+        case 3:
+          if (
+            !isPredictedBotChecked &&
+            predictedChara !== null &&
+            predictedUnit !== null
+          ) {
+            formRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              formData: {
+                ...state.formData,
+                assumed_chara: predictedChara,
+                assumed_unit: predictedUnit,
+              },
+              predictedFormError: null,
+              formIndex: 4,
+            };
+          } else {
+            formRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              predictedFormError: {
+                noPredictedChara: predictedChara === null,
+                noFaveUnit: predictedUnit === null,
+                isBot: isPredictedBotChecked,
+              },
+            };
+          }
+          break;
+        case 4:
+          if (!isCommentBotChecked) {
+            return {
+              ...state,
+              formData: {
+                ...state.formData,
+                comment: comment,
+              },
+              commentFormError: null,
+              submitForm: true,
+            };
+          }
+          break;
         default:
           return state;
       }
@@ -85,6 +174,18 @@ export default function FollowerSurveyForm(props: {
             formIndex: 1,
           };
           break;
+        case 3:
+          return {
+            ...state,
+            formIndex: 2,
+          };
+          break;
+        case 4:
+          return {
+            ...state,
+            formIndex: 3,
+          };
+          break;
         default:
           return state;
       }
@@ -92,7 +193,6 @@ export default function FollowerSurveyForm(props: {
     return defaultState;
   }
 
-  const [isSubmitted, setSubmitted] = useState(false);
   const [state, dispatch] = useReducer(reducer, {
     formData: {
       name: null,
@@ -104,9 +204,17 @@ export default function FollowerSurveyForm(props: {
       comment: null,
     },
     formIndex: 1,
+    submitForm: false,
     introFormError: null,
+    faveFormError: null,
+    predictedFormError: null,
+    commentFormError: null,
   });
 
+  /**
+   *
+   * @returns A set of navigation buttons for the form
+   */
   function FormButtons() {
     return (
       <div className={styles.formNavButtonContainer}>
@@ -125,7 +233,7 @@ export default function FollowerSurveyForm(props: {
             dispatch({ type: "nextSection" });
           }}
         >
-          next <IconArrowRight />
+          {state.formIndex === 4 ? "submit" : "next"} <IconArrowRight />
         </div>
       </div>
     );
@@ -137,10 +245,12 @@ export default function FollowerSurveyForm(props: {
       <div className={`${styles.formPage} ${styles[colorTheme]}`}>
         <h2>the follower survey of the century</h2>
         <h3>
-          <Link href="#follower-survey">
-            i am on mobile i do not care what you have to say. just take me to
-            the survey please.
-          </Link>
+          {isMobile && (
+            <Link href="#follower-survey">
+              i am on mobile i do not care what you have to say. just take me to
+              the survey please.
+            </Link>
+          )}
         </h3>
         <p>
           hi! first off, thank you so much for 2000 followers oh my goodness. to
@@ -172,13 +282,14 @@ export default function FollowerSurveyForm(props: {
           most importantly, thank you for supporting my coding endeavors!!
         </p>
         <motion.div
+          ref={formRef}
           className={styles.formContainer}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.5 }}
         >
-          {!isSubmitted && (
+          {!state.submitForm && (
             <>
               <FollowerSurveyIndex formIndex={state.formIndex} />
               <form
@@ -214,6 +325,24 @@ export default function FollowerSurveyForm(props: {
                   setFaveChara={setFaveChara}
                   setIsBot={setFaveBotChecked}
                   error={state.faveFormError}
+                />
+                <FollowerSurveyPredicted
+                  isVisible={state.formIndex === 3}
+                  unitData={unitData.data}
+                  rawData={rawData.data}
+                  enData={enData.data}
+                  faveUnit={predictedUnit}
+                  setFaveUnit={setPredictedUnit}
+                  faveChara={predictedChara}
+                  setFaveChara={setPredictedChara}
+                  setIsBot={setPredictedBotChecked}
+                  error={state.predictedFormError}
+                />
+                <FollowerSurveyComment
+                  isVisible={state.formIndex === 4}
+                  setComment={setComment}
+                  setIsBot={setCommentBotChecked}
+                  error={state.commentFormError}
                 />
               </form>
               <FormButtons />

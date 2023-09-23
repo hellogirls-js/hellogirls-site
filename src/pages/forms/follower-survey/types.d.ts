@@ -9,8 +9,11 @@ interface State {
     comment?: string | null;
   };
   formIndex: 1 | 2 | 3 | 4;
+  submitForm: boolean;
   introFormError?: FormError | null;
   faveFormError?: FormError | null;
+  predictedFormError?: FormError | null;
+  commentFormError?: FormError | null;
 }
 
 type Action =
@@ -37,4 +40,6 @@ type FormError = {
   isBot?: boolean;
   noFaveChara?: boolean;
   noFaveUnit?: boolean;
+  noPredictedChara?: boolean;
+  noPredictedUnit?: boolean;
 };
