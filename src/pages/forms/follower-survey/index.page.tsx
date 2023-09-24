@@ -396,6 +396,9 @@ export default function FollowerSurveyForm(props: {
                   fetch(action, {
                     method: "POST",
                     body: JSON.stringify(data),
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
                   })
                     .then((res) => {
                       console.log(res);
