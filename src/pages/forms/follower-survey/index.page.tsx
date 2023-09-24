@@ -385,6 +385,7 @@ export default function FollowerSurveyForm(props: {
                         (c: any) => c.character_id == data.assumed_chara
                       ).first_name,
                     ].join(": "),
+                    comment: `${data.comment || ""}`.replace(/<[^>]+>/gim, ""),
                   };
 
                   const submittedData = new FormData();
