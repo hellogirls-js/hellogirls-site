@@ -373,12 +373,12 @@ export default function FollowerSurveyForm(props: {
                       ).first_name,
                     ].join(": "),
                     assumed_unit: [
-                      data.fave_unit,
+                      data.assumed_unit,
                       unitData.data.find((u: any) => u.id == data.assumed_unit)
                         .name,
                     ].join(": "),
                     assumed_chara: [
-                      data.fave_chara,
+                      data.assumed_chara,
                       enData.data.find(
                         (c: any) => c.character_id == data.assumed_chara
                       ).first_name,
