@@ -449,6 +449,11 @@ export default function FollowerSurveyForm(props: {
                   setIsBot={setCommentBotChecked}
                   error={state.commentFormError}
                 />
+                <input
+                  type="hidden"
+                  name="timestamp"
+                  value="x-sheetmonkey-current-date-time"
+                />
                 <FormButtons />
               </form>
             </>
