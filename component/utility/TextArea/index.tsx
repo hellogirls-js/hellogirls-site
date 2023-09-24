@@ -15,6 +15,7 @@ export default function Textarea({
   textareaStyle,
   required,
   rows = 8,
+  maxLength,
 }: {
   label?: string;
   refProp?: MutableRefObject<HTMLTextAreaElement | null>;
@@ -26,6 +27,7 @@ export default function Textarea({
   textareaStyle?: CSSProperties;
   required?: boolean;
   rows?: number;
+  maxLength?: number;
 }) {
   const { colorTheme } = useContext(DarkModeContext);
 
@@ -49,6 +51,7 @@ export default function Textarea({
         style={textareaStyle}
         required={required}
         rows={rows}
+        maxLength={maxLength}
       />
     </div>
   );

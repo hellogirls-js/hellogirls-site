@@ -23,7 +23,7 @@ export default function FollowerSurveyComment({
       <label className={styles.formLabel} htmlFor="faveUnit">
         <h3>do you have any thoughts before you go? :3</h3>
       </label>
-      <Textarea name="comment" placeholder="hiiiiii" />
+      <Textarea name="comment" placeholder="hiiiiii" maxLength={2500} />
     </div>
   );
 }

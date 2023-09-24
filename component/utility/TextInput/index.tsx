@@ -14,6 +14,7 @@ export default function TextInput({
   style,
   textboxStyle,
   name,
+  maxLength,
   required = false,
 }: {
   refProp?: MutableRefObject<HTMLInputElement | null>;
@@ -26,6 +27,7 @@ export default function TextInput({
   textboxStyle?: CSSProperties;
   name?: string;
   required?: boolean;
+  maxLength?: number;
 }) {
   const { colorTheme } = useContext(DarkModeContext);
   return (
@@ -43,6 +45,7 @@ export default function TextInput({
         style={textboxStyle}
         name={name}
         required={required}
+        maxLength={maxLength}
       />
     </div>
   );

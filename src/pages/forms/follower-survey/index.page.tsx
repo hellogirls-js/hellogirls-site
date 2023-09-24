@@ -72,13 +72,22 @@ export default function FollowerSurveyForm(props: {
     if (action.type === "nextSection") {
       switch (state.formIndex) {
         case 1:
-          if (username !== null && username !== "" && !isIntroBotChecked) {
+          let filteredUser = username.replace(
+            /=([A-Za-z])\w+\(([^\)]+)\)/g,
+            ""
+          );
+          let isValidUsername =
+            filteredUser !== null &&
+            filteredUser !== "" &&
+            filteredUser !== "@" &&
+            filteredUser.length > 4;
+          if (isValidUsername && !isIntroBotChecked) {
             return {
               ...state,
               formData: {
                 ...state.formData,
                 name: name,
-                twitter: username,
+                twitter: filteredUser,
               },
               introFormError: null,
               formIndex: 2,
@@ -87,7 +96,7 @@ export default function FollowerSurveyForm(props: {
             return {
               ...state,
               introFormError: {
-                noUsername: username === null || username === "",
+                noUsername: !isValidUsername,
                 isBot: isIntroBotChecked,
               },
             };
@@ -386,7 +395,9 @@ export default function FollowerSurveyForm(props: {
                         (c: any) => c.character_id == data.assumed_chara
                       ).first_name,
                     ].join(": "),
-                    comment: `${data.comment || ""}`.replace(/<[^>]+>/gim, ""),
+                    comment: `${data.comment || ""}`
+                      .replace(/<[^>]+>/gim, "")
+                      .replace(/=([A-Za-z])\w+\(([^\)]+)\)/g, ""),
                   };
 
                   const submittedData = new FormData();
