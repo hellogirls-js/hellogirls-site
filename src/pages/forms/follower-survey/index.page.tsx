@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { useDebouncedState, useMediaQuery } from "@mantine/hooks";
 import Link from "next/link";
+import { Oval } from "react-loader-spinner";
 
 import styles from "../styles/Form.module.scss";
 
@@ -15,6 +16,7 @@ import FollowerSurveyComment from "./components/FollowerSurveyComment";
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
 import getData from "component/utility/data";
+import Button from "component/utility/Button";
 
 export default function FollowerSurveyForm(props: {
   title: string;
@@ -40,7 +42,9 @@ export default function FollowerSurveyForm(props: {
 
   const nameInput = useRef<HTMLInputElement>(null);
   const usernameInput = useRef<HTMLInputElement>(null);
-  const formRef = useRef<HTMLDivElement>(null);
+  const formContentRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -56,10 +60,12 @@ export default function FollowerSurveyForm(props: {
     },
     formIndex: 1,
     submitForm: false,
+    submitLoading: false,
     introFormError: null,
     faveFormError: null,
     predictedFormError: null,
     commentFormError: null,
+    submitError: false,
   };
 
   function reducer(state: State, action: Action): State {
@@ -89,7 +95,7 @@ export default function FollowerSurveyForm(props: {
           break;
         case 2:
           if (!isFaveBotChecked && faveChara !== null && faveUnit !== null) {
-            formRef.current?.scrollIntoView({
+            formContentRef.current?.scrollIntoView({
               behavior: "smooth",
             });
             return {
@@ -103,7 +109,7 @@ export default function FollowerSurveyForm(props: {
               formIndex: 3,
             };
           } else {
-            formRef.current?.scrollIntoView({
+            formContentRef.current?.scrollIntoView({
               behavior: "smooth",
             });
             return {
@@ -122,7 +128,7 @@ export default function FollowerSurveyForm(props: {
             predictedChara !== null &&
             predictedUnit !== null
           ) {
-            formRef.current?.scrollIntoView({
+            formContentRef.current?.scrollIntoView({
               behavior: "smooth",
             });
             return {
@@ -136,7 +142,7 @@ export default function FollowerSurveyForm(props: {
               formIndex: 4,
             };
           } else {
-            formRef.current?.scrollIntoView({
+            formContentRef.current?.scrollIntoView({
               behavior: "smooth",
             });
             return {
@@ -151,6 +157,9 @@ export default function FollowerSurveyForm(props: {
           break;
         case 4:
           if (!isCommentBotChecked) {
+            formContentRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
             return {
               ...state,
               formData: {
@@ -159,6 +168,16 @@ export default function FollowerSurveyForm(props: {
               },
               commentFormError: null,
               submitForm: true,
+            };
+          } else {
+            formContentRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              commentFormError: {
+                isBot: isCommentBotChecked,
+              },
             };
           }
           break;
@@ -189,6 +208,21 @@ export default function FollowerSurveyForm(props: {
         default:
           return state;
       }
+    } else if (action.type === "submitData") {
+      return {
+        ...state,
+        submitForm: true,
+      };
+    } else if (action.type === "submitError") {
+      return {
+        ...state,
+        submitError: true,
+      };
+    } else if (action.type === "submitLoading") {
+      return {
+        ...state,
+        submitLoading: true,
+      };
     }
     return defaultState;
   }
@@ -205,6 +239,8 @@ export default function FollowerSurveyForm(props: {
     },
     formIndex: 1,
     submitForm: false,
+    submitError: false,
+    submitLoading: false,
     introFormError: null,
     faveFormError: null,
     predictedFormError: null,
@@ -218,23 +254,41 @@ export default function FollowerSurveyForm(props: {
   function FormButtons() {
     return (
       <div className={styles.formNavButtonContainer}>
-        <div
-          className={`${styles.formNavButton} ${styles.prevButton}`}
-          style={{ visibility: state.formIndex === 1 ? "hidden" : "visible" }}
+        <Button
+          value="previous"
+          icon={<IconArrowLeft />}
           onClick={() => {
-            dispatch({ type: "prevSection" });
+            dispatch({
+              type: "prevSection",
+            });
           }}
-        >
-          <IconArrowLeft /> previous
-        </div>
-        <div
-          className={`${styles.formNavButton} ${styles.nextButton}`}
-          onClick={() => {
-            dispatch({ type: "nextSection" });
-          }}
-        >
-          {state.formIndex === 4 ? "submit" : "next"} <IconArrowRight />
-        </div>
+          style={{ width: "17%" }}
+          buttonStyle={{ width: "100%", padding: 10 }}
+        />
+        {state.formIndex === 4 ? (
+          <Button
+            type="submit"
+            value="submit"
+            alignIcon="right"
+            icon={<IconArrowRight />}
+            refProp={submitRef}
+            style={{ width: "30%" }}
+            buttonStyle={{ width: "100%", padding: 10 }}
+          />
+        ) : (
+          <Button
+            value="next"
+            icon={<IconArrowRight />}
+            alignIcon="right"
+            onClick={() => {
+              dispatch({
+                type: "nextSection",
+              });
+            }}
+            style={{ width: "30%" }}
+            buttonStyle={{ width: "100%", padding: 10 }}
+          />
+        )}
       </div>
     );
   }
@@ -282,26 +336,77 @@ export default function FollowerSurveyForm(props: {
           most importantly, thank you for supporting my coding endeavors!!
         </p>
         <motion.div
-          ref={formRef}
+          ref={formContentRef}
           className={styles.formContainer}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.5 }}
         >
-          {!state.submitForm && (
+          {!state.submitForm && !state.submitError && !state.submitLoading ? (
             <>
               <FollowerSurveyIndex formIndex={state.formIndex} />
               <form
                 id="follower-survey"
+                ref={formRef}
                 className={styles.form}
                 method="POST"
                 action={props.actionUrl}
                 onSubmit={(e) => {
                   e.preventDefault();
-                  const target: HTMLFormElement = e.target as HTMLFormElement;
-                  const data = new FormData(target);
+
+                  const target = e.target as HTMLFormElement;
                   const { action } = target;
+                  let data = Object.fromEntries(new FormData(target).entries());
+
+                  data = {
+                    ...data,
+                    fave_unit: [
+                      data.fave_unit,
+                      unitData.data.find((u: any) => u.id == data.fave_unit)
+                        .name,
+                    ].join(": "),
+                    fave_chara: [
+                      data.fave_chara,
+                      enData.data.find(
+                        (c: any) => c.character_id == data.fave_chara
+                      ).first_name,
+                    ].join(": "),
+                    assumed_unit: [
+                      data.fave_unit,
+                      unitData.data.find((u: any) => u.id == data.assumed_unit)
+                        .name,
+                    ].join(": "),
+                    assumed_chara: [
+                      data.fave_chara,
+                      enData.data.find(
+                        (c: any) => c.character_id == data.assumed_chara
+                      ).first_name,
+                    ].join(": "),
+                  };
+
+                  const submittedData = new FormData();
+
+                  Object.keys(data).forEach((key) => {
+                    submittedData.append(key, data[key]);
+                  });
+
+                  fetch(action, {
+                    method: "POST",
+                    body: submittedData,
+                  })
+                    .then((res) => {
+                      console.log(res);
+                      const json = res.json();
+                      if (res.status === 200 || res.status === 201) {
+                        dispatch({ type: "submitData" });
+                      } else {
+                        dispatch({ type: "submitError" });
+                      }
+                    })
+                    .catch(() => {
+                      dispatch({ type: "submitError" });
+                    });
                 }}
               >
                 <FollowerSurveyIntro
@@ -344,8 +449,35 @@ export default function FollowerSurveyForm(props: {
                   setIsBot={setCommentBotChecked}
                   error={state.commentFormError}
                 />
+                <FormButtons />
               </form>
-              <FormButtons />
+            </>
+          ) : state.submitForm && !state.submitLoading && !state.submitError ? (
+            <>
+              <h3>thank you so much for participating!</h3>
+              <p>
+                please look forward to the data visualization i will create with
+                this data. and most importantly, thank you for supporting my
+                coding endeavors!
+              </p>
+            </>
+          ) : state.submitError && !state.submitForm && !state.submitLoading ? (
+            <>
+              <h3>an error occurred while submitting, i&apos;m so sorry</h3>
+              <p>please refresh the page and try again</p>
+            </>
+          ) : (
+            <>
+              <Oval
+                width="10vw"
+                height="10vw"
+                color={colorTheme === "light" ? "#b5aef0" : "#5b53a8"}
+                secondaryColor={colorTheme === "light" ? "#b5aef0" : "#5b53a8"}
+                strokeWidth={5}
+                strokeWidthSecondary={3}
+                ariaLabel="loading"
+                visible={true}
+              />
             </>
           )}
         </motion.div>

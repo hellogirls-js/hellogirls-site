@@ -39,6 +39,7 @@ export default function FollowerSurveyIntro({
         </label>
         <TextInput
           id="user_name"
+          name="name"
           placeholder="input your name"
           style={{ paddingLeft: 0, width: isDesktop ? "40%" : "100%" }}
           textboxStyle={{ padding: 8 }}
@@ -69,7 +70,8 @@ export default function FollowerSurveyIntro({
           </Alert>
         )}
         <TextInput
-          id="user_twitter"
+          id="twitter"
+          name="twitter"
           placeholder="input your twitter username"
           style={{ paddingLeft: 0, width: isDesktop ? "40%" : "100%" }}
           textboxStyle={{ padding: 8 }}

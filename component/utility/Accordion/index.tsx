@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { CSSProperties, ReactNode, useState } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 
@@ -8,10 +8,12 @@ export default function Accordion({
   title,
   icon = <IconChevronDown size={30} />,
   children,
+  style,
 }: {
   title?: string | ReactNode;
   icon?: any;
   children: any;
+  style?: CSSProperties;
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -27,7 +29,7 @@ export default function Accordion({
   };
 
   return (
-    <div className={styles.accordion}>
+    <div className={styles.accordion} style={style}>
       <div
         className={styles.accordionHeader}
         onClick={() => setIsOpen(!isOpen)}

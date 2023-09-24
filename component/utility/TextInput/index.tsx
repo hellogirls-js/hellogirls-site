@@ -13,6 +13,7 @@ export default function TextInput({
   onChange,
   style,
   textboxStyle,
+  name,
   required = false,
 }: {
   refProp?: MutableRefObject<HTMLInputElement | null>;
@@ -23,6 +24,7 @@ export default function TextInput({
   onChange?: any;
   style?: CSSProperties;
   textboxStyle?: CSSProperties;
+  name?: string;
   required?: boolean;
 }) {
   const { colorTheme } = useContext(DarkModeContext);
@@ -39,6 +41,7 @@ export default function TextInput({
         value={value}
         aria-label={placeholder}
         style={textboxStyle}
+        name={name}
         required={required}
       />
     </div>

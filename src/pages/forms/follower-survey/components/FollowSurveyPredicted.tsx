@@ -33,6 +33,16 @@ export default function FollowerSurveyPredicted({
   error?: FormError | null;
 }) {
   const isDesktop = useMediaQuery("(min-width: 1000px)");
+  const sortedData = enData.sort((charaA: any, charaB: any) => {
+    let jpDataA = rawData.find(
+      (j: any) => j.character_id === charaA.character_id
+    );
+    let jpDataB = rawData.find(
+      (j: any) => j.character_id === charaB.character_id
+    );
+
+    return jpDataA.sort_id - jpDataB.sort_id;
+  });
 
   function FaveUnitTile({ unit }: { unit: any }) {
     const picked = faveUnit === unit.id;
@@ -43,16 +53,18 @@ export default function FollowerSurveyPredicted({
           styles.unitCheckboxContainer,
           picked ? styles.picked : "",
         ].join(" ")}
+        onClick={(e) => {
+          setFaveUnit(unit.id);
+        }}
       >
         <input
           className={styles.checkbox}
           type="radio"
-          name="faveUnit"
+          name="assumed_unit"
           value={unit.id}
           aria-label={unit.name}
-          onClick={(e) => {
-            setFaveUnit(parseInt((e.target as HTMLInputElement).value));
-          }}
+          checked={picked}
+          readOnly
         />
         <div className={styles.unitName}>{unit.name}</div>
       </div>
@@ -83,7 +95,7 @@ export default function FollowerSurveyPredicted({
         <input
           className={styles.checkbox}
           type="radio"
-          name="faveChara"
+          name="assumed_chara"
           value={chara.character_id}
           aria-label={chara.first_name}
           checked={picked}
@@ -158,7 +170,7 @@ export default function FollowerSurveyPredicted({
           </Tooltip>
         </label>
         <div className={styles.checkboxContainer}>
-          {enData.map((chara: any) => (
+          {sortedData.map((chara: any) => (
             <FaveCharaTile chara={chara} key={chara.character_id} />
           ))}
         </div>
