@@ -457,7 +457,7 @@ export default function FollowerSurveyForm(props: {
                 />
                 <input
                   type="hidden"
-                  name="Created"
+                  name="timestamp"
                   value="x-sheetmonkey-current-date-time"
                 />
                 <FormButtons />
