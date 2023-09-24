@@ -391,8 +391,6 @@ export default function FollowerSurveyForm(props: {
                     submittedData.append(key, data[key]);
                   });
 
-                  console.log(JSON.stringify(data), data);
-
                   fetch(action, {
                     method: "POST",
                     body: JSON.stringify(data),
