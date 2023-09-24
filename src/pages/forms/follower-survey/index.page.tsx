@@ -391,13 +391,14 @@ export default function FollowerSurveyForm(props: {
                     submittedData.append(key, data[key]);
                   });
 
+                  console.log(JSON.stringify(data), data);
+
                   fetch(action, {
                     method: "POST",
-                    body: submittedData,
+                    body: JSON.stringify(data),
                   })
                     .then((res) => {
                       console.log(res);
-                      const json = res.json();
                       if (res.status === 200 || res.status === 201) {
                         dispatch({ type: "submitData" });
                       } else {
