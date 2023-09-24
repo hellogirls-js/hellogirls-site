@@ -76,9 +76,16 @@ export default function FollowerSurveyIntro({
           style={{ paddingLeft: 0, width: isDesktop ? "40%" : "100%" }}
           textboxStyle={{ padding: 8 }}
           required={true}
-          onChange={(e: InputEvent) =>
-            setUsername((e.currentTarget as HTMLInputElement).value)
-          }
+          onChange={(e: InputEvent) => {
+            const val: string = (e.currentTarget as HTMLInputElement).value;
+
+            if (val[0] !== "@" && val.length === 1) {
+              (e.currentTarget as HTMLInputElement).value = `@${
+                (e.currentTarget as HTMLInputElement).value
+              }`;
+            }
+            setUsername((e.currentTarget as HTMLInputElement).value);
+          }}
           refProp={usernameRef}
         />
       </div>

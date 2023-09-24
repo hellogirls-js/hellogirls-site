@@ -254,19 +254,20 @@ export default function FollowerSurveyForm(props: {
   function FormButtons() {
     return (
       <div className={styles.formNavButtonContainer}>
-        {state.formIndex > 1 && (
-          <Button
-            value="previous"
-            icon={<IconArrowLeft />}
-            onClick={() => {
-              dispatch({
-                type: "prevSection",
-              });
-            }}
-            style={{ width: "17%" }}
-            buttonStyle={{ width: "100%", padding: 10 }}
-          />
-        )}
+        <Button
+          value="previous"
+          icon={<IconArrowLeft />}
+          onClick={() => {
+            dispatch({
+              type: "prevSection",
+            });
+          }}
+          style={{
+            width: "17%",
+            visibility: state.formIndex > 1 ? "visible" : "hidden",
+          }}
+          buttonStyle={{ width: "100%", padding: 10 }}
+        />
         {state.formIndex === 4 ? (
           <Button
             type="submit"
@@ -399,8 +400,6 @@ export default function FollowerSurveyForm(props: {
                     body: JSON.stringify(data),
                     headers: {
                       "Content-Type": "application/json",
-                      "Access-Control-Allow-Origin":
-                        "https://script.google.com",
                     },
                   })
                     .then((res) => {
