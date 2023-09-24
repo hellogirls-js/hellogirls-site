@@ -254,17 +254,19 @@ export default function FollowerSurveyForm(props: {
   function FormButtons() {
     return (
       <div className={styles.formNavButtonContainer}>
-        <Button
-          value="previous"
-          icon={<IconArrowLeft />}
-          onClick={() => {
-            dispatch({
-              type: "prevSection",
-            });
-          }}
-          style={{ width: "17%" }}
-          buttonStyle={{ width: "100%", padding: 10 }}
-        />
+        {state.formIndex > 1 && (
+          <Button
+            value="previous"
+            icon={<IconArrowLeft />}
+            onClick={() => {
+              dispatch({
+                type: "prevSection",
+              });
+            }}
+            style={{ width: "17%" }}
+            buttonStyle={{ width: "100%", padding: 10 }}
+          />
+        )}
         {state.formIndex === 4 ? (
           <Button
             type="submit"
@@ -450,11 +452,6 @@ export default function FollowerSurveyForm(props: {
                   setComment={setComment}
                   setIsBot={setCommentBotChecked}
                   error={state.commentFormError}
-                />
-                <input
-                  type="hidden"
-                  name="timestamp"
-                  value="x-sheetmonkey-current-date-time"
                 />
                 <FormButtons />
               </form>
