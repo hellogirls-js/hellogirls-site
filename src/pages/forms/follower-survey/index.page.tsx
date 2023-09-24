@@ -263,7 +263,7 @@ export default function FollowerSurveyForm(props: {
             });
           }}
           style={{
-            width: "17%",
+            width: isMobile ? "50%" : "17%",
             visibility: state.formIndex > 1 ? "visible" : "hidden",
           }}
           buttonStyle={{ width: "100%", padding: 10 }}
@@ -275,7 +275,7 @@ export default function FollowerSurveyForm(props: {
             alignIcon="right"
             icon={<IconArrowRight />}
             refProp={submitRef}
-            style={{ width: "30%" }}
+            style={{ width: isMobile ? "50%" : "30%" }}
             buttonStyle={{ width: "100%", padding: 10 }}
           />
         ) : (
@@ -288,7 +288,7 @@ export default function FollowerSurveyForm(props: {
                 type: "nextSection",
               });
             }}
-            style={{ width: "30%" }}
+            style={{ width: isMobile ? "50%" : "30%" }}
             buttonStyle={{ width: "100%", padding: 10 }}
           />
         )}
@@ -454,6 +454,11 @@ export default function FollowerSurveyForm(props: {
                   setComment={setComment}
                   setIsBot={setCommentBotChecked}
                   error={state.commentFormError}
+                />
+                <input
+                  type="hidden"
+                  name="Created"
+                  value="x-sheetmonkey-current-date-time"
                 />
                 <FormButtons />
               </form>
