@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 import Image from "next/image";
 import { IconCircleCheck } from "@tabler/icons-react";
@@ -72,7 +72,9 @@ export default function FollowerSurveyPredicted({
   }
 
   function FaveCharaTile({ chara }: { chara: any }) {
-    const picked = faveChara === chara.character_id;
+    const [picked, setPicked] = useState<boolean>(
+      faveChara === chara.character_id
+    );
 
     const imgUrl = `https://assets.enstars.link/assets/card_full1_${
       (twoStarIDs as any)[chara.character_id]
@@ -81,6 +83,10 @@ export default function FollowerSurveyPredicted({
     const imgUrlSubtracted = `https://assets.enstars.link/assets/card_full1_${
       (twoStarIDs as any)[chara.character_id]
     }_subtracted.png`;
+
+    useEffect(() => {
+      setPicked(faveChara === chara.character_id);
+    }, [faveChara]);
 
     return (
       <div
