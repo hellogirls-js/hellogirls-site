@@ -1,13 +1,6 @@
 import Link from "next/link";
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import {
-  IconCat,
-  IconFolders,
-  IconHeart,
-  IconNews,
-  IconPhotoHeart,
-  IconUsers,
-} from "@tabler/icons-react";
+import { IconCat, IconFolders, IconHeart, IconNews } from "@tabler/icons-react";
 
 import styles from "./Navigation.module.scss";
 
@@ -48,17 +41,6 @@ function NavigationMenu({ isOpen }: { isOpen: boolean }) {
             <IconNews size={16} /> posts
           </Link>
         </li>
-        {/* these will be added later */}
-        {/* <li>
-          <Link href="/gallery">
-            <IconPhotoHeart size={16} /> art gallery
-          </Link>
-        </li>
-        <li>
-          <Link href="/ocs">
-            <IconUsers size={16} /> oc profiles
-          </Link>
-        </li> */}
         <li>
           <Link href="/cat">
             <IconCat size={16} /> moo moo
