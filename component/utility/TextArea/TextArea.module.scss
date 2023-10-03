@@ -1,0 +1,54 @@
+@use "../../../styles/vars.module.scss";
+
+.textareaContainer {
+  width: 100%;
+
+  label {
+    display: block;
+  }
+
+  textarea {
+    width: 100%;
+    resize: none;
+    box-sizing: border-box;
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 12pt;
+    border-radius: 3px;
+  }
+
+  &.light {
+    --input-bg-light: #fff;
+
+    textarea {
+      background: var(--input-bg-light);
+      color: vars.$light-button-text;
+      border-color: vars.$light-button-border;
+
+      &:focus {
+        outline: 2px solid vars.$light-blockquote;
+      }
+    }
+
+    .label {
+      color: vars.$light-subtext;
+    }
+  }
+
+  &.dark {
+    textarea {
+      background: vars.$dark-text-bg;
+      color: vars.$dark-button-text;
+      border-color: vars.$dark-button-border;
+  
+      &:focus {
+        outline: 2px solid vars.$dark-blockquote;
+      }
+    }
+  
+    .label {
+      color: vars.$dark-subtext;
+    }
+  }
+}

@@ -1,18 +1,22 @@
 import { useContext, useReducer, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { useDebouncedState } from "@mantine/hooks";
+import { useDebouncedState, useMediaQuery } from "@mantine/hooks";
 import Link from "next/link";
+import { Oval } from "react-loader-spinner";
 
 import styles from "../styles/Form.module.scss";
 
 import FollowerSurveyIntro from "./components/FollowerSurveyIntro";
 import FollowerSurveyFave from "./components/FollowerSurveyFave";
 import FollowerSurveyIndex from "./components/FollowerSurveyIndex";
+import FollowerSurveyPredicted from "./components/FollowSurveyPredicted";
+import FollowerSurveyComment from "./components/FollowerSurveyComment";
 
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
 import getData from "component/utility/data";
+import Button from "component/utility/Button";
 
 export default function FollowerSurveyForm(props: {
   title: string;
@@ -25,13 +29,24 @@ export default function FollowerSurveyForm(props: {
 
   const [isIntroBotChecked, setIntroBotChecked] = useState<boolean>(false);
   const [isFaveBotChecked, setFaveBotChecked] = useState<boolean>(false);
+  const [isPredictedBotChecked, setPredictedBotChecked] =
+    useState<boolean>(false);
+  const [isCommentBotChecked, setCommentBotChecked] = useState<boolean>(false);
   const [name, setName] = useDebouncedState<string>("", 300);
   const [username, setUsername] = useDebouncedState<string>("", 300);
   const [faveUnit, setFaveUnit] = useState<number | null>(null);
   const [faveChara, setFaveChara] = useState<number | null>(null);
+  const [predictedUnit, setPredictedUnit] = useState<number | null>(null);
+  const [predictedChara, setPredictedChara] = useState<number | null>(null);
+  const [comment, setComment] = useState<string | null>(null);
 
   const nameInput = useRef<HTMLInputElement>(null);
   const usernameInput = useRef<HTMLInputElement>(null);
+  const formContentRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const submitRef = useRef<HTMLButtonElement>(null);
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const defaultState: State = {
     formData: {
@@ -44,21 +59,35 @@ export default function FollowerSurveyForm(props: {
       comment: null,
     },
     formIndex: 1,
+    submitForm: false,
+    submitLoading: false,
     introFormError: null,
     faveFormError: null,
+    predictedFormError: null,
+    commentFormError: null,
+    submitError: false,
   };
 
   function reducer(state: State, action: Action): State {
     if (action.type === "nextSection") {
       switch (state.formIndex) {
         case 1:
-          if (username !== null && username !== "" && !isIntroBotChecked) {
+          let filteredUser = username.replace(
+            /=([A-Za-z])\w+\(([^\)]+)\)/g,
+            ""
+          );
+          let isValidUsername =
+            filteredUser !== null &&
+            filteredUser !== "" &&
+            filteredUser !== "@" &&
+            filteredUser.length > 4;
+          if (isValidUsername && !isIntroBotChecked) {
             return {
               ...state,
               formData: {
                 ...state.formData,
                 name: name,
-                twitter: username,
+                twitter: filteredUser,
               },
               introFormError: null,
               formIndex: 2,
@@ -67,8 +96,96 @@ export default function FollowerSurveyForm(props: {
             return {
               ...state,
               introFormError: {
-                noUsername: username === null || username === "",
+                noUsername: !isValidUsername,
                 isBot: isIntroBotChecked,
+              },
+            };
+          }
+          break;
+        case 2:
+          if (!isFaveBotChecked && faveChara !== null && faveUnit !== null) {
+            formContentRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              formData: {
+                ...state.formData,
+                fave_chara: faveChara,
+                fave_unit: faveUnit,
+              },
+              faveFormError: null,
+              formIndex: 3,
+            };
+          } else {
+            formContentRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              faveFormError: {
+                noFaveChara: faveChara === null,
+                noFaveUnit: faveUnit === null,
+                isBot: isFaveBotChecked,
+              },
+            };
+          }
+          break;
+        case 3:
+          if (
+            !isPredictedBotChecked &&
+            predictedChara !== null &&
+            predictedUnit !== null
+          ) {
+            formContentRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              formData: {
+                ...state.formData,
+                assumed_chara: predictedChara,
+                assumed_unit: predictedUnit,
+              },
+              predictedFormError: null,
+              formIndex: 4,
+            };
+          } else {
+            formContentRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              predictedFormError: {
+                noPredictedChara: predictedChara === null,
+                noFaveUnit: predictedUnit === null,
+                isBot: isPredictedBotChecked,
+              },
+            };
+          }
+          break;
+        case 4:
+          if (!isCommentBotChecked) {
+            formContentRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              formData: {
+                ...state.formData,
+                comment: comment,
+              },
+              commentFormError: null,
+              submitForm: true,
+            };
+          } else {
+            formContentRef.current?.scrollIntoView({
+              behavior: "smooth",
+            });
+            return {
+              ...state,
+              commentFormError: {
+                isBot: isCommentBotChecked,
               },
             };
           }
@@ -85,14 +202,40 @@ export default function FollowerSurveyForm(props: {
             formIndex: 1,
           };
           break;
+        case 3:
+          return {
+            ...state,
+            formIndex: 2,
+          };
+          break;
+        case 4:
+          return {
+            ...state,
+            formIndex: 3,
+          };
+          break;
         default:
           return state;
       }
+    } else if (action.type === "submitData") {
+      return {
+        ...state,
+        submitForm: true,
+      };
+    } else if (action.type === "submitError") {
+      return {
+        ...state,
+        submitError: true,
+      };
+    } else if (action.type === "submitLoading") {
+      return {
+        ...state,
+        submitLoading: true,
+      };
     }
     return defaultState;
   }
 
-  const [isSubmitted, setSubmitted] = useState(false);
   const [state, dispatch] = useReducer(reducer, {
     formData: {
       name: null,
@@ -104,29 +247,60 @@ export default function FollowerSurveyForm(props: {
       comment: null,
     },
     formIndex: 1,
+    submitForm: false,
+    submitError: false,
+    submitLoading: false,
     introFormError: null,
+    faveFormError: null,
+    predictedFormError: null,
+    commentFormError: null,
   });
 
+  /**
+   *
+   * @returns A set of navigation buttons for the form
+   */
   function FormButtons() {
     return (
       <div className={styles.formNavButtonContainer}>
-        <div
-          className={`${styles.formNavButton} ${styles.prevButton}`}
-          style={{ visibility: state.formIndex === 1 ? "hidden" : "visible" }}
+        <Button
+          value="previous"
+          icon={<IconArrowLeft />}
           onClick={() => {
-            dispatch({ type: "prevSection" });
+            dispatch({
+              type: "prevSection",
+            });
           }}
-        >
-          <IconArrowLeft /> previous
-        </div>
-        <div
-          className={`${styles.formNavButton} ${styles.nextButton}`}
-          onClick={() => {
-            dispatch({ type: "nextSection" });
+          style={{
+            width: isMobile ? "50%" : "17%",
+            visibility: state.formIndex > 1 ? "visible" : "hidden",
           }}
-        >
-          next <IconArrowRight />
-        </div>
+          buttonStyle={{ width: "100%", padding: 10 }}
+        />
+        {state.formIndex === 4 ? (
+          <Button
+            type="submit"
+            value="submit"
+            alignIcon="right"
+            icon={<IconArrowRight />}
+            refProp={submitRef}
+            style={{ width: isMobile ? "50%" : "30%" }}
+            buttonStyle={{ width: "100%", padding: 10 }}
+          />
+        ) : (
+          <Button
+            value="next"
+            icon={<IconArrowRight />}
+            alignIcon="right"
+            onClick={() => {
+              dispatch({
+                type: "nextSection",
+              });
+            }}
+            style={{ width: isMobile ? "50%" : "30%" }}
+            buttonStyle={{ width: "100%", padding: 10 }}
+          />
+        )}
       </div>
     );
   }
@@ -137,10 +311,12 @@ export default function FollowerSurveyForm(props: {
       <div className={`${styles.formPage} ${styles[colorTheme]}`}>
         <h2>the follower survey of the century</h2>
         <h3>
-          <Link href="#follower-survey">
-            i am on mobile i do not care what you have to say. just take me to
-            the survey please.
-          </Link>
+          {isMobile && (
+            <Link href="#follower-survey">
+              i am on mobile i do not care what you have to say. just take me to
+              the survey please.
+            </Link>
+          )}
         </h3>
         <p>
           hi! first off, thank you so much for 2000 followers oh my goodness. to
@@ -172,25 +348,82 @@ export default function FollowerSurveyForm(props: {
           most importantly, thank you for supporting my coding endeavors!!
         </p>
         <motion.div
+          ref={formContentRef}
           className={styles.formContainer}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.5 }}
         >
-          {!isSubmitted && (
+          {!state.submitForm && !state.submitError && !state.submitLoading ? (
             <>
               <FollowerSurveyIndex formIndex={state.formIndex} />
               <form
                 id="follower-survey"
+                ref={formRef}
                 className={styles.form}
                 method="POST"
                 action={props.actionUrl}
                 onSubmit={(e) => {
                   e.preventDefault();
-                  const target: HTMLFormElement = e.target as HTMLFormElement;
-                  const data = new FormData(target);
+
+                  const target = e.target as HTMLFormElement;
                   const { action } = target;
+                  let data = Object.fromEntries(new FormData(target).entries());
+
+                  data = {
+                    ...data,
+                    fave_unit: [
+                      data.fave_unit,
+                      unitData.data.find((u: any) => u.id == data.fave_unit)
+                        .name,
+                    ].join(": "),
+                    fave_chara: [
+                      data.fave_chara,
+                      enData.data.find(
+                        (c: any) => c.character_id == data.fave_chara
+                      ).first_name,
+                    ].join(": "),
+                    assumed_unit: [
+                      data.assumed_unit,
+                      unitData.data.find((u: any) => u.id == data.assumed_unit)
+                        .name,
+                    ].join(": "),
+                    assumed_chara: [
+                      data.assumed_chara,
+                      enData.data.find(
+                        (c: any) => c.character_id == data.assumed_chara
+                      ).first_name,
+                    ].join(": "),
+                    comment: `${data.comment || ""}`
+                      .replace(/<[^>]+>/gim, "")
+                      .replace(/=([A-Za-z])\w+\(([^\)]+)\)/g, ""),
+                  };
+
+                  const submittedData = new FormData();
+
+                  Object.keys(data).forEach((key) => {
+                    submittedData.append(key, data[key]);
+                  });
+
+                  fetch(action, {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  })
+                    .then((res) => {
+                      console.log(res);
+                      if (res.status === 200 || res.status === 201) {
+                        dispatch({ type: "submitData" });
+                      } else {
+                        dispatch({ type: "submitError" });
+                      }
+                    })
+                    .catch(() => {
+                      dispatch({ type: "submitError" });
+                    });
                 }}
               >
                 <FollowerSurveyIntro
@@ -215,8 +448,58 @@ export default function FollowerSurveyForm(props: {
                   setIsBot={setFaveBotChecked}
                   error={state.faveFormError}
                 />
+                <FollowerSurveyPredicted
+                  isVisible={state.formIndex === 3}
+                  unitData={unitData.data}
+                  rawData={rawData.data}
+                  enData={enData.data}
+                  faveUnit={predictedUnit}
+                  setFaveUnit={setPredictedUnit}
+                  faveChara={predictedChara}
+                  setFaveChara={setPredictedChara}
+                  setIsBot={setPredictedBotChecked}
+                  error={state.predictedFormError}
+                />
+                <FollowerSurveyComment
+                  isVisible={state.formIndex === 4}
+                  setComment={setComment}
+                  setIsBot={setCommentBotChecked}
+                  error={state.commentFormError}
+                />
+                <input
+                  type="hidden"
+                  name="timestamp"
+                  value="x-sheetmonkey-current-date-time"
+                />
+                <FormButtons />
               </form>
-              <FormButtons />
+            </>
+          ) : state.submitForm && !state.submitLoading && !state.submitError ? (
+            <>
+              <h3>thank you so much for participating!</h3>
+              <p>
+                please look forward to the data visualization i will create with
+                this data. and most importantly, thank you for supporting my
+                coding endeavors!
+              </p>
+            </>
+          ) : state.submitError && !state.submitForm && !state.submitLoading ? (
+            <>
+              <h3>an error occurred while submitting, i&apos;m so sorry</h3>
+              <p>please refresh the page and try again</p>
+            </>
+          ) : (
+            <>
+              <Oval
+                width="10vw"
+                height="10vw"
+                color={colorTheme === "light" ? "#b5aef0" : "#5b53a8"}
+                secondaryColor={colorTheme === "light" ? "#b5aef0" : "#5b53a8"}
+                strokeWidth={5}
+                strokeWidthSecondary={3}
+                ariaLabel="loading"
+                visible={true}
+              />
             </>
           )}
         </motion.div>

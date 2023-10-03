@@ -39,6 +39,7 @@ export default function FollowerSurveyIntro({
         </label>
         <TextInput
           id="user_name"
+          name="name"
           placeholder="input your name"
           style={{ paddingLeft: 0, width: isDesktop ? "40%" : "100%" }}
           textboxStyle={{ padding: 8 }}
@@ -46,11 +47,12 @@ export default function FollowerSurveyIntro({
             setName((e.currentTarget as HTMLInputElement).value)
           }
           refProp={nameRef}
+          maxLength={32}
         />
       </div>
       <div className={styles.formSection}>
         <label className={styles.formLabel} htmlFor="name">
-          <h3>how about your twitter username?</h3>
+          <h3>how about your twitter, tumblr, or instagram username?</h3>
           <Tooltip
             label="this is required"
             position="top"
@@ -65,19 +67,28 @@ export default function FollowerSurveyIntro({
             type="warning"
             style={{ width: isDesktop ? "40%" : "100%" }}
           >
-            Please input your Twitter username.
+            Please input your username.
           </Alert>
         )}
         <TextInput
-          id="user_twitter"
+          id="twitter"
+          name="twitter"
           placeholder="input your twitter username"
           style={{ paddingLeft: 0, width: isDesktop ? "40%" : "100%" }}
           textboxStyle={{ padding: 8 }}
           required={true}
-          onChange={(e: InputEvent) =>
-            setUsername((e.currentTarget as HTMLInputElement).value)
-          }
+          onChange={(e: InputEvent) => {
+            const val: string = (e.currentTarget as HTMLInputElement).value;
+
+            if (val[0] !== "@" && val.length === 1) {
+              (e.currentTarget as HTMLInputElement).value = `@${
+                (e.currentTarget as HTMLInputElement).value
+              }`;
+            }
+            setUsername((e.currentTarget as HTMLInputElement).value);
+          }}
           refProp={usernameRef}
+          maxLength={33}
         />
       </div>
       {error?.isBot && (
