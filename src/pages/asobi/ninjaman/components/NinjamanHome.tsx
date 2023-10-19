@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 
 import styles from "../../styles/Ninjaman.module.scss";
-import AsobiShinobu from "../../../../../assets/asobi_shinobu_0.png";
 
 export default function NinjamanHome({
   setCurrentPage,
@@ -14,9 +13,9 @@ export default function NinjamanHome({
       <div className={styles.ninjamanPageContainer}>
         <div className={styles.ninjamanShinobuContainer}>
           <Image
-            src={AsobiShinobu.src}
-            width={AsobiShinobu.width / 1.5}
-            height={AsobiShinobu.height / 1.5}
+            src="https://assets.hellogirls.info/file/hellogirls-assets/asobi/ninjaman/asobi_shinobu_0.png"
+            width={408 / 1.5}
+            height={595 / 1.5}
             alt="shnoob"
           />
         </div>
