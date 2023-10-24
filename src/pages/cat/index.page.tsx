@@ -3,7 +3,6 @@ import useSWR from "swr";
 import Image from "next/image";
 import dayjs from "dayjs";
 import Link from "next/link";
-import Head from "next/head";
 
 import styles from "./styles/Cat.module.scss";
 
@@ -68,13 +67,6 @@ export default function Cat() {
 
   return (
     <MainLayout heading="cat wiki :3">
-      <Head>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6411495121447387"
-          crossOrigin="anonymous"
-        ></script>
-      </Head>
       <div className={`${styles.cat} ${styles[colorTheme]}`}>
         <div className={styles.catWikiHeader}>
           <h2>Maestro (cat)</h2>
