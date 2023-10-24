@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import styles from "../../styles/Survey.module.scss";
 
-import totalResults from "data/survey-results/total-results.json";
+import totalResults from "data/survey-results/total-results.min.json";
 import { twoStarIDs } from "data/twoStarIds";
 
 export default function RankingSummary({

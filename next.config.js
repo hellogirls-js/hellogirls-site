@@ -28,6 +28,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "hellogirls.info",
       },
+      {
+        protocol: "https",
+        hostname: "assets.hellogirls.info",
+      },
     ],
   },
 };

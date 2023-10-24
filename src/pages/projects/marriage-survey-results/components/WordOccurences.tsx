@@ -5,8 +5,8 @@ import { useRef, useState } from "react";
 import { IconX } from "@tabler/icons-react";
 
 import styles from "../../styles/Survey.module.scss";
-import leastDesirable from "../../../../../data/survey-results/least_desirable.json";
-import mostDesirable from "../../../../../data/survey-results/most_desirable.json";
+import leastDesirable from "../../../../../data/survey-results/least_desirable.min.json";
+import mostDesirable from "../../../../../data/survey-results/most_desirable.min.json";
 
 import { twoStarIDs } from "data/twoStarIds";
 import Strong from "component/utility/Strong";
