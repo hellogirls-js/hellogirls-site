@@ -3,15 +3,8 @@ import { motion } from "framer-motion";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { useDebouncedState, useMediaQuery } from "@mantine/hooks";
 import Link from "next/link";
-import { Oval } from "react-loader-spinner";
 
 import styles from "../styles/Form.module.scss";
-
-import FollowerSurveyIntro from "./components/FollowerSurveyIntro";
-import FollowerSurveyFave from "./components/FollowerSurveyFave";
-import FollowerSurveyIndex from "./components/FollowerSurveyIndex";
-import FollowerSurveyPredicted from "./components/FollowSurveyPredicted";
-import FollowerSurveyComment from "./components/FollowerSurveyComment";
 
 import MainLayout from "component/MainLayout";
 import { DarkModeContext } from "context/DarkModeContext";
@@ -355,152 +348,11 @@ export default function FollowerSurveyForm(props: {
           viewport={{ once: true, amount: 0.7 }}
           transition={{ duration: 0.5 }}
         >
-          {!state.submitForm && !state.submitError && !state.submitLoading ? (
-            <>
-              <FollowerSurveyIndex formIndex={state.formIndex} />
-              <form
-                id="follower-survey"
-                ref={formRef}
-                className={styles.form}
-                method="POST"
-                action={props.actionUrl}
-                onSubmit={(e) => {
-                  e.preventDefault();
-
-                  const target = e.target as HTMLFormElement;
-                  const { action } = target;
-                  let data = Object.fromEntries(new FormData(target).entries());
-
-                  data = {
-                    ...data,
-                    fave_unit: [
-                      data.fave_unit,
-                      unitData.data.find((u: any) => u.id == data.fave_unit)
-                        .name,
-                    ].join(": "),
-                    fave_chara: [
-                      data.fave_chara,
-                      enData.data.find(
-                        (c: any) => c.character_id == data.fave_chara
-                      ).first_name,
-                    ].join(": "),
-                    assumed_unit: [
-                      data.assumed_unit,
-                      unitData.data.find((u: any) => u.id == data.assumed_unit)
-                        .name,
-                    ].join(": "),
-                    assumed_chara: [
-                      data.assumed_chara,
-                      enData.data.find(
-                        (c: any) => c.character_id == data.assumed_chara
-                      ).first_name,
-                    ].join(": "),
-                    comment: `${data.comment || ""}`
-                      .replace(/<[^>]+>/gim, "")
-                      .replace(/=([A-Za-z])\w+\(([^\)]+)\)/g, ""),
-                  };
-
-                  const submittedData = new FormData();
-
-                  Object.keys(data).forEach((key) => {
-                    submittedData.append(key, data[key]);
-                  });
-
-                  fetch(action, {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                  })
-                    .then((res) => {
-                      if (res.status === 200 || res.status === 201) {
-                        dispatch({ type: "submitData" });
-                      } else {
-                        dispatch({ type: "submitError" });
-                      }
-                    })
-                    .catch(() => {
-                      dispatch({ type: "submitError" });
-                    });
-                }}
-              >
-                <FollowerSurveyIntro
-                  isVisible={state.formIndex === 1}
-                  isBot={isIntroBotChecked}
-                  setIsBot={setIntroBotChecked}
-                  error={state.introFormError}
-                  setName={setName}
-                  setUsername={setUsername}
-                  nameRef={nameInput}
-                  usernameRef={usernameInput}
-                />
-                <FollowerSurveyFave
-                  isVisible={state.formIndex === 2}
-                  unitData={unitData.data}
-                  rawData={rawData.data}
-                  enData={enData.data}
-                  faveUnit={faveUnit}
-                  setFaveUnit={setFaveUnit}
-                  faveChara={faveChara}
-                  setFaveChara={setFaveChara}
-                  setIsBot={setFaveBotChecked}
-                  error={state.faveFormError}
-                />
-                <FollowerSurveyPredicted
-                  isVisible={state.formIndex === 3}
-                  unitData={unitData.data}
-                  rawData={rawData.data}
-                  enData={enData.data}
-                  faveUnit={predictedUnit}
-                  setFaveUnit={setPredictedUnit}
-                  faveChara={predictedChara}
-                  setFaveChara={setPredictedChara}
-                  setIsBot={setPredictedBotChecked}
-                  error={state.predictedFormError}
-                />
-                <FollowerSurveyComment
-                  isVisible={state.formIndex === 4}
-                  setComment={setComment}
-                  setIsBot={setCommentBotChecked}
-                  error={state.commentFormError}
-                />
-                <input
-                  type="hidden"
-                  name="timestamp"
-                  value="x-sheetmonkey-current-date-time"
-                />
-                <FormButtons />
-              </form>
-            </>
-          ) : state.submitForm && !state.submitLoading && !state.submitError ? (
-            <>
-              <h3>thank you so much for participating!</h3>
-              <p>
-                please look forward to the data visualization i will create with
-                this data. and most importantly, thank you for supporting my
-                coding endeavors!
-              </p>
-            </>
-          ) : state.submitError && !state.submitForm && !state.submitLoading ? (
-            <>
-              <h3>an error occurred while submitting, i&apos;m so sorry</h3>
-              <p>please refresh the page and try again</p>
-            </>
-          ) : (
-            <>
-              <Oval
-                width="10vw"
-                height="10vw"
-                color={colorTheme === "light" ? "#b5aef0" : "#5b53a8"}
-                secondaryColor={colorTheme === "light" ? "#b5aef0" : "#5b53a8"}
-                strokeWidth={5}
-                strokeWidthSecondary={3}
-                ariaLabel="loading"
-                visible={true}
-              />
-            </>
-          )}
+          <h3>the survey is now closed.</h3>
+          <p>
+            thank you so much for participating! please wait patiently as i
+            compile the results into an interactive website :)
+          </p>
         </motion.div>
       </div>
     </MainLayout>
