@@ -7,8 +7,8 @@ import styles from "../../styles/Survey.module.scss";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 
-import mostDesirable from "data/survey-results/most_desirable.json";
-import leastDesirable from "data/survey-results/least_desirable.json";
+import mostDesirable from "data/survey-results/most_desirable.min.json";
+import leastDesirable from "data/survey-results/least_desirable.min.json";
 import Tabs from "component/utility/Tabs";
 import { twoStarIDs } from "data/twoStarIds";
 import { commonWords } from "data/commonWords";

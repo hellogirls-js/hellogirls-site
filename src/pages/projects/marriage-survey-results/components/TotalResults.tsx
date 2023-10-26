@@ -17,7 +17,7 @@ import {
 } from "recharts/types/component/DefaultTooltipContent";
 import Image from "next/image";
 
-import totalResults from "../../../../../data/survey-results/total-results.json";
+import totalResults from "../../../../../data/survey-results/total-results.min.json";
 import styles from "../../styles/Survey.module.scss";
 
 import { twoStarIDs } from "data/twoStarIds";

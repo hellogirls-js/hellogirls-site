@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import { ColorRing } from "react-loader-spinner";
 
 import styles from "../styles/MadLibs.module.scss";
-import AsobiSora1 from "../../../../assets/asobi_sora_1.png";
-import AsobiSora2 from "../../../../assets/asobi_sora_2.png";
-import AsobiSora3 from "../../../../assets/asobi_sora_3.png";
 
 import MadLibsHome from "./components/MadLibsHome";
 import MadLibsInstructions from "./components/MadLibsInstructions";
@@ -34,6 +31,30 @@ function MadLibsLoading() {
 }
 
 export default function MadLibs() {
+  const AsobiSora1 = (
+    <Image
+      src="https://assets.hellogirls.info/asobi/madlibs/asobi_sora_1.png"
+      width={329}
+      height={564}
+      alt="sora"
+    />
+  );
+  const AsobiSora2 = (
+    <Image
+      src="https://assets.hellogirls.info/asobi/madlibs/asobi_sora_2.png"
+      width={329}
+      height={564}
+      alt="sora"
+    />
+  );
+  const AsobiSora3 = (
+    <Image
+      src="https://assets.hellogirls.info/asobi/madlibs/asobi_sora_3.png"
+      width={329}
+      height={564}
+      alt="sora"
+    />
+  );
   const [soraImg, setSoraImg] = useState(AsobiSora1);
   const [currentPage, setCurrentPage] = useState<Page>("home");
   const [story, setStory] = useState<string | null>(null);
@@ -89,12 +110,7 @@ export default function MadLibs() {
                 : "20vh",
           }}
         >
-          <Image
-            src={soraImg.src}
-            alt="sora"
-            width={soraImg.width}
-            height={soraImg.height}
-          />
+          {soraImg}
         </div>
       </div>
     </AsobiLayout>
