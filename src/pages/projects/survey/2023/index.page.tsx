@@ -1,4 +1,11 @@
-import { IconSparkles } from "@tabler/icons-react";
+import {
+  IconArrowsUpDown,
+  IconAward,
+  IconGraph,
+  IconSparkles,
+  IconStar,
+  TablerIconsProps,
+} from "@tabler/icons-react";
 import {
   Dispatch,
   ReactNode,
@@ -30,6 +37,7 @@ import getData, { shuffleArray } from "component/utility/data";
 interface PageItem {
   icon: ReactNode;
   title: string;
+  desc: string;
   url: string;
   index?: number;
   handlers?: UseListStateHandlers<boolean>;
@@ -39,6 +47,7 @@ interface PageItem {
 function HomeGridItem({
   icon,
   title,
+  desc,
   url,
   index,
   handlers,
@@ -52,8 +61,10 @@ function HomeGridItem({
         handlers && index && handlers.setItem(index, true);
       }}
     >
-      <div className={styles.gridItemIcon}>{icon}</div>
-      <div className={styles.gridItemTitle}>{title}</div>
+      <div className={styles.gridItemIcon}>
+        {icon} <div className={styles.gridItemTitle}>{title}</div>
+      </div>
+      <div className={styles.gridItemDesc}>{desc}</div>
     </a>
   );
 }
@@ -99,6 +110,11 @@ function SurveyLoader({
   );
 }
 
+/**
+ * Animates the splash page
+ * @param param0 SurveySplash props
+ * @returns The animated splash page
+ */
 function SurveySplash({
   hideLoader,
   list,
@@ -210,11 +226,41 @@ function SurveySplash({
 }
 
 export default function SurveyIndexPage(props: any) {
+  const iconProps: TablerIconsProps = {
+    size: 40,
+    strokeWidth: 1,
+  };
+
   const pages = [
     {
-      icon: <IconSparkles />,
+      icon: <IconSparkles {...iconProps} />,
       title: "hall of fame",
       url: "/projects/survey/2023/hall-of-fame",
+      desc: "view how many votes each character received in this scrollable walk of fame.",
+    },
+    {
+      icon: <IconGraph {...iconProps} />,
+      title: "popular vote",
+      url: "/projects/survey/2023/popular-vote",
+      desc: "shock yourself! see who you all thought the most popular characters are in contrast with how well they actually did.",
+    },
+    {
+      icon: <IconArrowsUpDown {...iconProps} />,
+      title: "highs and lows",
+      url: "/projects/survey/2023/highs-lows",
+      desc: "see how popular each character in a unit is compared to the unit itself.",
+    },
+    {
+      icon: <IconStar {...iconProps} />,
+      title: "power of friends",
+      url: "/projects/survey/2023/power-of-friends",
+      desc: "stack the votes for each character in a unit on top of each other to see which unit has the most popular characters overall.",
+    },
+    {
+      icon: <IconAward {...iconProps} />,
+      title: "badge of honor",
+      url: "/projects/survey/2023/badge-of-honor",
+      desc: "share who you voted for (or didn't vote for) with your friends!",
     },
   ];
 
