@@ -40,3 +40,22 @@ interface Result {
   name: string;
   reason: string;
 }
+
+interface FollowerSurveyData {
+  twitter?: string;
+  fave_chara: string;
+  fave_unit: string;
+  assumed_chara: string;
+  assumed_unit: string;
+}
+
+interface CountedVotes {
+  chara_id: number;
+  count: number;
+}
+
+type FollowerSurveyDataType =
+  | "fave_chara"
+  | "fave_unit"
+  | "assumed_chara"
+  | "assumed_unit";

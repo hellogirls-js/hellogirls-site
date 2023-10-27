@@ -19,12 +19,14 @@ import { UseListStateHandlers, useListState } from "@mantine/hooks";
 import {
   AnimatePresence,
   AnimationSequence,
+  Variants,
   motion,
   stagger,
   useAnimate,
   usePresence,
 } from "framer-motion";
 import { Oval } from "react-loader-spinner";
+import Image from "next/image";
 
 import SurveyLogo from "../components/SurveyLogo";
 
@@ -42,6 +44,7 @@ interface PageItem {
   index?: number;
   handlers?: UseListStateHandlers<boolean>;
   clicked?: boolean[];
+  chara: JSX.Element;
 }
 
 function HomeGridItem({
@@ -52,20 +55,57 @@ function HomeGridItem({
   index,
   handlers,
   clicked,
+  chara,
 }: PageItem) {
+  const parentVariants: Variants = {
+    rest: {
+      scale: 1,
+    },
+    hover: {
+      scale: 1.1,
+      transition: {
+        type: "spring",
+        duration: 0.4,
+      },
+    },
+  };
+
+  const descVariants: Variants = {
+    rest: {
+      y: 200,
+    },
+    hover: {
+      y: 0,
+      transition: {
+        duration: 0.4,
+        type: "tween",
+      },
+    },
+  };
+
   return (
-    <a
+    <motion.div
       className={styles.homeGridContainerItem}
-      href={url}
-      onClick={() => {
-        handlers && index && handlers.setItem(index, true);
-      }}
+      initial="rest"
+      whileHover="hover"
+      animate="rest"
+      variants={parentVariants}
     >
-      <div className={styles.gridItemIcon}>
-        {icon} <div className={styles.gridItemTitle}>{title}</div>
-      </div>
-      <div className={styles.gridItemDesc}>{desc}</div>
-    </a>
+      <motion.a
+        href={url}
+        onClick={() => {
+          handlers && index && handlers.setItem(index, true);
+        }}
+      >
+        <div className={styles.gridItemIcon}>
+          {icon} <div className={styles.gridItemTitle}>{title}</div>
+        </div>
+        <div className={styles.gridItemChara}>{chara}</div>
+        <motion.div className={styles.gridItemDesc} variants={descVariants}>
+          {desc}
+        </motion.div>
+      </motion.a>
+    </motion.div>
   );
 }
 
@@ -134,8 +174,8 @@ function SurveySplash({
   const [logoRef, animateLogo] = useAnimate();
   const [isPresent, safeToRemove] = usePresence();
 
-  const largeLogoRef = useRef();
-  const smallLogoRef = useRef();
+  const [largeLogoRef, standin] = useAnimate();
+  const [smallLogoRef, standin2] = useAnimate();
 
   useEffect(() => {
     if (hideLoader && isPresent) {
@@ -151,7 +191,11 @@ function SurveySplash({
         ];
 
         const logoSequence: AnimationSequence = [
-          [largeLogoRef.current, { opacity: 1 }, { duration: 0.3, delay: 0.5 }],
+          [
+            largeLogoRef.current,
+            { opacity: 1, scale: 1 },
+            { duration: 0.3, delay: 0.5 },
+          ],
           [
             smallLogoRef.current,
             {
@@ -195,7 +239,7 @@ function SurveySplash({
         largeRef={largeLogoRef}
         smallRef={smallLogoRef}
         logoRef={logoRef}
-        style={{ opacity: 0 }}
+        style={{ opacity: 0, transform: "scale(0)" }}
       />
       <div className={styles.splashPage} ref={ref}>
         {list.map((chara: any, index: number) => {
@@ -231,36 +275,78 @@ export default function SurveyIndexPage(props: any) {
     strokeWidth: 1,
   };
 
+  const IMAGE_SIZE = 150;
+
   const pages = [
     {
       icon: <IconSparkles {...iconProps} />,
       title: "hall of fame",
       url: "/projects/survey/2023/hall-of-fame",
       desc: "view how many votes each character received in this scrollable walk of fame.",
+      chara: (
+        <Image
+          src="https://static.wikia.nocookie.net/ensemble-stars/images/4/43/KR_Enstars!!_Stickers_1_Eichi.png"
+          alt="chara"
+          width={IMAGE_SIZE}
+          height={IMAGE_SIZE}
+        />
+      ),
     },
     {
       icon: <IconGraph {...iconProps} />,
       title: "popular vote",
       url: "/projects/survey/2023/popular-vote",
       desc: "shock yourself! see who you all thought the most popular characters are in contrast with how well they actually did.",
+      chara: (
+        <Image
+          src="https://static.wikia.nocookie.net/ensemble-stars/images/c/ce/KR_Enstars!!_Stickers_1_Ibara.png"
+          alt="chara"
+          width={IMAGE_SIZE}
+          height={IMAGE_SIZE}
+        />
+      ),
     },
     {
       icon: <IconArrowsUpDown {...iconProps} />,
       title: "highs and lows",
       url: "/projects/survey/2023/highs-lows",
       desc: "see how popular each character in a unit is compared to the unit itself.",
+      chara: (
+        <Image
+          src="https://static.wikia.nocookie.net/ensemble-stars/images/6/66/KR_Enstars!!_Stickers_1_Mao.png"
+          alt="chara"
+          width={IMAGE_SIZE}
+          height={IMAGE_SIZE}
+        />
+      ),
     },
     {
       icon: <IconStar {...iconProps} />,
       title: "power of friends",
       url: "/projects/survey/2023/power-of-friends",
       desc: "stack the votes for each character in a unit on top of each other to see which unit has the most popular characters overall.",
+      chara: (
+        <Image
+          src="https://static.wikia.nocookie.net/ensemble-stars/images/a/a0/KR_Enstars!!_Stickers_1_Chiaki.png"
+          alt="chara"
+          width={IMAGE_SIZE}
+          height={IMAGE_SIZE}
+        />
+      ),
     },
     {
       icon: <IconAward {...iconProps} />,
       title: "badge of honor",
       url: "/projects/survey/2023/badge-of-honor",
       desc: "share who you voted for (or didn't vote for) with your friends!",
+      chara: (
+        <Image
+          src="https://static.wikia.nocookie.net/ensemble-stars/images/b/bd/KR_Enstars!!_Stickers_1_Leo.png"
+          alt="chara"
+          width={IMAGE_SIZE}
+          height={IMAGE_SIZE}
+        />
+      ),
     },
   ];
 
