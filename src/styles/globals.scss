@@ -8,6 +8,12 @@ html, body {
   #__next {
     min-height: 100vh;
   }
+
+  h1 {
+    font-family: vars.$header-font;
+    margin: 0;
+    margin-bottom: 4vh;
+  }
   
   h2 {
     font-size: 24pt;

@@ -1,0 +1,89 @@
+@use "../../../../../../styles/vars.module.scss";
+
+.page {
+    min-height: calc(100vh - 34px);
+    box-sizing: border-box;
+    position: relative;
+
+    .splashPage {
+        position: absolute;
+        width: 100%;
+        height: calc(100vh - 34px);
+        position: relative;
+        overflow: clip;
+    
+        .splashChara {
+            display: block;
+            width: 100%;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            text-align: center;
+            overflow: clip;
+
+            img {
+                height: 130%;
+                width: auto;
+            }
+
+            &.odd {
+                transform: translateX(1500px);
+                &.light {
+                    background-image: linear-gradient(to left, vars.$light-bg 80%, transparent);
+                }
+                &.dark {
+                    background-image: linear-gradient(to left, vars.$dark-bg 80%, transparent);
+                }
+            }
+
+            &.even {
+                transform: translateX(-1500px);
+                &.light {
+                    background-image: linear-gradient(to right, vars.$light-bg 80%, transparent);
+                }
+                &.dark {
+                    background-image: linear-gradient(to left, vars.$dark-bg 80%, transparent);
+                }
+            }
+        }
+    
+        &.light {
+            background-color: vars.$light-bg;
+        }
+    }
+    
+    .loading {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        height: calc(100vh - 34px);
+    
+        .loader {
+            height: calc(98% - 34px);
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .home {
+        position: absolute;
+        top: 0;
+    }
+
+    .homeGridContainer {
+        display: flex;
+        
+        .homeGridContainerItem {
+            display: block;
+        }
+    }
+
+    &.light {
+        .homeGridContainer {
+            .homeGridContainerItem {
+                color: vars.$light-text;
+            }
+            
+        }
+    }
+}
