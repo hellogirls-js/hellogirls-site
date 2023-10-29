@@ -51,28 +51,44 @@ export default function SurveyHallOfFame({ props }: { props: any }) {
             <h1>hall of fame</h1>
           </div>
           <div className={styles.hallOfFame}>
-            <div className={styles.timeline}></div>
+            <div className={styles.timeline}>
+              <div className={styles.timelineLine}></div>
+            </div>
             <div className={styles.hallOfFameItems}>
               {groupedVotes.map((group: CountedVotes[], index: number) => (
                 <div
-                  className={`${styles.hallOfFameItem} ${
+                  className={`${styles.hallOfFameItemContainer} ${
                     styles[index % 2 === 0 ? "even" : "odd"]
                   }`}
                   key={index}
-                  style={{ marginBottom: group[0].count * 50 }}
                 >
-                  {group.map((chara: CountedVotes) => (
-                    <div className={styles.hallOfFameAvi} key={chara.chara_id}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={`https://assets.enstars.link/assets/card_full1_${
-                          (twoStarIDs as any)[chara.chara_id]
-                        }_normal.png`}
-                        alt="chara"
-                        width={550}
-                      />
-                    </div>
-                  ))}
+                  <div
+                    className={`${styles.hallOfFameItem} ${
+                      styles[index % 2 === 0 ? "even" : "odd"]
+                    }`}
+                    style={{
+                      marginBottom:
+                        index < groupedVotes.length - 1
+                          ? group[0].count * 50
+                          : 0,
+                    }}
+                  >
+                    {group.map((chara: CountedVotes) => (
+                      <div
+                        className={styles.hallOfFameAvi}
+                        key={chara.chara_id}
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={`https://assets.enstars.link/assets/card_full1_${
+                            (twoStarIDs as any)[chara.chara_id]
+                          }_normal.png`}
+                          alt="chara"
+                          width={550}
+                        />
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

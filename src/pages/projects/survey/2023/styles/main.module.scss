@@ -133,49 +133,73 @@
 
     .hallOfFameContainer {
         width: 100%;
-        height: 100%;
+        height: auto;
         padding: 2%;
         box-sizing: border-box;
 
         .hallOfFame {
             position: relative;
             width: 75%;
+            height: auto;
             margin: auto;
             margin-top: 5%;
 
             .timeline {
-                position: sticky;
-                top: 0;
-                left: 50%;
+                position: absolute;
                 width: 1px;
-                height: calc(100% - 34px);
-                margin: auto;
+                height: 100%;
+                left: 50%;
+
+                .timelineLine {
+                    width: 100%;
+                    height: 100%;
+                }
             }
 
-            .hallOfFameItem {
+            .hallOfFameItemContainer {
                 display: flex;
                 align-items: center;
-                gap: 2%;
+                width: 100%;
 
                 &.odd {
-                    flex-direction: row-reverse;
+                    justify-content: flex-end;
                 }
 
-                .hallOfFameAvi {
-                    position: relative;
-                    width: 100px;
-                    height: 100px;
-                    overflow: clip;
-                    text-align: center;
-                    border-radius: 10px;
+                .hallOfFameItem {
+                    display: flex;
+                    align-items: center;
+                    gap: 2%;
+                    width: 50%;
 
-                    img {
-                        position: absolute;
-                        left: -225%;
-                        top: -25%;
+                    &.odd {
+                        flex-direction: row-reverse;
+                        justify-content: flex-end;
+                    }
+
+                    &::after {
+                        content: "";
+                        flex-basis: 25%;
+                        flex-grow: 1;
+                        height: 1px;
+                    }
+
+                    .hallOfFameAvi {
+                        position: relative;
+                        width: 100px;
+                        height: 100px;
+                        overflow: clip;
+                        text-align: center;
+                        border-radius: 10px;
+
+                        img {
+                            position: absolute;
+                            left: -225%;
+                            top: -25%;
+                        }
                     }
                 }
             }
+            
         }
     }
 
@@ -208,7 +232,20 @@
 
         .hallOfFame {
             .timeline {
-                background-color: vars.$light-button-border;
+                .timelineLine {
+                    background-color: vars.$light-button-border;
+                }
+            }
+
+            .hallOfFameItem {
+                &::after {
+                    background-color: vars.$light-button-border;
+                }
+
+                .hallOfFameAvi {
+                    background-color: white;
+                    border: 1px solid vars.$light-heading-border;
+                }
             }
         }
     }
@@ -240,7 +277,20 @@
 
         .hallOfFame {
             .timeline {
-                background-color: vars.$dark-button-border;
+                .timelineLine {
+                    background-color: vars.$dark-button-border;
+                }
+            }
+
+            .hallOfFameItem {
+                &::after {
+                    background-color: vars.$dark-button-border;
+                }
+
+                .hallOfFameAvi {
+                    background-color: vars.$dark-heading-bg;
+                    border: 1px solid vars.$dark-heading-border;
+                }
             }
         }
     }
