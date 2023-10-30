@@ -157,18 +157,19 @@
             }
 
             .hallOfFameItemContainer {
+                position: relative;
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 width: 100%;
 
                 &.odd {
-                    justify-content: flex-end;
+                    flex-direction: row-reverse;
                 }
 
                 .hallOfFameItem {
                     display: flex;
                     align-items: center;
-                    gap: 2%;
                     width: 50%;
 
                     &.odd {
@@ -183,19 +184,61 @@
                         height: 1px;
                     }
 
-                    .hallOfFameAvi {
-                        position: relative;
-                        width: 100px;
-                        height: 100px;
-                        overflow: clip;
-                        text-align: center;
-                        border-radius: 10px;
+                    .hallOfFameItemAvis {
+                        display: flex;
+                        gap: 2%;
 
-                        img {
-                            position: absolute;
-                            left: -225%;
-                            top: -25%;
+                        @media screen and (max-width: 812px) {
+                            flex-direction: column;
                         }
+
+                        .hallOfFameAvi {
+                            position: relative;
+                            width: 100px;
+                            height: 100px;
+                            overflow: clip;
+                            text-align: center;
+                            border-radius: 10px;
+                            user-select: none;
+                            pointer-events: none;
+
+                            img {
+                                user-select: none;
+                                pointer-events: none;
+                                position: absolute;
+                                left: -225%;
+                                top: -25%;
+                            }
+                        }
+                    }
+
+                }
+
+                .hallOfFameItemLabel {
+                    position: absolute;
+                    bottom: -50px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    @media screen and (max-width: 812px) {
+                        bottom: -100px;
+                        width: 50%;
+                        padding: 2%;
+                        box-sizing: border-box;
+                    }
+                }
+
+                .hallOfFameItemPlace {
+                    font-weight: 900;
+                    font-size: 3.5rem;
+                    display: flex;
+                    align-items: flex-start;
+
+                    .suffix {
+                        font-size: 1.5rem;
+                        font-weight: 400;
+                        font-variant: small-caps;
                     }
                 }
             }
@@ -204,6 +247,8 @@
     }
 
     &.light {
+        color: vars.$light-text;
+
         .pageHeader {
             .homeButton {
                 a:link, a:visited {
@@ -244,13 +289,33 @@
 
                 .hallOfFameAvi {
                     background-color: white;
-                    border: 1px solid vars.$light-heading-border;
+                    border: 1px solid vars.$light-button-border;
+                }
+            }
+
+            .hallOfFameItemLabel {
+                strong {
+                    color: vars.$light-bold-text;
+                }
+
+                a:link, a:visited {
+                    color: vars.$light-link;
+                }
+            }
+
+            .hallOfFameItemPlace {
+                color: vars.$light-bold-text;
+
+                .suffix {
+                    color: vars.$light-link;
                 }
             }
         }
     }
 
     &.dark {
+        color: vars.$dark-text;
+
         .pageHeader {
             .homeButton {
                 a:link, a:visited {
@@ -289,7 +354,25 @@
 
                 .hallOfFameAvi {
                     background-color: vars.$dark-heading-bg;
-                    border: 1px solid vars.$dark-heading-border;
+                    border: 1px solid vars.$dark-button-border;
+                }
+            }
+
+            .hallOfFameItemLabel {
+                strong {
+                    color: vars.$dark-bold-text;
+                }
+
+                a:link, a:visited {
+                    color: vars.$dark-link;
+                }
+            }
+
+            .hallOfFameItemPlace {
+                color: vars.$dark-bold-text;
+
+                .suffix {
+                    color: vars.$dark-link;
                 }
             }
         }
