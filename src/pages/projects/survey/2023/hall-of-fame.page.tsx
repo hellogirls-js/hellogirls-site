@@ -188,7 +188,9 @@ export default function SurveyHallOfFame(props: any) {
       <Head>
         <meta
           property="og:image"
-          content="https://preview.hellogirls.info/og/hall-of-fame"
+          content={`https://preview.hellogirls.info/og/hall-of-fame${
+            props.place.length > 0 ? `?place=${props.place}` : ""
+          }`}
         />
         <meta
           property="og:url"
@@ -197,7 +199,9 @@ export default function SurveyHallOfFame(props: any) {
         <meta name="twitter:creator" content="@hellogirls_DEV" />
         <meta
           property="twitter:image"
-          content="https://preview.hellogirls.info/og/hall-of-fame"
+          content={`https://preview.hellogirls.info/og/hall-of-fame${
+            props.place.length > 0 ? `?place=${props.place}` : ""
+          }`}
         ></meta>
         <meta property="twitter:card" content="summary_large_image"></meta>
       </Head>
@@ -236,9 +240,12 @@ export async function getServerSideProps() {
   const TL_DATA_URL = "https://tl.data.ensemble.moe/en/characters.json";
   const enData = await getData(TL_DATA_URL);
 
+  const hash = window.location.hash;
+
   return {
     props: {
       data: enData,
+      place: hash,
       title: "hall of fame | enstars popularity survey results 2023",
       description:
         "view how many votes each character received in this scrollable walk of fame.",
