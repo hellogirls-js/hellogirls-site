@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 export default function PageRedirect() {
   const router = useRouter();
+  console.log(router.query.place);
   return (
     <Head>
       <meta

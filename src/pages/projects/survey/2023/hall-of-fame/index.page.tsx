@@ -1,6 +1,6 @@
 import { IncomingMessage } from "http";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { IconArrowLeft, IconHome, IconQuestionMark, IconShare2 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import Head from "next/head";
@@ -67,7 +67,7 @@ function HallOfFameItemLabel({
           )[0];
 
           return (
-            <>
+            <span key={chara.chara_id}>
               <strong>
                 {/* {charaData.first_name} */}
                 ???
@@ -79,7 +79,7 @@ function HallOfFameItemLabel({
                 : group.length === 2 && i < group.length - 1
                 ? " and "
                 : ""}
-            </>
+            </span>
           );
         })}
         {group.length === 2 ? " both" : group.length > 2 ? " all" : " "}{" "}
@@ -187,6 +187,11 @@ export default function SurveyHallOfFame(props: any) {
   const { data } = props.data;
 
   const groupedVotes: any = groupTies(countedVotes);
+
+  useEffect(() => {
+    console.log("url =>", asPath);
+  }, [asPath]);
+
   return (
     <DataLayout pageTitle="hall of fame">
       <Head>
@@ -198,7 +203,9 @@ export default function SurveyHallOfFame(props: any) {
         />
         <meta
           property="og:url"
-          content="http://hellogirls.info/projects/survey/2023/hall-of-fame"
+          content={`http://hellogirls.info/projects/survey/2023/hall-of-fame${
+            asPath.includes("#") ? `#${asPath.split("#")[1]}` : ""
+          }`}
         />
         <meta name="twitter:creator" content="@hellogirls_DEV" />
         <meta
