@@ -13,14 +13,16 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>{`${pageProps.title || ""} ♡ hellogirls.info`}</title>
         <meta
           name="description"
-          content={
-            pageProps.description || "son @HELLOGlRLS's personal website"
-          }
+          content={pageProps.description || "son's personal website"}
         />
-        <meta name="author" content="son @HELLOGlRLS" />
+        <meta name="author" content="son @hellogirls_DEV" />
         <meta
           name="og:title"
           content={`${pageProps.title || ""} ♡ hellogirls.info`}
+        />
+        <meta
+          name="og:description"
+          content={pageProps.description || "son's personal website"}
         />
         <meta
           name="twitter:title"
@@ -28,9 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta
           name="twitter:description"
-          content={
-            pageProps.description || "son @HELLOGlRLS's personal website"
-          }
+          content={pageProps.description || "son's personal website"}
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={favicon.src} />
