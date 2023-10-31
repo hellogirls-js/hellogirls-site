@@ -1,7 +1,10 @@
+import { IncomingMessage } from "http";
+
 import { useContext } from "react";
 import { IconArrowLeft, IconHome, IconQuestionMark, IconShare2 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import styles from "./styles/main.module.scss";
 
@@ -177,19 +180,20 @@ function HallOfFameItem({
 export default function SurveyHallOfFame(props: any) {
   const { colorTheme } = useContext(DarkModeContext);
 
+  const { asPath } = useRouter();
+
   const countedVotes = countVotes("fave_chara");
 
   const { data } = props.data;
 
   const groupedVotes: any = groupTies(countedVotes);
-
   return (
     <DataLayout pageTitle="hall of fame">
       <Head>
         <meta
           property="og:image"
           content={`https://preview.hellogirls.info/og/hall-of-fame${
-            props.place.length > 0 ? `?place=${props.place}` : ""
+            asPath.includes("#") ? `?place=${asPath.split("#")[1]}` : ""
           }`}
         />
         <meta
@@ -200,7 +204,7 @@ export default function SurveyHallOfFame(props: any) {
         <meta
           property="twitter:image"
           content={`https://preview.hellogirls.info/og/hall-of-fame${
-            props.place.length > 0 ? `?place=${props.place}` : ""
+            asPath.includes("#") ? `?place=${asPath.split("#")[1]}` : ""
           }`}
         ></meta>
         <meta property="twitter:card" content="summary_large_image"></meta>
@@ -236,16 +240,21 @@ export default function SurveyHallOfFame(props: any) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps({
+  req,
+  res,
+  resolvedUrl,
+}: {
+  req: IncomingMessage;
+  res: Response;
+  resolvedUrl: string;
+}) {
   const TL_DATA_URL = "https://tl.data.ensemble.moe/en/characters.json";
   const enData = await getData(TL_DATA_URL);
-
-  const hash = window.location.hash;
 
   return {
     props: {
       data: enData,
-      place: hash,
       title: "hall of fame | enstars popularity survey results 2023",
       description:
         "view how many votes each character received in this scrollable walk of fame.",
