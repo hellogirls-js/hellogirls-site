@@ -34,6 +34,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/projects/survey/2023/hall-of-fame/:place",
+        destination: "/projects/survey/2023/hall-of-fame#:place",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = withMDX(nextConfig);
