@@ -1,5 +1,7 @@
 import { useContext } from "react";
-import { IconArrowLeft, IconHome, IconShare2 } from "@tabler/icons-react";
+import { IconArrowLeft, IconHome, IconQuestionMark, IconShare2 } from "@tabler/icons-react";
+import { motion } from "framer-motion";
+import Head from "next/head";
 
 import styles from "./styles/main.module.scss";
 
@@ -42,12 +44,19 @@ function groupTies(votes: CountedVotes[]): any {
 function HallOfFameItemLabel({
   group,
   data,
+  place,
 }: {
   group: CountedVotes[];
   data: any;
+  place: string;
 }) {
   return (
-    <div className={styles.hallOfFameItemLabel}>
+    <motion.div
+      className={styles.hallOfFameItemLabel}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
+      viewport={{ once: true, amount: "all" }}
+    >
       <span>
         {group.map((chara: CountedVotes, i: number) => {
           let charaData = data.filter(
@@ -56,7 +65,10 @@ function HallOfFameItemLabel({
 
           return (
             <>
-              <strong>{charaData.first_name}</strong>
+              <strong>
+                {/* {charaData.first_name} */}
+                ???
+              </strong>
               {group.length > 2 && i < group.length - 2
                 ? ", "
                 : group.length > 2 && i < group.length - 1
@@ -72,13 +84,13 @@ function HallOfFameItemLabel({
       </span>
       <Tooltip label="share to twitter" position="bottom">
         <a
-          href={`https://twitter.com/intent/tweet?url=https://hellogirls.info/projects/surveys/2023/hall-of-fame#${group[0].count.toString()}&text=my%20fave%20got%20${group[0].count.toString()}%20votes%20in%20the%202023%20enstars%20survey%21&hashtags=EnSurvey2023`}
+          href={`https://twitter.com/intent/tweet?url=https:%2F%2Fhellogirls-site-git-survey-results-neeneemi.vercel.app%2Fprojects%2Fsurveys%2F2023%2Fhall-of-fame%23${place}&text=my%20fave%20got%20${group[0].count.toString()}%20votes%20in%20the%202023%20enstars%20survey%21&hashtags=EnSurvey2023`}
           target="_blank"
         >
           <IconShare2 />
         </a>
       </Tooltip>
-    </div>
+    </motion.div>
   );
 }
 
@@ -98,10 +110,9 @@ function HallOfFameItem({
     <>
       {sortedObjectkeys.map((place: string, index: number) => {
         const group = groupedVotes[place];
-        console.log(group[0]);
         return (
           <div
-            id={group[0].count.toString()}
+            id={place}
             className={`${styles.hallOfFameItemContainer} ${
               styles[index % 2 === 0 ? "even" : "odd"]
             }`}
@@ -113,38 +124,48 @@ function HallOfFameItem({
             }}
             key={index}
           >
-            <div
+            <motion.div
               className={`${styles.hallOfFameItem} ${
                 styles[index % 2 === 0 ? "even" : "odd"]
               }`}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1, transition: { delay: 0.2 } }}
+              viewport={{ once: true, amount: "all" }}
             >
               <div className={styles.hallOfFameItemAvis}>
                 {group.map((chara: CountedVotes) => (
                   <div className={styles.hallOfFameAvi} key={chara.chara_id}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    {/* <img
                       src={`https://assets.enstars.link/assets/card_full1_${
                         (twoStarIDs as any)[chara.chara_id]
                       }_normal.png`}
                       alt="chara"
                       width={550}
-                    />
+                    /> */}
+                    <IconQuestionMark size={98} />
                   </div>
                 ))}
               </div>
-            </div>
-            <HallOfFameItemLabel group={group} data={data} />
-            <div className={styles.hallOfFameItemPlace}>
-              {place}
-              <span className={styles.suffix}>
-                {place.endsWith("1") && place !== "11"
-                  ? "st"
-                  : place.endsWith("2") && place !== "12"
-                  ? "nd"
-                  : place.endsWith("3") && place !== "13"
-                  ? "rd"
-                  : "th"}
-              </span>
+            </motion.div>
+            <HallOfFameItemLabel group={group} data={data} place={place} />
+            <div
+              className={`${styles.hallOfFameItemPlaceCont} ${
+                styles[index % 2 === 0 ? "even" : "odd"]
+              }`}
+            >
+              <div className={styles.hallOfFameItemPlace}>
+                {place}
+                <span className={styles.suffix}>
+                  {place.endsWith("1") && place !== "11"
+                    ? "st"
+                    : place.endsWith("2") && place !== "12"
+                    ? "nd"
+                    : place.endsWith("3") && place !== "13"
+                    ? "rd"
+                    : "th"}
+                </span>
+              </div>
             </div>
           </div>
         );
@@ -156,19 +177,25 @@ function HallOfFameItem({
 export default function SurveyHallOfFame(props: any) {
   const { colorTheme } = useContext(DarkModeContext);
 
-  // const countedVotes = countVotes("fave_chara").sort(
-  //   (a, b) => a.count - b.count,
-  // );
-
   const countedVotes = countVotes("fave_chara");
 
   const { data } = props.data;
 
   const groupedVotes: any = groupTies(countedVotes);
-  console.log(groupedVotes);
 
   return (
     <DataLayout pageTitle="hall of fame">
+      <Head>
+        <meta
+          property="og:image"
+          content="https://preview.hellogirls.info/og/hall-of-fame"
+        />
+        <meta name="twitter:creator" content="@hellogirls_DEV" />
+        <meta
+          property="og:url"
+          content="http://hellogirls.info/projects/survey/2023/hall-of-fame"
+        />
+      </Head>
       <div className={`${styles.page} ${styles[colorTheme]}`}>
         <div className={styles.hallOfFameContainer}>
           <div className={styles.pageHeader}>

@@ -141,8 +141,7 @@
             position: relative;
             width: 75%;
             height: auto;
-            margin: auto;
-            margin-top: 5%;
+            margin: 5% auto;
 
             .timeline {
                 position: absolute;
@@ -229,18 +228,31 @@
                     }
                 }
 
-                .hallOfFameItemPlace {
-                    font-weight: 900;
-                    font-size: 3.5rem;
+                .hallOfFameItemPlaceCont {
+                    width: 50%;
                     display: flex;
                     align-items: flex-start;
 
-                    .suffix {
-                        font-size: 1.5rem;
-                        font-weight: 400;
-                        font-variant: small-caps;
+                    &.odd {
+                        flex-direction: row-reverse;
+                    }
+
+                    .hallOfFameItemPlace {
+                        font-weight: 900;
+                        font-size: 3.5rem;
+                        display: flex;
+                        align-items: flex-start;
+                        padding: 0% 2%;
+                        user-select: none;
+
+                        .suffix {
+                            font-size: 1.5rem;
+                            font-weight: 400;
+                            font-variant: small-caps;
+                        }
                     }
                 }
+                
             }
             
         }
