@@ -12,7 +12,7 @@ export default function PageRedirect() {
       />
       <meta
         property="og:url"
-        content="http://hellogirls.info/projects/survey/2023/hall-of-fame"
+        content={`http://hellogirls.info/projects/survey/2023/hall-of-fame#${router.query.place}`}
       />
       <meta name="twitter:creator" content="@hellogirls_DEV" />
       <meta
