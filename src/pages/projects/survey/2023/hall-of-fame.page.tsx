@@ -84,7 +84,7 @@ function HallOfFameItemLabel({
       </span>
       <Tooltip label="share to twitter" position="bottom">
         <a
-          href={`https://twitter.com/intent/tweet?url=https:%2F%2Fhellogirls-site-git-survey-results-neeneemi.vercel.app%2Fprojects%2Fsurveys%2F2023%2Fhall-of-fame%23${place}&text=my%20fave%20got%20${group[0].count.toString()}%20votes%20in%20the%202023%20enstars%20survey%21&hashtags=EnSurvey2023`}
+          href={`https://twitter.com/intent/tweet?url=https:%2F%2Fhellogirls-site-git-survey-results-neeneemi.vercel.app%2Fprojects%2Fsurvey%2F2023%2Fhall-of-fame%23${place}&text=my%20fave%20got%20${group[0].count.toString()}%20votes%20in%20the%202023%20enstars%20survey%21&hashtags=EnSurvey2023`}
           target="_blank"
         >
           <IconShare2 />
