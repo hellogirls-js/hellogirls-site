@@ -32,6 +32,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "assets.hellogirls.info",
       },
+      {
+        protocol: "https",
+        hostname: "preview.hellogirls.info",
+      },
     ],
   },
   async redirects() {

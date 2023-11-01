@@ -1,17 +1,28 @@
 import { IncomingMessage } from "http";
 
-import { useContext, useEffect } from "react";
-import { IconArrowLeft, IconHome, IconQuestionMark, IconShare2 } from "@tabler/icons-react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import {
+  IconArrowLeft,
+  IconHome,
+  IconQuestionMark,
+  IconShare2,
+} from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
 import styles from "../styles/main.module.scss";
+import ShareImageModal from "../components/ShareImageModal";
 
 import DataLayout from "component/DataLayout";
 import getData, { countVotes } from "component/utility/data";
 import { DarkModeContext } from "context/DarkModeContext";
-import { twoStarIDs } from "data/twoStarIds";
 import Tooltip from "component/utility/Tooltip";
 
 function groupTies(votes: CountedVotes[]): any {
@@ -48,10 +59,16 @@ function HallOfFameItemLabel({
   group,
   data,
   place,
+  closed,
+  setClosed,
+  setPlace,
 }: {
   group: CountedVotes[];
   data: any;
   place: string;
+  closed: boolean;
+  setClosed: Dispatch<SetStateAction<boolean>>;
+  setPlace: Dispatch<SetStateAction<string | null>>;
 }) {
   return (
     <motion.div
@@ -85,13 +102,15 @@ function HallOfFameItemLabel({
         {group.length === 2 ? " both" : group.length > 2 ? " all" : " "}{" "}
         received <strong>{group[0].count}</strong> votes
       </span>
-      <Tooltip label="share to twitter" position="bottom">
-        <a
-          href={`https://twitter.com/intent/tweet?url=https:%2F%2Fhellogirls-site-git-survey-results-neeneemi.vercel.app%2Fprojects%2Fsurvey%2F2023%2Fhall-of-fame%2F${place}&text=my%20fave%20got%20${group[0].count.toString()}%20votes%20in%20the%202023%20enstars%20survey%21&hashtags=EnSurvey2023`}
-          target="_blank"
+      <Tooltip label="share on social media" position="bottom">
+        <span
+          onClick={() => {
+            setPlace(place);
+            setClosed(false);
+          }}
         >
           <IconShare2 />
-        </a>
+        </span>
       </Tooltip>
     </motion.div>
   );
@@ -101,10 +120,16 @@ function HallOfFameItem({
   groupedVotes,
   data,
   votes,
+  closed,
+  setClosed,
+  setPlace,
 }: {
   groupedVotes: any;
   data: any;
   votes: CountedVotes[];
+  closed: boolean;
+  setClosed: Dispatch<SetStateAction<boolean>>;
+  setPlace: Dispatch<SetStateAction<string | null>>;
 }) {
   const sortedObjectkeys = Object.keys(groupedVotes).sort(
     (a, b) => parseInt(b) - parseInt(a),
@@ -151,7 +176,14 @@ function HallOfFameItem({
                 ))}
               </div>
             </motion.div>
-            <HallOfFameItemLabel group={group} data={data} place={place} />
+            <HallOfFameItemLabel
+              group={group}
+              data={data}
+              place={place}
+              closed={closed}
+              setClosed={setClosed}
+              setPlace={setPlace}
+            />
             <div
               className={`${styles.hallOfFameItemPlaceCont} ${
                 styles[index % 2 === 0 ? "even" : "odd"]
@@ -182,15 +214,19 @@ export default function SurveyHallOfFame(props: any) {
 
   const { asPath } = useRouter();
 
+  useEffect(() => {
+    console.log("url =>", asPath);
+  }, [asPath]);
+
+  const [closed, setClose] = useState<boolean>(true);
+  // FIXME: the place is null :/ remove context probably
+  const [place, setPlace] = useState<string | null>(null);
+
   const countedVotes = countVotes("fave_chara");
 
   const { data } = props.data;
 
   const groupedVotes: any = groupTies(countedVotes);
-
-  useEffect(() => {
-    console.log("url =>", asPath);
-  }, [asPath]);
 
   return (
     <DataLayout pageTitle="hall of fame">
@@ -220,6 +256,26 @@ export default function SurveyHallOfFame(props: any) {
           content="hall of fame statistic or preview"
         ></meta>
       </Head>
+      {!closed && (
+        <ShareImageModal
+          title="share on social media!"
+          url={`https://hellogirls.info/projects/survey/2023/hall-of-fame/${place}`}
+          postImgUrl={`https://preview.hellogirls.info/og/hall-of-fame${
+            place ? `?place=${place}` : ""
+          }`}
+          postBody={`my fave is in ${place}${
+            place?.endsWith("1") && place !== "11"
+              ? "st"
+              : place?.endsWith("2") && place !== "12"
+              ? "nd"
+              : place?.endsWith("3") && place !== "13"
+              ? "rd"
+              : "th"
+          } on the enstars popularity survey!`}
+          postTag="EnSurvey2023"
+          setClose={setClose}
+        />
+      )}
       <div className={`${styles.page} ${styles[colorTheme]}`}>
         <div className={styles.hallOfFameContainer}>
           <div className={styles.pageHeader}>
@@ -242,6 +298,9 @@ export default function SurveyHallOfFame(props: any) {
                 groupedVotes={groupedVotes}
                 data={data}
                 votes={countedVotes}
+                closed={closed}
+                setClosed={setClose}
+                setPlace={setPlace}
               />
             </div>
           </div>

@@ -1,0 +1,67 @@
+@use "../../../../../../../styles/vars.module.scss";
+
+.modalContainer {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+
+    .modalBody {
+        width: 75%;
+        height: 75%;
+        z-index: 1001;
+        border-radius: 10px;
+
+        .modalHeader {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2%;
+
+            h2 {
+                margin: 0;
+            }
+
+            .modalClose {
+                cursor: pointer;
+            }
+        }
+
+        .modalShareImg {
+            .modalShareButtonsContainer {
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+
+                .modalShareButton {
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}
+
+
+
+.light {
+    background: #635cafbb;
+
+    .modalBody {
+        background: vars.$light-bg;
+
+        .modalHeader {
+            h2 {
+                color: vars.$light-heading-2;
+            }
+
+            .modalClose {
+                color: vars.$light-link;
+            }
+        }
+    }
+}
