@@ -16,10 +16,14 @@ export default function PageRedirect() {
       />
       <meta name="twitter:creator" content="@hellogirls_DEV" />
       <meta
-        property="twitter:image"
+        name="twitter:image"
         content={`https://preview.hellogirls.info/og/hall-of-fame?place=${router.query.place}`}
       ></meta>
-      <meta property="twitter:card" content="summary_large_image"></meta>
+      <meta name="twitter:card" content="summary_large_image"></meta>
+      <meta
+        name="twitter:image:alt"
+        content="hall of fame statistic or preview"
+      ></meta>
     </Head>
   );
 }

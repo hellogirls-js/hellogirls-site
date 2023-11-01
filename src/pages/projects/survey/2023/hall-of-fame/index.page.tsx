@@ -209,12 +209,16 @@ export default function SurveyHallOfFame(props: any) {
         />
         <meta name="twitter:creator" content="@hellogirls_DEV" />
         <meta
-          property="twitter:image"
+          name="twitter:image"
           content={`https://preview.hellogirls.info/og/hall-of-fame${
             asPath.includes("#") ? `?place=${asPath.split("#")[1]}` : ""
           }`}
         ></meta>
-        <meta property="twitter:card" content="summary_large_image"></meta>
+        <meta name="twitter:card" content="summary_large_image"></meta>
+        <meta
+          name="twitter:image:alt"
+          content="hall of fame statistic or preview"
+        ></meta>
       </Head>
       <div className={`${styles.page} ${styles[colorTheme]}`}>
         <div className={styles.hallOfFameContainer}>
