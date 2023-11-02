@@ -214,10 +214,6 @@ export default function SurveyHallOfFame(props: any) {
 
   const { asPath } = useRouter();
 
-  useEffect(() => {
-    console.log("url =>", asPath);
-  }, [asPath]);
-
   const [closed, setClose] = useState<boolean>(true);
   // FIXME: the place is null :/ remove context probably
   const [place, setPlace] = useState<string | null>(null);
@@ -259,7 +255,7 @@ export default function SurveyHallOfFame(props: any) {
       {!closed && (
         <ShareImageModal
           title="share on social media!"
-          url={`https://hellogirls.info/projects/survey/2023/hall-of-fame/${place}`}
+          url={`https://hellogirls-site-git-survey-results-neeneemi.vercel.app/projects/survey/2023/hall-of-fame/${place}`}
           postImgUrl={`https://preview.hellogirls.info/og/hall-of-fame${
             place ? `?place=${place}` : ""
           }`}
@@ -271,7 +267,7 @@ export default function SurveyHallOfFame(props: any) {
               : place?.endsWith("3") && place !== "13"
               ? "rd"
               : "th"
-          } on the enstars popularity survey!`}
+          } place on the enstars popularity survey!`}
           postTag="EnSurvey2023"
           setClose={setClose}
         />

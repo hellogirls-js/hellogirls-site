@@ -75,7 +75,7 @@ export default function ShareImageModal({
               href={`https://twitter.com/intent/tweet?text=${postBody.replace(
                 " ",
                 "%20",
-              )}%20?hashtag=${postTag}?url=${url}`}
+              )}&hashtags=${postTag}&url=${url}`}
               target="_blank"
               style={{ display: !loaded ? "none" : "block" }}
             >
