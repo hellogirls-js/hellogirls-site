@@ -1,28 +1,24 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
 
-export default function PageRedirect() {
-  const { asPath } = useRouter();
-  const splitPath = asPath.split("/");
-  const place = splitPath[splitPath.length - 1];
-  console.log(place);
+export default function PageRedirect(props: any) {
+  const { place } = props;
 
   return (
     <Head>
       <meta
         property="og:image"
         content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
-          place ? `?place=${place}` : ""
+          place && !Number.isNaN(place) ? `?place=${place}` : ""
         }`}
       />
       <meta
         property="og:description"
         content={`my fave is in ${place}${
-          place.endsWith("1") && place !== "11"
+          place?.endsWith("1") && place !== "11"
             ? "st"
-            : place.endsWith("2") && place !== "12"
+            : place?.endsWith("2") && place !== "12"
             ? "nd"
-            : place.endsWith("3") && place !== "13"
+            : place?.endsWith("3") && place !== "13"
             ? "rd"
             : "th"
         } place on the enstars popularity survey!`}
@@ -35,7 +31,7 @@ export default function PageRedirect() {
       <meta
         name="twitter:image"
         content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
-          place ? `?place=${place}` : ""
+          place && !Number.isNaN(place) ? `?place=${place}` : ""
         }`}
       ></meta>
       <meta
@@ -51,4 +47,15 @@ export default function PageRedirect() {
       ></meta>
     </Head>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  const place = context.params.place;
+  console.log(place);
+
+  return {
+    props: {
+      place,
+    },
+  };
 }
