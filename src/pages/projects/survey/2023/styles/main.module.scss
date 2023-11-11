@@ -236,6 +236,10 @@
                     align-items: center;
                     gap: 5px;
 
+                    .shareButton {
+                        cursor: pointer;
+                    }
+
                     @media screen and (max-width: 812px) {
                         bottom: -100px;
                         width: 50%;
@@ -329,6 +333,10 @@
                 a:link, a:visited {
                     color: vars.$light-link;
                 }
+
+                .shareButton {
+                    color: vars.$light-link;
+                }
             }
 
             .hallOfFameItemPlace {
@@ -392,6 +400,10 @@
                 }
 
                 a:link, a:visited {
+                    color: vars.$dark-link;
+                }
+
+                .shareButton {
                     color: vars.$dark-link;
                 }
             }

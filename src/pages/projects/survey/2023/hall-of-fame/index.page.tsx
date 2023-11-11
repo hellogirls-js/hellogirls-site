@@ -98,6 +98,7 @@ function HallOfFameItemLabel({
       </span>
       <Tooltip label="share on social media" position="bottom">
         <span
+          className={styles.shareButton}
           onClick={() => {
             setPlace(place);
             setClosed(false);
@@ -223,9 +224,9 @@ export default function SurveyHallOfFame(props: any) {
       <Head>
         <meta
           property="og:image"
-          content={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${
-            asPath.split("#")[1]
-          }.png`}
+          content={`https://preview.hellogirls.info/og/hall-of-fame${
+            asPath.split("#") ? `/${asPath.split("#")[1]}` : ""
+          }`}
         />
         <meta
           property="og:url"
@@ -236,15 +237,15 @@ export default function SurveyHallOfFame(props: any) {
         <meta name="twitter:creator" content="@hellogirls_DEV" />
         <meta
           name="twitter:image"
-          content={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${
-            asPath.split("#")[1]
-          }.png`}
+          content={`https://preview.hellogirls.info/og/hall-of-fame${
+            asPath.split("#") ? `/${asPath.split("#")[1]}` : ""
+          }`}
         ></meta>
         <meta
           name="twitter:image:src"
-          content={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${
-            asPath.split("#")[1]
-          }.png`}
+          content={`https://preview.hellogirls.info/og/hall-of-fame${
+            asPath.split("#") ? `/${asPath.split("#")[1]}` : ""
+          }`}
         ></meta>
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta

@@ -32,14 +32,22 @@
         }
 
         .modalShareImg {
+            img {
+                border-radius: 5px;
+            }
+
             .modalShareButtonsContainer {
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
+                margin-top: 2%;
 
                 .modalShareButton {
                     display: flex;
                     align-items: center;
+                    justify-content: center;
+                    padding: 1%;
+                    border-radius: 5px;
                 }
             }
         }
@@ -61,6 +69,52 @@
 
             .modalClose {
                 color: vars.$light-link;
+            }
+        }
+
+        .modalShareImg {
+            img {
+                border: 1px solid vars.$light-button-border;
+            }
+            
+            .modalShareButtonsContainer {
+                .modalShareButton {
+                    background-color: vars.$light-form-button-bg;
+                    color: vars.$light-form-button-text;
+                    border: 1px solid vars.$light-form-button-border;
+                }
+            }
+        }
+    }
+}
+
+.dark {
+    background: rgba(31, 28, 53, 0.733);
+
+    .modalBody {
+        background: vars.$dark-bg;
+
+        .modalHeader {
+            h2 {
+                color: vars.$dark-heading-2;
+            }
+
+            .modalClose {
+                color: vars.$dark-link;
+            }
+        }
+
+        .modalShareImg {
+            img {
+                border: 1px solid vars.$dark-button-border;
+            }
+            
+            .modalShareButtonsContainer {
+                .modalShareButton {
+                    background-color: vars.$dark-form-button-bg;
+                    color: vars.$dark-form-button-text;
+                    border: 1px solid vars.$dark-form-button-border;
+                }
             }
         }
     }
