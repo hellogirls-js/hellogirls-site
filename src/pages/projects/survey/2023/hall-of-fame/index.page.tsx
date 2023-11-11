@@ -257,7 +257,7 @@ export default function SurveyHallOfFame(props: any) {
         <ShareImageModal
           title="share on social media!"
           url={`https://hellogirls-site-git-survey-results-neeneemi.vercel.app/projects/survey/2023/hall-of-fame/${place}`}
-          postImgUrl={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${place}.png`}
+          postImgUrl={`https://preview.hellogirls.info/og/hall-of-fame?place=${place}`}
           postBody={`my fave is in ${place}${
             place?.endsWith("1") && place !== "11"
               ? "st"

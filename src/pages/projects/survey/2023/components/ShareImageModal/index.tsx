@@ -38,6 +38,8 @@ export default function ShareImageModal({
   const imageRef = useRef<HTMLImageElement | null>(null);
 
   // FIXME: insert image properly
+  const image = getImage(postImgUrl);
+
   return (
     <motion.div
       className={`${styles.modalContainer} ${styles[colorTheme]}`}
