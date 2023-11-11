@@ -230,7 +230,7 @@ export default function SurveyHallOfFame(props: any) {
         <meta
           property="og:url"
           content={`http://hellogirls.info/projects/survey/2023/hall-of-fame${
-            asPath.includes("#") ? `#${asPath.split("#")[1]}` : ""
+            asPath.includes("#") ? `/${asPath.split("#")[1]}` : ""
           }`}
         />
         <meta name="twitter:creator" content="@hellogirls_DEV" />
