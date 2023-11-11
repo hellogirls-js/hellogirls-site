@@ -51,7 +51,6 @@ export default function PageRedirect(props: any) {
 
 export async function getServerSideProps(context: any) {
   const place = context.params.place;
-  console.log(place);
 
   return {
     props: {
