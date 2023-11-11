@@ -37,9 +37,6 @@ export default function ShareImageModal({
   const [loaded, setLoaded] = useState<boolean>(false);
   const imageRef = useRef<HTMLImageElement | null>(null);
 
-  const image = getImage(postImgUrl);
-  console.log(image);
-
   // FIXME: insert image properly
   return (
     <motion.div
@@ -56,6 +53,7 @@ export default function ShareImageModal({
         </div>
         <div className={styles.modalShareImg}>
           {!loaded && <Oval />}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             ref={imageRef}
             src={postImgUrl}

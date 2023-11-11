@@ -8,7 +8,7 @@ export default function PageRedirect() {
     <Head>
       <meta
         property="og:image"
-        content={`https://preview.hellogirls.info/og/hall-of-fame?place=${router.query.place}`}
+        content={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${router.query.place}.png`}
       />
       <meta
         property="og:url"
@@ -17,7 +17,11 @@ export default function PageRedirect() {
       <meta name="twitter:creator" content="@hellogirls_DEV" />
       <meta
         name="twitter:image"
-        content={`https://preview.hellogirls.info/og/hall-of-fame?place=${router.query.place}`}
+        content={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${router.query.place}.png`}
+      ></meta>
+      <meta
+        name="twitter:image:src"
+        content={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${router.query.place}.png`}
       ></meta>
       <meta name="twitter:card" content="summary_large_image"></meta>
       <meta

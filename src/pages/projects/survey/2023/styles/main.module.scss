@@ -87,6 +87,10 @@
             justify-content: space-around;
             padding: 0% 5%;
             box-sizing: border-box;
+
+            @media screen and (max-width: 812px) {
+                margin-bottom: 10%;
+            }
             
             .homeGridContainerItem {
                 box-sizing: border-box;
@@ -96,6 +100,10 @@
                 font-size: 1.5rem;
                 overflow: clip;
                 margin-top: 5%;
+
+                @media screen and (max-width: 812px) {
+                    width: 100%;
+                }
 
                 .gridItemIcon {
                     display: flex;
@@ -114,6 +122,10 @@
                     bottom: -20%;
                     left: 25%;
                     z-index: 1;
+
+                    @media screen and (max-width: 812px) {
+                        display: none;
+                    }
                 }
 
                 .gridItemDesc {
@@ -126,6 +138,10 @@
                     font-weight: 200;
                     font-size: 1rem;
                     z-index: 4;
+
+                    @media screen and (max-width: 812px) {
+                        transform: translateY(0px) !important;
+                    }
                 }
             }
         }

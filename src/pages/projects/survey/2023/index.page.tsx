@@ -15,7 +15,11 @@ import {
   useRef,
   useState,
 } from "react";
-import { UseListStateHandlers, useListState } from "@mantine/hooks";
+import {
+  UseListStateHandlers,
+  useListState,
+  useMediaQuery,
+} from "@mantine/hooks";
 import {
   AnimatePresence,
   AnimationSequence,
@@ -57,6 +61,9 @@ function HomeGridItem({
   clicked,
   chara,
 }: PageItem) {
+  const isMobile = useMediaQuery("(max-width: 812px)");
+  console.log("isMobile =>", isMobile);
+
   const parentVariants: Variants = {
     rest: {
       scale: 1,
@@ -101,7 +108,10 @@ function HomeGridItem({
           {icon} <div className={styles.gridItemTitle}>{title}</div>
         </div>
         <div className={styles.gridItemChara}>{chara}</div>
-        <motion.div className={styles.gridItemDesc} variants={descVariants}>
+        <motion.div
+          className={styles.gridItemDesc}
+          variants={isMobile ? undefined : descVariants}
+        >
           {desc}
         </motion.div>
       </motion.a>

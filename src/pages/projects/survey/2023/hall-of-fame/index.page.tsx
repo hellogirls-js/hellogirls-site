@@ -229,9 +229,9 @@ export default function SurveyHallOfFame(props: any) {
       <Head>
         <meta
           property="og:image"
-          content={`https://preview.hellogirls.info/og/hall-of-fame${
-            asPath.includes("#") ? `?place=${asPath.split("#")[1]}` : ""
-          }`}
+          content={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${
+            asPath.split("#")[1]
+          }.png`}
         />
         <meta
           property="og:url"
@@ -242,9 +242,15 @@ export default function SurveyHallOfFame(props: any) {
         <meta name="twitter:creator" content="@hellogirls_DEV" />
         <meta
           name="twitter:image"
-          content={`https://preview.hellogirls.info/og/hall-of-fame${
-            asPath.includes("#") ? `?place=${asPath.split("#")[1]}` : ""
-          }`}
+          content={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${
+            asPath.split("#")[1]
+          }.png`}
+        ></meta>
+        <meta
+          name="twitter:image:src"
+          content={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${
+            asPath.split("#")[1]
+          }.png`}
         ></meta>
         <meta name="twitter:card" content="summary_large_image"></meta>
         <meta
@@ -255,10 +261,8 @@ export default function SurveyHallOfFame(props: any) {
       {!closed && (
         <ShareImageModal
           title="share on social media!"
-          url={`https://hellogirls-site-git-survey-results-neeneemi.vercel.app/projects/survey/2023/hall-of-fame#${place}`}
-          postImgUrl={`https://preview.hellogirls.info/og/hall-of-fame${
-            place ? `?place=${place}` : ""
-          }`}
+          url={`https://hellogirls-site-git-survey-results-neeneemi.vercel.app/projects/survey/2023/hall-of-fame/${place}`}
+          postImgUrl={`https://assets.hellogirls.info/og/hall-of-fame/hall-of-fame-${place}.png`}
           postBody={`my fave is in ${place}${
             place?.endsWith("1") && place !== "11"
               ? "st"
