@@ -224,7 +224,7 @@ export default function SurveyHallOfFame(props: any) {
       <Head>
         <meta
           property="og:image"
-          content={`https://preview.hellogirls.info/og/hall-of-fame${
+          content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
             asPath.split("#") ? `/${asPath.split("#")[1]}` : ""
           }`}
         />
@@ -237,13 +237,13 @@ export default function SurveyHallOfFame(props: any) {
         <meta name="twitter:creator" content="@hellogirls_DEV" />
         <meta
           name="twitter:image"
-          content={`https://preview.hellogirls.info/og/hall-of-fame${
+          content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
             asPath.split("#") ? `/${asPath.split("#")[1]}` : ""
           }`}
         ></meta>
         <meta
           name="twitter:image:src"
-          content={`https://preview.hellogirls.info/og/hall-of-fame${
+          content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
             asPath.split("#") ? `/${asPath.split("#")[1]}` : ""
           }`}
         ></meta>
@@ -257,7 +257,7 @@ export default function SurveyHallOfFame(props: any) {
         <ShareImageModal
           title="share on social media!"
           url={`https://hellogirls-site-git-survey-results-neeneemi.vercel.app/projects/survey/2023/hall-of-fame/${place}`}
-          postImgUrl={`https://preview.hellogirls.info/og/hall-of-fame?place=${place}`}
+          postImgUrl={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame?place=${place}`}
           postBody={`my fave is in ${place}${
             place?.endsWith("1") && place !== "11"
               ? "st"
