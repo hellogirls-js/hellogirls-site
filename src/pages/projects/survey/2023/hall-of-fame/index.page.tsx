@@ -1,12 +1,6 @@
 import { IncomingMessage } from "http";
 
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, SetStateAction, useContext, useState } from "react";
 import {
   IconArrowLeft,
   IconHome,
