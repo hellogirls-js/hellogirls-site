@@ -8,7 +8,7 @@ export default function PageRedirect() {
     <Head>
       <meta
         property="og:image"
-        content={`https://preview.hellogirls.info/og/hall-of-fame${
+        content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
           router.query.place ? `?place=${router.query.place}` : ""
         }`}
       />
@@ -19,13 +19,13 @@ export default function PageRedirect() {
       <meta name="twitter:creator" content="@hellogirls_DEV" />
       <meta
         name="twitter:image"
-        content={`https://preview.hellogirls.info/og/hall-of-fame${
+        content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
           router.query.place ? `?place=${router.query.place}` : ""
         }`}
       ></meta>
       <meta
         name="twitter:image:src"
-        content={`https://preview.hellogirls.info/og/hall-of-fame${
+        content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
           router.query.place ? `?place=${router.query.place}` : ""
         }`}
       ></meta>
