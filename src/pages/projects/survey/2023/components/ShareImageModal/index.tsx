@@ -91,8 +91,8 @@ export default function ShareImageModal({
                 <IconBrandTwitter /> share to twitter
               </a>
               <a
-                className={`${styles.modalShareButton} tumblr-share-button`}
-                href={`https://www.tumblr.com/widgets/share/tool?posttype=link&content=${url}&title=${postBody}&tags=${postTag}`}
+                className={styles.modalShareButton}
+                href={`https://www.tumblr.com/widgets/share/tool?canonicalUrl=${url}&title=${postBody}&tags=${postTag}`}
                 target="_blank"
                 style={{ display: !loaded ? "none" : "block" }}
               >
