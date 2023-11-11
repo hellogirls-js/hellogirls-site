@@ -2,8 +2,10 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 
 export default function PageRedirect() {
-  const router = useRouter();
-  const place: string = router.query.place as string;
+  const { asPath } = useRouter();
+  const splitPath = asPath.split("/");
+  const place = splitPath[splitPath.length - 1];
+
   return (
     <Head>
       <meta

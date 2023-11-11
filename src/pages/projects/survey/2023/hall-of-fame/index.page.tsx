@@ -208,6 +208,7 @@ export default function SurveyHallOfFame(props: any) {
   const { colorTheme } = useContext(DarkModeContext);
 
   const { asPath } = useRouter();
+  console.log(asPath);
 
   const [closed, setClose] = useState<boolean>(true);
   // FIXME: the place is null :/ remove context probably
