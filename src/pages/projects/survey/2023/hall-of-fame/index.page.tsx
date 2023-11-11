@@ -1,18 +1,14 @@
 import { IncomingMessage } from "http";
 
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import {
-  IconArrowLeft,
-  IconHome,
-  IconQuestionMark,
-  IconShare2,
-} from "@tabler/icons-react";
+import { IconQuestionMark, IconShare2 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import { useRouter } from "next/router";
 
 import styles from "../styles/main.module.scss";
 import ShareImageModal from "../components/ShareImageModal";
+import PageHeader from "../components/PageHeader";
 
 import DataLayout from "component/DataLayout";
 import getData, { countVotes } from "component/utility/data";
@@ -226,7 +222,7 @@ export default function SurveyHallOfFame(props: any) {
         <meta
           property="og:image"
           content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
-            asPath.split("#") ? `/${asPath.split("#")[1]}` : ""
+            asPath.split("#") ? `?place=${asPath.split("#")[1]}` : ""
           }`}
         />
         <meta
@@ -239,13 +235,13 @@ export default function SurveyHallOfFame(props: any) {
         <meta
           name="twitter:image"
           content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
-            asPath.split("#") ? `/${asPath.split("#")[1]}` : ""
+            asPath.split("#") ? `?place=${asPath.split("#")[1]}` : ""
           }`}
         ></meta>
         <meta
           name="twitter:image:src"
           content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
-            asPath.split("#") ? `/${asPath.split("#")[1]}` : ""
+            asPath.split("#") ? `?place=${asPath.split("#")[1]}` : ""
           }`}
         ></meta>
         <meta name="twitter:card" content="summary_large_image"></meta>
@@ -274,17 +270,8 @@ export default function SurveyHallOfFame(props: any) {
       )}
       <div className={`${styles.page} ${styles[colorTheme]}`}>
         <div className={styles.hallOfFameContainer}>
-          <div className={styles.pageHeader}>
-            <Tooltip label="back to home" position="bottom">
-              <div className={styles.homeButton}>
-                <a href="/projects/survey/2023">
-                  <IconArrowLeft size={32} />
-                  <IconHome size={40} />
-                </a>
-              </div>
-            </Tooltip>
-            <h1>hall of fame</h1>
-          </div>
+          <PageHeader title="hall of fame" />
+          <p></p>
           <div className={styles.hallOfFame}>
             <div className={styles.timeline}>
               <div className={styles.timelineLine}></div>

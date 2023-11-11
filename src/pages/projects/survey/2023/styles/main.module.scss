@@ -278,16 +278,14 @@
         }
     }
 
+    .popularVoteContainer {
+        width: 100%;
+        padding: 2%;
+        box-sizing: border-box;
+    }
+
     &.light {
         color: vars.$light-text;
-
-        .pageHeader {
-            .homeButton {
-                a:link, a:visited {
-                    color: vars.$light-link;
-                }
-            }
-        }
 
         .homeGridContainer {
             .homeGridContainerItem {
@@ -352,14 +350,6 @@
     &.dark {
         color: vars.$dark-text;
 
-        .pageHeader {
-            .homeButton {
-                a:link, a:visited {
-                    color: vars.$dark-link;
-                }
-            }
-        }
-
         .homeGridContainer {
             .homeGridContainerItem {
                 border: 3px solid vars.$dark-heading-2;
@@ -416,20 +406,5 @@
                 }
             }
         }
-    }
-}
-
-.pageHeader {
-    display: flex;
-    align-items: center;
-    gap: 2%;
-
-    .homeButton {
-        display: flex;
-        align-items: center;
-    }
-
-    h1 {
-        margin: 0;
     }
 }

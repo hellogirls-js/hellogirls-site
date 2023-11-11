@@ -5,6 +5,7 @@ export default function PageRedirect() {
   const { asPath } = useRouter();
   const splitPath = asPath.split("/");
   const place = splitPath[splitPath.length - 1];
+  console.log(place);
 
   return (
     <Head>

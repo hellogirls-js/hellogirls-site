@@ -16,6 +16,22 @@
         z-index: 1001;
         border-radius: 10px;
 
+        @media screen and (max-width: 812px) {
+            width: 95%;
+        }
+
+        .loading {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+        
+            .loader {
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
         .modalHeader {
             display: flex;
             align-items: center;

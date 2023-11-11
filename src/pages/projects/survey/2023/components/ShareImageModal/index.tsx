@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useContext, useRef, useState } from "react";
 import { IconBrandTumblr, IconBrandTwitter, IconX } from "@tabler/icons-react";
 import { Oval } from "react-loader-spinner";
 import Head from "next/head";
+import { useMediaQuery } from "@mantine/hooks";
 
 import styles from "./ShareImageModal.module.scss";
 
@@ -40,6 +41,7 @@ export default function ShareImageModal({
 
   // FIXME: insert image properly
   const image = getImage(postImgUrl);
+  const isMobile = useMediaQuery("(max-width: 812px)");
 
   return (
     <>
@@ -63,13 +65,25 @@ export default function ShareImageModal({
             </div>
           </div>
           <div className={styles.modalShareImg}>
-            {!loaded && <Oval />}
+            {!loaded && (
+              <div className={styles.loading}>
+                <Oval
+                  color={colorTheme === "light" ? "#7d8534" : "#b4c044"}
+                  secondaryColor={
+                    colorTheme === "light" ? "#7d8534" : "#b4c044"
+                  }
+                  strokeWidth={5}
+                  width="10vw"
+                  height="10vw"
+                  wrapperClass={styles.loader}
+                />
+              </div>
+            )}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               ref={imageRef}
               src={postImgUrl}
-              width={800}
-              height={418}
+              width={isMobile ? 350 : 800}
               alt="post image"
               onLoad={() => setLoaded(true)}
               style={{
