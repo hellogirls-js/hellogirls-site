@@ -60,7 +60,7 @@ export default function ShareImageModal({
             ref={imageRef}
             src={postImgUrl}
             width={800}
-            height={400}
+            height={418}
             alt="post image"
             onLoad={() => setLoaded(true)}
             style={{
