@@ -42,7 +42,7 @@ const nextConfig = {
     return [
       {
         source: "/projects/survey/2023/hall-of-fame/:place",
-        destination: "/projects/survey/2023/hall-of-fame#:place",
+        destination: "/projects/survey/2023/hall-of-fame?place=:place",
         permanent: true,
       },
     ];

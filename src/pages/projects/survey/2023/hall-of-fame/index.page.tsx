@@ -1,10 +1,8 @@
-import { IncomingMessage } from "http";
-
 import { Dispatch, SetStateAction, useContext, useState } from "react";
 import { IconQuestionMark, IconShare2 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { NextPageContext } from "next";
 
 import styles from "../styles/main.module.scss";
 import ShareImageModal from "../components/ShareImageModal";
@@ -203,15 +201,13 @@ function HallOfFameItem({
 export default function SurveyHallOfFame(props: any) {
   const { colorTheme } = useContext(DarkModeContext);
 
-  const { asPath } = useRouter();
-  console.log(asPath);
-
   const [closed, setClose] = useState<boolean>(true);
   // FIXME: the place is null :/ remove context probably
   const [place, setPlace] = useState<string | null>(null);
 
   const countedVotes = countVotes("fave_chara");
 
+  const { pagePlace } = props;
   const { data } = props.data;
 
   const groupedVotes: any = groupTies(countedVotes);
@@ -222,26 +218,26 @@ export default function SurveyHallOfFame(props: any) {
         <meta
           property="og:image"
           content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
-            asPath.split("#") ? `?place=${asPath.split("#")[1]}` : ""
+            pagePlace ? `?place=${pagePlace}` : ""
           }`}
         />
         <meta
           property="og:url"
           content={`http://hellogirls.info/projects/survey/2023/hall-of-fame${
-            asPath.includes("#") ? `/${asPath.split("#")[1]}` : ""
+            pagePlace ? `/${pagePlace}` : ""
           }`}
         />
         <meta name="twitter:creator" content="@hellogirls_DEV" />
         <meta
           name="twitter:image"
           content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
-            asPath.split("#") ? `?place=${asPath.split("#")[1]}` : ""
+            pagePlace ? `?place=${pagePlace}` : ""
           }`}
         ></meta>
         <meta
           name="twitter:image:src"
           content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
-            asPath.split("#") ? `?place=${asPath.split("#")[1]}` : ""
+            pagePlace ? `?place=${pagePlace}` : ""
           }`}
         ></meta>
         <meta name="twitter:card" content="summary_large_image"></meta>
@@ -293,21 +289,17 @@ export default function SurveyHallOfFame(props: any) {
   );
 }
 
-export async function getServerSideProps({
-  req,
-  res,
-  resolvedUrl,
-}: {
-  req: IncomingMessage;
-  res: Response;
-  resolvedUrl: string;
-}) {
+export async function getServerSideProps(context: NextPageContext) {
   const TL_DATA_URL = "https://tl.data.ensemble.moe/en/characters.json";
   const enData = await getData(TL_DATA_URL);
+
+  const { place } = context.query;
+  const stringPlace: string = place as string;
 
   return {
     props: {
       data: enData,
+      pagePlace: stringPlace || null,
       title: "hall of fame | enstars popularity survey results 2023",
       description:
         "view how many votes each character received in this scrollable walk of fame.",
