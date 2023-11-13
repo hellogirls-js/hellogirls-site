@@ -92,6 +92,11 @@ export default function ShareImageModal({
                 margin: "auto",
               }}
             />
+            <p style={{ textAlign: "center" }}>
+              note: if the link embed doesn&apos;t show the image above, feel
+              free to save the image and post it on your socials with the tag
+              #EnSurvey2023!
+            </p>
             <div className={styles.modalShareButtonsContainer}>
               <a
                 className={styles.modalShareButton}

@@ -153,11 +153,19 @@
         padding: 2%;
         box-sizing: border-box;
 
+        .hallOfFameParagraph {
+            padding: 3vh 10vw;
+
+            @media screen and (max-width: 812px) {
+                padding: 3%;
+            }
+        }
+
         .hallOfFame {
             position: relative;
             width: 75%;
             height: auto;
-            margin: 5% auto;
+            margin: 19% auto;
 
             .timeline {
                 position: absolute;
@@ -221,7 +229,7 @@
                                 user-select: none;
                                 pointer-events: none;
                                 position: absolute;
-                                left: -225%;
+                                left: -230%;
                                 top: -25%;
                             }
                         }
@@ -282,6 +290,105 @@
         width: 100%;
         padding: 2%;
         box-sizing: border-box;
+
+        .popularVoteSection {
+            margin: auto;
+            margin-top: 2vh;
+            width: 75%;
+            min-height: 70vh;
+            padding: 5%;
+            box-sizing: border-box;
+            border-radius: 5px;
+            line-height: 1.5;
+            font-size: 1.3rem;
+            
+            @media screen and (max-width: 812px) {
+                width: 95%;
+            }
+
+            .popularVoteSplitContainer {
+                display: flex;
+                align-items: center;
+            }
+
+            .popularVotePlaygroundTool {
+                .popularVotePlaygroundToolDropdowns {
+                    display: flex;
+                }
+
+                .popularVoteToolSelected {
+                    display: flex;
+                    flex-flow: row wrap;
+                    margin-top: 2vh;
+                    gap: 2%;
+
+                    .popularVoteSelectedChip {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        font-size: 0.9rem;
+                        user-select: none;
+                        padding: 3px 1%;
+                        border-radius: 5px;
+                        margin: 10px 0%;
+                        
+                        .chipIcon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: 10px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .popularVoteToolGraph {
+                    margin-top: 4vh;
+
+                    .tooltip {
+                        padding: 10px;
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        font-size: 0.9rem;
+                    
+                        .tooltipText {
+                          flex-basis: 1 0 50%;
+                    
+                          .tooltipName {
+                            font-family: vars.$header-font;
+                            font-size: 1.3em;
+                            font-weight: 600;
+                          }
+                    
+                          .tooltipContent {
+                    
+                            .tooltipData {
+                              font-weight: 700;
+                            }
+                          }
+                        }
+                    
+                        .tooltipImgWrapper {
+                          padding: 2px;
+                          flex-basis: 0 0 100px;
+                    
+                          .tooltipImg {
+                            width: 100px;
+                            object-fit: cover;
+                          }
+                        }
+                      }
+
+                    .popularVoteGraphLabels {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
     }
 
     &.light {
@@ -345,6 +452,41 @@
                 }
             }
         }
+
+        .popularVoteContainer {
+            .popularVoteSection {
+                background-color: #fff;
+                border: 1px solid vars.$light-heading-border;
+
+                .popularVoteSelectedChip {
+                    background-color: vars.$light-form-button-bg;
+                    border: 1px solid vars.$light-form-button-border;
+                    color: vars.$light-form-button-text;
+                }
+
+                .popularVoteToolGraph {
+                    .tooltip {
+                        background: #fff;
+                        box-shadow: 2px 2px 3px vars.$light-shadow;
+                        border: 1px solid vars.$light-heading-border;
+
+                        .tooltipText {
+
+                            .tooltipName {
+                            color: vars.$light-heading-2;
+                            }
+
+                            .tooltipContent {
+
+                                .tooltipData {
+                                    color: vars.$light-link;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     &.dark {
@@ -403,6 +545,41 @@
 
                 .suffix {
                     color: vars.$dark-link;
+                }
+            }
+        }
+
+        .popularVoteContainer {
+            .popularVoteSection {
+                background-color: vars.$dark-text-bg;
+                border: 1px solid vars.$dark-heading-border;
+            }
+
+            .popularVoteSelectedChip {
+                background-color: vars.$light-form-button-bg;
+                border: 1px solid vars.$light-form-button-border;
+                color: vars.$light-form-button-text;
+            }
+
+            .popularVoteToolGraph {
+                .tooltip {
+                    background: vars.$dark-text-bg;
+                    box-shadow: 2px 2px 3px vars.$dark-shadow;
+                    border: 1px solid vars.$dark-heading-border;
+
+                    .tooltipText {
+
+                        .tooltipName {
+                        color: vars.$dark-heading-2;
+                        }
+
+                        .tooltipContent {
+
+                            .tooltipData {
+                                color: vars.$dark-link;
+                            }
+                        }
+                    }
                 }
             }
         }

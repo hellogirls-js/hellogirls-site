@@ -9,9 +9,13 @@ import ShareImageModal from "../components/ShareImageModal";
 import PageHeader from "../components/PageHeader";
 
 import DataLayout from "component/DataLayout";
-import getData, { countVotes } from "component/utility/data";
+import getData, {
+  countVotes,
+  getSurveyResponses,
+} from "component/utility/data";
 import { DarkModeContext } from "context/DarkModeContext";
 import Tooltip from "component/utility/Tooltip";
+import { twoStarIDs } from "data/twoStarIds";
 
 function groupTies(votes: CountedVotes[]): any {
   const reducerFunction = (
@@ -249,7 +253,7 @@ export default function SurveyHallOfFame(props: any) {
       {!closed && (
         <ShareImageModal
           title="share on social media!"
-          url={`https://hellogirls-site-git-survey-results-neeneemi.vercel.app/projects/survey/2023/hall-of-fame/${place}`}
+          url={`https://hellogirls-site-git-survey-results-neeneemi.vercel.app/projects/survey/2023/hall-of-fame?place=${place}`}
           postImgUrl={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame?place=${place}`}
           postBody={`my fave is in ${place}${
             place?.endsWith("1") && place !== "11"
@@ -267,7 +271,43 @@ export default function SurveyHallOfFame(props: any) {
       <div className={`${styles.page} ${styles[colorTheme]}`}>
         <div className={styles.hallOfFameContainer}>
           <PageHeader title="hall of fame" />
-          <p></p>
+          <motion.div
+            style={{ marginTop: "3%" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.5 } }}
+          >
+            <p className={styles.hallOfFameParagraph}>
+              hello and welcome to what i like to call the hall of fame! over
+              1000 people voted in this survey,{" "}
+              <strong>{getSurveyResponses().length} people</strong>, to be
+              exact. that&apos;s a lot of enstarries! thank you to everyone who
+              participated.
+            </p>
+            <p className={styles.hallOfFameParagraph}>
+              each idol came very close in terms of votes. our first place
+              winner garnered 62 votes out of {getSurveyResponses().length},
+              only making {Math.round((62 / getSurveyResponses().length) * 100)}
+              % of votes. it&apos;s apparent that each idol is someone&apos;s
+              favorite, a sentiment that&apos;s touching and sweet.
+            </p>
+            <p className={styles.hallOfFameParagraph}>
+              now, it may be clear that i&apos;m writing paragraphs just to take
+              up space. the hall of fame is intended to be a scrollable
+              experience. as you keep scrolling, each character will be revealed
+              showing how they placed in this survey. it will go in ascending
+              order; so the least popular characters will appear first with the
+              first place winner appearing last.
+            </p>
+            <p className={styles.hallOfFameParagraph}>
+              this experience may fill you with anticipation, it may fill you
+              with excitement, it may even fill you with dread. regardless, i
+              hope it fills you with an emotion. and if it does, each placement
+              has an option to share the placement on social media. when you
+              reach your favorite character, use the share button to showcase
+              where your favorite idol placed on the survey.
+            </p>
+            <p className={styles.hallOfFameParagraph}>enjoy the ride! &lt;3</p>
+          </motion.div>
           <div className={styles.hallOfFame}>
             <div className={styles.timeline}>
               <div className={styles.timelineLine}></div>
@@ -283,6 +323,12 @@ export default function SurveyHallOfFame(props: any) {
               />
             </div>
           </div>
+          <p>
+            and there we have it! congratulations to mayoi ayase for being the
+            most popular character in this survey. your long hair, shark teeth,
+            and timid personality have captured the hearts of many fans (mine
+            included &lt;3){" "}
+          </p>
         </div>
       </div>
     </DataLayout>

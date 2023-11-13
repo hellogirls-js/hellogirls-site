@@ -14,6 +14,7 @@ interface BioSection {
 interface SelectOption {
   value: string;
   name: string;
+  disabled?: boolean;
 }
 
 interface PostMeta {

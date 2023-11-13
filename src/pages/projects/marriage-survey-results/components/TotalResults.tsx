@@ -67,7 +67,7 @@ export default function TotalResults({
       if (payloadData.id !== 0 && payloadData.id !== 61) {
         // get the name of the character from mktls data
         let charaData = enData.find(
-          (c: any) => c.character_id === payloadData.id
+          (c: any) => c.character_id === payloadData.id,
         );
         firstName = charaData.first_name
           ? charaData.first_name.toLowerCase()
@@ -79,12 +79,10 @@ export default function TotalResults({
           (twoStarIDs as any)[charaData.character_id]
         }_normal.png`;
       } else {
-        firstName = data.find(
-          (c: TotalResult) => c.id === payloadData.id
-        )?.firstName;
-        lastName = data.find(
-          (c: TotalResult) => c.id === payloadData.id
-        )?.lastName;
+        firstName = data.find((c: TotalResult) => c.id === payloadData.id)
+          ?.firstName;
+        lastName = data.find((c: TotalResult) => c.id === payloadData.id)
+          ?.lastName;
         firstName = firstName ? firstName.toLowerCase() : null;
         lastName = lastName ? lastName.toLowerCase() : null;
       }

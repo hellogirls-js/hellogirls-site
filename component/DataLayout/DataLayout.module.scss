@@ -13,8 +13,14 @@
 
     .pageContent {
         width: 100%;
-        min-height: calc(100vh - 34px);
+        min-height: calc(100vh - 179px);
         box-sizing: border-box;
+    }
+
+    footer {
+        padding: 3% 5%;
+        box-sizing: border-box;
+        font-size: 0.8rem;
     }
 }
 
@@ -24,6 +30,10 @@
     h1 {
         color: vars.$light-heading-2;
     }
+
+    footer {
+        color: vars.$light-subtext;
+    }
 }
 
 .dark {
@@ -31,5 +41,9 @@
 
     h1 {
         color: vars.$dark-heading-2;
+    }
+
+    footer {
+        color: vars.$dark-subtext;
     }
 }
