@@ -331,6 +331,10 @@
                         padding: 3px 1%;
                         border-radius: 5px;
                         margin: 10px 0%;
+
+                        @media screen and (max-width: 812px) {
+                            flex-flow: column wrap;
+                        }
                         
                         .chipIcon {
                             display: flex;
@@ -389,6 +393,13 @@
                 }
             }
         }
+    }
+
+    .badgeOfHonorContainer {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        padding: 2%;
     }
 
     &.light {
