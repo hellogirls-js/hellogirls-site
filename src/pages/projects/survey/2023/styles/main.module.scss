@@ -400,6 +400,15 @@
         height: auto;
         box-sizing: border-box;
         padding: 2%;
+
+        .paddedContainer {
+            padding: 3% 20%;
+
+            .inputContainer {
+                display: flex;
+                align-items: center;
+            }
+        }
     }
 
     &.light {

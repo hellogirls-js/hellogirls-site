@@ -1360,7 +1360,7 @@ export async function getServerSideProps() {
       enData,
       unitData,
       rawUnitData,
-      title: "hall of fame | enstars popularity survey results 2023",
+      title: "popular vote | enstars popularity survey results 2023",
       description:
         "shock yourself! see who you all thought the most popular characters are in contrast with how well they actually did.",
     },
