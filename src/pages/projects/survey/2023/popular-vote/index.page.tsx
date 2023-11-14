@@ -156,7 +156,9 @@ function PopularVoteReiChosen({
             speed: 20,
             cursor: false,
             afterComplete: (instance: any) => {
-              setFirstSectionDone(true);
+              setTimeout(() => {
+                setFirstSectionDone(true);
+              }, 1500);
             },
           }}
           getBeforeInit={(instance) => {
@@ -170,7 +172,7 @@ function PopularVoteReiChosen({
                   (assumedVotes.count / allResponses.length) * 100,
                 )}% of responders also assumed rei to be the most popular character. `,
               )
-              .pause(100)
+              .pause(500)
               .type(
                 "now, when we see how many people actually claimed him to be their favorite character, ",
               )
@@ -241,12 +243,15 @@ function PopularVoteReiChosen({
               speed: 20,
               cursor: false,
               afterComplete: () => {
-                setFinished(true);
+                setTimeout(() => {
+                  setFinished(true);
+                }, 5000);
               },
             }}
             style={{ flexGrow: 1 }}
             getBeforeInit={(instance) => {
               instance
+                .pause(2000)
                 .type("--only 2% of votes?! ")
                 .pause(100)
                 .type("that's a stark contrast! ")
@@ -335,7 +340,9 @@ function PopularVoteNotRei({
             speed: 20,
             cursor: false,
             afterComplete: (instance: any) => {
-              setFinishedFirstSection(true);
+              setTimeout(() => {
+                setFinishedFirstSection(true);
+              }, 1500);
             },
           }}
           style={{ flexGrow: 1 }}
@@ -349,7 +356,7 @@ function PopularVoteNotRei({
                   ? "i can see that! "
                   : "i see where you're coming from! ",
               )
-              .pause(100)
+              .pause(500)
               .type(
                 `${
                   chosenCharaAssumedVotes ? chosenCharaAssumedVotes.count : 0
@@ -357,7 +364,7 @@ function PopularVoteNotRei({
                   chosenCharaAssumedVotes ? " also" : ""
                 } assumed ${chosenCharaData.first_name.toLowerCase()} would be the most popular character. `,
               )
-              .pause(100)
+              .pause(300)
               .type(
                 `that's ${Math.round(
                   ((chosenCharaAssumedVotes
@@ -413,7 +420,9 @@ function PopularVoteNotRei({
               speed: 20,
               cursor: false,
               afterComplete: (instance: any) => {
-                setFinishedSecondSection(true);
+                setTimeout(() => {
+                  setFinishedSecondSection(true);
+                }, 1500);
               },
             }}
             getBeforeInit={(instance) => {
@@ -425,7 +434,7 @@ function PopularVoteNotRei({
                     (reiAssumedVotes.count / allResponses.length) * 100,
                   )}% of responders assumed rei to be the most popular character. `,
                 )
-                .pause(100)
+                .pause(500)
                 .type(
                   "now, when we see how many people actually claimed him to be their favorite character, ",
                 )
@@ -505,12 +514,15 @@ function PopularVoteNotRei({
               speed: 20,
               cursor: false,
               afterComplete: () => {
-                setFinished(true);
+                setTimeout(() => {
+                  setFinished(true);
+                }, 5000);
               },
             }}
             style={{ flexGrow: 1 }}
             getBeforeInit={(instance) => {
               instance
+                .pause(2000)
                 .type("--only 2% of votes?! ")
                 .pause(100)
                 .type("that's a stark contrast! ")
@@ -636,23 +648,24 @@ function PopularVoteUnit({
           speed: 20,
           cursor: false,
           afterComplete: () => {
-            setFinished(true);
+            setTimeout(() => {
+              setFinished(true);
+            }, 5000);
           },
         }}
         getBeforeInit={(instance: any) => {
           instance
             .type("as for the units, ")
-            .pause(100)
+            .pause(300)
             .type(
               `${Math.round(
-                (allResponses.length - knightsAssumed.count) * 100,
-              )}% of responders assumed knights would be the most popular unit.`,
+                (knightsAssumed.count / allResponses.length) * 100,
+              )}% of responders assumed knights would be the most popular unit. `,
             )
-            .pause(100)
-            .break()
+            .pause(500)
             .type(
               `meanwhile, ${Math.round(
-                (allResponses.length - knightsActual.count) * 100,
+                (knightsActual.count / allResponses.length) * 100,
               )}% of responders chose knights as their favorite unit.`,
             )
             .pause(100)
@@ -1183,6 +1196,10 @@ export default function SurveyPopularVote(props: any) {
     key: "finished-unit",
     defaultValue: false,
   });
+
+  // const [userChoice, setUserChoice] = useState<any>();
+  // const [finishedChara, setFinishedChara] = useState(false);
+  // const [finishedUnit, setFinishedUnit] = useState(false);
 
   const assumedCharaVotes = countVotes("assumed_chara");
   const faveCharaVotes = countVotes("fave_chara");
