@@ -12,10 +12,9 @@
     }
 
     .splashPage {
-        position: absolute;
+        position: relative;
         width: 100%;
         height: calc(100vh - 34px);
-        position: relative;
         overflow: clip;
     
         .splashChara {
@@ -96,6 +95,8 @@
                 box-sizing: border-box;
                 position: relative;
                 width: 20%;
+                min-height: 170px;
+                height: 170px;
                 border-radius: 15px;
                 font-size: 1.5rem;
                 overflow: clip;
@@ -309,6 +310,11 @@
             .popularVoteSplitContainer {
                 display: flex;
                 align-items: center;
+
+                @media screen and (max-width: 812px) {
+                    flex-direction: column;
+                    gap: 2%;
+                }
             }
 
             .popularVotePlaygroundTool {
@@ -411,6 +417,90 @@
         }
     }
 
+    .powerOfFriendsContainer {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        padding: 2%;
+
+        .contentContainer {
+            width: 75%;
+            margin: auto;
+
+            @media screen and (max-width: 812px) {
+                width: 95%;
+            }
+
+            .graphContainer {
+                position: relative;
+                box-sizing: border-box;
+                padding: 2px 5% 0px 5%;
+                height: 70vh;
+                border-radius: 5px;
+                display: flex;
+                align-items: flex-end;
+                gap: 3%;
+
+                .barContainer {
+                    position: relative;
+                    width: 10%;
+                    height: 100%;
+                    flex-basis: 10%;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    align-items: center;
+
+                    .barSection {
+                        width: 100%;
+                        overflow: clip;
+
+                        &:last-child {
+                            border-radius: 5px 5px 0px 0px;
+                        }
+
+                        .barIndvLabel {
+                            display: inline-block;
+                            font-size: 0.75rem;
+                            padding: 2px;
+                            border-radius: 5px;
+                        }
+                    }
+
+                    .barLabel {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 5px;
+                        margin-bottom: 10px;
+                        padding: 2% 5%;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                    }
+                }
+
+                &::before {
+                    content: "";
+                    width: 2px;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                &::after {
+                    content: "";
+                    height: 2px;
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+        }
+
+        
+    }
+
     &.light {
         color: vars.$light-text;
 
@@ -503,6 +593,42 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        .powerOfFriendsContainer {
+            .graphContainer {
+                background: #fff;
+                box-shadow: 3px 3px 2px vars.$light-shadow;
+
+                &::before {
+                    background-color: vars.$light-text;
+                }
+
+                &::after {
+                    background-color: vars.$light-text;
+                }
+
+                .barContainer {
+
+                    .barSection {
+                        .barIndvLabel {
+                            background-color: #fff;
+                            color: vars.$light-button-text;
+                            box-shadow: 1px 1px 2px rgba(26, 24, 36, 0.58);
+                        }
+                    }
+
+                    .barLabel {
+                        background-color: vars.$light-form-button-bg;
+                        color: vars.$light-form-button-text;
+                        border: 1px solid vars.$light-form-button-border;
+                    }
+
+                    .barLabelSubtext {
+                        color: vars.$light-subtext;
                     }
                 }
             }
@@ -602,6 +728,39 @@
                     }
                 }
             }
+        }
+
+        .powerOfFriendsContainer {
+            .graphContainer {
+                background: vars.$dark-text-bg;
+                box-shadow: 2px 2px 2px vars.$dark-shadow;
+                &::before {
+                    background-color: vars.$dark-text;
+                }
+
+                &::after {
+                    background-color: vars.$dark-text;
+                }
+                .barContainer {
+                    .barSection {
+                        .barIndvLabel {
+                            background-color: vars.$dark-text-bg;
+                            color: vars.$dark-button-text;
+                            box-shadow: 1px 1px 2px rgba(26, 24, 36, 0.58);
+                        }
+                    }
+
+                    .barLabel {
+                        background-color: vars.$dark-form-button-bg;
+                        color: vars.$dark-form-button-text;
+                        border: 1px solid vars.$dark-form-button-border;
+                    }
+
+                    .barLabelSubtext {
+                        color: vars.$dark-subtext;
+                    }
+                }
+            }            
         }
     }
 }

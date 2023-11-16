@@ -1,5 +1,4 @@
 import {
-  IconArrowsUpDown,
   IconAward,
   IconGraph,
   IconSparkles,
@@ -62,7 +61,6 @@ function HomeGridItem({
   chara,
 }: PageItem) {
   const isMobile = useMediaQuery("(max-width: 812px)");
-  console.log("isMobile =>", isMobile);
 
   const parentVariants: Variants = {
     rest: {
@@ -316,20 +314,20 @@ export default function SurveyIndexPage(props: any) {
         />
       ),
     },
-    {
-      icon: <IconArrowsUpDown {...iconProps} />,
-      title: "highs and lows",
-      url: "/projects/survey/2023/highs-lows",
-      desc: "see how popular each character in a unit is compared to the unit itself.",
-      chara: (
-        <Image
-          src="https://static.wikia.nocookie.net/ensemble-stars/images/6/66/KR_Enstars!!_Stickers_1_Mao.png"
-          alt="chara"
-          width={IMAGE_SIZE}
-          height={IMAGE_SIZE}
-        />
-      ),
-    },
+    // {
+    //   icon: <IconArrowsUpDown {...iconProps} />,
+    //   title: "highs and lows",
+    //   url: "/projects/survey/2023/highs-lows",
+    //   desc: "see how popular each character in a unit is compared to the unit itself.",
+    //   chara: (
+    //     <Image
+    //       src="https://static.wikia.nocookie.net/ensemble-stars/images/6/66/KR_Enstars!!_Stickers_1_Mao.png"
+    //       alt="chara"
+    //       width={IMAGE_SIZE}
+    //       height={IMAGE_SIZE}
+    //     />
+    //   ),
+    // },
     {
       icon: <IconStar {...iconProps} />,
       title: "power of friends",
