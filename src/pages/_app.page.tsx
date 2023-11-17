@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
           name="description"
           content={pageProps.description || "son's personal website"}
         />
-        <meta name="author" content="son @hellogirls_DEV" />
+        <meta name="author" content="son" />
         <meta
           name="og:title"
           content={`${pageProps.title || ""} ♡ hellogirls.info`}
