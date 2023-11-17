@@ -1,0 +1,49 @@
+@use "../../styles/vars.module.scss";
+
+.data {
+    width: 100%;
+    height: auto;
+    position: relative;
+    box-sizing: border-box;
+
+    .donateButtonContainer {
+        position: fixed;
+        bottom: 0;
+    }
+
+    .pageContent {
+        width: 100%;
+        min-height: calc(100vh - 179px);
+        box-sizing: border-box;
+    }
+
+    footer {
+        padding: 3% 5%;
+        box-sizing: border-box;
+        font-size: 0.8rem;
+    }
+}
+
+.light {
+    background-color: vars.$light-bg;
+
+    h1 {
+        color: vars.$light-heading-2;
+    }
+
+    footer {
+        color: vars.$light-subtext;
+    }
+}
+
+.dark {
+    background-color: vars.$dark-bg;
+
+    h1 {
+        color: vars.$dark-heading-2;
+    }
+
+    footer {
+        color: vars.$dark-subtext;
+    }
+}

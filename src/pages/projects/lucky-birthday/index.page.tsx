@@ -140,7 +140,7 @@ export default function LuckyBirthday() {
                 onClick={(e) => {
                   e.preventDefault();
                   setBirthday(
-                    dayjs(`${month} ${date}, ${YEAR}`).format("MM-DD")
+                    dayjs(`${month} ${date}, ${YEAR}`).format("MM-DD"),
                   );
                 }}
                 value="I'm feeling lucky!"

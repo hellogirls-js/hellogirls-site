@@ -5,8 +5,24 @@ html, body {
   padding: 0;
   min-height: 100vh;
 
+  ::selection {
+    background-color: #9da839;
+    color: #fff;
+  }
+
+  ::-moz-selection {
+    background-color: #9da839;
+    color: #fff;
+  }
+
   #__next {
     min-height: 100vh;
+  }
+
+  h1 {
+    font-family: vars.$header-font;
+    margin: 0;
+    margin-bottom: 4vh;
   }
   
   h2 {

@@ -21,6 +21,10 @@ export default function App({ Component, pageProps }: AppProps) {
           content={`${pageProps.title || ""} ♡ hellogirls.info`}
         />
         <meta
+          name="og:description"
+          content={pageProps.description || "son's personal website"}
+        />
+        <meta
           name="twitter:title"
           content={`${pageProps.title || ""} ♡ hellogirls.info`}
         />

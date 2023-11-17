@@ -1,0 +1,828 @@
+@use "../../../../../../styles/vars.module.scss";
+
+.page {
+    min-height: calc(100vh - 34px);
+    box-sizing: border-box;
+    position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .splashPage {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 34px);
+        overflow: clip;
+    
+        .splashChara {
+            display: block;
+            width: 100%;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            text-align: center;
+            overflow: clip;
+
+            img {
+                height: 130%;
+                width: auto;
+            }
+
+            &.odd {
+                transform: translateX(1500px);
+                &.light {
+                    background-image: linear-gradient(to left, vars.$light-bg 80%, transparent);
+                }
+                &.dark {
+                    background-image: linear-gradient(to left, vars.$dark-bg 80%, transparent);
+                }
+            }
+
+            &.even {
+                transform: translateX(-1500px);
+                &.light {
+                    background-image: linear-gradient(to right, vars.$light-bg 80%, transparent);
+                }
+                &.dark {
+                    background-image: linear-gradient(to left, vars.$dark-bg 80%, transparent);
+                }
+            }
+        }
+    
+        &.light {
+            background-color: vars.$light-bg;
+        }
+    }
+    
+    .loading {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        height: calc(100vh - 34px);
+    
+        .loader {
+            height: calc(98% - 34px);
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    .home {
+        position: absolute;
+        top: 0;
+        padding: 5% 2% 2% 2%;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+
+        .homeGridContainer {
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+            gap: 7%;
+            justify-content: space-around;
+            padding: 0% 5%;
+            box-sizing: border-box;
+
+            @media screen and (max-width: 812px) {
+                margin-bottom: 10%;
+            }
+            
+            .homeGridContainerItem {
+                box-sizing: border-box;
+                position: relative;
+                width: 20%;
+                min-height: 170px;
+                height: 170px;
+                border-radius: 15px;
+                font-size: 1.5rem;
+                overflow: clip;
+                margin-top: 5%;
+
+                @media screen and (max-width: 812px) {
+                    width: 100%;
+                }
+
+                .gridItemIcon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    padding: 1% 2%;
+                    box-sizing: border-box;
+
+                    .gridItemTitle {
+                        font-weight: 600;
+                    }
+                }
+
+                .gridItemChara {
+                    position: absolute;
+                    bottom: -20%;
+                    left: 25%;
+                    z-index: 1;
+
+                    @media screen and (max-width: 812px) {
+                        display: none;
+                    }
+                }
+
+                .gridItemDesc {
+                    position: relative;
+                    flex: 0 1 100%;
+                    width: 100%;
+                    min-height: 100%;
+                    padding: 4%;
+                    box-sizing: border-box;
+                    font-weight: 200;
+                    font-size: 1rem;
+                    z-index: 4;
+
+                    @media screen and (max-width: 812px) {
+                        transform: translateY(0px) !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .hallOfFameContainer {
+        width: 100%;
+        height: auto;
+        padding: 2%;
+        box-sizing: border-box;
+
+        .hallOfFameParagraph {
+            padding: 3vh 10vw;
+
+            @media screen and (max-width: 812px) {
+                padding: 3%;
+            }
+        }
+
+        .hallOfFame {
+            position: relative;
+            width: 75%;
+            height: auto;
+            margin: 19% auto;
+
+            .timeline {
+                position: absolute;
+                width: 1px;
+                height: 100%;
+                left: 50%;
+
+                .timelineLine {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .hallOfFameItemContainer {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+
+                &.odd {
+                    flex-direction: row-reverse;
+                }
+
+                .hallOfFameItem {
+                    display: flex;
+                    align-items: center;
+                    width: 50%;
+
+                    &.odd {
+                        flex-direction: row-reverse;
+                        justify-content: flex-end;
+                    }
+
+                    &::after {
+                        content: "";
+                        flex-basis: 25%;
+                        flex-grow: 1;
+                        height: 1px;
+                    }
+
+                    .hallOfFameItemAvis {
+                        display: flex;
+                        gap: 2%;
+
+                        @media screen and (max-width: 812px) {
+                            flex-direction: column;
+                        }
+
+                        .hallOfFameAvi {
+                            position: relative;
+                            width: 100px;
+                            height: 100px;
+                            overflow: clip;
+                            text-align: center;
+                            border-radius: 10px;
+                            user-select: none;
+                            pointer-events: none;
+
+                            img {
+                                user-select: none;
+                                pointer-events: none;
+                                position: absolute;
+                                left: -230%;
+                                top: -25%;
+                            }
+                        }
+                    }
+
+                }
+
+                .hallOfFameItemLabel {
+                    position: absolute;
+                    bottom: -50px;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+
+                    .shareButton {
+                        cursor: pointer;
+                    }
+
+                    @media screen and (max-width: 812px) {
+                        bottom: -100px;
+                        width: 50%;
+                        padding: 2%;
+                        box-sizing: border-box;
+                    }
+                }
+
+                .hallOfFameItemPlaceCont {
+                    width: 50%;
+                    display: flex;
+                    align-items: flex-start;
+
+                    &.odd {
+                        flex-direction: row-reverse;
+                    }
+
+                    .hallOfFameItemPlace {
+                        font-weight: 900;
+                        font-size: 3.5rem;
+                        display: flex;
+                        align-items: flex-start;
+                        padding: 0% 2%;
+                        user-select: none;
+
+                        .suffix {
+                            font-size: 1.5rem;
+                            font-weight: 400;
+                            font-variant: small-caps;
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+    }
+
+    .popularVoteContainer {
+        width: 100%;
+        padding: 2%;
+        box-sizing: border-box;
+
+        .popularVoteSection {
+            margin: auto;
+            margin-top: 2vh;
+            width: 75%;
+            min-height: 70vh;
+            padding: 5%;
+            box-sizing: border-box;
+            border-radius: 5px;
+            line-height: 1.5;
+            font-size: 1.3rem;
+            
+            @media screen and (max-width: 812px) {
+                width: 95%;
+            }
+
+            .popularVoteSplitContainer {
+                display: flex;
+                align-items: center;
+
+                @media screen and (max-width: 812px) {
+                    flex-direction: column;
+                    gap: 2%;
+                }
+            }
+
+            .popularVotePlaygroundTool {
+                .popularVotePlaygroundToolDropdowns {
+                    display: flex;
+                }
+
+                .popularVoteToolSelected {
+                    display: flex;
+                    flex-flow: row wrap;
+                    margin-top: 2vh;
+                    gap: 2%;
+
+                    .popularVoteSelectedChip {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        font-size: 0.9rem;
+                        user-select: none;
+                        padding: 3px 1%;
+                        border-radius: 5px;
+                        margin: 10px 0%;
+
+                        @media screen and (max-width: 812px) {
+                            flex-flow: column wrap;
+                        }
+                        
+                        .chipIcon {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-left: 10px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .popularVoteToolGraph {
+                    margin-top: 4vh;
+
+                    .tooltip {
+                        padding: 10px;
+                        border-radius: 10px;
+                        display: flex;
+                        align-items: center;
+                        font-size: 0.9rem;
+                    
+                        .tooltipText {
+                          flex-basis: 1 0 50%;
+                    
+                          .tooltipName {
+                            font-family: vars.$header-font;
+                            font-size: 1.3em;
+                            font-weight: 600;
+                          }
+                    
+                          .tooltipContent {
+                    
+                            .tooltipData {
+                              font-weight: 700;
+                            }
+                          }
+                        }
+                    
+                        .tooltipImgWrapper {
+                          padding: 2px;
+                          flex-basis: 0 0 100px;
+                    
+                          .tooltipImg {
+                            width: 100px;
+                            object-fit: cover;
+                          }
+                        }
+                      }
+
+                    .popularVoteGraphLabels {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .badgeOfHonorContainer {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        padding: 2%;
+
+        .paddedContainer {
+            padding: 3% 20%;
+
+            .inputContainer {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .resultsContainer {
+            width: 75%;
+            margin: auto;
+            padding: 1%;
+            box-sizing: border-box;
+            border-radius: 5px;
+
+            @media screen and (max-width: 812px) {
+                width: 95%;
+            }
+            
+            .resultHeadContainer, .result {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                padding: 1%;
+            }
+
+            .resultHeadContainer {
+                font-family: vars.$header-font;
+            }
+
+            .result {
+                padding: 2% 1%;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .powerOfFriendsContainer {
+        width: 100%;
+        height: auto;
+        box-sizing: border-box;
+        padding: 2%;
+
+        .contentContainer {
+            width: 75%;
+            margin: auto;
+
+            @media screen and (max-width: 812px) {
+                width: 95%;
+            }
+
+            .graphContainer {
+                position: relative;
+                box-sizing: border-box;
+                padding: 2px 5% 0px 5%;
+                height: 70vh;
+                border-radius: 5px;
+                display: flex;
+                align-items: flex-end;
+                gap: 3%;
+
+                .barContainer {
+                    position: relative;
+                    width: 10%;
+                    height: 100%;
+                    flex-basis: 10%;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    align-items: center;
+
+                    .barSection {
+                        width: 100%;
+                        overflow: clip;
+
+                        &:last-child {
+                            border-radius: 5px 5px 0px 0px;
+                        }
+
+                        .barIndvLabel {
+                            display: inline-block;
+                            font-size: 0.75rem;
+                            padding: 2px;
+                            border-radius: 5px;
+                        }
+                    }
+
+                    .barLabel {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 5px;
+                        margin-bottom: 10px;
+                        padding: 2% 5%;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                    }
+                }
+
+                &::before {
+                    content: "";
+                    width: 2px;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                &::after {
+                    content: "";
+                    height: 2px;
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+            }
+        }
+
+        
+    }
+
+    &.light {
+        color: vars.$light-text;
+
+        .homeGridContainer {
+            .homeGridContainerItem {
+                color: vars.$light-bg;
+                border: 2px solid vars.$light-heading-2;
+                background-color: vars.$light-heading-2;
+
+                a:link, a:visited {
+                    color: vars.$light-bg;
+                }
+
+                .gridItemDesc {
+                    background-color: vars.$light-bg;
+                    color: vars.$light-heading-2;
+                }
+            }
+            
+        }
+
+        .hallOfFame {
+            .timeline {
+                .timelineLine {
+                    background-color: vars.$light-button-border;
+                }
+            }
+
+            .hallOfFameItem {
+                &::after {
+                    background-color: vars.$light-button-border;
+                }
+
+                .hallOfFameAvi {
+                    background-color: white;
+                    border: 1px solid vars.$light-button-border;
+                }
+            }
+
+            .hallOfFameItemLabel {
+                strong {
+                    color: vars.$light-bold-text;
+                }
+
+                a:link, a:visited {
+                    color: vars.$light-link;
+                }
+
+                .shareButton {
+                    color: vars.$light-link;
+                }
+            }
+
+            .hallOfFameItemPlace {
+                color: vars.$light-bold-text;
+
+                .suffix {
+                    color: vars.$light-link;
+                }
+            }
+        }
+
+        .popularVoteContainer {
+            .popularVoteSection {
+                background-color: #fff;
+                border: 1px solid vars.$light-heading-border;
+
+                .popularVoteSelectedChip {
+                    background-color: vars.$light-form-button-bg;
+                    border: 1px solid vars.$light-form-button-border;
+                    color: vars.$light-form-button-text;
+                }
+
+                .popularVoteToolGraph {
+                    .tooltip {
+                        background: #fff;
+                        box-shadow: 2px 2px 3px vars.$light-shadow;
+                        border: 1px solid vars.$light-heading-border;
+
+                        .tooltipText {
+
+                            .tooltipName {
+                            color: vars.$light-heading-2;
+                            }
+
+                            .tooltipContent {
+
+                                .tooltipData {
+                                    color: vars.$light-link;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .powerOfFriendsContainer {
+            .graphContainer {
+                background: #fff;
+                box-shadow: 3px 3px 2px vars.$light-shadow;
+
+                &::before {
+                    background-color: vars.$light-text;
+                }
+
+                &::after {
+                    background-color: vars.$light-text;
+                }
+
+                .barContainer {
+
+                    .barSection {
+                        .barIndvLabel {
+                            background-color: #fff;
+                            color: vars.$light-button-text;
+                            box-shadow: 1px 1px 2px rgba(26, 24, 36, 0.58);
+                        }
+                    }
+
+                    .barLabel {
+                        background-color: vars.$light-form-button-bg;
+                        color: vars.$light-form-button-text;
+                        border: 1px solid vars.$light-form-button-border;
+                    }
+
+                    .barLabelSubtext {
+                        color: vars.$light-subtext;
+                    }
+                }
+            }
+        }
+
+        .badgeOfHonorContainer {
+            .resultsContainer {
+                background-color: #fff;
+                box-shadow: 2px 2px 2px vars.$light-shadow;
+
+                .resultHeadContainer, .result {
+                    &:not(&:last-child) {
+                        border-bottom: 1px solid vars.$light-heading-border;
+                    }
+                }
+
+                .resultHeadContainer {
+                    color: vars.$light-heading-2;
+                }
+
+                .result {
+                    transition: background-color 0.2s;
+                    
+                    &:hover {
+                        background-color: vars.$light-heading-bg;
+                    }
+                }
+            }
+        }
+    }
+
+    &.dark {
+        color: vars.$dark-text;
+
+        .homeGridContainer {
+            .homeGridContainerItem {
+                border: 3px solid vars.$dark-heading-2;
+                background-color: vars.$dark-heading-2;
+
+                a:link, a:visited {
+                    color: vars.$dark-bg;
+                }
+
+                .gridItemDesc {
+                    background-color: vars.$dark-bg;
+                    color: vars.$dark-heading-2;
+                }
+            }
+        }
+
+        .hallOfFame {
+            .timeline {
+                .timelineLine {
+                    background-color: vars.$dark-button-border;
+                }
+            }
+
+            .hallOfFameItem {
+                &::after {
+                    background-color: vars.$dark-button-border;
+                }
+
+                .hallOfFameAvi {
+                    background-color: vars.$dark-heading-bg;
+                    border: 1px solid vars.$dark-button-border;
+                }
+            }
+
+            .hallOfFameItemLabel {
+                strong {
+                    color: vars.$dark-bold-text;
+                }
+
+                a:link, a:visited {
+                    color: vars.$dark-link;
+                }
+
+                .shareButton {
+                    color: vars.$dark-link;
+                }
+            }
+
+            .hallOfFameItemPlace {
+                color: vars.$dark-bold-text;
+
+                .suffix {
+                    color: vars.$dark-link;
+                }
+            }
+        }
+
+        .popularVoteContainer {
+            .popularVoteSection {
+                background-color: vars.$dark-text-bg;
+                border: 1px solid vars.$dark-heading-border;
+            }
+
+            .popularVoteSelectedChip {
+                background-color: vars.$light-form-button-bg;
+                border: 1px solid vars.$light-form-button-border;
+                color: vars.$light-form-button-text;
+            }
+
+            .popularVoteToolGraph {
+                .tooltip {
+                    background: vars.$dark-text-bg;
+                    box-shadow: 2px 2px 3px vars.$dark-shadow;
+                    border: 1px solid vars.$dark-heading-border;
+
+                    .tooltipText {
+
+                        .tooltipName {
+                        color: vars.$dark-heading-2;
+                        }
+
+                        .tooltipContent {
+
+                            .tooltipData {
+                                color: vars.$dark-link;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .powerOfFriendsContainer {
+            .graphContainer {
+                background: vars.$dark-text-bg;
+                box-shadow: 2px 2px 2px vars.$dark-shadow;
+                &::before {
+                    background-color: vars.$dark-text;
+                }
+
+                &::after {
+                    background-color: vars.$dark-text;
+                }
+                .barContainer {
+                    .barSection {
+                        .barIndvLabel {
+                            background-color: vars.$dark-text-bg;
+                            color: vars.$dark-button-text;
+                            box-shadow: 1px 1px 2px rgba(26, 24, 36, 0.58);
+                        }
+                    }
+
+                    .barLabel {
+                        background-color: vars.$dark-form-button-bg;
+                        color: vars.$dark-form-button-text;
+                        border: 1px solid vars.$dark-form-button-border;
+                    }
+
+                    .barLabelSubtext {
+                        color: vars.$dark-subtext;
+                    }
+                }
+            }            
+        }
+
+        .badgeOfHonorContainer {
+            .resultsContainer {
+                background-color: vars.$dark-text-bg;
+                box-shadow: 2px 2px 2px vars.$dark-shadow;
+            }
+        }
+    }
+}

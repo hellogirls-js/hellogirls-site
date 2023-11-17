@@ -135,7 +135,7 @@ export default function Profile({
         animate="visible"
         custom={1}
       >
-      who am i?
+        who am i?
       </motion.h2>
       <div className={styles.profile}>
         <motion.div

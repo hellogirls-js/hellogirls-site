@@ -1,0 +1,36 @@
+@use "../../../../../../../styles/vars.module.scss";
+
+.pageHeader {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+
+    .homeButton {
+        display: flex;
+        align-items: center;
+    }
+
+    h1 {
+        margin: 0;
+    }
+}
+
+.light {
+    color: vars.$light-text;
+
+    .homeButton {
+        a:link, a:visited {
+            color: vars.$light-link;
+        }
+    }
+}
+
+.dark {
+    color: vars.$dark-text;
+
+    .homeButton {
+        a:link, a:visited {
+            color: vars.$dark-link;
+        }
+    }
+}

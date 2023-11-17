@@ -9,11 +9,13 @@ export default function Select({
   data,
   placeholder,
   onChange,
+  temporary,
 }: {
   label?: string;
   data: SelectOption[];
   placeholder?: string;
   onChange?: any;
+  temporary?: boolean;
 }) {
   const { colorTheme } = useContext(DarkModeContext);
 
@@ -24,11 +26,16 @@ export default function Select({
         className={styles.select}
         onChange={(event) => {
           onChange(event.target.value);
+          if (temporary) event.target.selectedIndex = 0;
         }}
       >
         {placeholder && <option>{placeholder}</option>}
         {data.map((option) => (
-          <option key={option.value} value={option.value}>
+          <option
+            key={option.value}
+            value={option.value}
+            disabled={option.disabled}
+          >
             {option.name}
           </option>
         ))}

@@ -32,7 +32,20 @@ const nextConfig = {
         protocol: "https",
         hostname: "assets.hellogirls.info",
       },
+      {
+        protocol: "https",
+        hostname: "preview.hellogirls.info",
+      },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/projects/survey/2023/hall-of-fame/:place",
+        destination: "/projects/survey/2023/hall-of-fame?place=:place",
+        permanent: true,
+      },
+    ];
   },
 };
 
