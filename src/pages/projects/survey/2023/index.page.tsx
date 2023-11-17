@@ -361,8 +361,8 @@ export default function SurveyIndexPage(props: any) {
 
   const [clicked, handlers] = useListState<boolean>(pages.map((page) => false));
   const [loadedImgs, imgHandlers] = useListState<boolean>([]);
-  const [hideLoader, setHideLoader] = useState<boolean>(false);
-  const [removeSplash, setRemoveSplash] = useState<boolean>(false);
+  const [hideLoader, setHideLoader] = useState<boolean>(true);
+  const [removeSplash, setRemoveSplash] = useState<boolean>(true);
 
   const homeRef = useRef(null);
 
@@ -372,21 +372,13 @@ export default function SurveyIndexPage(props: any) {
   return (
     <DataLayout pageTitle={props.title}>
       <div className={`${styles.page} ${styles[colorTheme]}`}>
-        <AnimatePresence>
-          {loadedImgs.length < 4 && !hideLoader && (
-            <SurveyLoader
-              colorTheme={colorTheme}
-              setHideLoader={setHideLoader}
-            />
-          )}
-        </AnimatePresence>
         <div
           style={{
             height: "100%",
             display: hideLoader ? "block" : "none",
           }}
         >
-          <AnimatePresence>
+          {/* <AnimatePresence>
             {!removeSplash && (
               <SurveySplash
                 hideLoader={hideLoader}
@@ -397,7 +389,7 @@ export default function SurveyIndexPage(props: any) {
                 setRemoveSplash={setRemoveSplash}
               />
             )}
-          </AnimatePresence>
+          </AnimatePresence> */}
 
           {removeSplash && (
             <motion.div

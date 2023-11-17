@@ -320,7 +320,7 @@ export default function SurveyHallOfFame(props: any) {
               />
             </div>
           </div>
-          <p>
+          <p style={{ marginTop: "5vh" }}>
             and there we have it! congratulations to mayoi ayase for being the
             most popular character in this survey. your long hair, shark teeth,
             and timid personality have captured the hearts of many fans (mine
