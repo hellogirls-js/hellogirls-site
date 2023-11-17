@@ -1,5 +1,4 @@
 import {
-  IconAward,
   IconGraph,
   IconSparkles,
   IconStar,
@@ -342,20 +341,20 @@ export default function SurveyIndexPage(props: any) {
         />
       ),
     },
-    {
-      icon: <IconAward {...iconProps} />,
-      title: "badge of honor",
-      url: "/projects/survey/2023/badge-of-honor",
-      desc: "share who you voted for (or didn't vote for) with your friends!",
-      chara: (
-        <Image
-          src="https://static.wikia.nocookie.net/ensemble-stars/images/b/bd/KR_Enstars!!_Stickers_1_Leo.png"
-          alt="chara"
-          width={IMAGE_SIZE}
-          height={IMAGE_SIZE}
-        />
-      ),
-    },
+    // {
+    //   icon: <IconAward {...iconProps} />,
+    //   title: "badge of honor",
+    //   url: "/projects/survey/2023/badge-of-honor",
+    //   desc: "share who you voted for (or didn't vote for) with your friends!",
+    //   chara: (
+    //     <Image
+    //       src="https://static.wikia.nocookie.net/ensemble-stars/images/b/bd/KR_Enstars!!_Stickers_1_Leo.png"
+    //       alt="chara"
+    //       width={IMAGE_SIZE}
+    //       height={IMAGE_SIZE}
+    //     />
+    //   ),
+    // },
   ];
 
   const { colorTheme } = useContext(DarkModeContext);

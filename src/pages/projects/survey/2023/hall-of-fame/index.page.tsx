@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useContext, useState } from "react";
-import { IconQuestionMark, IconShare2 } from "@tabler/icons-react";
+import { IconShare2 } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import Head from "next/head";
 import { NextPageContext } from "next";
@@ -16,6 +16,7 @@ import getData, {
 import { DarkModeContext } from "context/DarkModeContext";
 import Tooltip from "component/utility/Tooltip";
 import { twoStarIDs } from "data/twoStarIds";
+import CardCG from "component/utility/CardCG";
 
 function groupTies(votes: CountedVotes[]): any {
   const reducerFunction = (
@@ -77,10 +78,7 @@ function HallOfFameItemLabel({
 
           return (
             <span key={chara.chara_id}>
-              <strong>
-                {/* {charaData.first_name} */}
-                ???
-              </strong>
+              <strong>{charaData.first_name}</strong>
               {group.length > 2 && i < group.length - 2
                 ? ", "
                 : group.length > 2 && i < group.length - 1
@@ -157,14 +155,13 @@ function HallOfFameItem({
                 {group.map((chara: CountedVotes) => (
                   <div className={styles.hallOfFameAvi} key={chara.chara_id}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    {/* <img
+                    <img
                       src={`https://assets.enstars.link/assets/card_full1_${
                         (twoStarIDs as any)[chara.chara_id]
                       }_normal.png`}
                       alt="chara"
                       width={550}
-                    /> */}
-                    <IconQuestionMark size={98} />
+                    />
                   </div>
                 ))}
               </div>
@@ -221,7 +218,7 @@ export default function SurveyHallOfFame(props: any) {
       <Head>
         <meta
           property="og:image"
-          content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
+          content={`https://preview.hellogirls.info/og/hall-of-fame${
             pagePlace ? `?place=${pagePlace}` : ""
           }`}
         />
@@ -234,13 +231,13 @@ export default function SurveyHallOfFame(props: any) {
         <meta name="twitter:creator" content="@hellogirls_DEV" />
         <meta
           name="twitter:image"
-          content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
+          content={`https://preview.hellogirls.info/og/hall-of-fame${
             pagePlace ? `?place=${pagePlace}` : ""
           }`}
         ></meta>
         <meta
           name="twitter:image:src"
-          content={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame${
+          content={`https://preview.hellogirls.info/og/hall-of-fame${
             pagePlace ? `?place=${pagePlace}` : ""
           }`}
         ></meta>
@@ -253,8 +250,8 @@ export default function SurveyHallOfFame(props: any) {
       {!closed && (
         <ShareImageModal
           title="share on social media!"
-          url={`https://hellogirls-site-git-survey-results-neeneemi.vercel.app/projects/survey/2023/hall-of-fame?place=${place}`}
-          postImgUrl={`https://hellogirls-site-preview-git-main-neeneemi.vercel.app/og/hall-of-fame?place=${place}`}
+          url={`https://hellogirls.info/projects/survey/2023/hall-of-fame?place=${place}`}
+          postImgUrl={`https://preview.hellogirls.info/og/hall-of-fame?place=${place}`}
           postBody={`my fave is in ${place}${
             place?.endsWith("1") && place !== "11"
               ? "st"
@@ -328,6 +325,13 @@ export default function SurveyHallOfFame(props: any) {
             most popular character in this survey. your long hair, shark teeth,
             and timid personality have captured the hearts of many fans (mine
             included &lt;3){" "}
+          </p>
+          <p>
+            <CardCG
+              src="https://static.wikia.nocookie.net/ensemble-stars/images/7/76/%28A_Quiet_Solitary_Stage%29_Mayoi_Ayase_CG.png"
+              alt="mayoi ayase"
+              caption="very cute"
+            />
           </p>
         </div>
       </div>

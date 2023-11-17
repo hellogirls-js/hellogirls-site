@@ -415,6 +415,36 @@
                 align-items: center;
             }
         }
+
+        .resultsContainer {
+            width: 75%;
+            margin: auto;
+            padding: 1%;
+            box-sizing: border-box;
+            border-radius: 5px;
+
+            @media screen and (max-width: 812px) {
+                width: 95%;
+            }
+            
+            .resultHeadContainer, .result {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                padding: 1%;
+            }
+
+            .resultHeadContainer {
+                font-family: vars.$header-font;
+            }
+
+            .result {
+                padding: 2% 1%;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
     }
 
     .powerOfFriendsContainer {
@@ -633,6 +663,31 @@
                 }
             }
         }
+
+        .badgeOfHonorContainer {
+            .resultsContainer {
+                background-color: #fff;
+                box-shadow: 2px 2px 2px vars.$light-shadow;
+
+                .resultHeadContainer, .result {
+                    &:not(&:last-child) {
+                        border-bottom: 1px solid vars.$light-heading-border;
+                    }
+                }
+
+                .resultHeadContainer {
+                    color: vars.$light-heading-2;
+                }
+
+                .result {
+                    transition: background-color 0.2s;
+                    
+                    &:hover {
+                        background-color: vars.$light-heading-bg;
+                    }
+                }
+            }
+        }
     }
 
     &.dark {
@@ -761,6 +816,13 @@
                     }
                 }
             }            
+        }
+
+        .badgeOfHonorContainer {
+            .resultsContainer {
+                background-color: vars.$dark-text-bg;
+                box-shadow: 2px 2px 2px vars.$dark-shadow;
+            }
         }
     }
 }
