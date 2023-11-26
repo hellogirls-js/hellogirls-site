@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 
 import dates from "../../../../data/lucky-birthday/2024_vals.json";
+import MakoCringe from "../../../../assets/MakoCringe.png";
 import styles from "../styles/Lucky.module.scss";
 
 import MainLayout from "component/MainLayout";
@@ -85,26 +86,28 @@ export default function LuckyBirthday() {
   }
 
   useEffect(() => {
-    if (month && date && !dayjs(`${month} ${date}, ${YEAR}`).isValid()) {
-      setResult({ rank: 0, message: "Sorry, that result is invalid." });
-    } else if (dayjs(`${month} ${date}, ${YEAR}`).isValid()) {
-      let dataResult = dates.filter((date) => date.birthday === birthday)[0];
-      let ranking = dataResult.rank;
-      let message: string;
+    if (birthday) {
+      if (month && date && !dayjs(`${month} ${date}, ${YEAR}`).isValid()) {
+        setResult({ rank: 0, message: "Sorry, that result is invalid." });
+      } else if (dayjs(`${month} ${date}, ${YEAR}`).isValid()) {
+        let dataResult = dates.filter((date) => date.birthday === birthday)[0];
+        let ranking = dataResult.rank;
+        let message: string;
 
-      if (1 <= ranking && ranking <= 50) {
-        message = `Wow, ${YEAR} is really gonna be your year! Maybe you'll find a dollar on the ground.`;
-      } else if (50 < ranking && ranking <= 100) {
-        message = `You're gonna experience some good luck in ${YEAR}, yippee!`;
-      } else if (100 < ranking && ranking <= 200) {
-        message = `Your luck will be pretty average in ${YEAR}. Don't expect anything grand to happen, okay?`;
-      } else if (200 < ranking && ranking <= 300) {
-        message = `Your luck's not gonna be the best in ${YEAR}, but keep your head up! This doesn't determine everything.`;
-      } else {
-        message = "Um...";
+        if (1 <= ranking && ranking <= 50) {
+          message = `Wow, ${YEAR} is really gonna be your year! Maybe you'll find a dollar on the ground.`;
+        } else if (50 < ranking && ranking <= 100) {
+          message = `You're gonna experience some good luck in ${YEAR}, yippee!`;
+        } else if (100 < ranking && ranking <= 200) {
+          message = `Your luck will be pretty average in ${YEAR}. Don't expect anything grand to happen, okay?`;
+        } else if (200 < ranking && ranking <= 300) {
+          message = `Your luck's not gonna be the best in ${YEAR}, but keep your head up! This doesn't determine everything.`;
+        } else {
+          message = "Um.";
+        }
+
+        setResult({ rank: ranking, message: message });
       }
-
-      setResult({ rank: ranking, message: message });
     }
   }, [month, birthday]);
 
@@ -158,7 +161,7 @@ export default function LuckyBirthday() {
                     </p>
                     <p>
                       <em>{result.message}</em>
-                      {/* {result.rank > 300 && (
+                      {result.rank > 300 && (
                         <Image
                           src={MakoCringe.src}
                           alt="Um."
@@ -166,7 +169,7 @@ export default function LuckyBirthday() {
                           height={MakoCringe.height}
                           style={{ display: "block" }}
                         />
-                      )} */}
+                      )}
                     </p>
                   </>
                 )}
