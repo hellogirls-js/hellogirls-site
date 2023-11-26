@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 
 import dates from "../../../../data/lucky-birthday/2024_vals.json";
-import MakoCringe from "../../../../assets/MakoCringe.png";
 import styles from "../styles/Lucky.module.scss";
 
 import MainLayout from "component/MainLayout";
@@ -13,7 +12,7 @@ import { DarkModeContext } from "context/DarkModeContext";
 import Accordion from "component/utility/Accordion";
 
 export default function LuckyBirthday() {
-  const YEAR = new Date().getFullYear();
+  const YEAR = 2024;
 
   const { colorTheme } = useContext(DarkModeContext);
 
@@ -60,7 +59,7 @@ export default function LuckyBirthday() {
         >
           <td className={styles.cell}>#{result.rank}</td>
           <td className={styles.cell}>
-            {dayjs(`2023-${result.birthday}`).format("MMMM D")}
+            {dayjs(`2024-${result.birthday}`).format("MMMM D")}
           </td>
         </tr>
       );
@@ -102,7 +101,7 @@ export default function LuckyBirthday() {
       } else if (200 < ranking && ranking <= 300) {
         message = `Your luck's not gonna be the best in ${YEAR}, but keep your head up! This doesn't determine everything.`;
       } else {
-        message = "Um.";
+        message = "Um...";
       }
 
       setResult({ rank: ranking, message: message });
@@ -159,7 +158,7 @@ export default function LuckyBirthday() {
                     </p>
                     <p>
                       <em>{result.message}</em>
-                      {result.rank > 300 && (
+                      {/* {result.rank > 300 && (
                         <Image
                           src={MakoCringe.src}
                           alt="Um."
@@ -167,7 +166,7 @@ export default function LuckyBirthday() {
                           height={MakoCringe.height}
                           style={{ display: "block" }}
                         />
-                      )}
+                      )} */}
                     </p>
                   </>
                 )}
