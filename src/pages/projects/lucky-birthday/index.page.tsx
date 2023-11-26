@@ -13,7 +13,7 @@ import { DarkModeContext } from "context/DarkModeContext";
 import Accordion from "component/utility/Accordion";
 
 export default function LuckyBirthday() {
-  const YEAR = new Date().getFullYear();
+  const YEAR = 2024;
 
   const { colorTheme } = useContext(DarkModeContext);
 
@@ -60,7 +60,7 @@ export default function LuckyBirthday() {
         >
           <td className={styles.cell}>#{result.rank}</td>
           <td className={styles.cell}>
-            {dayjs(`2023-${result.birthday}`).format("MMMM D")}
+            {dayjs(`2024-${result.birthday}`).format("MMMM D")}
           </td>
         </tr>
       );
@@ -86,26 +86,28 @@ export default function LuckyBirthday() {
   }
 
   useEffect(() => {
-    if (month && date && !dayjs(`${month} ${date}, ${YEAR}`).isValid()) {
-      setResult({ rank: 0, message: "Sorry, that result is invalid." });
-    } else if (dayjs(`${month} ${date}, ${YEAR}`).isValid()) {
-      let dataResult = dates.filter((date) => date.birthday === birthday)[0];
-      let ranking = dataResult.rank;
-      let message: string;
+    if (birthday) {
+      if (month && date && !dayjs(`${month} ${date}, ${YEAR}`).isValid()) {
+        setResult({ rank: 0, message: "Sorry, that result is invalid." });
+      } else if (dayjs(`${month} ${date}, ${YEAR}`).isValid()) {
+        let dataResult = dates.filter((date) => date.birthday === birthday)[0];
+        let ranking = dataResult.rank;
+        let message: string;
 
-      if (1 <= ranking && ranking <= 50) {
-        message = `Wow, ${YEAR} is really gonna be your year! Maybe you'll find a dollar on the ground.`;
-      } else if (50 < ranking && ranking <= 100) {
-        message = `You're gonna experience some good luck in ${YEAR}, yippee!`;
-      } else if (100 < ranking && ranking <= 200) {
-        message = `Your luck will be pretty average in ${YEAR}. Don't expect anything grand to happen, okay?`;
-      } else if (200 < ranking && ranking <= 300) {
-        message = `Your luck's not gonna be the best in ${YEAR}, but keep your head up! This doesn't determine everything.`;
-      } else {
-        message = "Um.";
+        if (1 <= ranking && ranking <= 50) {
+          message = `Wow, ${YEAR} is really gonna be your year! Maybe you'll find a dollar on the ground.`;
+        } else if (50 < ranking && ranking <= 100) {
+          message = `You're gonna experience some good luck in ${YEAR}, yippee!`;
+        } else if (100 < ranking && ranking <= 200) {
+          message = `Your luck will be pretty average in ${YEAR}. Don't expect anything grand to happen, okay?`;
+        } else if (200 < ranking && ranking <= 300) {
+          message = `Your luck's not gonna be the best in ${YEAR}, but keep your head up! This doesn't determine everything.`;
+        } else {
+          message = "Um.";
+        }
+
+        setResult({ rank: ranking, message: message });
       }
-
-      setResult({ rank: ranking, message: message });
     }
   }, [month, birthday]);
 
