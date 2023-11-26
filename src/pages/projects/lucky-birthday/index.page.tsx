@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 
-import dates from "../../../../data/array_vals.json";
+import dates from "../../../../data/lucky-birthday/2024_vals.json";
 import MakoCringe from "../../../../assets/MakoCringe.png";
 import styles from "../styles/Lucky.module.scss";
 
@@ -107,7 +107,7 @@ export default function LuckyBirthday() {
 
       setResult({ rank: ranking, message: message });
     }
-  }, [birthday]);
+  }, [month, birthday]);
 
   return (
     <MainLayout heading="lucky birthday ranking">
@@ -139,9 +139,7 @@ export default function LuckyBirthday() {
               <Button
                 onClick={(e) => {
                   e.preventDefault();
-                  setBirthday(
-                    dayjs(`${month} ${date}, ${YEAR}`).format("MM-DD"),
-                  );
+                  setBirthday(dayjs(`${month} ${date}, ${YEAR}`).format("M-D"));
                 }}
                 value="I'm feeling lucky!"
               />
