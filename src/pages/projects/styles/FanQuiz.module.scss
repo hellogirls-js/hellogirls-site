@@ -1,0 +1,31 @@
+.container {
+  font-size: 16px;
+  width: min(98vw, 70em);
+  margin: auto;
+  box-sizing: border-box;
+  padding: 0.25em;
+
+  .introContainer {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25em;
+
+    .nachumeContainer {
+      flex-basis: 20em;
+      height: 20em;
+      border-radius: 50%;
+      overflow: clip;
+      text-align: center;
+      box-shadow: 0.25em 0.25em 0em #716edb;
+
+      .nachumeImage {
+        height: 20em;
+        width: auto;
+      }
+    }
+
+  }
+}
