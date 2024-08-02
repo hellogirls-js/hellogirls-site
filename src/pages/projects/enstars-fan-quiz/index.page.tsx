@@ -1,4 +1,11 @@
 import React from "react";
+import { SupabaseClient } from "@supabase/supabase-js";
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  UseQueryResult,
+} from "@tanstack/react-query";
 import { AnimatePresence, motion, useAnimate, Variants } from "framer-motion";
 import { useInterval, useViewportSize } from "@mantine/hooks";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
@@ -13,18 +20,28 @@ import {
   Tooltip,
 } from "recharts";
 
-import NatsumeSprite from "../../../../assets/natsume_regular.png";
 import styles from "../styles/FanQuiz.module.scss";
 
-import { QuizQuestion, quizQuestions, QuizResult } from "./data";
+import {
+  QuizDBItem,
+  QuizQuestion,
+  quizQuestions,
+  QuizResult,
+  quizResults as quizResultNames,
+} from "./data";
+import OverallResults from "./OverallResults";
 
+import NatsumeSprite from "assets/natsume_regular.png";
 import NatsumeSpriteFocused from "assets/natsume_focused.png";
 import { shuffleArray } from "component/utility/data";
+import { createClient } from "utils/supabase/client";
 
 const pages = ["intro", "quiz", "results"];
 type QuizPage = (typeof pages)[number];
 
-function QuizHeader({
+const supabase = createClient();
+
+export function QuizHeader({
   title,
   natsumeSprite = NatsumeSprite,
 }: {
@@ -61,7 +78,7 @@ function IntroSection({
           kind of fan you arE? Perhaps I could help with thaT."
         />
         <div className={styles.disclaimer}>
-          This is a <strong>long</strong> personality quiz that consists of 49
+          This is a <strong>long</strong> personality quiz that consists of 56
           questions to determine what kind of fan you are. You will select how
           much you agree with each statement on a scale from 1-5.
         </div>
@@ -73,6 +90,7 @@ function IntroSection({
         >
           Get started!
         </button>
+        <a href="/projects/enstars-fan-quiz/overall" style={{display: "block", textAlign: "center", fontSize: "1.5em", marginTop: "2em"}}>Want to see the community&apos;s resultS?</a>
       </div>
       <img
         className={styles.nachumeChibi}
@@ -333,10 +351,22 @@ function QuizSection({
 function ResultsPage({
   setCurrentPage,
   quizResults,
+  supabase,
+  overallResultsResponse,
 }: {
   setCurrentPage: React.Dispatch<React.SetStateAction<QuizPage>>;
   quizResults: QuizQuestion[];
+  supabase: SupabaseClient<any, "public", any>;
+  overallResultsResponse: UseQueryResult<QuizDBItem[] | null, Error>;
 }) {
+  const qc = useQueryClient();
+
+  const {
+    data: overallResults,
+    isPending: areOverallResultsPending,
+    error: overallResultsError,
+  } = overallResultsResponse;
+
   const calculatedResults: Array<{
     result: QuizResult;
     value: number;
@@ -362,7 +392,7 @@ function ResultsPage({
       }
 
       const casualFanAmount =
-        Math.round(((4 - (current.selectedOption ?? 0)) / 7) * 100) / 100;
+        Math.round(((4 - (current.selectedOption ?? 0)) / 8) * 100) / 100;
 
       if (casualFanIndex < 0) {
         accumulated.push({
@@ -388,10 +418,69 @@ function ResultsPage({
     return reducedValue;
   }, [quizResults]);
 
+  const calculatedResultObject = React.useMemo(() => {
+    const initial: Record<string, number> = {};
+    quizResultNames.forEach((name) => {
+      const keyName = name.toLowerCase().replace(" ", "_");
+      initial[keyName] =
+        calculatedResults.find((result) => result.result === name)?.value ?? 0;
+    });
+    return initial;
+  }, [calculatedResults]);
+
   const result: { result: QuizResult; value: number } = React.useMemo(() => {
     const sortedResults = calculatedResults.sort((a, b) => b.value - a.value);
     return sortedResults[0];
   }, [calculatedResults]);
+
+  const {
+    mutate: addResultToDb,
+    isSuccess: isMutationSuccessful,
+    reset: resetMutation,
+  } = useMutation({
+    mutationFn: async () => {
+      const { error } = await supabase.from("purrsonality_results").insert({
+        result_name: result.result,
+        result_id: quizResultNames.indexOf(result.result),
+        result_values: calculatedResultObject,
+      });
+
+      if (error) throw new Error(error.message);
+    },
+    scope: {
+      id: "addToDb",
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({
+        queryKey: ["getOverallResults"],
+      });
+    },
+    onError: () => {
+      console.error("could not update database");
+    },
+    retry: false,
+  });
+
+  const updateDb = React.useCallback(() => {
+    if (!isMutationSuccessful) addResultToDb();
+  }, [isMutationSuccessful]);
+
+  React.useEffect(() => {
+    console.log(
+      "result",
+      result,
+      "is mutation successful",
+      isMutationSuccessful,
+    );
+    if (result) {
+      console.log("adding to db");
+      updateDb();
+    }
+
+    return () => {
+      resetMutation();
+    };
+  }, []);
 
   const quizResultsWithDescription: Array<{
     title: QuizResult;
@@ -518,6 +607,21 @@ function ResultsPage({
         </p>
       ),
     },
+    {
+      title: "Connoisseur",
+      description: (
+        <p>
+          You really do put the <strong>music</strong> in Ensemble Stars{" "}
+          <strong>Music!</strong> Your favorite aspect of the game is the music.
+          You&apos;re usually seen listening to the game&apos;s songs and have
+          quite strong opinions on them. You may or may not even choose your
+          favorite units based on their songs. It&apos;s a rhythm game after
+          all, and no rhythm game is complete without music! It&apos;s a good
+          thing people like you can appreciate what the staff and voice actors
+          put so much effort into.
+        </p>
+      ),
+    },
   ];
 
   const resultWithDescription = quizResultsWithDescription.find(
@@ -600,8 +704,21 @@ function ResultsPage({
         </ResponsiveContainer>
       </motion.div>
       <motion.div
-        className={styles.resultFooter}
+        className={styles.overallResultsChart}
         custom={6}
+        {...{ variants }}
+        initial="initial"
+        animate="visible"
+      >
+        {overallResultsError && <div>could not load results :(</div>}
+        {areOverallResultsPending && <div>loading results</div>}
+        {overallResults && (
+          <OverallResults {...{ overallResults }} userResult={result} />
+        )}
+      </motion.div>
+      <motion.div
+        className={styles.resultFooter}
+        custom={7}
         {...{ variants }}
         initial="initial"
         animate="visible"
@@ -623,6 +740,15 @@ export default function EnstarsFanQuiz() {
   const [currentPage, setCurrentPage] = React.useState<QuizPage>("intro");
   const [quizResults, setQuizResults] = React.useState<QuizQuestion[]>([]);
 
+  const overallResultsResponse = useQuery({
+    queryKey: ["getOverallResults"],
+    queryFn: async () => {
+      const response = await supabase.from("purrsonality_results").select();
+      console.table(response.data);
+      return response.data;
+    },
+  });
+
   React.useEffect(() => {
     if (currentPage !== "results") {
       setQuizResults([]);
@@ -636,7 +762,9 @@ export default function EnstarsFanQuiz() {
         <QuizSection {...{ setCurrentPage, quizResults, setQuizResults }} />
       )}
       {currentPage === "results" && (
-        <ResultsPage {...{ setCurrentPage, quizResults }} />
+        <ResultsPage
+          {...{ setCurrentPage, quizResults, supabase, overallResultsResponse }}
+        />
       )}
     </main>
   );

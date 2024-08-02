@@ -12,6 +12,81 @@
     background-image: linear-gradient(#fff 40em, #c2c48b 40em 42em, #dcdea9 42em);
   }
 
+  a:link, a:visited {
+    color: #716edb;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  a:hover, a:active {
+    text-decoration: underline;
+  }
+
+  .overallResultsContainer {
+    margin-top: 4em;
+
+      h3 {
+        margin: 2em 0em 1em 0em;
+        font-family: "Montserrat", sans-serif;
+        color: #716edb;
+        font-weight: 600;
+      }
+
+      .averageResultsChart {
+        background-color: #fff;
+        height: min(32em, 320px);
+        margin: 2em auto;
+        border-radius: 50px;
+        border: 0.25em solid #c2c48b;
+      }
+
+    .overallResultsChart {
+      background-color: #fff;
+      width: 100%;
+      height: min(32em, 400px);
+      margin: auto;
+      border-radius: 50px;
+      border: 0.25em solid #c2c48b;
+
+      .overallResultsChartContainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-flow: column wrap;
+        align-items: flex-start;
+        gap: 0.5em;
+        box-sizing: border-box;
+        padding: 2.5em 2em 2em 0.2em;
+
+        .overallResultsChartBar {
+          display: flex;
+          align-items: center;
+          gap: 1em;
+          box-sizing: border-box;
+          padding-left: 2em;
+          height: 3em;
+          background-color: #dcdea9; 
+          border-top-right-radius: 0.25em;
+          border-bottom-right-radius: 0.25em;
+          color: #000000aa;
+
+          strong {
+            color: #716edb;
+          }
+
+          &.selected {
+            background-color: #716edb;
+            color: #fff;
+
+            strong {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .nachumeChibi {
     width: 8em;
     height: auto;
@@ -356,6 +431,8 @@
       align-items: center;
 
       .resultImage {
+        text-align: center;
+
         img {
           width: min(100%, 280px);
           height: auto;

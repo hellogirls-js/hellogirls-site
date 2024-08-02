@@ -1,3 +1,6 @@
+import { Json } from "utils/supabase/client";
+
+/* eslint-disable prettier/prettier */
 export const quizResults = [
   "Scholar",
   "Shipper",
@@ -7,6 +10,7 @@ export const quizResults = [
   "Dreamer",
   "Creative",
   "Casual Fan",
+  "Connoisseur"
 ];
 
 export type QuizResult = (typeof quizResults)[number];
@@ -15,6 +19,14 @@ export interface QuizQuestion {
   question: string;
   associatedResult: QuizResult;
   selectedOption?: number;
+}
+
+export interface QuizDBItem {
+  created_at: string
+  id: number
+  result_id: number | null
+  result_name: string | null
+  result_values: Json | null
 }
 
 export const quizQuestions: QuizQuestion[] = [
@@ -238,6 +250,34 @@ export const quizQuestions: QuizQuestion[] = [
     question: "I like to talk to others about my creative ideas.",
     associatedResult: "Creative",
   },
+  {
+    question: "I listen to Ensemble Stars music in my free time.",
+    associatedResult: "Connoisseur",
+  },
+  {
+    question: "I listen to the songs of units I don't produce.",
+    associatedResult: "Connoisseur",
+  },
+  {
+    question: "I can tell each character apart by their singing voice.",
+    associatedResult: "Connoisseur",
+  },
+  {
+    question: "I take the yearly song poll very seriously.",
+    associatedResult: "Connoisseur",
+  },
+  {
+    question: "Ensemble Stars songs going global on streaming platforms was the best news of my life.",
+    associatedResult: "Connoisseur",
+  },
+  {
+    question: "I like finding pleasant voice combinations for songs such as Brand New Stars and the anniversary songs.",
+      associatedResult: "Connoisseur",
+  },
+  {
+    question: "I take note of and appreciate the instruments used in each Ensemble Stars song.",
+    associatedResult: "Connoisseur",
+  }
 ];
 
 export function shuffleQuestions(array: QuizQuestion[]) {
