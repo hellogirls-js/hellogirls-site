@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import styles from "../styles/FanQuiz.module.scss";
 
-import { QuizHeader } from "./index.page";
+import { QuizCredit, QuizHeader } from "./index.page";
 import OverallResults from "./OverallResults";
 
 import { createClient } from "utils/supabase/client";
@@ -31,6 +31,7 @@ export default function EnstarsFanQuizOverall() {
         )}
         {areOverallResultsPending && <div>loading...</div>}
         {overallResultsError && <div>could not load results :(</div>}
+        <QuizCredit />
       </div>
     </main>
   );

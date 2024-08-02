@@ -64,6 +64,14 @@ export function QuizHeader({
   );
 }
 
+export function QuizCredit() {
+  return (
+    <footer>
+      made by <a href="https://about.hellogirls.info">son</a>
+    </footer>
+  );
+}
+
 function IntroSection({
   setCurrentPage,
 }: {
@@ -91,6 +99,7 @@ function IntroSection({
           Get started!
         </button>
         <a href="/projects/enstars-fan-quiz/overall" style={{display: "block", textAlign: "center", fontSize: "1.5em", marginTop: "2em"}}>Want to see the community&apos;s resultS?</a>
+      <QuizCredit />
       </div>
       <img
         className={styles.nachumeChibi}
@@ -337,6 +346,7 @@ function QuizSection({
             )}
           </AnimatePresence>
         </div>
+      <QuizCredit />
       </div>
       <img
         ref={natsumeScope}
@@ -725,6 +735,7 @@ function ResultsPage({
           Try again?
         </button>
       </motion.div>
+      <QuizCredit />
     </div>
   );
 }

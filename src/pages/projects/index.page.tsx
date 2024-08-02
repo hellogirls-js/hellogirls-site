@@ -112,6 +112,19 @@ export default function Projects(props: any) {
       finished: true,
     },
     {
+      title: "enstars personality quiz",
+      url: "/projects/enstars-fan-quiz",
+      description: (
+        <p className={styles.projectDesc}>
+          a personality quiz run by dr. sakasaki that determines what kind of
+          enstars fan a quiz taker is. stores the results in a supabase database
+          and shows which results are the most common and what the average score
+          is for each personality type.
+        </p>
+      ),
+      finished: true,
+    },
+    {
       title: "enstars marriage survey data visualization",
       url: "/projects/marriage-survey-results",
       description: (
