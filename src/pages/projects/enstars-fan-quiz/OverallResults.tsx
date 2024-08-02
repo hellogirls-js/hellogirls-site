@@ -88,14 +88,27 @@ export default function OverallResults({
           {countOverallResults.map((result) => (
             <div
               key={result.name}
-              className={`${styles.overallResultsChartBar}${
+              className={`${styles.overallResultsChartBarContainer}${
                 userResult?.result === result.name ? ` ${styles.selected}` : ""
               }`}
-              style={{ width: `${(result.count / maxResult.count) * 100}%` }}
             >
-              <strong>{result.name}</strong>{" "}
-              {Math.round((result.count / overallResults.length) * 100)}% (
-              {result.count} fans)
+              <div className={`${styles.overallResultsChartBarText}${
+                  userResult?.result === result.name
+                    ? ` ${styles.selected}`
+                    : ""
+                }`}>
+                <strong>{result.name}</strong>{" "}
+                {Math.round((result.count / overallResults.length) * 100)}% (
+                {result.count} fans)
+              </div>
+              <div
+                className={`${styles.overallResultsChartBar}${
+                  userResult?.result === result.name
+                    ? ` ${styles.selected}`
+                    : ""
+                }`}
+                style={{ width: `${(result.count / maxResult.count) * 100}%` }}
+              ></div>
             </div>
           ))}
         </div>
