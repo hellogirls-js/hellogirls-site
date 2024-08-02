@@ -466,14 +466,7 @@ function ResultsPage({
   }, [isMutationSuccessful]);
 
   React.useEffect(() => {
-    console.log(
-      "result",
-      result,
-      "is mutation successful",
-      isMutationSuccessful,
-    );
     if (result) {
-      console.log("adding to db");
       updateDb();
     }
 
@@ -744,7 +737,6 @@ export default function EnstarsFanQuiz() {
     queryKey: ["getOverallResults"],
     queryFn: async () => {
       const response = await supabase.from("purrsonality_results").select();
-      console.table(response.data);
       return response.data;
     },
   });
