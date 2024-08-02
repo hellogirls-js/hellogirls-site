@@ -12,6 +12,13 @@
     background-image: linear-gradient(#fff 40em, #c2c48b 40em 42em, #dcdea9 42em);
   }
 
+  footer {
+    position: absolute;
+    left: 0;
+    bottom: 1em;
+    color: #9a9c6b;
+  }
+
   a:link, a:visited {
     color: #716edb;
     text-decoration: none;
@@ -23,7 +30,7 @@
   }
 
   .overallResultsContainer {
-    margin-top: 4em;
+    margin: 4em auto;
 
       h3 {
         margin: 2em 0em 1em 0em;
@@ -127,6 +134,7 @@
   .container {
     position: relative;
     width: min(98vw, 80em);
+    min-height: 100vh;
     box-sizing: border-box;
     padding: 0.25em;
     margin: auto;
