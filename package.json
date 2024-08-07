@@ -49,6 +49,7 @@
     "react-dom": "18.2.0",
     "react-loader-spinner": "^5.3.4",
     "react-transition-group": "^4.4.5",
+    "react-use": "^17.5.1",
     "react-wordcloud": "^1.2.7",
     "recharts": "2.9.0",
     "sass": "^1.57.1",
