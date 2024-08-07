@@ -116,12 +116,14 @@
 
   .menu {
     position: fixed;
-    bottom: 15%;
+    bottom: calc(100px + 3%);
+    left: 4.5%;
     width: 220px;
     padding: 1vh 0vw;
     border-radius: 5px;
     border: 1px solid var(--button-border);
     transition: opacity 0.3s;
+    transform-origin: bottom left;
 
     ul {
       list-style: none;

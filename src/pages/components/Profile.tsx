@@ -118,7 +118,7 @@ export default function Profile({
   }
 
   return (
-    <div style={{ margin: "10vh 0vw 23vh 0vw" }}>
+    <div className={styles.profileContainer}>
       <motion.h2
         className={styles.heading2}
         variants={{
