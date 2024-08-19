@@ -57,6 +57,9 @@ export default function Anzunator(props: any) {
   }>([]);
   const addSparkleInterval = useCallback(() => {
     if (vw && vh) {
+      if (sparklePlacements.length > Math.ceil((vw ?? 750) / 15)) {
+        sparklesHandler.remove(0);
+      }
       const xCoord = Math.random() * vw;
       const yCoord = Math.random() * vh;
       sparklesHandler.append({ x: xCoord, y: yCoord });
@@ -67,12 +70,17 @@ export default function Anzunator(props: any) {
     sparklesHandler.remove(0);
   }, [sparklePlacements]);
 
-  const addSparkle = useInterval(addSparkleInterval, 1000);
+  const addSparkle = useInterval(addSparkleInterval, 999);
   const removeSparkle = useInterval(removeSparkleInterval, 1000);
 
   useEffect(() => {
     setVw(window.innerWidth);
     setVh(window.innerHeight);
+
+    window.addEventListener("resize", () => {
+      setVw(window.innerWidth);
+      setVh(window.innerHeight);
+    });
   }, []);
 
   useEffect(() => {
@@ -97,9 +105,13 @@ export default function Anzunator(props: any) {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <div className={styles.anzuContainer}>
+        <motion.div
+          className={styles.anzuContainer}
+          animate={{ opacity: [1, 0.75, 1], y: [-3, 0, 3, 0, -3] }}
+          transition={{ ease: "easeInOut", duration: 5, repeat: Infinity }}
+        >
           <Anzu image={image} />
-        </div>
+        </motion.div>
         <Content setImage={setImage} enData={props.enData} />
       </div>
       <footer className={styles.credit}>
@@ -107,7 +119,7 @@ export default function Anzunator(props: any) {
       </footer>
       <div className={styles.sparkles}>
         {sparklePlacements.map((coord) => (
-          <Sparkle key={`${vw}${vh}`} {...coord} />
+          <Sparkle key={`${coord.x}${coord.y}`} {...coord} />
         ))}
       </div>
     </main>

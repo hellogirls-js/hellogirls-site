@@ -1,13 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Gabriela&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gabriela&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 .main {
   font-size: 1vw;
+  font-family: "PT Serif", serif;
   position: relative;
   min-height: 100vh;
   background-image: linear-gradient(217deg, #87a7ff, #87a7ff00 70.71%),
             linear-gradient(127deg, #e09eff, #e09eff00 70.71%),
             linear-gradient(336deg, #a8f1ff, #a8f1ff00 70.71%);
   color: #493f75;
+
+  @media screen and (orientation: portrait) {
+    font-size: 1.5vh;
+    min-height: 100vh;
+    height: auto;
+  }
 
   .sparkles {
     position: fixed;
@@ -23,15 +30,21 @@
   .container {
     position: relative;
     z-index: 5;
-    width: min(100em, 1080px);
+    width: min(85em, 810px);
     height: 100vh;
     margin: auto;
     display: flex;
-    gap: 0.5em;
+    gap: 2em;
     align-items: center;
     justify-content: center;
     padding: 2em;
     box-sizing: border-box;
+
+    @media screen and (orientation: portrait) {
+      width: 100vw;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
 
     .anzuContainer {
       .anzu {
@@ -51,6 +64,11 @@
     }
 
     .content {
+
+      @media screen and (orientation: portrait) {
+        width: 100%;
+      }
+
       .contentTitle {
 
         h1 {
@@ -71,28 +89,73 @@
         }
 
         .buttons {
-          display: flex;
-          margin-top: 2em;
+          width: 100%;
+          position: relative;
+          margin-top: 4em;
+          justify-content: space-between;
 
           .pagination {
+            position: absolute;
             cursor: pointer;
             font-family: "Gabriela", serif;
             color: #fff;
-            font-size: 2.5em;
+            font-size: 2em;
             font-style: italic;
             border-radius: 50px;
             box-shadow: 0px 2px 2px #00000033;
-            padding: 1% 2%;
+            padding: 1% 4%;
 
-            &.prev {
+            &.next, &.start {
+              right: 0;
               background-image: linear-gradient(to left, #87a7ff, #e09eff);
             }
 
-            &.next {
+            &.prev {
+              left: 0;
               background-image: linear-gradient(to left, #e09eff, #a8f1ff);
             }
           }
         }
+
+        .answer {
+          cursor: pointer;
+          font-family: "Gabriela", serif;
+          color: #fff;
+          font-size: 2em;
+          font-style: italic;
+          border-radius: 50px;
+          box-shadow: 0px 2px 2px #00000033;
+          padding: 1% 4%;
+          margin: 2% 0%;
+
+          &.yes {
+            background-image: linear-gradient(#87a7ff, #e09eff);
+          }
+
+          &.no {
+            background-image: linear-gradient(#e09eff, #a8f1ff);
+          }
+        }
+      }
+    }
+
+    .result {
+      .resultImg {
+        width: 100%;
+        height: 500px;
+        border-radius: 50%;
+        overflow: clip;
+        background-image: radial-gradient(circle at center, #fff 50%, #ffffff00 70%);
+
+        @media screen and (orientation: portrait) {
+          height: 350px;
+        }
+      }
+      
+      .resultText {
+        text-align: center;
+        font-size: 1.5em;
+        margin-top: 2%;
       }
     }
   }
@@ -103,6 +166,10 @@
     bottom: 2em;
     left: 2em;
     font-size: 0.8em;
+
+    @media screen and (orientation: portrait) {
+      font-size: 1em;
+    }
 
     a:link, a:visited {
       color: #fff;

@@ -20,9 +20,7 @@ export default function Match({
 
   function Result() {
     let imageUrl = chara
-      ? `https://assets.enstars.link/assets/card_full1_${
-          (twoStarIDs as any)[chara.character_id]
-        }_normal.png`
+      ? `https://assets.hellogirls.info/renders/character_full1_${chara.character_id}.png`
       : "";
 
     let charaEnData = enData.find(
@@ -32,7 +30,7 @@ export default function Match({
     return (
       <div className={styles.result}>
         <div className={styles.resultImg}>
-          <Image src={imageUrl} width={500} height={500 / 1.775} alt="yippee" />
+          <Image src={imageUrl} width={500} height={500 * 2.1} alt="yippee" />
         </div>
         <div className={styles.resultText}>
           You might like{" "}

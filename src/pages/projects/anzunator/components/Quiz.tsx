@@ -161,7 +161,7 @@ export default function Quiz({
               setQuestionCount(questionCount + 1);
             }}
           >
-            <IconCheck strokeWidth={5} color="#8abd00" /> Yes
+            <IconCheck strokeWidth={5} /> Yes
           </div>
           <div
             className={`${styles.answer} ${styles.no}`}
@@ -176,7 +176,7 @@ export default function Quiz({
               setQuestionCount(questionCount + 1);
             }}
           >
-            <IconX strokeWidth={5} color="#bd0039" /> No
+            <IconX strokeWidth={5} /> No
           </div>
         </div>
       </div>
