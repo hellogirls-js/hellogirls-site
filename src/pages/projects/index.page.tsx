@@ -76,7 +76,7 @@ export default function Projects(props: any) {
     },
     {
       title: "anzunator",
-      url: "https://anzunator.hellogirls.info",
+      url: "/projects/anzunator",
       description: (
         <p className={styles.projectDesc}>
           an enstars version of akinator featuring our favorite producer, anzu!
