@@ -149,6 +149,9 @@
 
         @media screen and (orientation: portrait) {
           height: 350px;
+        img {
+          text-align: center;
+        }
         }
       }
       
