@@ -161,6 +161,7 @@ export default function MemoryTest(props: any) {
 
   useEffect(() => {
     if (gameTime && !countdown.active) {
+      setHasGameEnded(false);
       setSecondsLeft(gameTime * 60);
       setCountdownString(`${gameTime}:00`);
       countdown.start();
