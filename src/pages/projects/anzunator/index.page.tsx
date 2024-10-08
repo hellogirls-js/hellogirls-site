@@ -3,30 +3,12 @@ import { IconAsterisk } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import { getData } from "utils/data";
 
 import Anzu from "./components/Anzu";
 import Content from "./components/Content";
 import styles from "./styles/Anzunator.module.scss";
 import { ANZU_REGULAR } from "./utility/images";
-
-async function getData(url: string): Promise<any> {
-  try {
-    const response = await fetch(url);
-    let data = await response.json();
-    if (data[0]) {
-      data = data.filter((d: any) => d.compliant === "TRUE");
-    }
-    return {
-      status: "success",
-      data,
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      status: "error",
-    };
-  }
-}
 
 function Sparkle({ x, y }: { x: number; y: number }) {
   return (

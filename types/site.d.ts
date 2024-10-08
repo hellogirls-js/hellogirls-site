@@ -60,3 +60,16 @@ type FollowerSurveyDataType =
   | "fave_unit"
   | "assumed_chara"
   | "assumed_unit";
+
+interface SorterFilterOptions {
+  teachers: boolean;
+  anzu: boolean;
+  gatekeeper: boolean;
+  newface: boolean;
+  nice: true;
+  seiya: false;
+  madamoiselle: false;
+  kaname: false;
+}
+
+type RecursiveArray<T> = Array<RecursiveArray | T>;

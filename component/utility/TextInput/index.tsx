@@ -1,4 +1,10 @@
-import { CSSProperties, MutableRefObject, useContext } from "react";
+import {
+  ChangeEvent,
+  ClipboardEventHandler,
+  CSSProperties,
+  MutableRefObject,
+  useContext,
+} from "react";
 
 import styles from "./TextInput.module.scss";
 
@@ -11,10 +17,12 @@ export default function TextInput({
   value,
   id,
   onChange,
+  onPaste,
   style,
   textboxStyle,
   name,
   maxLength,
+  disabled = false,
   required = false,
 }: {
   refProp?: MutableRefObject<HTMLInputElement | null>;
@@ -22,10 +30,12 @@ export default function TextInput({
   placeholder?: string;
   value?: string;
   id?: string;
-  onChange?: any;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+  onPaste?: ClipboardEventHandler;
   style?: CSSProperties;
   textboxStyle?: CSSProperties;
   name?: string;
+  disabled?: boolean;
   required?: boolean;
   maxLength?: number;
 }) {
@@ -39,6 +49,7 @@ export default function TextInput({
         type="text"
         id={id}
         onChange={onChange}
+        onPaste={onPaste}
         placeholder={placeholder}
         value={value}
         aria-label={placeholder}
@@ -46,6 +57,7 @@ export default function TextInput({
         name={name}
         required={required}
         maxLength={maxLength}
+        disabled={disabled}
       />
     </div>
   );

@@ -1,0 +1,122 @@
+@use "../../../../styles/vars.module.scss";
+
+.memoryGame {
+  position: relative;
+  width: min(100%, 1000px);
+  margin: auto;
+
+  .description {
+    h2 {
+      margin: 4px 0px;
+    }
+
+    p {
+      padding: 2%;
+      border-radius: 8px;
+      line-height: 1.5;
+    }
+  }
+  
+  .gameContainer {
+    width: 100%;
+    margin-top: 2%;
+    position: relative;
+
+    .inputContainer {
+      width: 100%;
+      gap: 5%;
+      position: sticky;
+      top: 34px;
+      padding: 2% 1%;
+      box-sizing: border-box;
+      z-index: 20;
+
+      .inputOptions {
+        display: flex;
+        align-items: center;
+        gap: 10%;
+
+        .timeOptions {
+          display: flex;
+          align-items: center;
+          gap: 5%;
+
+          .timer {
+            font-family: vars.$header-font;
+            font-weight: 600;
+            font-size: 1.5em;
+          }
+
+        }
+
+        .amountLeft {
+          font-weight: 600;
+          font-size: 1.25em;
+        }
+      }
+      
+    }
+
+    .results {
+      font-size: 1.25em;
+    }
+
+    .charaGrid {
+      width: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      .unguessedChara {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2%;
+      }
+
+      .guessedChara {
+        width: 68px;
+        height: 68px;
+        margin: 2%;
+      }
+    }
+  }
+}
+
+.light {
+
+  .description {
+    p {
+      background-color: white;
+      box-shadow: 0px 2px 2px vars.$light-shadow;
+    }
+  }
+
+  .inputContainer {
+    background-color: vars.$light-bg;
+  }
+
+  .unguessedChara {
+    border: 2px solid vars.$light-subtext;
+  }
+}
+
+.dark {
+  .description {
+    p {
+      background-color: vars.$dark-text-bg;
+      box-shadow: 0px 2px 2px vars.$dark-shadow;
+    }
+  }
+
+  .inputContainer {
+    background-color: vars.$dark-bg;
+  }
+
+  .unguessedChara {
+    border: 2px solid vars.$dark-text;
+  }
+}
