@@ -19,11 +19,9 @@ import Strong from "component/utility/Strong";
 
 interface CharacterData {
   id: number;
-  name: string;
+  nameOptions: string[];
   guessed: boolean;
 }
-
-const ALLOTED_TIME = 3;
 
 export default function MemoryTest(props: any) {
   const { charaData } = props;
@@ -31,33 +29,100 @@ export default function MemoryTest(props: any) {
 
   const formattedData: CharacterData[] = charaData
     .sort((a: any, b: any) => a.sort_id - b.sort_id)
-    .map((chara: any) => ({
-      id: chara.character_id,
-      name: `${chara.first_name}${
-        chara.last_name ? ` ${chara.last_name}` : ""
-      }`,
-      guessed: false,
-    }));
+    .map((chara: any) => {
+      const name = [chara.first_name, chara.last_name].filter(
+        (name) => name !== undefined && name.length > 0,
+      );
+      let nameOptions: string[];
+      if (name.length === 1) {
+        // Fuck You HiMERU !
+        nameOptions = name;
+      } else {
+        nameOptions = [
+          name.join(" "),
+          name.join(""),
+          [name[1], name[0]].join(" "),
+          [name[1], name[0]].join(""),
+        ];
+        if (chara.first_nameRuby ?? chara.last_nameRuby) {
+          const nameRuby = [
+            chara.first_nameRuby ?? chara.first_name,
+            chara.last_nameRuby ?? chara.last_name,
+          ];
+          nameOptions.push(
+            ...[
+              nameRuby.join(" "),
+              nameRuby.join(""),
+              [nameRuby[1], nameRuby[0]].join(" "),
+              [nameRuby[1], nameRuby[0]].join(""),
+            ],
+          );
+        }
+      }
+      return {
+        id: chara.character_id,
+        nameOptions: nameOptions.map((name) => name.toLowerCase()),
+        guessed: false,
+      };
+    });
   formattedData.push(
     ...[
-      { id: 81, name: "Esu Sagiri", guessed: false },
-      { id: 82, name: "Ibuki Taki", guessed: false },
-      { id: 83, name: "Kanna Natsu", guessed: false },
-      { id: 84, name: "Fuyume Hanamura", guessed: false },
-      { id: 85, name: "Raika Hojo", guessed: false },
-      { id: 86, name: "Nice Arneb Thunder", guessed: false },
+      {
+        id: 81,
+        nameOptions: ["esu sagiri", "sagiri esu", "esusagiri", "sagiriesu"],
+        guessed: false,
+      },
+      {
+        id: 82,
+        nameOptions: ["ibuki taki", "taki ibuki", "ibukitaki", "takiibuki"],
+        guessed: false,
+      },
+      {
+        id: 83,
+        nameOptions: ["kanna natsu", "natsu kanna", "kannanatsu", "natsukanna"],
+        guessed: false,
+      },
+      {
+        id: 84,
+        nameOptions: [
+          "fuyume hanamura",
+          "hanamura fuyume",
+          "fuyumehanamura",
+          "hanamurafuyume",
+        ],
+        guessed: false,
+      },
+      {
+        id: 85,
+        nameOptions: ["raika hojo", "hojo raika", "raikahojo", "hojoraika"],
+        guessed: false,
+      },
+      {
+        id: 86,
+        nameOptions: [
+          "nice arneb thunder",
+          "nicearnebthunder",
+          "sanda yoshihide",
+          "yoshihide sanda",
+          "yoshihidesanda",
+          "sandayoshihide",
+        ],
+        guessed: false,
+      },
     ],
   );
 
-  const [hasGameStarted, setHasGameStarted] = useState(false);
+  const [gameTime, setGameTime] = useState<number>();
   const [hasGameEnded, setHasGameEnded] = useState(false);
   const [characters, setCharacters] = useListState(formattedData);
   const [inputVal, setInputVal] = useState("");
-  const [secondsLeft, setSecondsLeft] = useState(ALLOTED_TIME * 60);
-  const [countdownString, setCountdownString] = useState<string>("3:00");
+  const [secondsLeft, setSecondsLeft] = useState<number>(-1);
+  const [countdownString, setCountdownString] = useState<string>();
 
   const countdown = useInterval(() => {
-    if (!hasGameEnded) setSecondsLeft((prev) => prev - 1);
+    if (!hasGameEnded) {
+      setSecondsLeft((prev) => prev - 1);
+    }
   }, 1000);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -66,9 +131,9 @@ export default function MemoryTest(props: any) {
 
   useEffect(() => {
     if (inputVal.length) {
-      const inputMatchesCharaName = characters.findIndex(
-        (chara) => chara.name.toLowerCase() === inputVal.toLowerCase(),
-      );
+      const inputMatchesCharaName = characters.findIndex((chara) => {
+        return chara.nameOptions.includes(inputVal.toLowerCase());
+      });
       if (
         inputMatchesCharaName > -1 &&
         !characters[inputMatchesCharaName].guessed
@@ -80,28 +145,31 @@ export default function MemoryTest(props: any) {
   }, [inputVal]);
 
   useEffect(() => {
-    const numberOfMinutes = Math.floor(secondsLeft / 60);
-    const numberOfSeconds = Math.floor(secondsLeft % 60);
-    setCountdownString(
-      `${numberOfMinutes}:${
-        numberOfSeconds < 10 ? `0${numberOfSeconds}` : numberOfSeconds
-      }`,
-    );
-    if (secondsLeft === 0) {
+    if (secondsLeft > 0) {
+      const numberOfMinutes = Math.floor(secondsLeft / 60);
+      const numberOfSeconds = Math.floor(secondsLeft % 60);
+      setCountdownString(
+        `${numberOfMinutes}:${
+          numberOfSeconds < 10 ? `0${numberOfSeconds}` : numberOfSeconds
+        }`,
+      );
+    } else if (secondsLeft === 0 && gameTime) {
       setHasGameEnded(true);
     }
   }, [secondsLeft]);
 
   useEffect(() => {
-    if (hasGameStarted && !countdown.active) {
+    if (gameTime && !countdown.active) {
+      setSecondsLeft(gameTime * 60);
+      setCountdownString(`${gameTime}:00`);
       countdown.start();
     }
-  }, [hasGameStarted]);
+  }, [gameTime]);
 
   useEffect(() => {
-    if (hasGameEnded && countdown.active) {
+    if (hasGameEnded) {
       countdown.stop();
-
+      setGameTime(undefined);
     }
   }, [hasGameEnded]);
 
@@ -127,7 +195,7 @@ export default function MemoryTest(props: any) {
         </div>
         <div className={styles.gameContainer}>
           <div className={styles.inputContainer}>
-            {hasGameStarted ? (
+            {gameTime ? (
               <>
                 <TextInput
                   value={inputVal}
@@ -167,24 +235,37 @@ export default function MemoryTest(props: any) {
                 </div>
               </>
             ) : (
-              <div
-                style={{
-                  display: "flex",
-                  width: "100%",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Button
-                  value="start!"
-                  onClick={() => setHasGameStarted(true)}
-                  buttonStyle={{
-                    fontSize: "1.5em",
-                    paddingLeft: "20px",
-                    paddingRight: "20px",
+              <>
+                <h3 style={{ textAlign: "center" }}>Start!</h3>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "2%",
                   }}
-                />
-              </div>
+                >
+                  <Button
+                    value="EASY (6 minutes)"
+                    onClick={() => setGameTime(6)}
+                    buttonStyle={{
+                      fontSize: "1.5em",
+                      paddingLeft: "20px",
+                      paddingRight: "20px",
+                    }}
+                  />
+                  <Button
+                    value="HARD (3 minutes)"
+                    onClick={() => setGameTime(3)}
+                    buttonStyle={{
+                      fontSize: "1.5em",
+                      paddingLeft: "20px",
+                      paddingRight: "20px",
+                    }}
+                  />
+                </div>
+              </>
             )}
           </div>
           {hasGameEnded && (
@@ -205,11 +286,11 @@ export default function MemoryTest(props: any) {
             {characters.map((chara) =>
               chara.guessed ? (
                 <div key={chara.id} className={styles.guessedChara}>
-                  <Tooltip label={chara.name} position="top">
+                  <Tooltip label={chara.nameOptions[0]} position="top">
                     <Image
                       key={chara.id}
                       src={`https://assets.enstars.link/assets/character_sd_square1_${chara.id}.png`}
-                      alt={chara.name}
+                      alt={chara.nameOptions[0]}
                       width={68}
                       height={68}
                     />
