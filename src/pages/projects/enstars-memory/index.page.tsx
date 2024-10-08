@@ -131,8 +131,9 @@ export default function MemoryTest(props: any) {
 
   useEffect(() => {
     if (inputVal.length) {
+      const trimmedInput = inputVal.trim();
       const inputMatchesCharaName = characters.findIndex((chara) => {
-        return chara.nameOptions.includes(inputVal.toLowerCase());
+        return chara.nameOptions.includes(trimmedInput.toLowerCase());
       });
       if (
         inputMatchesCharaName > -1 &&
