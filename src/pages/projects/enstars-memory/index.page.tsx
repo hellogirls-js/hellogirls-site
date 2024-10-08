@@ -120,9 +120,7 @@ export default function MemoryTest(props: any) {
   const [countdownString, setCountdownString] = useState<string>();
 
   const countdown = useInterval(() => {
-    if (!hasGameEnded) {
-      setSecondsLeft((prev) => prev - 1);
-    }
+     setSecondsLeft((prev) => prev - 1);
   }, 1000);
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -161,6 +159,7 @@ export default function MemoryTest(props: any) {
 
   useEffect(() => {
     if (gameTime && !countdown.active) {
+      setCharacters.setState(formattedData);
       setHasGameEnded(false);
       setSecondsLeft(gameTime * 60);
       setCountdownString(`${gameTime}:00`);
