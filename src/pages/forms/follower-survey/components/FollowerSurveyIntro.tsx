@@ -1,4 +1,4 @@
-import { Dispatch, RefObject, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, RefObject, SetStateAction } from "react";
 import { IconAlertTriangle } from "@tabler/icons-react";
 import { useMediaQuery } from "@mantine/hooks";
 import { motion } from "framer-motion";
@@ -43,7 +43,7 @@ export default function FollowerSurveyIntro({
           placeholder="input your name"
           style={{ paddingLeft: 0, width: isDesktop ? "40%" : "100%" }}
           textboxStyle={{ padding: 8 }}
-          onChange={(e: InputEvent) =>
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setName((e.currentTarget as HTMLInputElement).value)
           }
           refProp={nameRef}
@@ -77,7 +77,7 @@ export default function FollowerSurveyIntro({
           style={{ paddingLeft: 0, width: isDesktop ? "40%" : "100%" }}
           textboxStyle={{ padding: 8 }}
           required={true}
-          onChange={(e: InputEvent) => {
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
             const val: string = (e.currentTarget as HTMLInputElement).value;
 
             if (val[0] !== "@" && val.length === 1) {

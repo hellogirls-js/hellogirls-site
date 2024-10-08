@@ -12,14 +12,16 @@ export default function Button({
   icon,
   alignIcon = "left",
   style,
+  disabled = false,
   buttonStyle,
 }: {
-  value: string;
+  value?: string;
   refProp?: RefObject<HTMLButtonElement>;
   type?: "button" | "submit" | "reset";
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   icon?: JSX.Element;
   alignIcon?: "left" | "right";
+  disabled?: boolean;
   style?: CSSProperties;
   buttonStyle?: CSSProperties;
 }) {
@@ -38,6 +40,7 @@ export default function Button({
         type={type}
         style={buttonStyle}
         ref={refProp}
+        {...{ disabled }}
       >
         {icon}
         {value}

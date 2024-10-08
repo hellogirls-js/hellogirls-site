@@ -20,9 +20,7 @@ export default function Match({
 
   function Result() {
     let imageUrl = chara
-      ? `https://assets.enstars.link/assets/card_full1_${
-          (twoStarIDs as any)[chara.character_id]
-        }_normal.png`
+      ? `https://assets.hellogirls.info/renders/character_full1_${chara.character_id}.png`
       : "";
 
     let charaEnData = enData.find(
