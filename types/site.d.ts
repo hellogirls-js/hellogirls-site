@@ -96,3 +96,21 @@ interface EnCharacterData {
   tagline: string;
   introduction: string;
 }
+
+interface JPCharacterData extends EnCharacterData {
+  unit: number[];
+  image_color?: HexColorWithTag;
+
+  /** Height in cms */
+  height: number;
+
+  /** Weight in kgs */
+  weight: number;
+
+  /** Birthday in YYYY-MM-DD format */
+  birthday: string;
+  age?: number;
+  blood_type: "A" | "B" | "O" | "AB";
+  circle?: string[];
+  sort_id: number;
+}

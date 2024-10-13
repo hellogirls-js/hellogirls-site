@@ -37,11 +37,11 @@ function DatingCard({
   charaData,
   direction,
 }: {
-  charaData: EnCharacterData;
+  charaData: JPCharacterData;
   direction: number;
 }) {
   const ANIMATION_DURATION = 0.8;
-  const ANIMATION_SHIFT = 300;
+  const ANIMATION_SHIFT = 800;
 
   const variants: Variants = {
     enter: (direction: number) => ({
@@ -58,7 +58,8 @@ function DatingCard({
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction > 0 ? ANIMATION_SHIFT : ANIMATION_SHIFT * -1,
+      x: ANIMATION_SHIFT * direction,
+      rotate: 150 * direction,
       opacity: 0,
       transition: {
         duration: ANIMATION_DURATION,
@@ -68,6 +69,9 @@ function DatingCard({
       },
     }),
   };
+
+  const characterAge: number =
+    Number(charaData.age) + (Number(charaData.age) < 17 ? 2 : 1);
 
   return (
     <motion.div
@@ -79,6 +83,13 @@ function DatingCard({
       animate="center"
       exit="exit"
     >
+      <div className={styles.cardCharaInfo}>
+        <div className={styles.charaBasicInfo}>
+          <span className={styles.name}>{charaData.first_name}</span>,{" "}
+          <span>{characterAge}</span>
+        </div>
+        <div className={styles.charaTagline}>{charaData.tagline}</div>
+      </div>
       <Image
         src={`https://assets.enstars.link/assets/card_rectangle4_${
           charaDataCG[
@@ -98,21 +109,13 @@ function CardStack({
   direction,
   index,
 }: {
-  charaList: EnCharacterData[];
+  charaList: JPCharacterData[];
   direction: number;
   index: number;
 }) {
   return (
     <div className={styles.cardStackContainer}>
       <div className={styles.cardStack}>
-        <div className={styles.rinne}>
-          <Image
-            width={580}
-            height={690}
-            src={`https://assets.hellogirls.info/asobi/bumble/asobi_rinne_1.png`}
-            alt="rinne amagi"
-          />
-        </div>
         <AnimatePresence custom={direction}>
           <DatingCard
             key={charaList[index].character_id}
@@ -179,7 +182,7 @@ function Buttons({
   index,
 }: {
   dispatch: Dispatch<CardAction>;
-  charaList: EnCharacterData[];
+  charaList: JPCharacterData[];
   index: number;
 }) {
   function LikeButton() {
@@ -189,7 +192,7 @@ function Buttons({
         onClick={() => {
           dispatch({
             type: CardActionKind.SMASH,
-            payload: charaList[index].character_id,
+            payload: charaList[index]?.character_id,
           });
         }}
       >
@@ -206,7 +209,7 @@ function Buttons({
         onClick={() => {
           dispatch({
             type: CardActionKind.PASS,
-            payload: charaList[index].character_id,
+            payload: charaList[index]?.character_id,
           });
         }}
       >
@@ -224,6 +227,33 @@ function Buttons({
   );
 }
 
+function GameHeader() {
+  return (
+    <header>
+      <div className={styles.logoContainer}>
+        <AsobiLogo />
+      </div>
+    </header>
+  );
+}
+
+function GameFooter() {
+  return (
+    <footer>
+      <div>
+        <Link href="https://dating.hellogirls.info" target="_blank">
+          <Image
+            src={`https://assets.enstars.link/assets/character_sd_square1_21.png`}
+            alt={"link to keito hasumi april fools site"}
+            width={75}
+            height={75}
+          />
+        </Link>
+      </div>
+    </footer>
+  );
+}
+
 export default function Dating(props: any) {
   const [state, dispatch] = useReducer(reducer, {
     index: 0,
@@ -232,15 +262,7 @@ export default function Dating(props: any) {
     direction: 0,
   });
 
-  const charaData: EnCharacterData[] = props.charaData;
-
-  const shuffledFilteredCharacters: EnCharacterData[] = useMemo(() => {
-    const filteredData = charaData.filter((chara) =>
-      Object.keys(charaDataCG).includes(String(chara.character_id)),
-    );
-    const shuffledData = shuffleArray(filteredData);
-    return shuffledData;
-  }, [charaData]);
+  const charaData: JPCharacterData[] = props.charaData;
 
   const [showChoiceNotif, setShowChoiceNotif] = useState(false);
   const [showMatchNotif, setShowMatchNotif] = useState(false);
@@ -251,17 +273,17 @@ export default function Dating(props: any) {
       if (e.key === "ArrowRight") {
         dispatch({
           type: CardActionKind.SMASH,
-          payload: shuffledFilteredCharacters[state.index].character_id,
+          payload: charaData[state.index].character_id,
         });
       }
       if (e.key === "ArrowLeft") {
         dispatch({
           type: CardActionKind.PASS,
-          payload: shuffledFilteredCharacters[state.index].character_id,
+          payload: charaData[state.index].character_id,
         });
       }
     },
-    [shuffledFilteredCharacters, state.index],
+    [charaData, state.index],
   );
 
   useEffect(() => {
@@ -274,50 +296,59 @@ export default function Dating(props: any) {
 
   return (
     <div className={styles.bumbleContainer}>
-      <header>
-        <div className={styles.logoContainer}>
-          <AsobiLogo />
-        </div>
-      </header>
       <main>
         <div className={styles.gameContainer}>
+          <div className={styles.rinne}>
+            <Image
+              width={580}
+              height={690}
+              src={`https://assets.hellogirls.info/asobi/bumble/asobi_rinne_1.png`}
+              alt="rinne amagi"
+            />
+          </div>
           <CardStack
-            charaList={shuffledFilteredCharacters}
+            charaList={charaData}
             direction={state.direction}
             index={state.index}
           />
           <Buttons
-            charaList={shuffledFilteredCharacters}
+            charaList={charaData}
             index={state.index}
             {...{ dispatch }}
           />
         </div>
       </main>
-      <footer>
-        <div>
-          <Link href="https://dating.hellogirls.info" target="_blank">
-            <Image
-              src={`https://assets.enstars.link/assets/character_sd_square1_21.png`}
-              alt={"link to keito hasumi april fools site"}
-              width={75}
-              height={75}
-            />
-          </Link>
-        </div>
-      </footer>
     </div>
   );
 }
 
 export async function getServerSideProps() {
   const DATA_URL = "https://tl.data.ensemble.moe/en/characters.json";
+  const JP_DATA_URL = "https://data.ensemble.moe/ja/characters.json";
 
   const enData = await getData(DATA_URL);
+  const jpData = await getData(JP_DATA_URL);
+
+  const dataWithAge = (enData.data as EnCharacterData[])
+    .filter((enChara) =>
+      Object.keys(charaDataCG).includes(String(enChara.character_id)),
+    )
+    .map((enChara: EnCharacterData) => {
+      const correspondingJpData = (jpData.data as JPCharacterData[]).find(
+        (jpChara) => jpChara.character_id === enChara.character_id,
+      );
+      return {
+        ...enChara,
+        age: correspondingJpData?.age,
+      };
+    });
+
+  const shuffledData = shuffleArray(dataWithAge);
 
   return {
     props: {
       title: "Dating | ASOBI! After Dark",
-      charaData: enData.data as EnCharacterData,
+      charaData: shuffledData as JPCharacterData[],
     },
   };
 }
