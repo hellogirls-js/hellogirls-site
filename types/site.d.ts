@@ -73,3 +73,26 @@ interface SorterFilterOptions {
 }
 
 type RecursiveArray<T> = Array<RecursiveArray | T>;
+
+interface EnCharacterData {
+  character_id: number;
+  last_name: string;
+  first_name: string;
+
+  /** Reading guide for last name, eg. furigana */
+  last_nameRuby?: string;
+
+  /** Reading guide for first name, eg. furigana */
+  first_nameRuby?: string;
+
+  /** Character voice actor */
+  character_voice: string;
+
+  hobby: string;
+  specialty: string;
+  school?: string;
+  class?: string;
+  quote: string;
+  tagline: string;
+  introduction: string;
+}

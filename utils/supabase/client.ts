@@ -9,8 +9,54 @@ export type Json =
   | Json[]
 
 export type Database = {
+  graphql_public: {
+    Tables: {
+      [_ in never]: never
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      graphql: {
+        Args: {
+          operationName?: string
+          query?: string
+          variables?: Json
+          extensions?: Json
+        }
+        Returns: Json
+      }
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
+      lipbite: {
+        Row: {
+          created_at: string
+          id: number
+          like: number | null
+          pass: number | null
+        }
+        Insert: {
+          created_at?: string
+          id: number
+          like?: number | null
+          pass?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          like?: number | null
+          pass?: number | null
+        }
+        Relationships: []
+      }
       purrsonality_results: {
         Row: {
           created_at: string
@@ -108,7 +154,7 @@ export type TablesUpdate<
     : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U;
+      Update: infer U
     }
     ? U
     : never
@@ -130,8 +176,8 @@ export type Enums<
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
-  ? PublicSchema["Enums"][PublicEnumNameOrOptions]
-  : never;
+    ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+    : never
 
 export function createClient() {
   return createBrowserClient<Database>(
