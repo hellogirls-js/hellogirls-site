@@ -1,13 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  Dispatch,
-  useCallback,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState,
-} from "react";
+import { Dispatch, useCallback, useEffect, useReducer, useState } from "react";
 import { AnimatePresence, motion, Variants } from "framer-motion";
 import { IconHeart, IconX } from "@tabler/icons-react";
 
@@ -262,11 +255,28 @@ export default function Dating(props: any) {
     direction: 0,
   });
 
+  enum RinneDialogue {
+    START_DIALOGUE = "How do ya feel about this one?",
+    PASS_DIALOGUE_1 = "Picky, huh?",
+    PASS_DIALOGUE_2 = "Did they ick ya out?",
+    LIKE_DIALOGUE_1 = "Kyahaha, nice pick!",
+    LIKE_DIALOGUE_2 = "They're kinda cute, huh~? Just kidding, kyahaha!",
+    NIKI_DIALOGUE = "Oi.",
+    NIKI_DIALOGUE_LIKE = "Careful, Niki's mine.",
+    NIKI_DIALOGUE_PASS = "What did you just say about Niki?",
+    RINNE_DIALOGUE = "H-how did that...?!",
+    RINNE_DIALOGUE_LIKE = "..."
+  }
+
   const charaData: JPCharacterData[] = props.charaData;
 
   const [showChoiceNotif, setShowChoiceNotif] = useState(false);
   const [showMatchNotif, setShowMatchNotif] = useState(false);
   const [showMissedMatchNotif, setShowMissedMatchNotif] = useState(false);
+  const [rinneSprite, setRinneSprite] = useState(1);
+  const [rinneDialogue, setRinneDialogue] = useState(
+    RinneDialogue.START_DIALOGUE,
+  );
 
   const handleKeyUp = useCallback(
     (e: KeyboardEvent) => {
@@ -294,17 +304,96 @@ export default function Dating(props: any) {
     };
   }, [handleKeyUp]);
 
+  useEffect(() => {
+    if (state.smashList.length) {
+      const mostRecentIndex = state.smashList.length - 1;
+      if (state.smashList[mostRecentIndex] === 74) {
+        setRinneDialogue(RinneDialogue.NIKI_DIALOGUE_LIKE);
+      } else if (state.smashList[mostRecentIndex] === 71) {
+        setRinneDialogue(RinneDialogue.RINNE_DIALOGUE_LIKE);
+      } else {
+        if (
+          charaData[state.index].character_id !== 71 &&
+          charaData[state.index].character_id !== 74
+        ) {
+          const randomChoice = Math.random() * 10;
+          if (randomChoice % 2 === 0) {
+            setRinneDialogue(RinneDialogue.LIKE_DIALOGUE_1);
+          } else {
+            setRinneDialogue(RinneDialogue.LIKE_DIALOGUE_2);
+          }
+        }
+      }
+    }
+  }, [state.smashList]);
+
+  useEffect(() => {
+    if (state.passList.length) {
+      const mostRecentIndex = state.passList.length - 1;
+      if (state.passList[mostRecentIndex] === 74) {
+        setRinneDialogue(RinneDialogue.NIKI_DIALOGUE_PASS);
+      } else if (state.passList[mostRecentIndex] === 71) {
+        setRinneDialogue(RinneDialogue.RINNE_DIALOGUE_LIKE);
+      } else {
+        if (
+          charaData[state.index].character_id !== 71 &&
+          charaData[state.index].character_id !== 74
+        ) {
+          const randomChoice = Math.random() * 10;
+          if (randomChoice % 2 === 0) {
+            setRinneDialogue(RinneDialogue.PASS_DIALOGUE_1);
+          } else {
+            setRinneDialogue(RinneDialogue.PASS_DIALOGUE_2);
+          }
+        }
+      }
+    }
+  }, [state.passList]);
+
+  useEffect(() => {
+    console.log(charaData[state.index - 1]);
+    if (state.index < charaData.length) {
+        if (
+          charaData[state.index].character_id === 71 ||
+          charaData[state.index - 1]?.character_id === 71
+        ) {
+          // if you're on rinne
+          if (charaData[state.index].character_id === 71) {
+            setRinneDialogue(RinneDialogue.RINNE_DIALOGUE);
+          }
+          setRinneSprite(2);
+        }
+        if (
+          (state.index > 0 && charaData[state.index - 1].character_id === 74) ||
+          charaData[state.index].character_id === 74
+        ) {
+          // if you make any choice regarding niki
+          setRinneSprite(3);
+          if (charaData[state.index].character_id === 74) {
+            setRinneDialogue(RinneDialogue.NIKI_DIALOGUE);
+          }
+        } else {
+          if (rinneSprite !== 1) setRinneSprite(1);
+        }
+    }
+  }, [state.index]);
+
   return (
     <div className={styles.bumbleContainer}>
       <main>
         <div className={styles.gameContainer}>
-          <div className={styles.rinne}>
-            <Image
-              width={580}
-              height={690}
-              src={`https://assets.hellogirls.info/asobi/bumble/asobi_rinne_1.png`}
-              alt="rinne amagi"
-            />
+            <div className={styles.rinneContainer}>
+              <div className={styles.rinne}>
+                <Image
+                  width={580}
+                  height={690}
+                  src={`https://assets.hellogirls.info/asobi/bumble/asobi_rinne_${rinneSprite}.png`}
+                  alt="rinne amagi"
+                />
+              </div>
+              <div className={styles.rinneDialogue}>
+                {rinneDialogue}
+              </div>
           </div>
           <CardStack
             charaList={charaData}
