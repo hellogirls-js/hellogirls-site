@@ -95,6 +95,7 @@ interface EnCharacterData {
   quote: string;
   tagline: string;
   introduction: string;
+  cards?: number[];
 }
 
 interface JPCharacterData extends EnCharacterData {
@@ -113,4 +114,10 @@ interface JPCharacterData extends EnCharacterData {
   blood_type: "A" | "B" | "O" | "AB";
   circle?: string[];
   sort_id: number;
+  favorite_food: string;
+  like: string;
+  dislike?: string;
+  specialty: string;
+  quote: string;
+  horoscope: number;
 }
