@@ -73,3 +73,51 @@ interface SorterFilterOptions {
 }
 
 type RecursiveArray<T> = Array<RecursiveArray | T>;
+
+interface EnCharacterData {
+  character_id: number;
+  last_name: string;
+  first_name: string;
+
+  /** Reading guide for last name, eg. furigana */
+  last_nameRuby?: string;
+
+  /** Reading guide for first name, eg. furigana */
+  first_nameRuby?: string;
+
+  /** Character voice actor */
+  character_voice: string;
+
+  hobby: string;
+  specialty: string;
+  school?: string;
+  class?: string;
+  quote: string;
+  tagline: string;
+  introduction: string;
+  cards?: number[];
+}
+
+interface JPCharacterData extends EnCharacterData {
+  unit: number[];
+  image_color?: HexColorWithTag;
+
+  /** Height in cms */
+  height: number;
+
+  /** Weight in kgs */
+  weight: number;
+
+  /** Birthday in YYYY-MM-DD format */
+  birthday: string;
+  age?: number;
+  blood_type: "A" | "B" | "O" | "AB";
+  circle?: string[];
+  sort_id: number;
+  favorite_food: string;
+  like: string;
+  dislike?: string;
+  specialty: string;
+  quote: string;
+  horoscope: number;
+}

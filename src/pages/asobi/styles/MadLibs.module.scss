@@ -170,7 +170,7 @@
 
   .madlibsSora {
     position: absolute;
-    height: 100%;
+    height: min(100%, 564px);
     background-image: linear-gradient(transparent 60%, #fff 93%);
 
     img {
@@ -182,7 +182,7 @@
       pointer-events: none;
 
       @media screen and (max-width: 768px) {
-        height: 400%;
+        height: min(400%, 564px);
       }
     }
 
