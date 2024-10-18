@@ -193,8 +193,14 @@
   header {
     position: absolute;
     top: 0;
+    right: 0;
+    opacity: 0.5;
     display: flex;
     justify-content: space-around;
+
+    @media (min-width: 810px) {
+        opacity: 1;
+    }
 
     .logoContainer {
       display: flex;
@@ -491,6 +497,8 @@
         .rinneSpriteContainer {
           position: relative;
           overflow: clip;
+          overflow-x: clip;
+          overflow-y: clip;
           aspect-ratio: 1;
           width: min(10vw, 100px);
           height: min(10vw, 100px);
@@ -601,9 +609,16 @@
             }
           }
 
-          @media (orientation: portrait) {
+          @media (orientation: portrait) and (max-width: 600px) {
               width: 33vw;
               height: 33vw;
+              z-index: 50;
+              font-size: 1.8vh;
+          }
+
+          @media (orientation: portrait) and (min-width: 600px) {
+              width: 20vw;
+              height: 20vw;
               z-index: 50;
               font-size: 1.8vh;
           }
@@ -643,13 +658,13 @@
           height: auto;
           position: relative;
 
-          @media (orientation: portrait) and (max-width: 768px) {
+          @media (orientation: portrait) and (max-width: 510px) {
               width: 100%;
               margin-top: -3vw;
           }
 
-          @media (orientation: portrait) and (min-width: 768px) {
-              width: min(75vw, 600px);
+          @media (orientation: portrait) and (min-width: 510px) {
+              width: min(75vw, 500px);
           }
 
           .choicePollContainer {
@@ -658,7 +673,7 @@
             font-size: 0.75em;
             width: 50%;
             top: 0;
-            margin-top: 25%;
+            margin-top: 50%;
             right: 0;
             box-sizing: border-box;
             padding: 4%;
@@ -763,6 +778,22 @@
 
               &.isFlipped {
                 transform: rotateY(-180deg);
+
+                .cardBase {
+
+                    &.cardFront {
+
+                        &::after {
+                            z-index: 0;
+                        }
+
+                        .cardCharaInfo {
+                            z-index: 0;
+                        }
+                    }
+                }
+
+
               }
 
               .cardBase {

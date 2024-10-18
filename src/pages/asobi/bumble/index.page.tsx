@@ -30,11 +30,8 @@ import {
   IconZodiacVirgo,
 } from "@tabler/icons-react";
 import { useClickOutside, useTimeout } from "@mantine/hooks";
-import {
-  UseMutateFunction,
-  useMutation,
-  useQuery,
-} from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import Div100vh from "react-div-100vh";
 
 import styles from "../styles/Bumble.module.scss";
 
@@ -376,6 +373,7 @@ export interface CardState {
   passList: number[];
   matchList: number[];
   direction: 1 | -1 | 0;
+  choice: number;
 }
 
 function reducer(state: CardState, action: CardAction): CardState {
@@ -410,6 +408,7 @@ function reducer(state: CardState, action: CardAction): CardState {
       return {
         ...state,
         index: state.index + 1,
+        choice: Number(payload),
       };
     default:
       return state;
@@ -420,26 +419,16 @@ function Buttons({
   dispatch,
   charaList,
   index,
-  addVoteForChara,
 }: {
   dispatch: Dispatch<CardAction>;
   charaList: JPCharacterData[];
   index: number;
-  addVoteForChara: UseMutateFunction<
-    void,
-    Error,
-    { charaId: number; choice: boolean }
-  >;
 }) {
   function LikeButton() {
     return (
       <button
         className={`${styles.dateButton} ${styles.like}`}
         onClick={() => {
-          addVoteForChara({
-            charaId: charaList[index].character_id,
-            choice: true,
-          });
           dispatch({
             type: CardActionKind.SMASH,
             payload: charaList[index]?.character_id,
@@ -457,10 +446,6 @@ function Buttons({
       <button
         className={`${styles.dateButton} ${styles.pass}`}
         onClick={() => {
-          addVoteForChara({
-            charaId: charaList[index].character_id,
-            choice: false,
-          });
           dispatch({
             type: CardActionKind.PASS,
             payload: charaList[index]?.character_id,
@@ -646,7 +631,10 @@ function MatchScreen({
         <button
           className={styles.matchButton}
           onClick={() => {
-            dispatch({ type: CardActionKind.PROCEED });
+            dispatch({
+              type: CardActionKind.PROCEED,
+              payload: chara.character_id,
+            });
           }}
         >
           Awesome!
@@ -846,8 +834,6 @@ function ChoicePoll({
         .eq("character_id", chara.character_id)
         .eq("choice", false);
 
-      console.log("likes", likes, likes.count, "passes", passes, passes.count);
-
       return {
         likes: likes.data?.length ?? 0,
         passes: passes.data?.length ?? 0,
@@ -878,15 +864,19 @@ function ChoicePoll({
         >
           <motion.div
             className={`${styles.choicePollBar} ${styles.choicePollLikeBar}`}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            style={{
+            initial={{ width: 0 }}
+            animate={{
               width: charaResults
                 ? `${(charaResults.likes / charaResults.total) * 100}%`
                 : "0%",
+              transition: {
+                duration: 0.5,
+              },
             }}
           >
-            {charaResults ? (charaResults.likes / charaResults.total) * 100 : 0}
+            {charaResults
+              ? ((charaResults.likes / charaResults.total) * 100).toFixed(1)
+              : 0}
             %
           </motion.div>
           <div className={styles.choicePollLabel}>
@@ -901,16 +891,18 @@ function ChoicePoll({
         >
           <motion.div
             className={`${styles.choicePollBar} ${styles.choicePollPassBar}`}
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            style={{
+            initial={{ width: 0 }}
+            animate={{
               width: charaResults
                 ? `${(charaResults.passes / charaResults.total) * 100}%`
                 : "0%",
+              transition: {
+                duration: 0.5,
+              },
             }}
           >
             {charaResults
-              ? (charaResults.passes / charaResults.total) * 100
+              ? ((charaResults.passes / charaResults.total) * 100).toFixed(1)
               : 0}
             %
           </motion.div>
@@ -933,6 +925,7 @@ export default function Dating(props: any) {
     passList: [],
     matchList: [],
     direction: 0,
+    choice: 0,
   });
 
   enum RinneDialogue {
@@ -976,8 +969,8 @@ export default function Dating(props: any) {
     onSuccess: (data, values) => {
       setShowChoiceNotif(values);
     },
-    onError: () => {
-      console.error("could not add data to DB");
+    onError: (error) => {
+      console.error("could not add data to DB", error.message, error.cause);
     },
   });
 
@@ -1027,11 +1020,15 @@ export default function Dating(props: any) {
           }
         }
       }
+
       const random = Math.ceil(Math.random() * 4);
       if (random % 4 === 1) {
         setShowMatchNotif(true);
       } else {
-        dispatch({ type: CardActionKind.PROCEED });
+        dispatch({
+          type: CardActionKind.PROCEED,
+          payload: state.smashList[mostRecentIndex],
+        });
       }
     }
   }, [state.smashList]);
@@ -1056,7 +1053,10 @@ export default function Dating(props: any) {
           }
         }
       }
-      dispatch({ type: CardActionKind.PROCEED });
+      dispatch({
+        type: CardActionKind.PROCEED,
+        payload: state.passList[mostRecentIndex] * -1,
+      });
     }
   }, [state.passList]);
 
@@ -1111,45 +1111,57 @@ export default function Dating(props: any) {
     }
   }, [state.index]);
 
+  useEffect(() => {
+    if (state.index > 0) {
+      addVoteForChara({
+        charaId: charaData[state.index - 1].character_id,
+        choice: state.choice > 0,
+      });
+    }
+  }, [state.choice]);
+
   return (
-    <div className={styles.bumbleContainer}>
-      <GameFooter />
-      <AnimatePresence>
-        {showMatchNotif && (
-          <MatchScreen chara={charaData[state.index]} {...{ dispatch }} />
-        )}
-      </AnimatePresence>
-      <main>
-        <div className={styles.gameContainer}>
-          <Rinne sprite={rinneSprite} dialogue={rinneDialogue} />
-          {state.index < charaData.length && (
-            <>
-              <CardStack
-                charaList={charaData}
-                direction={state.direction}
-                index={state.index}
-                {...{
-                  showMissedMatchNotif,
-                  setShowMissedMatchNotif,
-                  setShowChoiceNotif,
-                  showChoiceNotif,
-                }}
-              />
-              <Buttons
-                charaList={charaData}
-                index={state.index}
-                {...{ dispatch, addVoteForChara }}
-              />
-            </>
+    <Div100vh>
+      <div className={styles.bumbleContainer}>
+        <GameHeader />
+        <GameFooter />
+        <AnimatePresence>
+          {showMatchNotif && (
+            <MatchScreen chara={charaData[state.index]} {...{ dispatch }} />
           )}
-          {state.index >= charaData.length && (
-            <div className={styles.messages}>
-              <MatchedMessages {...{ charaData }} matches={state.matchList} />
-            </div>
-          )}
-        </div>
-      </main>
-    </div>
+        </AnimatePresence>
+        <main>
+          <div className={styles.gameContainer}>
+            <Rinne sprite={rinneSprite} dialogue={rinneDialogue} />
+            {state.index < charaData.length && (
+              <>
+                <CardStack
+                  charaList={charaData}
+                  direction={state.direction}
+                  index={state.index}
+                  {...{
+                    showMissedMatchNotif,
+                    setShowMissedMatchNotif,
+                    setShowChoiceNotif,
+                    showChoiceNotif,
+                  }}
+                />
+                <Buttons
+                  charaList={charaData}
+                  index={state.index}
+                  {...{ dispatch, addVoteForChara }}
+                />
+              </>
+            )}
+            {state.index >= charaData.length && (
+              <div className={styles.messages}>
+                <MatchedMessages {...{ charaData }} matches={state.matchList} />
+              </div>
+            )}
+          </div>
+        </main>
+      </div>
+    </Div100vh>
   );
 }
 
