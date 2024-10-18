@@ -36,6 +36,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "preview.hellogirls.info",
       },
+      {
+        protocol: "https",
+        hostname: "i.ibb.co",
+      },
     ],
   },
   async redirects() {
