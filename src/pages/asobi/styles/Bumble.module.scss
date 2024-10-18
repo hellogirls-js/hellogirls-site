@@ -61,7 +61,7 @@
         height: 25%;
         border-radius: 8px;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: center;
         transform-origin: left bottom;
 
@@ -106,6 +106,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 8%;
 
       .matchSubtitle {
         color: #232c3f;
@@ -127,7 +128,7 @@
           z-index: 1001;
           top: -5%;
           left: min(6.25%, 37.5px);
-          perspective: 2%;
+          perspective: 100px;
 
           svg {
             fill: color.adjust(#e97e88, $lightness: 1.2);
@@ -136,7 +137,7 @@
         }
 
         .matchCharaContainer {
-          width: min(50%, 300px);
+          width: min(25vh, 300px);
           transform: rotate(10deg);
           margin: 0 auto;
 
@@ -268,6 +269,7 @@
         justify-content: center;
         padding: 2%;
         box-sizing: border-box;
+        margin-bottom: 8%;
 
         .messagesContainer {
             position: relative;
@@ -638,6 +640,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-bottom: 4%;
 
         .flipButton {
           position: absolute;

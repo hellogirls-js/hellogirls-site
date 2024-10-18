@@ -521,6 +521,27 @@ function GameFooter() {
                     You can check it out here!
                   </Link>
                 </p>
+                <p>
+                  While we&apos;re here, all assets are from{" "}
+                  <Link href="https://stars.ensemble.moe" target="_blank">
+                    MakoTools
+                  </Link>{" "}
+                  and character messages are from the{" "}
+                  <Link
+                    href="https://ensemble-stars.fandom.com/wiki/The_English_Ensemble_Stars_Wiki"
+                    target="_blank"
+                  >
+                    English Enstars Wiki
+                  </Link>
+                  . Basic character data will be updated live as MakoTools
+                  updates.
+                </p>
+                <p>
+                  <Link href="/asobi" target="_blank">
+                    Check out more ASOBI! projects here!
+                  </Link>{" "}
+                  I&apos;m excited to complete the collection soon.
+                </p>
               </motion.div>
             </div>
           </motion.div>
@@ -974,7 +995,7 @@ export default function Dating(props: any) {
     RINNE_DIALOGUE_LIKE = "...",
     RINNE_DIALOGUE_PASS = "...",
     FINISHED_GOOD = "Well, well~ Look at all the lucky bachelors you racked up!",
-    FINISHED_BAD = "No one? Poor thing, maybe li'l ol Rinne can cheer you up~",
+    FINISHED_BAD = "No one? Poor thing, maybe l'il ol Rinne can cheer you up~",
   }
 
   const charaData: JPCharacterData[] = props.charaData;
@@ -1238,7 +1259,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      title: "Dating | ASOBI! After Dark",
+      title: "Bumble | ASOBI! After Dark",
       charaData: shuffledData as JPCharacterData[],
     },
   };
