@@ -1,13 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { useQuery } from "@tanstack/react-query";
-import { count } from "console";
-
 import { getData } from "utils/data";
 import { createClient } from "utils/supabase/client";
 
 const supabase = createClient();
 
-interface Results {
+interface Result {
   id: number;
   name: string;
   likeCount: number;
@@ -22,50 +20,41 @@ export default function MyCuriosity(props: any) {
   const { data: charaResults } = useQuery({
     queryKey: ["getAllResults"],
     queryFn: async () => {
-      const countData = await supabase.from("lipbite").select("*", { count: "exact", head: true});
-      const count = countData.count ?? 0;
-      let index = 0;
-      const resultsArray: Array<{
-        character_id: number;
-        choice: boolean;
-        created_at: string;
-        id: number;
-      }> = [];
-      while (index < count) {
-        const results = await supabase.from("lipbite").select().range(index, index + 999);
-        resultsArray.push(...(results.data ?? []));
-        index += 1000;
-      }
-      console.log("results array", resultsArray);
-      const mappedResults = charas.map((chara) => {
-        const filteredCharaResults = resultsArray.filter(
-          (data) => data.character_id === chara.character_id,
-        );
+      const mappedResults: Result[] = [];
 
-        if (filteredCharaResults) {
-          const countLikes = filteredCharaResults.reduce((total, current) => {
-            if (current.choice) {
-              return total + 1;
-            } else return total;
-          }, 0);
+      charas.filter(chara => chara.character_id !== 31 && chara.character_id !== 32 && chara.character_id !== 68 && chara.character_id !== 73).forEach(async (chara) => {
+        const charaLikeData = await supabase
+        .from("lipbite")
+        .select("*", { count: "exact", head: true })
+        .eq("character_id", chara.character_id)
+        .eq("choice", true);
 
-          const countDislikes =
-            filteredCharaResults?.filter((data) => !data.choice).length ?? 0;
-          const total = filteredCharaResults?.length ?? 1;
+        const charaLikeCount = charaLikeData.count ?? 0;
 
-          return {
+        const charaPassData = await supabase
+          .from("lipbite")
+          .select("*", { count: "exact", head: true })
+          .eq("character_id", chara.character_id)
+          .eq("choice", false);
+
+        const charaPassCount = charaPassData.count ?? 0;
+
+        const charaTotal = charaLikeCount + charaPassCount > 0 ? charaLikeCount + charaPassCount : 1;
+
+          const resultObj: Result = {
             id: chara.character_id,
             name: chara.first_name,
-            likeCount: countLikes,
-            dislikeCount: countDislikes,
-            total,
-            likePercent: (countLikes / total) * 100,
-            dislikePercent: (countDislikes / total) * 100,
-          } as Results;
-        }
-      });
+            likeCount: charaLikeCount,
+            dislikeCount: charaPassCount,
+            total: charaTotal ?? 1,
+            likePercent: (charaLikeCount / charaTotal) * 100,
+            dislikePercent: (charaPassCount / charaTotal) * 100,
+          }
 
-      return mappedResults as Results[];
+          mappedResults.push(resultObj);
+      })
+
+      return mappedResults as Result[];
     },
   });
 
