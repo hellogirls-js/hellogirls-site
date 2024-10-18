@@ -879,19 +879,19 @@ function ChoicePoll({
     queryFn: async () => {
       const likes = await supabase
         .from("lipbite")
-        .select()
+        .select("*", { count: "exact", head: true })
         .eq("character_id", chara.character_id)
         .eq("choice", true);
       const passes = await supabase
         .from("lipbite")
-        .select()
+        .select("*", { count: "exact", head: true })
         .eq("character_id", chara.character_id)
         .eq("choice", false);
 
       return {
-        likes: likes.data?.length ?? 0,
-        passes: passes.data?.length ?? 0,
-        total: (likes.data?.length ?? 0) + (passes.data?.length ?? 0),
+        likes: likes.count ?? 0,
+        passes: passes.count ?? 0,
+        total: (likes.count ?? 0) + (passes.count ?? 0),
       };
     },
   });
