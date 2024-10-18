@@ -284,7 +284,6 @@
             @media (orientation: portrait) and (max-width: 768px) {
                 width: 100%;
                 height: auto;
-                margin-top: -3vw;
             }
 
             @media (orientation: portrait) and (min-width: 768px) {
@@ -345,9 +344,9 @@
 
                     .matchDmIcon {
                       position: relative;
-                      width: max(12%, 50px);
-                      height: max(12%, 50px);
                       aspect-ratio: 1;
+                      width: min(12%, 50px);
+                      height: max(12%, 50px);
                       overflow: clip;
                       border-radius: 50%;
                       box-shadow: 0px 2px 2px #00000033;
@@ -369,6 +368,14 @@
                       background-color: color.adjust(#00a1e9, $saturation: -20%, $lightness: -10%);
                       border-radius: 8px;
                       box-shadow: 0px 4px 4px #00000033;
+
+                      img {
+                        width: 100%;
+                        height: auto;
+                        margin-top: 8%;
+                        border-radius: 8px;
+                        box-shadow: 0px 2px 2px #00000033;
+                      }
                     }
                   }
                 }
@@ -443,9 +450,9 @@
 
                     img {
                       position: absolute;
-                      width: 225%;
-                      top: -10%;
-                      left: -75%;
+                      width: 175%;
+                      top: -20%;
+                      left: -50%;
                       height: auto;
                     }
                   }

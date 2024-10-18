@@ -288,6 +288,14 @@ function DatingCard({
                 height={720}
               />
             </div>
+            <div className={styles.promptContainer}>
+              <div className={styles.charaPrompt}>
+                Some words they want to get in
+              </div>
+              <div className={styles.charaAnswer}>
+                &quot;{charaData.quote}&quot;
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -384,11 +392,13 @@ function reducer(state: CardState, action: CardAction): CardState {
 
       return {
         ...state,
+        index: !shouldMatch ? state.index + 1 : state.index,
         smashList: [...state.smashList, Number(payload)],
         matchList: shouldMatch
           ? [...state.matchList, Number(payload)]
           : state.matchList,
         direction: 1,
+        choice: !shouldMatch ? Number(payload) : 0,
       };
     case CardActionKind.PASS:
       return {
@@ -686,11 +696,18 @@ function MissedMatchNotif({
 function MatchedMessages({
   matches,
   charaData,
+  setShowRinne,
 }: {
   matches: number[];
   charaData: JPCharacterData[];
+  setShowRinne: Dispatch<SetStateAction<boolean>>;
 }) {
   const [selectedChara, setSelectedChara] = useState<number>();
+
+  useEffect(() => {
+    if (selectedChara) setShowRinne(false);
+    else setShowRinne(true);
+  }, [selectedChara]);
 
   const selectedCharaData =
     charaData.find((chara) => chara.character_id === selectedChara) ??
@@ -746,6 +763,22 @@ function MatchedMessages({
                         String(selectedChara) as keyof typeof charaIdToMessage
                       ]
                     }
+                    {selectedChara === 16 && (
+                      <Image
+                        alt="koga and leon :)"
+                        src="https://static.wikia.nocookie.net/ensemble-stars/images/c/ca/%28Wolf_Corgi%29_Koga_Oogami_CG.png/revision/latest/scale-to-width-down/1000?cb=20190509032324"
+                        width={1000}
+                        height={563}
+                      />
+                    )}
+                    {selectedChara === 41 && (
+                      <Image
+                        alt="bloody mary"
+                        src="https://i.ibb.co/ZKXj1wR/bloody-mary.png"
+                        width={261}
+                        height={165}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -956,6 +989,7 @@ export default function Dating(props: any) {
   const [rinneDialogue, setRinneDialogue] = useState(
     RinneDialogue.START_DIALOGUE,
   );
+  const [showRinne, setShowRinne] = useState(true);
 
   const { mutate: addVoteForChara } = useMutation({
     mutationFn: async (values: { charaId: number; choice: boolean }) => {
@@ -1009,8 +1043,8 @@ export default function Dating(props: any) {
         setRinneDialogue(RinneDialogue.RINNE_DIALOGUE_LIKE);
       } else {
         if (
-          charaData[state.index].character_id !== 71 &&
-          charaData[state.index].character_id !== 74
+          charaData[state.index]?.character_id !== 71 &&
+          charaData[state.index]?.character_id !== 74
         ) {
           const randomChoice = Math.round(Math.random() * 10);
           if (randomChoice % 2 === 0) {
@@ -1019,16 +1053,6 @@ export default function Dating(props: any) {
             setRinneDialogue(RinneDialogue.LIKE_DIALOGUE_2);
           }
         }
-      }
-
-      const random = Math.ceil(Math.random() * 4);
-      if (random % 4 === 1) {
-        setShowMatchNotif(true);
-      } else {
-        dispatch({
-          type: CardActionKind.PROCEED,
-          payload: state.smashList[mostRecentIndex],
-        });
       }
     }
   }, [state.smashList]);
@@ -1112,7 +1136,7 @@ export default function Dating(props: any) {
   }, [state.index]);
 
   useEffect(() => {
-    if (state.index > 0) {
+    if (state.index > 0 && state.choice !== 0) {
       addVoteForChara({
         charaId: charaData[state.index - 1].character_id,
         choice: state.choice > 0,
@@ -1132,7 +1156,9 @@ export default function Dating(props: any) {
         </AnimatePresence>
         <main>
           <div className={styles.gameContainer}>
-            <Rinne sprite={rinneSprite} dialogue={rinneDialogue} />
+            {showRinne && (
+              <Rinne sprite={rinneSprite} dialogue={rinneDialogue} />
+            )}
             {state.index < charaData.length && (
               <>
                 <CardStack
@@ -1155,7 +1181,10 @@ export default function Dating(props: any) {
             )}
             {state.index >= charaData.length && (
               <div className={styles.messages}>
-                <MatchedMessages {...{ charaData }} matches={state.matchList} />
+                <MatchedMessages
+                  {...{ charaData, setShowRinne }}
+                  matches={state.matchList}
+                />
               </div>
             )}
           </div>
